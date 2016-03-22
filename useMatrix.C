@@ -10,21 +10,21 @@ void useMatrix(){
 
   TMatrixD matrix(4,4);
   matrix(0,0)=0.98182;
-  matrix(0,1)=0.00001;
-  matrix(0,2)=0.01060;
-  matrix(0,3)=0.00034;
-  matrix(1,0)=0.00017;
-  matrix(1,1)=0.90362;
-  matrix(1,2)=0.00698;
+  matrix(0,1)=0.00002;
+  matrix(0,2)=0.01062;
+  matrix(0,3)=0.00036;
+  matrix(1,0)=0.00047;
+  matrix(1,1)=0.94427;
+  matrix(1,2)=0.00747;
   matrix(1,3)= 0.00001;
-  matrix(2,0)=0.01262;
-  matrix(2,1)=0.07791;
-  matrix(2,2)=0.95048;
-  matrix(2,3)=0.00484;
-  matrix(3,0)=0.00027;
+  matrix(2,0)=0.00286;
+  matrix(2,1)=0.02244;
+  matrix(2,2)=0.91643;
+  matrix(2,3)=0.00152;
+  matrix(3,0)=0.00007;
   matrix(3,1)=0.00001;
-  matrix(3,2)=0.01232;
-  matrix(3,3)=0.99472;
+  matrix(3,2)=0.00688;
+  matrix(3,3)=0.98970;
   cout<<"Matrix" << endl;
   matrix.Print();
 	//Total Number of simulated events per kind
