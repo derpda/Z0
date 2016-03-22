@@ -189,7 +189,7 @@ spaghetti()
 					weights[2]*efficiency[2][i_cr-1] + weights[3]*efficiency[3][i_cr-1]);
 		}
 
-/*		
+	
 		TCanvas *c[n_histos];
 		c[0] = new TCanvas("c0", "c0",1920,1080);
 		c[1] = new TCanvas("c1", "c1",1920,1080);
@@ -255,7 +255,7 @@ spaghetti()
 			//else leg->AddEntry(h_Ncharged[ip], name[ip], "LP");
 		}
 		leg->Draw("SAME");
-		c[0]->SaveAs(cutname[i_cr] + "_Ncharged_cut.png");
+		c[0]->SaveAs("graphs/" + cutname[i_cr] +  "_Ncharged_cut.png");
 		c[0]->Close();
 		c[1]->cd();
 		for(int ip=0; ip < n_sim; ++ip) {
@@ -266,7 +266,7 @@ spaghetti()
 			//else if(ip==4) h_Pcharged[ip]->Draw("SAME P");
 		}
 		leg->Draw("SAME");
-		c[1]->SaveAs(cutname[i_cr] + "_Pcharged_cut.png");
+		c[1]->SaveAs("graphs/" + cutname[i_cr] +  "_Pcharged_cut.png");
 		c[1]->Close();
 		c[2]->cd();
 		for(int ip=0; ip < n_sim; ++ip) {
@@ -277,7 +277,7 @@ spaghetti()
 			//else if(ip==4) h_E_Ecal[ip]->Draw("SAME P");
 		}
 		leg->Draw("SAME");
-		c[2]->SaveAs(cutname[i_cr] + "_E_Ecal_cut.png");
+		c[2]->SaveAs("graphs/" + cutname[i_cr] +  "_E_Ecal_cut.png");
 		c[2]->Close();
 		c[3]->cd();
 		for(int ip=0; ip < n_sim; ++ip) {
@@ -288,7 +288,7 @@ spaghetti()
 				//else if(ip==4) h_E_Hcal[ip]->Draw("SAME");
 		}
 		leg->Draw("SAME");
-		c[3]->SaveAs(cutname[i_cr] + "_E_Hcal_cut.png");
+		c[3]->SaveAs("graphs/" + cutname[i_cr] +  "_E_Hcal_cut.png");
 		c[3]->Close();
 		c[4]->cd();
 		for(int ip=0; ip < n_sim; ++ip) {
@@ -299,7 +299,7 @@ spaghetti()
 			//else if(ip==4) h_cos_thru[ip]->Draw("SAME");
 		}
 		leg->Draw("SAME");
-		c[4]->SaveAs(cutname[i_cr] + "_cos_thru_cut.png");
+		c[4]->SaveAs("graphs/" + cutname[i_cr] +  "_cos_thru_cut.png");
 		c[4]->Close();
 		c[5]->cd();
 		for(int ip=0; ip < n_sim; ++ip) {
@@ -310,10 +310,10 @@ spaghetti()
 			//else if(ip==4) h_cos_thet[ip]->Draw("SAME");
 		}
 		leg->Draw("SAME");
-		c[5]->SaveAs(cutname[i_cr] + "_cos_theta_cut.png");
+		c[5]->SaveAs("graphs/" + cutname[i_cr] +  "_cos_theta_cut.png");
 		c[5]->Close();
 
-*/	} //end of cut region loop
+	} //end of cut region loop
 
 	//close opened files
 	for(int iFile = 0; iFile < n_sim; ++iFile) files[iFile]->Close();
