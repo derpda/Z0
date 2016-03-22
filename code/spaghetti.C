@@ -41,15 +41,15 @@ spaghetti()
 	for(int isim = 0; isim < n_sim; ++isim) {
 		h_Ncharged[isim] = new TH1F("h_Ncharged_" + name[isim], "Number of tracks", 40, 0., 40.);
 		h_Ncharged[isim]->Sumw2();
-		h_Pcharged[isim] = new TH1F("h_Pcharged_" + name[isim], "Sum of track energies", 60, 0., 120.);
+		h_Pcharged[isim] = new TH1F("h_Pcharged_" + name[isim], "Sum of track energies", 120, 0., 120.);
 		h_Pcharged[isim]->Sumw2();
 		h_E_Ecal[isim] = new TH1F("h_Eecal_" + name[isim], "E_ECal", 60, 0., 120.);
 		h_E_Ecal[isim]->Sumw2();
-		h_E_Hcal[isim] = new TH1F("h_Ehcal_" + name[isim], "E_HCal", 60, 0., 10.);
+		h_E_Hcal[isim] = new TH1F("h_Ehcal_" + name[isim], "E_HCal", 50, 1., 50.);
 		h_E_Hcal[isim]->Sumw2();
 		h_cos_thru[isim] = new TH1F("h_costhru_" + name[isim], "Cos thrust", 40, -1., 1.);
 		h_cos_thru[isim]->Sumw2();
-		h_cos_thet[isim] = new TH1F("h_costhet_" + name[isim], "Cos theta", 40, -1., 1.);
+		h_cos_thet[isim] = new TH1F("h_costhet_" + name[isim], "Cos theta", 100, -1., 1.);
 		h_cos_thet[isim]->Sumw2();
 	}
 
@@ -87,20 +87,21 @@ spaghetti()
 			mc_trees[isim]->SetBranchAddress("cos_thru", &cos_thru);
 			mc_trees[isim]->SetBranchAddress("cos_thet", &cos_theta);
 			const int nevents = mc_trees[isim]->GetEntries();
-			
+//			cout << "number of events for " << name[isim] <<" :" << nevents <<endl;
 
-			//event counters
+			//event counters and efficiency, purity matrix
 			float n_events_cut = 0; //save to variable later
-			float n_events = 0; //save to variable later
+			float n_events_cut_w[4]=; //save to variable later
+			float efficiency[4][4];
+			float purity[4]=;
 
 			//set weights for different decays
-			float weights[n_sim]={1,1,1,1,1};
+			float weights[n_sim]={83.8/2486.2,83.8/2486.2,83.8/2486.2,1732/2486.2};
 
-			std::cout << "Cut: " << i_cr << std::endl;
-			std::cout << "Process: " << name[isim] << std::endl;
+			//std::cout << "Cut: " << i_cr << std::endl;
+			//std::cout << "Process: " << name[isim] << std::endl;
 			//apply the different cuts via switch
 			for(int iev = 0; iev < nevents; ++iev) {
-			
 				mc_trees[isim]->GetEntry(iev);
 				switch (i_cr){
 
@@ -116,7 +117,8 @@ spaghetti()
 					case 1:
 						//ee cuts
 						if (Ncharged < 7 && E_ECal >= 70) {
-							n_events += weights[isim];
+							n_events_cut_w[isim] += weights[isim]/nevents;
+							n_events_cut += 1;
 							h_Ncharged[isim]->Fill(Ncharged);
 							h_Pcharged[isim]->Fill(Pcharged);
 							h_E_Ecal[isim]->Fill(E_ECal);
@@ -127,8 +129,9 @@ spaghetti()
 						break;
 					case 2:
 						//mm cuts
-						if (Pcharged > 70 && E_ECal < 50 && Ncharged < 7) {
-							n_events += weights[isim];
+						if ((Pcharged > 70 || Pcharged ==0) && E_ECal < 50 && Ncharged ==2) {
+							n_events_cut_w[isim] += weights[isim]/nevents;
+							n_events_cut += 1;
 							h_Ncharged[isim]->Fill(Ncharged);
 							h_Pcharged[isim]->Fill(Pcharged);
 							h_E_Ecal[isim]->Fill(E_ECal);
@@ -139,8 +142,10 @@ spaghetti()
 						break;
 					case 3:
 						//tt cuts
-						if (Pcharged <= 70 && Ncharged < 7 && E_ECal < 70) {
-							n_events += weights[isim];
+						if ( Pcharged != 0 && Pcharged <= 70 && Ncharged <7 && E_ECal < 75 && ( (cos_theta > -0.9 && cos_theta < 0.9) || cos_theta > 1) 
+						( cos_thru > -0.9 && cos_thru < 0.9) ) {
+							n_events_cut_w[isim] += weights[isim]/nevents;
+							n_events_cut += 1;
 							h_Ncharged[isim]->Fill(Ncharged);
 							h_Pcharged[isim]->Fill(Pcharged);
 							h_E_Ecal[isim]->Fill(E_ECal);
@@ -151,8 +156,9 @@ spaghetti()
 						break;
 					case 4:
 						//qq cuts
-						if (Ncharged >= 7) {
-							n_events += weights[isim];
+						if (Ncharged >= 8) {
+							n_events_cut_w[isim] += weights[isim]/nevents;
+							n_events_cut += 1;
 							h_Ncharged[isim]->Fill(Ncharged);
 							h_Pcharged[isim]->Fill(Pcharged);
 							h_E_Ecal[isim]->Fill(E_ECal);
@@ -161,11 +167,29 @@ spaghetti()
 							h_cos_thet[isim]->Fill(cos_theta); 
 						}
 						break;
-				}
-			}
+				}//end of switch
+
+				//if no events registered, add one
+				if(n_events_cut == 0) n_events_cut += 1;
+
+			}//end of events loop
+
+		//fill efficiency matrix for all but first cut region (no cut) and last isim (data)
+		if(isim < 4 && i_cr > 0) efficiency[isim][i_cr-1] = n_events_cut/nevents ;
+
+		}//end of isim loop
+
+		//fill purity vector (needs all results of isim, thus after loop)
+		/*if(i_cr > 0)	{
+			purity[i_cr-1] = n_events_cut_w[i_cr-1]/(n_events_cut_w[0] + n_events_cut_w[1] + n_events_cut_w[2] + n_events_cut_w[3]);
 		}
-	
-	
+		*/
+		if(i_cr > 0)	{
+			purity[i_cr-1] = weights[i_cr-1]*efficiency[i_cr-1][i_cr-1]/(weights[0]*efficiency[0][i_cr-1] + weights[1]*efficiency[1][i_cr-1] + 
+					weights[2]*efficiency[2][i_cr-1] + weights[3]*efficiency[3][i_cr-1]);
+		}
+
+/*		
 		TCanvas *c[n_histos];
 		c[0] = new TCanvas("c0", "c0",1920,1080);
 		c[1] = new TCanvas("c1", "c1",1920,1080);
@@ -180,7 +204,7 @@ spaghetti()
 		color[3] = kYellow;
 		color[4] = kBlack;
 	
-	
+
 		float max[n_histos] = {0., 0., 0., 0., 0., 0.};
 		for(int i=0; i<n_sim; ++i) {
 			float act_max = h_Ncharged[i]->GetMaximum();
@@ -289,8 +313,18 @@ spaghetti()
 		c[5]->SaveAs(cutname[i_cr] + "_cos_theta_cut.png");
 		c[5]->Close();
 
-	}
+*/	} //end of cut region loop
+
+	//close opened files
 	for(int iFile = 0; iFile < n_sim; ++iFile) files[iFile]->Close();
 
-std::cout << "after " << std::endl;
+
+	cout << "Efficiency array: \n" << endl;
+	cout << "\t  "<< name[0] <<"\t  "<< name[1] <<"\t  "<< name[2] <<"\t  "<< name[3] <<"\t\t"<< "Purity" 
+		<<"\t"<< "Product" << endl;
+	for (i=0 ; i < 4 ; ++i) {
+		cout << std::fixed << std::setprecision(5) << cutname[i+1] <<"\t"<< efficiency[0][i] <<"\t"
+		<< efficiency[1][i] <<"\t"<< efficiency[2][i] <<"\t"<< efficiency[3][i] <<"\t\t"<< purity[i] 
+		<< "\t"<< efficiency[i][i]*purity[i] << endl; 
+	}
 }	
