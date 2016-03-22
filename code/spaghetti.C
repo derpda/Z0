@@ -1,0 +1,296 @@
+
+#include <sstream>
+
+
+spaghetti()
+{
+	gStyle->SetHistLineWidth(2.);
+	gStyle->SetLabelSize(0.05, "x");
+	gStyle->SetLabelSize(0.05, "y");
+	gStyle->SetOptStat(0);
+	gStyle->SetLabelFont(42, "x");
+	gStyle->SetLabelFont(42, "y");
+
+	const int n_sim = 5;
+	TFile *files[n_sim];
+	files[0] = new TFile("../daten/mc/ee.root", "READ");
+	files[1] = new TFile("../daten/mc/mm.root", "READ");
+	files[2] = new TFile("../daten/mc/tt.root", "READ");
+	files[3] = new TFile("../daten/mc/qq.root", "READ");
+	files[4] = new TFile("../daten/daten/daten_1.root", "READ");
+	TTree *mc_trees[n_sim];
+	for(int i=0; i<n_sim-1; ++i) mc_trees[i] = (TTree*) files[i]->Get("h3");
+	TTree *mc_trees[4] = (TTree*) files[4]->Get("h33");
+
+
+
+	//define histograms
+	TString name[n_sim];
+	name[0] = "ee";
+	name[1] = "mm";
+	name[2] = "tt";
+	name[3] = "qq";
+	name[4] = "data";
+	TH1F *h_Ncharged[n_sim];
+	TH1F *h_Pcharged[n_sim];
+	TH1F *h_E_Ecal[n_sim];
+	TH1F *h_E_Hcal[n_sim];
+	TH1F *h_cos_thru[n_sim];
+	TH1F *h_cos_thet[n_sim];
+	const int n_histos = 6;
+	for(int isim = 0; isim < n_sim; ++isim) {
+		h_Ncharged[isim] = new TH1F("h_Ncharged_" + name[isim], "Number of tracks", 40, 0., 40.);
+		h_Ncharged[isim]->Sumw2();
+		h_Pcharged[isim] = new TH1F("h_Pcharged_" + name[isim], "Sum of track energies", 60, 0., 120.);
+		h_Pcharged[isim]->Sumw2();
+		h_E_Ecal[isim] = new TH1F("h_Eecal_" + name[isim], "E_ECal", 60, 0., 120.);
+		h_E_Ecal[isim]->Sumw2();
+		h_E_Hcal[isim] = new TH1F("h_Ehcal_" + name[isim], "E_HCal", 60, 0., 10.);
+		h_E_Hcal[isim]->Sumw2();
+		h_cos_thru[isim] = new TH1F("h_costhru_" + name[isim], "Cos thrust", 40, -1., 1.);
+		h_cos_thru[isim]->Sumw2();
+		h_cos_thet[isim] = new TH1F("h_costhet_" + name[isim], "Cos theta", 40, -1., 1.);
+		h_cos_thet[isim]->Sumw2();
+	}
+
+
+
+	//Loop over the four different cuts as well no the no cut option
+	int n_cutregions = 5;
+	TString cutname[n_cutregions];
+	cutname[0]="nocut";
+	cutname[1]="ee_cut";
+	cutname[2]="mm_cut";
+	cutname[3]="tt_cut";
+	cutname[4]="qq_cut";
+
+	for(int i_cr = 0; i_cr < n_cutregions; ++i_cr) {
+		//define parameters
+		float event, run, Ncharged, Pcharged, E_ECal, E_HCal, E_LEP, cos_thru, cos_theta;
+
+
+		for(int isim = 0; isim < n_sim; ++isim) {
+			//reset TH1F histograms
+			h_Ncharged[isim]->Reset("M");
+			h_Pcharged[isim]->Reset("M");
+			h_E_Ecal[isim]->Reset("M");
+			h_E_Hcal[isim]->Reset("M");
+			h_cos_thru[isim]->Reset("M");
+			h_cos_thet[isim]->Reset("M");
+			mc_trees[isim]->SetBranchAddress("event", &event);
+			mc_trees[isim]->SetBranchAddress("run", &run);
+			mc_trees[isim]->SetBranchAddress("Ncharged", &Ncharged);
+			mc_trees[isim]->SetBranchAddress("Pcharged", &Pcharged);
+			mc_trees[isim]->SetBranchAddress("E_ecal", &E_ECal);
+			mc_trees[isim]->SetBranchAddress("E_hcal", &E_HCal);
+			mc_trees[isim]->SetBranchAddress("E_lep", &E_LEP);
+			mc_trees[isim]->SetBranchAddress("cos_thru", &cos_thru);
+			mc_trees[isim]->SetBranchAddress("cos_thet", &cos_theta);
+			const int nevents = mc_trees[isim]->GetEntries();
+			
+
+			//event counters
+			float n_events_cut = 0; //save to variable later
+			float n_events = 0; //save to variable later
+
+			//set weights for different decays
+			float weights[n_sim]={1,1,1,1,1};
+
+			std::cout << "Cut: " << i_cr << std::endl;
+			std::cout << "Process: " << name[isim] << std::endl;
+			//apply the different cuts via switch
+			for(int iev = 0; iev < nevents; ++iev) {
+			
+				mc_trees[isim]->GetEntry(iev);
+				switch (i_cr){
+
+					case 0:
+						//no cuts
+						h_Ncharged[isim]->Fill(Ncharged);
+						h_Pcharged[isim]->Fill(Pcharged);
+						h_E_Ecal[isim]->Fill(E_ECal);
+						h_E_Hcal[isim]->Fill(E_HCal);
+						h_cos_thru[isim]->Fill(cos_thru);
+						h_cos_thet[isim]->Fill(cos_theta); 
+						break;
+					case 1:
+						//ee cuts
+						if (Ncharged < 7 && E_ECal >= 70) {
+							n_events += weights[isim];
+							h_Ncharged[isim]->Fill(Ncharged);
+							h_Pcharged[isim]->Fill(Pcharged);
+							h_E_Ecal[isim]->Fill(E_ECal);
+							h_E_Hcal[isim]->Fill(E_HCal);
+							h_cos_thru[isim]->Fill(cos_thru);
+							h_cos_thet[isim]->Fill(cos_theta); 
+						}
+						break;
+					case 2:
+						//mm cuts
+						if (Pcharged > 70 && E_ECal < 50 && Ncharged < 7) {
+							n_events += weights[isim];
+							h_Ncharged[isim]->Fill(Ncharged);
+							h_Pcharged[isim]->Fill(Pcharged);
+							h_E_Ecal[isim]->Fill(E_ECal);
+							h_E_Hcal[isim]->Fill(E_HCal);
+							h_cos_thru[isim]->Fill(cos_thru);
+							h_cos_thet[isim]->Fill(cos_theta);
+						} 
+						break;
+					case 3:
+						//tt cuts
+						if (Pcharged <= 70 && Ncharged < 7 && E_ECal < 70) {
+							n_events += weights[isim];
+							h_Ncharged[isim]->Fill(Ncharged);
+							h_Pcharged[isim]->Fill(Pcharged);
+							h_E_Ecal[isim]->Fill(E_ECal);
+							h_E_Hcal[isim]->Fill(E_HCal);
+							h_cos_thru[isim]->Fill(cos_thru);
+							h_cos_thet[isim]->Fill(cos_theta); 
+						}
+						break;
+					case 4:
+						//qq cuts
+						if (Ncharged >= 7) {
+							n_events += weights[isim];
+							h_Ncharged[isim]->Fill(Ncharged);
+							h_Pcharged[isim]->Fill(Pcharged);
+							h_E_Ecal[isim]->Fill(E_ECal);
+							h_E_Hcal[isim]->Fill(E_HCal);
+							h_cos_thru[isim]->Fill(cos_thru);
+							h_cos_thet[isim]->Fill(cos_theta); 
+						}
+						break;
+				}
+			}
+		}
+	
+	
+		TCanvas *c[n_histos];
+		c[0] = new TCanvas("c0", "c0",1920,1080);
+		c[1] = new TCanvas("c1", "c1",1920,1080);
+		c[2] = new TCanvas("c2", "c2",1920,1080);
+		c[3] = new TCanvas("c3", "c3",1920,1080);
+		c[4] = new TCanvas("c4", "c4",1920,1080);
+		c[5] = new TCanvas("c5", "c5",1920,1080);
+		EColor color[n_sim];
+		color[0] = kBlue;
+		color[1] = kRed;
+		color[2] = kGreen;
+		color[3] = kYellow;
+		color[4] = kBlack;
+	
+	
+		float max[n_histos] = {0., 0., 0., 0., 0., 0.};
+		for(int i=0; i<n_sim; ++i) {
+			float act_max = h_Ncharged[i]->GetMaximum();
+			if(act_max > max[0]) {
+				max[0] = act_max;
+			}
+		}
+		for(int i=0; i<n_sim; ++i) {
+			float act_max = h_Pcharged[i]->GetMaximum();
+			if(act_max > max[1]) {
+				max[1] = act_max;
+			}
+		}
+		for(int i=0; i<n_sim; ++i) {
+			float act_max = h_E_Ecal[i]->GetMaximum();
+			if(act_max > max[2]) {
+				max[2] = act_max;
+			}
+		}
+		for(int i=0; i<n_sim; ++i) {
+			float act_max = h_E_Hcal[i]->GetMaximum();
+			if(act_max > max[3]) {
+				max[3] = act_max;
+			}
+		}
+		for(int i=0; i<n_sim; ++i) {
+			float act_max = h_cos_thru[i]->GetMaximum();
+			if(act_max > max[4]) {
+				max[4] = act_max;
+			}
+		}
+		for(int i=0; i<n_sim; ++i) {
+			float act_max = h_cos_thet[i]->GetMaximum();
+			if(act_max > max[5]) {
+				max[5] = act_max;
+			}
+		}
+	
+		TLegend *leg = new TLegend(0.76, 0.64, 0.88, 0.88); 
+		c[0]->cd();
+		for(int ip=0; ip < n_sim; ++ip) {
+			h_Ncharged[ip]->SetLineColor(color[ip]);
+			h_Ncharged[ip]->SetMaximum(max[0]*1.3);
+			if(ip==0) h_Ncharged[ip]->Draw("HIST");
+			else if(ip < 4) h_Ncharged[ip]->Draw("SAME HIST");
+			//else if(ip==4) h_Ncharged[ip]->Draw("SAME P");
+			if(ip<4) leg->AddEntry(h_Ncharged[ip], name[ip], "L");
+			//else leg->AddEntry(h_Ncharged[ip], name[ip], "LP");
+		}
+		leg->Draw("SAME");
+		c[0]->SaveAs(cutname[i_cr] + "_Ncharged_cut.png");
+		c[0]->Close();
+		c[1]->cd();
+		for(int ip=0; ip < n_sim; ++ip) {
+			h_Pcharged[ip]->SetLineColor(color[ip]);
+			h_Pcharged[ip]->SetMaximum(max[1]*1.3);
+			if(ip==0) h_Pcharged[ip]->Draw("HIST");
+			else if(ip<4) h_Pcharged[ip]->Draw("SAME HIST");
+			//else if(ip==4) h_Pcharged[ip]->Draw("SAME P");
+		}
+		leg->Draw("SAME");
+		c[1]->SaveAs(cutname[i_cr] + "_Pcharged_cut.png");
+		c[1]->Close();
+		c[2]->cd();
+		for(int ip=0; ip < n_sim; ++ip) {
+			h_E_Ecal[ip]->SetLineColor(color[ip]);
+			h_E_Ecal[ip]->SetMaximum(max[2]*1.3);
+			if(ip==0) h_E_Ecal[ip]->Draw("HIST");
+			else if(ip<4) h_E_Ecal[ip]->Draw("SAME HIST");
+			//else if(ip==4) h_E_Ecal[ip]->Draw("SAME P");
+		}
+		leg->Draw("SAME");
+		c[2]->SaveAs(cutname[i_cr] + "_E_Ecal_cut.png");
+		c[2]->Close();
+		c[3]->cd();
+		for(int ip=0; ip < n_sim; ++ip) {
+			h_E_Hcal[ip]->SetLineColor(color[ip]);
+			h_E_Hcal[ip]->SetMaximum(max[3]*1.3);
+			if(ip==0) h_E_Hcal[ip]->Draw("HIST");
+			else if(ip<4) h_E_Hcal[ip]->Draw("SAME HIST");
+				//else if(ip==4) h_E_Hcal[ip]->Draw("SAME");
+		}
+		leg->Draw("SAME");
+		c[3]->SaveAs(cutname[i_cr] + "_E_Hcal_cut.png");
+		c[3]->Close();
+		c[4]->cd();
+		for(int ip=0; ip < n_sim; ++ip) {
+			h_cos_thru[ip]->SetLineColor(color[ip]);
+			h_cos_thru[ip]->SetMaximum(max[4]*1.3);
+			if(ip==0) h_cos_thru[ip]->Draw("HIST");
+			else if(ip<4) h_cos_thru[ip]->Draw("SAME HIST");
+			//else if(ip==4) h_cos_thru[ip]->Draw("SAME");
+		}
+		leg->Draw("SAME");
+		c[4]->SaveAs(cutname[i_cr] + "_cos_thru_cut.png");
+		c[4]->Close();
+		c[5]->cd();
+		for(int ip=0; ip < n_sim; ++ip) {
+			h_cos_thet[ip]->SetLineColor(color[ip]);
+			h_cos_thet[ip]->SetMaximum(max[5]*1.3);
+			if(ip==0) h_cos_thet[ip]->Draw("HIST");
+			else if(ip<4) h_cos_thet[ip]->Draw("SAME HIST");
+			//else if(ip==4) h_cos_thet[ip]->Draw("SAME");
+		}
+		leg->Draw("SAME");
+		c[5]->SaveAs(cutname[i_cr] + "_cos_theta_cut.png");
+		c[5]->Close();
+
+	}
+	for(int iFile = 0; iFile < n_sim; ++iFile) files[iFile]->Close();
+
+std::cout << "after " << std::endl;
+}	
