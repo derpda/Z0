@@ -107,64 +107,60 @@ spaghetti()
 
 					case 0:
 						//no cuts
-						h_Ncharged[isim]->Fill(Ncharged);
-						h_Pcharged[isim]->Fill(Pcharged);
-						h_E_Ecal[isim]->Fill(E_ECal);
-						h_E_Hcal[isim]->Fill(E_HCal);
-						h_cos_thru[isim]->Fill(cos_thru);
-						h_cos_thet[isim]->Fill(cos_theta); 
+						h_Ncharged[isim]->Fill(Ncharged, weights[isim]);
+						h_Pcharged[isim]->Fill(Pcharged, weights[isim]);
+						h_E_Ecal[isim]->Fill(E_ECal, weights[isim]);
+						h_E_Hcal[isim]->Fill(E_HCal, weights[isim]);
+						h_cos_thru[isim]->Fill(cos_thru, weights[isim]);
+						h_cos_thet[isim]->Fill(cos_theta, weights[isim]); 
 						break;
 					case 1:
 						//ee cuts
-						if (Ncharged < 7 && E_ECal >= 70) {
-							n_events_cut_w[isim] += weights[isim]/nevents;
+						if (Ncharged < 7 && E_ECal >= 70 && ( (cos_theta > -0.9 && cos_theta < 0.9) || cos_theta > 1) ) {
 							n_events_cut += 1;
-							h_Ncharged[isim]->Fill(Ncharged);
-							h_Pcharged[isim]->Fill(Pcharged);
-							h_E_Ecal[isim]->Fill(E_ECal);
-							h_E_Hcal[isim]->Fill(E_HCal);
-							h_cos_thru[isim]->Fill(cos_thru);
-							h_cos_thet[isim]->Fill(cos_theta); 
+							h_Ncharged[isim]->Fill(Ncharged, weights[isim]);
+							h_Pcharged[isim]->Fill(Pcharged, weights[isim]);
+							h_E_Ecal[isim]->Fill(E_ECal, weights[isim]);
+							h_E_Hcal[isim]->Fill(E_HCal, weights[isim]);
+							h_cos_thru[isim]->Fill(cos_thru, weights[isim]);
+							h_cos_thet[isim]->Fill(cos_theta, weights[isim]); 
 						}
 						break;
 					case 2:
 						//mm cuts
 						if ((Pcharged > 70 || Pcharged ==0) && E_ECal < 50 && Ncharged ==2) {
-							n_events_cut_w[isim] += weights[isim]/nevents;
 							n_events_cut += 1;
-							h_Ncharged[isim]->Fill(Ncharged);
-							h_Pcharged[isim]->Fill(Pcharged);
-							h_E_Ecal[isim]->Fill(E_ECal);
-							h_E_Hcal[isim]->Fill(E_HCal);
-							h_cos_thru[isim]->Fill(cos_thru);
-							h_cos_thet[isim]->Fill(cos_theta);
+							h_Ncharged[isim]->Fill(Ncharged, weights[isim]);
+							h_Pcharged[isim]->Fill(Pcharged, weights[isim]);
+							h_E_Ecal[isim]->Fill(E_ECal, weights[isim]);
+							h_E_Hcal[isim]->Fill(E_HCal, weights[isim]);
+							h_cos_thru[isim]->Fill(cos_thru, weights[isim]);
+							h_cos_thet[isim]->Fill(cos_theta, weights[isim]);
 						} 
 						break;
 					case 3:
 						//tt cuts
 						if ( Pcharged != 0 && Pcharged <= 70 && Ncharged <7 && E_ECal < 75 && ( (cos_theta > -0.9 && cos_theta < 0.9) || cos_theta > 1) 
 						( cos_thru > -0.9 && cos_thru < 0.9) ) {
-							n_events_cut_w[isim] += weights[isim]/nevents;
 							n_events_cut += 1;
-							h_Ncharged[isim]->Fill(Ncharged);
-							h_Pcharged[isim]->Fill(Pcharged);
-							h_E_Ecal[isim]->Fill(E_ECal);
-							h_E_Hcal[isim]->Fill(E_HCal);
-							h_cos_thru[isim]->Fill(cos_thru);
-							h_cos_thet[isim]->Fill(cos_theta); 
+							h_Ncharged[isim]->Fill(Ncharged, weights[isim]);
+							h_Pcharged[isim]->Fill(Pcharged, weights[isim]);
+							h_E_Ecal[isim]->Fill(E_ECal, weights[isim]);
+							h_E_Hcal[isim]->Fill(E_HCal, weights[isim]);
+							h_cos_thru[isim]->Fill(cos_thru, weights[isim]);
+							h_cos_thet[isim]->Fill(cos_theta, weights[isim]); 
 						}
 						break;
 					case 4:
 						//qq cuts
 						if (Ncharged >= 8) {
-							n_events_cut_w[isim] += weights[isim]/nevents;
 							n_events_cut += 1;
-							h_Ncharged[isim]->Fill(Ncharged);
-							h_Pcharged[isim]->Fill(Pcharged);
-							h_E_Ecal[isim]->Fill(E_ECal);
-							h_E_Hcal[isim]->Fill(E_HCal);
-							h_cos_thru[isim]->Fill(cos_thru);
-							h_cos_thet[isim]->Fill(cos_theta); 
+							h_Ncharged[isim]->Fill(Ncharged, weights[isim]);
+							h_Pcharged[isim]->Fill(Pcharged, weights[isim]);
+							h_E_Ecal[isim]->Fill(E_ECal, weights[isim]);
+							h_E_Hcal[isim]->Fill(E_HCal, weights[isim]);
+							h_cos_thru[isim]->Fill(cos_thru, weights[isim]);
+							h_cos_thet[isim]->Fill(cos_theta, weights[isim]); 
 						}
 						break;
 				}//end of switch
@@ -180,10 +176,6 @@ spaghetti()
 		}//end of isim loop
 
 		//fill purity vector (needs all results of isim, thus after loop)
-		/*if(i_cr > 0)	{
-			purity[i_cr-1] = n_events_cut_w[i_cr-1]/(n_events_cut_w[0] + n_events_cut_w[1] + n_events_cut_w[2] + n_events_cut_w[3]);
-		}
-		*/
 		if(i_cr > 0)	{
 			purity[i_cr-1] = weights[i_cr-1]*efficiency[i_cr-1][i_cr-1]/(weights[0]*efficiency[0][i_cr-1] + weights[1]*efficiency[1][i_cr-1] + 
 					weights[2]*efficiency[2][i_cr-1] + weights[3]*efficiency[3][i_cr-1]);
