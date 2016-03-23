@@ -45,7 +45,7 @@ spaghetti()
 		h_Pcharged[isim]->Sumw2();
 		h_E_Ecal[isim] = new TH1F("h_Eecal_" + name[isim], "E_ECal", 60, 0., 120.);
 		h_E_Ecal[isim]->Sumw2();
-		h_E_Hcal[isim] = new TH1F("h_Ehcal_" + name[isim], "E_HCal", 50, 1., 50.);
+		h_E_Hcal[isim] = new TH1F("h_Ehcal_" + name[isim], "E_HCal", 50, 0., 50.);
 		h_E_Hcal[isim]->Sumw2();
 		h_cos_thru[isim] = new TH1F("h_costhru_" + name[isim], "Cos thrust", 40, -1., 1.);
 		h_cos_thru[isim]->Sumw2();

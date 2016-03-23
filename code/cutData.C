@@ -60,7 +60,7 @@ cutData()
 	h_Pcharged[i]->Sumw2();
 	h_E_Ecal[i] = new TH1F("h_Eecal_" + invmassname[i], "E_ECal", 60, 0., 120.);
 	h_E_Ecal[i]->Sumw2();
-	h_E_Hcal[i] = new TH1F("h_Ehcal_" + invmassname[i], "E_HCal", 50, 1., 50.);
+	h_E_Hcal[i] = new TH1F("h_Ehcal_" + invmassname[i], "E_HCal", 50, 0., 50.);
 	h_E_Hcal[i]->Sumw2();
 	h_cos_thru[i] = new TH1F("h_costhru_" + invmassname[i], "Cos thrust", 40, -1., 1.);
 	h_cos_thru[i]->Sumw2();
@@ -72,8 +72,8 @@ cutData()
 
 
 	//Loop over the four different cuts as well no the no cut option
-	int n_cutregions = 5;
-	TString cutname[5];
+	const int n_cutregions = 5;
+	TString cutname[n_cutregions];
 	cutname[0]="nocut";
 	cutname[1]="ee_cut";
 	cutname[2]="mm_cut";
@@ -82,7 +82,7 @@ cutData()
 	//counter for ee events
 	int ee_counter=0;
 
-	for(int i_cr = 1; i_cr < 2; ++i_cr) {
+	for(int i_cr = 0; i_cr < n_cutregions; ++i_cr) {
 		//define parameters
 		float event, run, Ncharged, Pcharged, E_ECal, E_HCal, E_LEP, cos_thru, cos_theta;
 
