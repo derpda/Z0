@@ -30,12 +30,6 @@ cutData()
 	invmassname[6]="46.9";
 
 
-	//make file for histos
-	/*TFile* f_out[n_invmass];
-	for(int i=0; i < n_invmass; ++i){
-		TString path="data_graphs/" + invmassname[i] + "/histos.root";
-		f_out[i] = new TFile("path", "RECREATE");
-	}*/
 	TFile* f_out[n_invmass];
 	f_out[0] = new TFile("data_graphs/histos44.2.root", "RECREATE");
 	f_out[1] = new TFile("data_graphs/histos44.7.root", "RECREATE");
@@ -45,6 +39,7 @@ cutData()
 	f_out[5] = new TFile("data_graphs/histos46.5.root", "RECREATE");
 	f_out[6] = new TFile("data_graphs/histos46.9.root", "RECREATE");
 
+	//create pointers to histograms
 	TH1F *h_Ncharged[n_invmass];
 	TH1F *h_Pcharged[n_invmass];
 	TH1F *h_E_Ecal[n_invmass];
@@ -52,6 +47,9 @@ cutData()
 	TH1F *h_cos_thru[n_invmass];
 	TH1F *h_cos_thet[n_invmass];
 	TH1F *h_E_Lep[n_invmass];
+	
+	//create pointer to 2dim histogram
+	TH2F *h_E_Ecal_vs_Pcharged[n_invmass];
 
 	for (int i=0; i < n_invmass; ++i) {
 	h_Ncharged[i] = new TH1F("h_Ncharged_" + invmassname[i], "Number of tracks", 40, 0., 40.);
@@ -68,6 +66,8 @@ cutData()
 	h_cos_thet[i]->Sumw2();
 	h_E_Lep[i] = new TH1F("h_E_Lep_" + invmassname[i], "Lepton energy", 100, 44., 47.);
 	h_E_Lep[i]->Sumw2();
+	h_E_Ecal_vs_Pcharged[i] = new TH2F("h_E_Ecal_vs_Pcharged_" + invmassname[i], "E_Ecal vs Pcharged", 60, 0., 120., 120, 0., 120.);
+	h_E_Ecal_vs_Pcharged[i]->Sumw2();
 	}
 
 
@@ -79,8 +79,8 @@ cutData()
 	cutname[2]="mm_cut";
 	cutname[3]="tt_cut";
 	cutname[4]="qq_cut";
-	//counter for ee events
-	int ee_counter=0;
+
+	int a_eventcount[n_invmass][n_cutregions]={{0, 0, 0, 0, 0},{0, 0, 0, 0, 0},{0, 0, 0, 0, 0},{0, 0, 0, 0, 0},{0, 0, 0, 0, 0},{0, 0, 0, 0, 0},{0, 0, 0, 0, 0}};
 
 	for(int i_cr = 0; i_cr < n_cutregions; ++i_cr) {
 		//define parameters
@@ -96,6 +96,7 @@ cutData()
 		h_cos_thru[i]->Reset("M");
 		h_cos_thet[i]->Reset("M");
 		h_E_Lep[i]->Reset("M");
+		h_E_Ecal_vs_Pcharged[i]->Reset("M");
 		}
 
 		mc_trees->SetBranchAddress("event", &event);
@@ -115,17 +116,17 @@ cout << "cut number: " << i_cr << endl;
 
 			switch(i_cr) {
 				case 0:
-			//no cuts
-cout << iev << endl;
-			//determine i_im
-			if( E_LEP > 44.1 && E_LEP < 44.4 ) {i_im=0;
-			}else if( E_LEP > 44.5 && E_LEP < 44.9 ) {i_im=1;
-			}else if( E_LEP > 45.0 && E_LEP < 45.3 ) {i_im=2;
-			}else if( E_LEP > 45.4 && E_LEP < 45.8 ) {i_im=3;
-			}else if( E_LEP > 45.8 && E_LEP < 46.2 ) {i_im=4;
-			}else if( E_LEP > 46.3 && E_LEP < 46.7 ) {i_im=5;
-			}else if( E_LEP > 46.7 && E_LEP < 47.0 ) {i_im=6;
-			}
+				//no cuts
+				//cout << iev << endl;
+					//determine i_im
+					if( E_LEP > 44.1 && E_LEP < 44.4 ) {i_im=0;
+					}else if( E_LEP > 44.5 && E_LEP < 44.9 ) {i_im=1;
+					}else if( E_LEP > 45.0 && E_LEP < 45.3 ) {i_im=2;
+					}else if( E_LEP > 45.4 && E_LEP < 45.8 ) {i_im=3;
+					}else if( E_LEP > 45.8 && E_LEP < 46.2 ) {i_im=4;
+					}else if( E_LEP > 46.3 && E_LEP < 46.7 ) {i_im=5;
+					}else if( E_LEP > 46.7 && E_LEP < 47.0 ) {i_im=6;
+					}
 					h_Ncharged[i_im]->Fill(Ncharged);
 					h_Pcharged[i_im]->Fill(Pcharged);
 					h_E_Ecal[i_im]->Fill(E_ECal);
@@ -133,21 +134,22 @@ cout << iev << endl;
 					h_cos_thru[i_im]->Fill(cos_thru);
 					h_cos_thet[i_im]->Fill(cos_theta);
 					h_E_Lep[i_im]->Fill(E_LEP);
-					ee_counter += 1;
+					h_E_Ecal_vs_Pcharged[i_im]->Fill(E_ECal, Pcharged);
+					a_eventcount[i_im][i_cr] += 1;
 					break;
 				case 1:
 				//ee cuts
 					if (Ncharged < 7 && E_ECal >= 70 && ( (cos_theta > -0.9 && cos_theta < 0.9) || cos_theta > 1) ) {
-cout << iev << endl;
-			//determine i_im
-			if( E_LEP > 44.1 && E_LEP < 44.4 ) {i_im=0;
-			}else if( E_LEP > 44.5 && E_LEP < 44.9 ) {i_im=1;
-			}else if( E_LEP > 45.0 && E_LEP < 45.3 ) {i_im=2;
-			}else if( E_LEP > 45.4 && E_LEP < 45.8 ) {i_im=3;
-			}else if( E_LEP > 45.8 && E_LEP < 46.2 ) {i_im=4;
-			}else if( E_LEP > 46.3 && E_LEP < 46.7 ) {i_im=5;
-			}else if( E_LEP > 46.7 && E_LEP < 47.0 ) {i_im=6;
-			}
+					//cout << iev << endl;
+					//determine i_im
+						if( E_LEP > 44.1 && E_LEP < 44.4 ) {i_im=0;
+						}else if( E_LEP > 44.5 && E_LEP < 44.9 ) {i_im=1;
+						}else if( E_LEP > 45.0 && E_LEP < 45.3 ) {i_im=2;
+						}else if( E_LEP > 45.4 && E_LEP < 45.8 ) {i_im=3;
+						}else if( E_LEP > 45.8 && E_LEP < 46.2 ) {i_im=4;
+						}else if( E_LEP > 46.3 && E_LEP < 46.7 ) {i_im=5;
+						}else if( E_LEP > 46.7 && E_LEP < 47.0 ) {i_im=6;
+						}
 						h_Ncharged[i_im]->Fill(Ncharged);
 						h_Pcharged[i_im]->Fill(Pcharged);
 						h_E_Ecal[i_im]->Fill(E_ECal);
@@ -155,21 +157,23 @@ cout << iev << endl;
 						h_cos_thru[i_im]->Fill(cos_thru);
 						h_cos_thet[i_im]->Fill(cos_theta);
 						h_E_Lep[i_im]->Fill(E_LEP);
+						h_E_Ecal_vs_Pcharged[i_im]->Fill(E_ECal, Pcharged);
+						a_eventcount[i_im][i_cr] += 1;
 					}
 					break;
 				case 2:
 				//mm cuts
 					if ((Pcharged > 70 || Pcharged ==0) && E_ECal < 50 && Ncharged ==2) {
-cout << iev << endl;
-			//determine i_im
-			if( E_LEP > 44.1 && E_LEP < 44.4 ) {i_im=0;
-			}else if( E_LEP > 44.5 && E_LEP < 44.9 ) {i_im=1;
-			}else if( E_LEP > 45.0 && E_LEP < 45.3 ) {i_im=2;
-			}else if( E_LEP > 45.4 && E_LEP < 45.8 ) {i_im=3;
-			}else if( E_LEP > 45.8 && E_LEP < 46.2 ) {i_im=4;
-			}else if( E_LEP > 46.3 && E_LEP < 46.7 ) {i_im=5;
-			}else if( E_LEP > 46.7 && E_LEP < 47.0 ) {i_im=6;
-			}
+					//cout << iev << endl;
+						//determine i_im
+						if( E_LEP > 44.1 && E_LEP < 44.4 ) {i_im=0;
+						}else if( E_LEP > 44.5 && E_LEP < 44.9 ) {i_im=1;
+						}else if( E_LEP > 45.0 && E_LEP < 45.3 ) {i_im=2;
+						}else if( E_LEP > 45.4 && E_LEP < 45.8 ) {i_im=3;
+						}else if( E_LEP > 45.8 && E_LEP < 46.2 ) {i_im=4;
+						}else if( E_LEP > 46.3 && E_LEP < 46.7 ) {i_im=5;
+						}else if( E_LEP > 46.7 && E_LEP < 47.0 ) {i_im=6;
+						}
 						h_Ncharged[i_im]->Fill(Ncharged);
 						h_Pcharged[i_im]->Fill(Pcharged);
 						h_E_Ecal[i_im]->Fill(E_ECal);
@@ -177,22 +181,24 @@ cout << iev << endl;
 						h_cos_thru[i_im]->Fill(cos_thru);
 						h_cos_thet[i_im]->Fill(cos_theta);
 						h_E_Lep[i_im]->Fill(E_LEP);
+						h_E_Ecal_vs_Pcharged[i_im]->Fill(E_ECal, Pcharged);
+						a_eventcount[i_im][i_cr] += 1;
 					} 
 					break;
 				case 3:
 				//tt cuts
 					if ( Pcharged != 0 && Pcharged <= 70 && Ncharged <7 && E_ECal < 75 && ( (cos_theta > -0.9 && cos_theta < 0.9) || cos_theta > 1) 
 					( cos_thru > -0.9 && cos_thru < 0.9) ) {
-cout << iev << endl;
-			//determine i_im
-			if( E_LEP > 44.1 && E_LEP < 44.4 ) {i_im=0;
-			}else if( E_LEP > 44.5 && E_LEP < 44.9 ) {i_im=1;
-			}else if( E_LEP > 45.0 && E_LEP < 45.3 ) {i_im=2;
-			}else if( E_LEP > 45.4 && E_LEP < 45.8 ) {i_im=3;
-			}else if( E_LEP > 45.8 && E_LEP < 46.2 ) {i_im=4;
-			}else if( E_LEP > 46.3 && E_LEP < 46.7 ) {i_im=5;
-			}else if( E_LEP > 46.7 && E_LEP < 47.0 ) {i_im=6;
-			}
+					//cout << iev << endl;
+						//determine i_im
+						if( E_LEP > 44.1 && E_LEP < 44.4 ) {i_im=0;
+						}else if( E_LEP > 44.5 && E_LEP < 44.9 ) {i_im=1;
+						}else if( E_LEP > 45.0 && E_LEP < 45.3 ) {i_im=2;
+						}else if( E_LEP > 45.4 && E_LEP < 45.8 ) {i_im=3;
+						}else if( E_LEP > 45.8 && E_LEP < 46.2 ) {i_im=4;
+						}else if( E_LEP > 46.3 && E_LEP < 46.7 ) {i_im=5;
+						}else if( E_LEP > 46.7 && E_LEP < 47.0 ) {i_im=6;
+						}
 						h_Ncharged[i_im]->Fill(Ncharged);
 						h_Pcharged[i_im]->Fill(Pcharged);
 						h_E_Ecal[i_im]->Fill(E_ECal);
@@ -200,21 +206,23 @@ cout << iev << endl;
 						h_cos_thru[i_im]->Fill(cos_thru);
 						h_cos_thet[i_im]->Fill(cos_theta); 
 						h_E_Lep[i_im]->Fill(E_LEP);
+						h_E_Ecal_vs_Pcharged[i_im]->Fill(E_ECal, Pcharged);
+						a_eventcount[i_im][i_cr] += 1;
 					}
 					break;
 				case 4:
 				//qq cuts
 					if (Ncharged >= 8) {
-cout << iev << endl;
-			//determine i_im
-			if( E_LEP > 44.1 && E_LEP < 44.4 ) {i_im=0;
-			}else if( E_LEP > 44.5 && E_LEP < 44.9 ) {i_im=1;
-			}else if( E_LEP > 45.0 && E_LEP < 45.3 ) {i_im=2;
-			}else if( E_LEP > 45.4 && E_LEP < 45.8 ) {i_im=3;
-			}else if( E_LEP > 45.8 && E_LEP < 46.2 ) {i_im=4;
-			}else if( E_LEP > 46.3 && E_LEP < 46.7 ) {i_im=5;
-			}else if( E_LEP > 46.7 && E_LEP < 47.0 ) {i_im=6;
-			}
+					//cout << iev << endl;
+						//determine i_im
+						if( E_LEP > 44.1 && E_LEP < 44.4 ) {i_im=0;
+						}else if( E_LEP > 44.5 && E_LEP < 44.9 ) {i_im=1;
+						}else if( E_LEP > 45.0 && E_LEP < 45.3 ) {i_im=2;
+						}else if( E_LEP > 45.4 && E_LEP < 45.8 ) {i_im=3;
+						}else if( E_LEP > 45.8 && E_LEP < 46.2 ) {i_im=4;
+						}else if( E_LEP > 46.3 && E_LEP < 46.7 ) {i_im=5;
+						}else if( E_LEP > 46.7 && E_LEP < 47.0 ) {i_im=6;
+						}
 						h_Ncharged[i_im]->Fill(Ncharged);
 						h_Pcharged[i_im]->Fill(Pcharged);
 						h_E_Ecal[i_im]->Fill(E_ECal);
@@ -222,6 +230,8 @@ cout << iev << endl;
 						h_cos_thru[i_im]->Fill(cos_thru);
 						h_cos_thet[i_im]->Fill(cos_theta);
 						h_E_Lep[i_im]->Fill(E_LEP);
+						h_E_Ecal_vs_Pcharged[i_im]->Fill(E_ECal, Pcharged);
+						a_eventcount[i_im][i_cr] += 1;
 					}
 					break;
 				case default:
@@ -232,7 +242,7 @@ cout << iev << endl;
 		//loop to save graphs for each i_im
 		for (int i_im=0; i_im < n_invmass; ++i_im) {
 
-			TCanvas *c[n_invmass];
+			TCanvas *c[n_invmass+1];
 			c[0] = new TCanvas("c0", "c0",1920,1080);
 			c[1] = new TCanvas("c1", "c1",1920,1080);
 			c[2] = new TCanvas("c2", "c2",1920,1080);
@@ -240,6 +250,7 @@ cout << iev << endl;
 			c[4] = new TCanvas("c4", "c4",1920,1080);
 			c[5] = new TCanvas("c5", "c5",1920,1080);
 			c[6] = new TCanvas("c6", "c6",1920,1080);
+			c[7] = new TCanvas("c7", "c7",1920,1080);
 			
 			c[0]->cd();
 			h_Ncharged[i_im]->Draw("HIST");
@@ -275,6 +286,11 @@ cout << iev << endl;
 			h_E_Lep[i_im]->Draw("HIST");
 			c[6]->SaveAs("data_graphs/" + invmassname[i_im] + "/" + cutname[i_cr] +  "_E_Lep.png");
 			c[6]->Close();
+
+			c[7]->cd();
+			h_E_Ecal_vs_Pcharged[i_im]->Draw("HIST COLZ");
+			c[7]->SaveAs("data_graphs/" + invmassname[i_im] + "/" + cutname[i_cr] +  "_E_Lcal_vs_Pcharged.png");
+			c[7]->Close();
 		}//end of save graphics loop
 
 		//write ee-cut histogram
@@ -286,6 +302,15 @@ cout << iev << endl;
 		}
 
 	} //end of cut region loop
+
+
+	cout << "Event counts of the cuts at different invariant masses" << endl;
+	cout << "\t" << cutname[0] << "\t" << cutname[1] << cutname[2] << "\t" << cutname[3] << "\t" << cutname[4] << "\t" << endl;
+	for(int i=0; i < n_invmass; ++i){
+		cout << invmassname[i] << "\t" << a_eventcount[i][0] << "\t" << a_eventcount[i][1] << "\t" << 
+			a_eventcount[i][2] << "\t" << a_eventcount[i][4] << "\t" << a_eventcount[i][3] << endl;
+	}
+
 	for(int i=0; i < n_invmass; ++i) {
 		f_out[i]->Close();
 	}

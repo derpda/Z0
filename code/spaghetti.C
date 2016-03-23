@@ -11,16 +11,14 @@ spaghetti()
 	gStyle->SetLabelFont(42, "x");
 	gStyle->SetLabelFont(42, "y");
 
-	const int n_sim = 5;
+	const int n_sim = 4;
 	TFile *files[n_sim];
 	files[0] = new TFile("../daten/mc/ee.root", "READ");
 	files[1] = new TFile("../daten/mc/mm.root", "READ");
 	files[2] = new TFile("../daten/mc/tt.root", "READ");
 	files[3] = new TFile("../daten/mc/qq.root", "READ");
-	files[4] = new TFile("../daten/daten/daten_1.root", "READ");
 	TTree *mc_trees[n_sim];
-	for(int i=0; i<n_sim-1; ++i) mc_trees[i] = (TTree*) files[i]->Get("h3");
-	TTree *mc_trees[4] = (TTree*) files[4]->Get("h33");
+	for(int i=0; i<n_sim; ++i) mc_trees[i] = (TTree*) files[i]->Get("h3");
 
 
 
@@ -30,14 +28,16 @@ spaghetti()
 	name[1] = "mm";
 	name[2] = "tt";
 	name[3] = "qq";
-	name[4] = "data";
+
 	TH1F *h_Ncharged[n_sim];
 	TH1F *h_Pcharged[n_sim];
 	TH1F *h_E_Ecal[n_sim];
 	TH1F *h_E_Hcal[n_sim];
 	TH1F *h_cos_thru[n_sim];
 	TH1F *h_cos_thet[n_sim];
-	const int n_histos = 6;
+	TH2F *h_E_Ecal_vs_Pcharged[n_sim];
+
+	const int n_histos = 7;
 	for(int isim = 0; isim < n_sim; ++isim) {
 		h_Ncharged[isim] = new TH1F("h_Ncharged_" + name[isim], "Number of tracks", 40, 0., 40.);
 		h_Ncharged[isim]->Sumw2();
@@ -51,6 +51,8 @@ spaghetti()
 		h_cos_thru[isim]->Sumw2();
 		h_cos_thet[isim] = new TH1F("h_costhet_" + name[isim], "Cos theta", 100, -1., 1.);
 		h_cos_thet[isim]->Sumw2();
+		h_E_Ecal_vs_Pcharged[isim] = new TH2F("h_E_Ecal_vs_Pcharged_" + name[isim], "E_Ecal vs Pcharged", 120, 0., 120., 60, 0., 120.);
+		h_E_Ecal_vs_Pcharged[isim]->Sumw2();
 	}
 
 
@@ -77,6 +79,7 @@ spaghetti()
 			h_E_Hcal[isim]->Reset("M");
 			h_cos_thru[isim]->Reset("M");
 			h_cos_thet[isim]->Reset("M");
+			h_E_Ecal_vs_Pcharged[isim]->Reset("M");
 			mc_trees[isim]->SetBranchAddress("event", &event);
 			mc_trees[isim]->SetBranchAddress("run", &run);
 			mc_trees[isim]->SetBranchAddress("Ncharged", &Ncharged);
@@ -113,6 +116,7 @@ spaghetti()
 						h_E_Hcal[isim]->Fill(E_HCal, weights[isim]);
 						h_cos_thru[isim]->Fill(cos_thru, weights[isim]);
 						h_cos_thet[isim]->Fill(cos_theta, weights[isim]); 
+						h_E_Ecal_vs_Pcharged[isim]->Fill(Pcharged, E_ECal);
 						break;
 					case 1:
 						//ee cuts
@@ -124,6 +128,7 @@ spaghetti()
 							h_E_Hcal[isim]->Fill(E_HCal, weights[isim]);
 							h_cos_thru[isim]->Fill(cos_thru, weights[isim]);
 							h_cos_thet[isim]->Fill(cos_theta, weights[isim]); 
+							h_E_Ecal_vs_Pcharged[isim]->Fill(Pcharged, E_ECal);
 						}
 						break;
 					case 2:
@@ -135,7 +140,8 @@ spaghetti()
 							h_E_Ecal[isim]->Fill(E_ECal, weights[isim]);
 							h_E_Hcal[isim]->Fill(E_HCal, weights[isim]);
 							h_cos_thru[isim]->Fill(cos_thru, weights[isim]);
-							h_cos_thet[isim]->Fill(cos_theta, weights[isim]);
+							h_cos_thet[isim]->Fill(cos_theta, weights[isim]); 
+							h_E_Ecal_vs_Pcharged[isim]->Fill(Pcharged, E_ECal);
 						} 
 						break;
 					case 3:
@@ -148,7 +154,8 @@ spaghetti()
 							h_E_Ecal[isim]->Fill(E_ECal, weights[isim]);
 							h_E_Hcal[isim]->Fill(E_HCal, weights[isim]);
 							h_cos_thru[isim]->Fill(cos_thru, weights[isim]);
-							h_cos_thet[isim]->Fill(cos_theta, weights[isim]); 
+							h_cos_thet[isim]->Fill(cos_theta, weights[isim]);  
+							h_E_Ecal_vs_Pcharged[isim]->Fill(Pcharged, E_ECal);
 						}
 						break;
 					case 4:
@@ -160,7 +167,8 @@ spaghetti()
 							h_E_Ecal[isim]->Fill(E_ECal, weights[isim]);
 							h_E_Hcal[isim]->Fill(E_HCal, weights[isim]);
 							h_cos_thru[isim]->Fill(cos_thru, weights[isim]);
-							h_cos_thet[isim]->Fill(cos_theta, weights[isim]); 
+							h_cos_thet[isim]->Fill(cos_theta, weights[isim]);  
+							h_E_Ecal_vs_Pcharged[isim]->Fill(Pcharged, E_ECal);
 						}
 						break;
 				}//end of switch
@@ -189,15 +197,15 @@ spaghetti()
 		c[3] = new TCanvas("c3", "c3",1920,1080);
 		c[4] = new TCanvas("c4", "c4",1920,1080);
 		c[5] = new TCanvas("c5", "c5",1920,1080);
+		c[6] = new TCanvas("c6", "c6",1920,1080);
 		EColor color[n_sim];
 		color[0] = kBlue;
 		color[1] = kRed;
 		color[2] = kGreen;
 		color[3] = kYellow;
-		color[4] = kBlack;
 	
-
-		float max[n_histos] = {0., 0., 0., 0., 0., 0.};
+		
+		float max[n_histos] = {0., 0., 0., 0., 0., 0., 0.};
 		for(int i=0; i<n_sim; ++i) {
 			float act_max = h_Ncharged[i]->GetMaximum();
 			if(act_max > max[0]) {
@@ -234,6 +242,12 @@ spaghetti()
 				max[5] = act_max;
 			}
 		}
+		for(int i=0; i<n_sim; ++i) {
+			float act_max = h_E_Ecal_vs_Pcharged[i]->GetMaximum();
+			if(act_max > max[6]) {
+				max[6] = act_max;
+			}
+		}
 	
 		TLegend *leg = new TLegend(0.76, 0.64, 0.88, 0.88); 
 		c[0]->cd();
@@ -242,12 +256,10 @@ spaghetti()
 			h_Ncharged[ip]->SetMaximum(max[0]*1.3);
 			if(ip==0) h_Ncharged[ip]->Draw("HIST");
 			else if(ip < 4) h_Ncharged[ip]->Draw("SAME HIST");
-			//else if(ip==4) h_Ncharged[ip]->Draw("SAME P");
 			if(ip<4) leg->AddEntry(h_Ncharged[ip], name[ip], "L");
-			//else leg->AddEntry(h_Ncharged[ip], name[ip], "LP");
 		}
 		leg->Draw("SAME");
-		c[0]->SaveAs("graphs/" + cutname[i_cr] +  "_Ncharged_cut.png");
+		c[0]->SaveAs("graphs/" + cutname[i_cr] +  "_Ncharged.png");
 		c[0]->Close();
 		c[1]->cd();
 		for(int ip=0; ip < n_sim; ++ip) {
@@ -255,10 +267,9 @@ spaghetti()
 			h_Pcharged[ip]->SetMaximum(max[1]*1.3);
 			if(ip==0) h_Pcharged[ip]->Draw("HIST");
 			else if(ip<4) h_Pcharged[ip]->Draw("SAME HIST");
-			//else if(ip==4) h_Pcharged[ip]->Draw("SAME P");
 		}
 		leg->Draw("SAME");
-		c[1]->SaveAs("graphs/" + cutname[i_cr] +  "_Pcharged_cut.png");
+		c[1]->SaveAs("graphs/" + cutname[i_cr] +  "_Pcharged.png");
 		c[1]->Close();
 		c[2]->cd();
 		for(int ip=0; ip < n_sim; ++ip) {
@@ -266,10 +277,9 @@ spaghetti()
 			h_E_Ecal[ip]->SetMaximum(max[2]*1.3);
 			if(ip==0) h_E_Ecal[ip]->Draw("HIST");
 			else if(ip<4) h_E_Ecal[ip]->Draw("SAME HIST");
-			//else if(ip==4) h_E_Ecal[ip]->Draw("SAME P");
 		}
 		leg->Draw("SAME");
-		c[2]->SaveAs("graphs/" + cutname[i_cr] +  "_E_Ecal_cut.png");
+		c[2]->SaveAs("graphs/" + cutname[i_cr] +  "_E_Ecal.png");
 		c[2]->Close();
 		c[3]->cd();
 		for(int ip=0; ip < n_sim; ++ip) {
@@ -277,10 +287,9 @@ spaghetti()
 			h_E_Hcal[ip]->SetMaximum(max[3]*1.3);
 			if(ip==0) h_E_Hcal[ip]->Draw("HIST");
 			else if(ip<4) h_E_Hcal[ip]->Draw("SAME HIST");
-				//else if(ip==4) h_E_Hcal[ip]->Draw("SAME");
 		}
 		leg->Draw("SAME");
-		c[3]->SaveAs("graphs/" + cutname[i_cr] +  "_E_Hcal_cut.png");
+		c[3]->SaveAs("graphs/" + cutname[i_cr] +  "_E_Hcal.png");
 		c[3]->Close();
 		c[4]->cd();
 		for(int ip=0; ip < n_sim; ++ip) {
@@ -288,10 +297,9 @@ spaghetti()
 			h_cos_thru[ip]->SetMaximum(max[4]*1.3);
 			if(ip==0) h_cos_thru[ip]->Draw("HIST");
 			else if(ip<4) h_cos_thru[ip]->Draw("SAME HIST");
-			//else if(ip==4) h_cos_thru[ip]->Draw("SAME");
 		}
 		leg->Draw("SAME");
-		c[4]->SaveAs("graphs/" + cutname[i_cr] +  "_cos_thru_cut.png");
+		c[4]->SaveAs("graphs/" + cutname[i_cr] +  "_cos_thru.png");
 		c[4]->Close();
 		c[5]->cd();
 		for(int ip=0; ip < n_sim; ++ip) {
@@ -299,13 +307,20 @@ spaghetti()
 			h_cos_thet[ip]->SetMaximum(max[5]*1.3);
 			if(ip==0) h_cos_thet[ip]->Draw("HIST");
 			else if(ip<4) h_cos_thet[ip]->Draw("SAME HIST");
-			//else if(ip==4) h_cos_thet[ip]->Draw("SAME");
 		}
 		leg->Draw("SAME");
-		c[5]->SaveAs("graphs/" + cutname[i_cr] +  "_cos_theta_cut.png");
+		c[5]->SaveAs("graphs/" + cutname[i_cr] +  "_cos_theta.png");
 		c[5]->Close();
-
+		
+		for(int ip=0; ip < n_sim; ++ip) {
+			c[6]->cd();
+			h_E_Ecal_vs_Pcharged[ip]->Draw("HIST COLZ");
+			c[6]->SaveAs("graphs/" + cutname[i_cr] + "_" + name[ip] + "_E_Ecal_vs_Pcharged.png");
+			
+		}
+		c[6]->Close();
 	} //end of cut region loop
+
 
 	//close opened files
 	for(int iFile = 0; iFile < n_sim; ++iFile) files[iFile]->Close();
@@ -314,7 +329,7 @@ spaghetti()
 	cout << "Efficiency array: \n" << endl;
 	cout << "\t  "<< name[0] <<"\t  "<< name[1] <<"\t  "<< name[2] <<"\t  "<< name[3] <<"\t\t"<< "Purity" 
 		<<"\t"<< "Product" << endl;
-	for (i=0 ; i < 4 ; ++i) {
+	for (i=0 ; i < n_sim ; ++i) {
 		cout << std::fixed << std::setprecision(5) << cutname[i+1] <<"\t"<< efficiency[0][i] <<"\t"
 		<< efficiency[1][i] <<"\t"<< efficiency[2][i] <<"\t"<< efficiency[3][i] <<"\t\t"<< purity[i] 
 		<< "\t"<< efficiency[i][i]*purity[i] << endl; 
