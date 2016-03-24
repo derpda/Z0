@@ -4,6 +4,7 @@
 #include "TString.h"
 #include "TLegend.h"
 #include <iostream>
+#include <fstream>
 
 void cosp(){
 	
@@ -20,6 +21,8 @@ void cosp(){
 	TFile* files[7];
 	TH1F* hcos[7];
 	TF1* func = new TF1("fitfunc","[0]*(1+x**2)+[1]*(1-x)**-2",-1,1);
+	ofstream tfile;
+	tfile.open("fs.txt");
 	for(int i; i<7; i++){
 		fname="histos"+names[i]+".root";
 		cout << fname << endl;
@@ -38,10 +41,12 @@ void cosp(){
 		cout << "T=" << T << endl;
 		float fs = 1.0/(1+T*9.47368/(S*2.286));
 		cout << "fs=" << fs << endl;
+		tfile << fs << ",";
 		int Ns = hcos[i]->GetEntries();
 		cout << "Ns=" << Ns << endl;
+		
 		}
-	
+	tfile.close();
 	/*
 	TFile* file = new TFile("histos45.6.root","READ");
   TH1F* hcos_thet = (TH1F*)file->Get("h_costhet_45.6");
