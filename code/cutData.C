@@ -239,6 +239,7 @@ cout << "cut number: " << i_cr << endl;
 			}//end of switch
 		}//end of events loop
 
+/*
 		//loop to save graphs for each i_im
 		for (int i_im=0; i_im < n_invmass; ++i_im) {
 
@@ -295,6 +296,7 @@ cout << "cut number: " << i_cr << endl;
 			c[7]->SaveAs("data_graphs/" + invmassname[i_im] + "/" + cutname[i_cr] +  "_E_Ecal_vs_Pcharged.png");
 			c[7]->Close();
 		}//end of save graphics loop
+*/
 
 		//write ee-cut histogram
 		if(i_cr==1) {
@@ -311,7 +313,7 @@ cout << "cut number: " << i_cr << endl;
 	cout << "\t" << cutname[0] << "\t" << cutname[1] << cutname[2] << "\t" << cutname[3] << "\t" << cutname[4] << "\t" << endl;
 	for(int i=0; i < n_invmass; ++i){
 		cout << invmassname[i] << "\t" << a_eventcount[i][0] << "\t" << a_eventcount[i][1] << "\t" << 
-			a_eventcount[i][2] << "\t" << a_eventcount[i][4] << "\t" << a_eventcount[i][3] << endl;
+			a_eventcount[i][2] << "\t" << a_eventcount[i][3] << "\t" << a_eventcount[i][4] << endl;
 	}
 
 	for(int i=0; i < n_invmass; ++i) {
