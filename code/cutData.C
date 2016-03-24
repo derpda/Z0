@@ -62,7 +62,7 @@ cutData()
 	h_E_Hcal[i]->Sumw2();
 	h_cos_thru[i] = new TH1F("h_costhru_" + invmassname[i], "Cos thrust", 40, -1., 1.);
 	h_cos_thru[i]->Sumw2();
-	h_cos_thet[i] = new TH1F("h_costhet_" + invmassname[i], "Cos theta", 200, -1., 1.);
+	h_cos_thet[i] = new TH1F("h_costhet_" + invmassname[i], "Cos theta", 50, -1., 1.);
 	h_cos_thet[i]->Sumw2();
 	h_E_Lep[i] = new TH1F("h_E_Lep_" + invmassname[i], "Lepton energy", 100, 44., 47.);
 	h_E_Lep[i]->Sumw2();
@@ -239,7 +239,7 @@ cout << "cut number: " << i_cr << endl;
 			}//end of switch
 		}//end of events loop
 
-/*
+
 		//loop to save graphs for each i_im
 		for (int i_im=0; i_im < n_invmass; ++i_im) {
 
@@ -296,14 +296,13 @@ cout << "cut number: " << i_cr << endl;
 			c[7]->SaveAs("data_graphs/" + invmassname[i_im] + "/" + cutname[i_cr] +  "_E_Ecal_vs_Pcharged.png");
 			c[7]->Close();
 		}//end of save graphics loop
-*/
+
 
 		//write ee-cut histogram
 		if(i_cr==1) {
 			for (int s=0; s<n_invmass; ++s) {
 				f_out[s]->WriteTObject(h_cos_thet[s]);
 			}
-			//f_out[i_im]->Write();
 		}
 
 	} //end of cut region loop

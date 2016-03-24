@@ -357,9 +357,14 @@ spaghetti()
 	cout << "Efficiency array: \n" << endl;
 	cout << "\t  "<< name[0] <<"\t  "<< name[1] <<"\t  "<< name[2] <<"\t  "<< name[3] <<"\t\t"<< "Purity" 
 		<<"\t"<< "Product" << endl;
-	for (i=0 ; i < n_sim ; ++i) {
-		cout << std::fixed << std::setprecision(5) << cutname[i+1] <<"\t"<< efficiency[0][i] <<"\t"
-		<< efficiency[1][i] <<"\t"<< efficiency[2][i] <<"\t"<< efficiency[3][i] <<"\t\t"<< purity[i] 
+	for (i=0 ; i < n_cutregions -1 ; ++i) {
+		cout << cutname[i+1] <<"\t\t"<< efficiency[i][0] <<"\t\t"
+		<< efficiency[i][1] <<"\t\t"<< efficiency[i][2] <<"\t\t"<< efficiency[i][3] <<"\t\t"<< purity[i] 
 		<< "\t"<< efficiency[i][i]*purity[i] << endl; 
+	}
+	for(int i=0; i < n_cutregions -1 ; ++i) {
+		for(int j=0; j < n_sim; ++j) {
+			cout << "matrix(" << i << "," << j << ")=" << efficiency[i][j] << ";" << endl;
+		}
 	}
 }	
