@@ -134,12 +134,12 @@ cout << "cut number: " << i_cr << endl;
 					h_cos_thru[i_im]->Fill(cos_thru);
 					h_cos_thet[i_im]->Fill(cos_theta);
 					h_E_Lep[i_im]->Fill(E_LEP);
-					h_E_Ecal_vs_Pcharged[i_im]->Fill(E_ECal, Pcharged);
+					h_E_Ecal_vs_Pcharged[i_im]->Fill(Pcharged, E_ECal);
 					a_eventcount[i_im][i_cr] += 1;
 					break;
 				case 1:
 				//ee cuts
-					if (Ncharged < 7 && E_ECal >= 70 && ( (cos_theta > -0.9 && cos_theta < 0.9) || cos_theta > 1) ) {
+					if (Ncharged < 7 && E_ECal >= 70 && Pcharged !=0 && ( (cos_theta > -0.9 && cos_theta < 0.9) || cos_theta > 1) ) {
 					//cout << iev << endl;
 					//determine i_im
 						if( E_LEP > 44.1 && E_LEP < 44.4 ) {i_im=0;
@@ -157,13 +157,13 @@ cout << "cut number: " << i_cr << endl;
 						h_cos_thru[i_im]->Fill(cos_thru);
 						h_cos_thet[i_im]->Fill(cos_theta);
 						h_E_Lep[i_im]->Fill(E_LEP);
-						h_E_Ecal_vs_Pcharged[i_im]->Fill(E_ECal, Pcharged);
+						h_E_Ecal_vs_Pcharged[i_im]->Fill(Pcharged, E_ECal);
 						a_eventcount[i_im][i_cr] += 1;
 					}
 					break;
 				case 2:
 				//mm cuts
-					if ((Pcharged > 70 || Pcharged ==0) && E_ECal < 50 && Ncharged ==2) {
+					if ( Pcharged > 71 && Pcharged !=0 && E_ECal < 50 && Ncharged ==2) {
 					//cout << iev << endl;
 						//determine i_im
 						if( E_LEP > 44.1 && E_LEP < 44.4 ) {i_im=0;
@@ -181,13 +181,13 @@ cout << "cut number: " << i_cr << endl;
 						h_cos_thru[i_im]->Fill(cos_thru);
 						h_cos_thet[i_im]->Fill(cos_theta);
 						h_E_Lep[i_im]->Fill(E_LEP);
-						h_E_Ecal_vs_Pcharged[i_im]->Fill(E_ECal, Pcharged);
+						h_E_Ecal_vs_Pcharged[i_im]->Fill(Pcharged, E_ECal);
 						a_eventcount[i_im][i_cr] += 1;
 					} 
 					break;
 				case 3:
 				//tt cuts
-					if ( Pcharged != 0 && Pcharged <= 70 && Ncharged <7 && E_ECal < 75 && ( (cos_theta > -0.9 && cos_theta < 0.9) || cos_theta > 1) 
+					if ( Pcharged != 0 && Pcharged <= 71 && Ncharged <7 && E_ECal < 75 && ( (cos_theta > -0.9 && cos_theta < 0.9) || cos_theta > 1) 
 					( cos_thru > -0.9 && cos_thru < 0.9) ) {
 					//cout << iev << endl;
 						//determine i_im
@@ -206,13 +206,13 @@ cout << "cut number: " << i_cr << endl;
 						h_cos_thru[i_im]->Fill(cos_thru);
 						h_cos_thet[i_im]->Fill(cos_theta); 
 						h_E_Lep[i_im]->Fill(E_LEP);
-						h_E_Ecal_vs_Pcharged[i_im]->Fill(E_ECal, Pcharged);
+						h_E_Ecal_vs_Pcharged[i_im]->Fill(Pcharged, E_ECal);
 						a_eventcount[i_im][i_cr] += 1;
 					}
 					break;
 				case 4:
 				//qq cuts
-					if (Ncharged >= 8) {
+					if (Ncharged >= 8 && Pcharged != 0 ) {
 					//cout << iev << endl;
 						//determine i_im
 						if( E_LEP > 44.1 && E_LEP < 44.4 ) {i_im=0;
@@ -230,7 +230,7 @@ cout << "cut number: " << i_cr << endl;
 						h_cos_thru[i_im]->Fill(cos_thru);
 						h_cos_thet[i_im]->Fill(cos_theta);
 						h_E_Lep[i_im]->Fill(E_LEP);
-						h_E_Ecal_vs_Pcharged[i_im]->Fill(E_ECal, Pcharged);
+						h_E_Ecal_vs_Pcharged[i_im]->Fill(Pcharged, E_ECal);
 						a_eventcount[i_im][i_cr] += 1;
 					}
 					break;
@@ -289,7 +289,10 @@ cout << "cut number: " << i_cr << endl;
 
 			c[7]->cd();
 			h_E_Ecal_vs_Pcharged[i_im]->Draw("HIST COLZ");
-			c[7]->SaveAs("data_graphs/" + invmassname[i_im] + "/" + cutname[i_cr] +  "_E_Lcal_vs_Pcharged.png");
+			h_E_Ecal_vs_Pcharged[i_im]->GetXaxis()->SetTitle("Pcharged");
+			h_E_Ecal_vs_Pcharged[i_im]->GetYaxis()->SetTitle("E_Ecal");
+			h_E_Ecal_vs_Pcharged[i_im]->Draw("HIST COLZ");
+			c[7]->SaveAs("data_graphs/" + invmassname[i_im] + "/" + cutname[i_cr] +  "_E_Ecal_vs_Pcharged.png");
 			c[7]->Close();
 		}//end of save graphics loop
 

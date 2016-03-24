@@ -41,7 +41,7 @@ spaghetti()
 	for(int isim = 0; isim < n_sim; ++isim) {
 		h_Ncharged[isim] = new TH1F("h_Ncharged_" + name[isim], "Number of tracks", 40, 0., 40.);
 		h_Ncharged[isim]->Sumw2();
-		h_Pcharged[isim] = new TH1F("h_Pcharged_" + name[isim], "Sum of track energies", 120, 0., 120.);
+		h_Pcharged[isim] = new TH1F("h_Pcharged_" + name[isim], "Sum of track energies", 120, 1., 120.);
 		h_Pcharged[isim]->Sumw2();
 		h_E_Ecal[isim] = new TH1F("h_Eecal_" + name[isim], "E_ECal", 60, 0., 120.);
 		h_E_Ecal[isim]->Sumw2();
@@ -51,7 +51,7 @@ spaghetti()
 		h_cos_thru[isim]->Sumw2();
 		h_cos_thet[isim] = new TH1F("h_costhet_" + name[isim], "Cos theta", 100, -1., 1.);
 		h_cos_thet[isim]->Sumw2();
-		h_E_Ecal_vs_Pcharged[isim] = new TH2F("h_E_Ecal_vs_Pcharged_" + name[isim], "E_Ecal vs Pcharged", 120, 0., 120., 60, 0., 120.);
+		h_E_Ecal_vs_Pcharged[isim] = new TH2F("h_E_Ecal_vs_Pcharged_" + name[isim], "E_Ecal vs Pcharged", 120, 0., 120., 120, 0., 120.);
 		h_E_Ecal_vs_Pcharged[isim]->Sumw2();
 	}
 
@@ -110,17 +110,17 @@ spaghetti()
 
 					case 0:
 						//no cuts
-						h_Ncharged[isim]->Fill(Ncharged, weights[isim]);
-						h_Pcharged[isim]->Fill(Pcharged, weights[isim]);
-						h_E_Ecal[isim]->Fill(E_ECal, weights[isim]);
-						h_E_Hcal[isim]->Fill(E_HCal, weights[isim]);
-						h_cos_thru[isim]->Fill(cos_thru, weights[isim]);
-						h_cos_thet[isim]->Fill(cos_theta, weights[isim]); 
+						h_Ncharged[isim]->Fill(Ncharged);
+						h_Pcharged[isim]->Fill(Pcharged);
+						h_E_Ecal[isim]->Fill(E_ECal);
+						h_E_Hcal[isim]->Fill(E_HCal);
+						h_cos_thru[isim]->Fill(cos_thru);
+						h_cos_thet[isim]->Fill(cos_theta); 
 						h_E_Ecal_vs_Pcharged[isim]->Fill(Pcharged, E_ECal);
 						break;
 					case 1:
 						//ee cuts
-						if (Ncharged < 7 && E_ECal >= 70 && ( (cos_theta > -0.9 && cos_theta < 0.9) || cos_theta > 1) ) {
+						if (Ncharged < 7 && E_ECal >= 70 && Pcharged != 0 && ( (cos_theta > -0.9 && cos_theta < 0.9) || cos_theta > 1) ) {
 							n_events_cut += 1;
 							h_Ncharged[isim]->Fill(Ncharged, weights[isim]);
 							h_Pcharged[isim]->Fill(Pcharged, weights[isim]);
@@ -128,12 +128,12 @@ spaghetti()
 							h_E_Hcal[isim]->Fill(E_HCal, weights[isim]);
 							h_cos_thru[isim]->Fill(cos_thru, weights[isim]);
 							h_cos_thet[isim]->Fill(cos_theta, weights[isim]); 
-							h_E_Ecal_vs_Pcharged[isim]->Fill(Pcharged, E_ECal);
+							h_E_Ecal_vs_Pcharged[isim]->Fill(Pcharged, E_ECal, weights[isim]);
 						}
 						break;
 					case 2:
 						//mm cuts
-						if ((Pcharged > 70 || Pcharged ==0) && E_ECal < 50 && Ncharged ==2) {
+						if (Pcharged > 71 && Pcharged !=0 && E_ECal < 50 && Ncharged ==2) {
 							n_events_cut += 1;
 							h_Ncharged[isim]->Fill(Ncharged, weights[isim]);
 							h_Pcharged[isim]->Fill(Pcharged, weights[isim]);
@@ -141,12 +141,12 @@ spaghetti()
 							h_E_Hcal[isim]->Fill(E_HCal, weights[isim]);
 							h_cos_thru[isim]->Fill(cos_thru, weights[isim]);
 							h_cos_thet[isim]->Fill(cos_theta, weights[isim]); 
-							h_E_Ecal_vs_Pcharged[isim]->Fill(Pcharged, E_ECal);
+							h_E_Ecal_vs_Pcharged[isim]->Fill(Pcharged, E_ECal, weights[isim]);
 						} 
 						break;
 					case 3:
 						//tt cuts
-						if ( Pcharged != 0 && Pcharged <= 70 && Ncharged <7 && E_ECal < 75 && ( (cos_theta > -0.9 && cos_theta < 0.9) || cos_theta > 1) 
+						if ( Pcharged != 0 && Pcharged <= 71 && Ncharged <7 && E_ECal < 75 && ( (cos_theta > -0.9 && cos_theta < 0.9) || cos_theta > 1) 
 						( cos_thru > -0.9 && cos_thru < 0.9) ) {
 							n_events_cut += 1;
 							h_Ncharged[isim]->Fill(Ncharged, weights[isim]);
@@ -155,12 +155,12 @@ spaghetti()
 							h_E_Hcal[isim]->Fill(E_HCal, weights[isim]);
 							h_cos_thru[isim]->Fill(cos_thru, weights[isim]);
 							h_cos_thet[isim]->Fill(cos_theta, weights[isim]);  
-							h_E_Ecal_vs_Pcharged[isim]->Fill(Pcharged, E_ECal);
+							h_E_Ecal_vs_Pcharged[isim]->Fill(Pcharged, E_ECal, weights[isim]);
 						}
 						break;
 					case 4:
 						//qq cuts
-						if (Ncharged >= 8) {
+						if (Ncharged >= 8 && Pcharged != 0 ) {
 							n_events_cut += 1;
 							h_Ncharged[isim]->Fill(Ncharged, weights[isim]);
 							h_Pcharged[isim]->Fill(Pcharged, weights[isim]);
@@ -168,7 +168,7 @@ spaghetti()
 							h_E_Hcal[isim]->Fill(E_HCal, weights[isim]);
 							h_cos_thru[isim]->Fill(cos_thru, weights[isim]);
 							h_cos_thet[isim]->Fill(cos_theta, weights[isim]);  
-							h_E_Ecal_vs_Pcharged[isim]->Fill(Pcharged, E_ECal);
+							h_E_Ecal_vs_Pcharged[isim]->Fill(Pcharged, E_ECal, weights[isim]);
 						}
 						break;
 				}//end of switch
@@ -252,8 +252,12 @@ spaghetti()
 		TLegend *leg = new TLegend(0.76, 0.64, 0.88, 0.88); 
 		c[0]->cd();
 		for(int ip=0; ip < n_sim; ++ip) {
+			if(i_cr==0) {
+			h_Ncharged[ip]->Scale(1/(h_Ncharged[ip]->GetEntries()));
+			h_Ncharged[ip]->SetMaximum(0.8);
+			}
+			if(i_cr>0) h_Ncharged[ip]->SetMaximum(max[0]*1.3);
 			h_Ncharged[ip]->SetLineColor(color[ip]);
-			h_Ncharged[ip]->SetMaximum(max[0]*1.3);
 			if(ip==0) h_Ncharged[ip]->Draw("HIST");
 			else if(ip < 4) h_Ncharged[ip]->Draw("SAME HIST");
 			if(ip<4) leg->AddEntry(h_Ncharged[ip], name[ip], "L");
@@ -263,8 +267,12 @@ spaghetti()
 		c[0]->Close();
 		c[1]->cd();
 		for(int ip=0; ip < n_sim; ++ip) {
+			if(i_cr==0) {
+			h_Pcharged[ip]->Scale(1/(h_Pcharged[ip]->GetEntries()));
+			h_Pcharged[ip]->SetMaximum(0.16);
+			}
+			if(i_cr>0) h_Pcharged[ip]->SetMaximum(max[1]*1.3);
 			h_Pcharged[ip]->SetLineColor(color[ip]);
-			h_Pcharged[ip]->SetMaximum(max[1]*1.3);
 			if(ip==0) h_Pcharged[ip]->Draw("HIST");
 			else if(ip<4) h_Pcharged[ip]->Draw("SAME HIST");
 		}
@@ -273,8 +281,12 @@ spaghetti()
 		c[1]->Close();
 		c[2]->cd();
 		for(int ip=0; ip < n_sim; ++ip) {
+			if(i_cr==0) {
+			h_E_Ecal[ip]->Scale(1/(h_E_Ecal[ip]->GetEntries()));
+			h_E_Ecal[ip]->SetMaximum(0.6);
+			}
+			if(i_cr>0) h_E_Ecal[ip]->SetMaximum(max[2]*1.3);
 			h_E_Ecal[ip]->SetLineColor(color[ip]);
-			h_E_Ecal[ip]->SetMaximum(max[2]*1.3);
 			if(ip==0) h_E_Ecal[ip]->Draw("HIST");
 			else if(ip<4) h_E_Ecal[ip]->Draw("SAME HIST");
 		}
@@ -283,8 +295,12 @@ spaghetti()
 		c[2]->Close();
 		c[3]->cd();
 		for(int ip=0; ip < n_sim; ++ip) {
+			if(i_cr==0) {
+			h_E_Hcal[ip]->Scale(1/(h_E_Hcal[ip]->GetEntries()));			
+			h_E_Hcal[ip]->SetMaximum(0.8);
+			}
+			if(i_cr!=0) h_E_Hcal[ip]->SetMaximum(max[3]*1.3);
 			h_E_Hcal[ip]->SetLineColor(color[ip]);
-			h_E_Hcal[ip]->SetMaximum(max[3]*1.3);
 			if(ip==0) h_E_Hcal[ip]->Draw("HIST");
 			else if(ip<4) h_E_Hcal[ip]->Draw("SAME HIST");
 		}
@@ -293,8 +309,12 @@ spaghetti()
 		c[3]->Close();
 		c[4]->cd();
 		for(int ip=0; ip < n_sim; ++ip) {
+			if(i_cr==0) {
+			h_cos_thru[ip]->Scale(1/(h_cos_thru[ip]->GetEntries()));			
+			h_cos_thru[ip]->SetMaximum(0.1);
+			}
+			if(i_cr>0) h_cos_thru[ip]->SetMaximum(max[4]*1.3);
 			h_cos_thru[ip]->SetLineColor(color[ip]);
-			h_cos_thru[ip]->SetMaximum(max[4]*1.3);
 			if(ip==0) h_cos_thru[ip]->Draw("HIST");
 			else if(ip<4) h_cos_thru[ip]->Draw("SAME HIST");
 		}
@@ -303,8 +323,13 @@ spaghetti()
 		c[4]->Close();
 		c[5]->cd();
 		for(int ip=0; ip < n_sim; ++ip) {
+			if(i_cr==0) {
+			h_cos_thet[ip]->Scale(1/(h_cos_thet[ip]->GetEntries()));			
+			h_cos_thet[ip]->SetMaximum(0.06);
+			}
 			h_cos_thet[ip]->SetLineColor(color[ip]);
-			h_cos_thet[ip]->SetMaximum(max[5]*1.3);
+			if(i_cr>0) h_cos_thet[ip]->SetMaximum(max[5]*1.3);
+			h_cos_thet[ip]->SetLineColor(color[ip]);
 			if(ip==0) h_cos_thet[ip]->Draw("HIST");
 			else if(ip<4) h_cos_thet[ip]->Draw("SAME HIST");
 		}
@@ -314,6 +339,9 @@ spaghetti()
 		
 		for(int ip=0; ip < n_sim; ++ip) {
 			c[6]->cd();
+			h_E_Ecal_vs_Pcharged[ip]->Draw("HIST COLZ");
+			h_E_Ecal_vs_Pcharged[ip]->GetXaxis()->SetTitle("Pcharged");
+			h_E_Ecal_vs_Pcharged[ip]->GetYaxis()->SetTitle("E_Ecal");
 			h_E_Ecal_vs_Pcharged[ip]->Draw("HIST COLZ");
 			c[6]->SaveAs("graphs/" + cutname[i_cr] + "_" + name[ip] + "_E_Ecal_vs_Pcharged.png");
 			

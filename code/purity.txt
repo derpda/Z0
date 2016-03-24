@@ -1,0 +1,8 @@
+Efficiency array and purity and the product of the two
+
+	  ee	  mm	  tt	  qq		Purity	Product
+ee_cut	0.48668	0.00002	0.00988	0.00036		0.96578	0.47003
+mm_cut	0.00018	0.90171	0.00611	0.00001		0.99284	0.89525
+tt_cut	0.00301	0.02421	0.91962	0.00153		0.93983	0.86429
+qq_cut	0.00007	0.00001	0.00687	0.98970		0.99966	0.98937
+
