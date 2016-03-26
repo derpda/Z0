@@ -1,0 +1,30 @@
+\documentclass[11pt, paper=a4]{scrartcl}
+
+% CONFIG
+\newcommand{\exptitle}{Z0 Resonance}       % long name of experiment 
+\newcommand{\exptitleshort}{Z0} % short name of experiment
+\newcommand{\expdate}{26.03.2016}           % date of experiment
+\newcommand{\exptutor}{Christian L\"udtke}
+
+\input{Vorspann}
+
+\newpage
+\abstractname{}
+%\abstract{}
+\tableofcontents
+\thispagestyle{empty}
+
+\newpage
+\hypersetup{pageanchor=false} %stop page numbering (hyperref) to prevent for double page numers
+\thispagestyle{empty}
+
+
+\input{analysis}
+
+
+\newpage
+\bibliographystyle{plain}
+\bibliography{refs}
+
+
+\end{document}
