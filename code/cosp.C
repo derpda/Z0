@@ -32,6 +32,7 @@ void cosp(){
 		files[i]= new TFile(fname,"READ");
 		hname="h_costhet_"+names[i];
 		hcos[i] = (TH1F*)files[i]->Get(hname);
+		hcos[i]-> Rebin(5);
 		cout << "Strahlenergie:"+names[i] << endl;
 		TCanvas *c1 = new TCanvas("c", "c", w, h);
 		c->SetWindowSize(w + (w - c->GetWw()), h + (h - c->GetWh()));
@@ -40,7 +41,7 @@ void cosp(){
 		TMatrixDSym cov = r->GetCovarianceMatrix();
 		hcos[i]->Draw("HIST");
 		func -> Draw("SAME");
-		c->SaveAs("fit"+names[i]+".png");
+		c->SaveAs("C:\\Users\\benjamin\\Documents\\FPII\\Z0\\results\\data_results\\cosp_fits\\fit"+names[i]+".png");
 		c->Close();
 		float S = func->GetParameter(0);
 		float T = func->GetParameter(1);

@@ -11,7 +11,7 @@ cutData()
 
 
 	TFile *data;
-	data = new TFile("../daten/daten/daten_1.root", "READ");
+	data = new TFile("..\\daten\\daten\\daten_1.root", "READ");
 	TTree *mc_trees;
 	TTree *mc_trees = (TTree*) data->Get("h33");
 
@@ -31,13 +31,13 @@ cutData()
 
 
 	TFile* f_out[n_invmass];
-	f_out[0] = new TFile("../results/data_results/histos44.2.root", "RECREATE");
-	f_out[1] = new TFile("../results/data_results/histos44.7.root", "RECREATE");
-	f_out[2] = new TFile("../results/data_results/histos45.1.root", "RECREATE");
-	f_out[3] = new TFile("../results/data_results/histos45.6.root", "RECREATE");
-	f_out[4] = new TFile("../results/data_results/histos46.0.root", "RECREATE");
-	f_out[5] = new TFile("../results/data_results/histos46.5.root", "RECREATE");
-	f_out[6] = new TFile("../results/data_results/histos46.9.root", "RECREATE");
+	f_out[0] = new TFile("..\\results\\data_results\\histos44.2.root", "RECREATE");
+	f_out[1] = new TFile("..\\results\\data_results\\histos44.7.root", "RECREATE");
+	f_out[2] = new TFile("..\\results\\data_results\\histos45.1.root", "RECREATE");
+	f_out[3] = new TFile("..\\results\\data_results\\histos45.6.root", "RECREATE");
+	f_out[4] = new TFile("..\\results\\data_results\\histos46.0.root", "RECREATE");
+	f_out[5] = new TFile("..\\results\\data_results\\histos46.5.root", "RECREATE");
+	f_out[6] = new TFile("..\\results\\data_results\\histos46.9.root", "RECREATE");
 
 	//create pointers to histograms
 	TH1F *h_Ncharged[n_invmass];
@@ -62,7 +62,7 @@ cutData()
 	h_E_Hcal[i]->Sumw2();
 	h_cos_thru[i] = new TH1F("h_costhru_" + invmassname[i], "Cos thrust", 40, -1., 1.);
 	h_cos_thru[i]->Sumw2();
-	h_cos_thet[i] = new TH1F("h_costhet_" + invmassname[i], "Cos theta", 50, -1., 1.);
+	h_cos_thet[i] = new TH1F("h_costhet_" + invmassname[i], "Cos theta", 100 , -0.9, 0.9);
 	h_cos_thet[i]->Sumw2();
 	h_E_Lep[i] = new TH1F("h_E_Lep_" + invmassname[i], "Lepton energy", 100, 44., 47.);
 	h_E_Lep[i]->Sumw2();
@@ -264,37 +264,37 @@ cout << "cut number: " << i_cr << endl;
 			
 			c[0]->cd();
 			h_Ncharged[i_im]->Draw("HIST");
-			c[0]->SaveAs("../results/data_results/" + invmassname[i_im] + "/" + cutname[i_cr] +  "_Ncharged.png");
+			c[0]->SaveAs("C:\\Users\\benjamin\\Documents\\FPII\\Z0\\results\\data_results\\" + invmassname[i_im] + "\\" + cutname[i_cr] +  "_Ncharged.png");
 			c[0]->Close();
 
 			c[1]->cd();
 			h_Pcharged[i_im]->Draw("HIST");
-			c[1]->SaveAs("../results/data_results/" + invmassname[i_im] + "/" + cutname[i_cr] +  "_Pcharged.png");
+			c[1]->SaveAs("C:\\Users\\benjamin\\Documents\\FPII\\Z0\\results\\data_results\\" + invmassname[i_im] + "\\" + cutname[i_cr] +  "_Pcharged.png");
 			c[1]->Close();
 
 			c[2]->cd();
 			h_E_Ecal[i_im]->Draw("HIST");
-			c[2]->SaveAs("../results/data_results/" + invmassname[i_im] + "/" + cutname[i_cr] +  "_E_Ecal.png");
+			c[2]->SaveAs("C:\\Users\\benjamin\\Documents\\FPII\\Z0\\results\\data_results\\" + invmassname[i_im] + "\\" + cutname[i_cr] +  "_E_Ecal.png");
 			c[2]->Close();
 
 			c[3]->cd();
 			h_E_Hcal[i_im]->Draw("HIST");
-			c[3]->SaveAs("../results/data_results/" + invmassname[i_im] + "/" + cutname[i_cr] +  "_E_Hcal.png");
+			c[3]->SaveAs("C:\\Users\\benjamin\\Documents\\FPII\\Z0\\results\\data_results\\" + invmassname[i_im] + "\\" + cutname[i_cr] +  "_E_Hcal.png");
 			c[3]->Close();
 
 			c[4]->cd();
 			h_cos_thru[i_im]->Draw("HIST");
-			c[4]->SaveAs("../results/data_results/" + invmassname[i_im] + "/" + cutname[i_cr] +  "_cos_thru.png");
+			c[4]->SaveAs("C:\\Users\\benjamin\\Documents\\FPII\\Z0\\results\\data_results\\" + invmassname[i_im] + "\\" + cutname[i_cr] +  "_cos_thru.png");
 			c[4]->Close();
 
 			c[5]->cd();
 			h_cos_thet[i_im]->Draw("HIST");
-			c[5]->SaveAs("../results/data_results/" + invmassname[i_im] + "/" + cutname[i_cr] +  "_cos_theta.png");
+			c[5]->SaveAs("C:\\Users\\benjamin\\Documents\\FPII\\Z0\\results\\data_results\\" + invmassname[i_im] + "\\" + cutname[i_cr] +  "_cos_theta.png");
 			c[5]->Close();
 
 			c[6]->cd();
 			h_E_Lep[i_im]->Draw("HIST");
-			c[6]->SaveAs("../results/data_results/" + invmassname[i_im] + "/" + cutname[i_cr] +  "_E_Lep.png");
+			c[6]->SaveAs("C:\\Users\\benjamin\\Documents\\FPII\\Z0\\results\\data_results\\" + invmassname[i_im] + "\\" + cutname[i_cr] +  "_E_Lep.png");
 			c[6]->Close();
 
 			c[7]->cd();
@@ -302,14 +302,14 @@ cout << "cut number: " << i_cr << endl;
 			h_E_Ecal_vs_Pcharged[i_im]->GetXaxis()->SetTitle("Pcharged");
 			h_E_Ecal_vs_Pcharged[i_im]->GetYaxis()->SetTitle("E_Ecal");
 			h_E_Ecal_vs_Pcharged[i_im]->Draw("HIST COLZ");
-			c[7]->SaveAs("../results/data_results/" + invmassname[i_im] + "/" + cutname[i_cr] +  "_E_Ecal_vs_Pcharged.png");
+			c[7]->SaveAs("C:\\Users\\benjamin\\Documents\\FPII\\Z0\\results\\data_results\\" + invmassname[i_im] + "\\" + cutname[i_cr] +  "_E_Ecal_vs_Pcharged.png");
 			c[7]->Close();
 		}//end of save graphics loop
 
 		//print graph with non-cut E_LEP for report
 		c[8]->cd();
 		h_E_Lep[7]->Draw("HIST");
-		c[8]->SaveAs("../results/data_results/all_lep/" + cutname[i_cr] +  "_E_Lep.png");
+		c[8]->SaveAs("C:\\Users\\benjamin\\Documents\\FPII\\Z0\\results\\data_results/all_lep\\" + cutname[i_cr] +  "_E_Lep.png");
 		c[8]->Close();
 
 		//write ee-cut histogram

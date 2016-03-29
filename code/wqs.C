@@ -6,8 +6,8 @@
 #include <iostream>
 
 void wqs(){
-	double factors[7]={0.125605,0.286539,0.521244,0.671832,0.666095,0.455027,0.477367};
-	double factors_err[7]={0.0223912,0.0239317,0.0252967,0.00903835,0.0241654,0.0325053,0.0281814};
+	double factors[7]={0.122601,0.37624,0.517685,0.688728,0.659251,0.445779,0.476775};
+	double factors_err[7]={0.0221567,0.0224847,0.0228781,0.00811223,0.0208336,0.0301098,0.0256896};
 	//Luminositaeten
 
 	double L[7];
@@ -120,7 +120,7 @@ void wqs(){
 		dat[i]->Draw("AP");
 		//func -> Draw("SAME");
 		dat[i] -> Fit("func","","",88.48021,93.71841);
-		c->SaveAs("data_results\\wqs\\WQ "+names[i]+".png");
+		c->SaveAs("C:\\Users\\benjamin\\Documents\\FPII\\Z0\\results\\data_results\\wqs\\WQ"+names[i]+".png");
 		c->Close();
 	}
 }

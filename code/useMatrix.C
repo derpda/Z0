@@ -11,7 +11,7 @@ void useMatrix(){
 	const int n_invmass=7;
 	float factors[n_invmass]={0.308238,0.45956,0.589088,0.701125,0.684967,0.664385,0.583014};
 	ofstream matrixprint;
-	matrixprint .open("matrix\\matrices.txt");
+	matrixprint .open("..\\results\\matrix\\matrices.txt");
 	
 	
 	TMatrixD matrix(4,4);
@@ -294,4 +294,5 @@ void useMatrix(){
 		}
 	}
 	matrixprint << "}";
+	matrixprint.close();
 }
