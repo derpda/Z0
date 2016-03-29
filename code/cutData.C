@@ -17,7 +17,7 @@ cutData()
 
 
 
-	//Loop over invariant mass
+
 	int i_im;
 	const int n_invmass = 7;
 	TString invmassname[n_invmass];
@@ -46,7 +46,7 @@ cutData()
 	TH1F *h_E_Hcal[n_invmass];
 	TH1F *h_cos_thru[n_invmass];
 	TH1F *h_cos_thet[n_invmass];
-	TH1F *h_E_Lep[n_invmass];
+	TH1F *h_E_Lep[n_invmass+1];
 	
 	//create pointer to 2dim histogram
 	TH2F *h_E_Ecal_vs_Pcharged[n_invmass];
@@ -69,7 +69,9 @@ cutData()
 	h_E_Ecal_vs_Pcharged[i] = new TH2F("h_E_Ecal_vs_Pcharged_" + invmassname[i], "E_Ecal vs Pcharged", 60, 0., 120., 120, 0., 120.);
 	h_E_Ecal_vs_Pcharged[i]->Sumw2();
 	}
-
+	//extra histogram to include all lepton energies
+	h_E_Lep[7] = new TH1F("h_E_Lep", "Lepton energy", 100, 44., 47.);
+	h_E_Lep[7]->Sumw2();
 
 	//Loop over the four different cuts as well no the no cut option
 	const int n_cutregions = 5;
@@ -98,6 +100,7 @@ cutData()
 		h_E_Lep[i]->Reset("M");
 		h_E_Ecal_vs_Pcharged[i]->Reset("M");
 		}
+		h_E_Lep[7]->Reset();
 
 		mc_trees->SetBranchAddress("event", &event);
 		mc_trees->SetBranchAddress("run", &run);
@@ -134,6 +137,7 @@ cout << "cut number: " << i_cr << endl;
 					h_cos_thru[i_im]->Fill(cos_thru);
 					h_cos_thet[i_im]->Fill(cos_theta);
 					h_E_Lep[i_im]->Fill(E_LEP);
+					h_E_Lep[7]->Fill(E_LEP); //histo with all lepton energies
 					h_E_Ecal_vs_Pcharged[i_im]->Fill(Pcharged, E_ECal);
 					a_eventcount[i_im][i_cr] += 1;
 					break;
@@ -157,6 +161,7 @@ cout << "cut number: " << i_cr << endl;
 						h_cos_thru[i_im]->Fill(cos_thru);
 						h_cos_thet[i_im]->Fill(cos_theta);
 						h_E_Lep[i_im]->Fill(E_LEP);
+						h_E_Lep[7]->Fill(E_LEP); //histo with all lepton energies
 						h_E_Ecal_vs_Pcharged[i_im]->Fill(Pcharged, E_ECal);
 						a_eventcount[i_im][i_cr] += 1;
 					}
@@ -181,6 +186,7 @@ cout << "cut number: " << i_cr << endl;
 						h_cos_thru[i_im]->Fill(cos_thru);
 						h_cos_thet[i_im]->Fill(cos_theta);
 						h_E_Lep[i_im]->Fill(E_LEP);
+						h_E_Lep[7]->Fill(E_LEP); //histo with all lepton energies
 						h_E_Ecal_vs_Pcharged[i_im]->Fill(Pcharged, E_ECal);
 						a_eventcount[i_im][i_cr] += 1;
 					} 
@@ -206,6 +212,7 @@ cout << "cut number: " << i_cr << endl;
 						h_cos_thru[i_im]->Fill(cos_thru);
 						h_cos_thet[i_im]->Fill(cos_theta); 
 						h_E_Lep[i_im]->Fill(E_LEP);
+						h_E_Lep[7]->Fill(E_LEP); //histo with all lepton energies
 						h_E_Ecal_vs_Pcharged[i_im]->Fill(Pcharged, E_ECal);
 						a_eventcount[i_im][i_cr] += 1;
 					}
@@ -230,6 +237,7 @@ cout << "cut number: " << i_cr << endl;
 						h_cos_thru[i_im]->Fill(cos_thru);
 						h_cos_thet[i_im]->Fill(cos_theta);
 						h_E_Lep[i_im]->Fill(E_LEP);
+						h_E_Lep[7]->Fill(E_LEP); //histo with all lepton energies
 						h_E_Ecal_vs_Pcharged[i_im]->Fill(Pcharged, E_ECal);
 						a_eventcount[i_im][i_cr] += 1;
 					}
@@ -243,7 +251,7 @@ cout << "cut number: " << i_cr << endl;
 		//loop to save graphs for each i_im
 		for (int i_im=0; i_im < n_invmass; ++i_im) {
 
-			TCanvas *c[n_invmass+1];
+			TCanvas *c[n_invmass+2];
 			c[0] = new TCanvas("c0", "c0",1920,1080);
 			c[1] = new TCanvas("c1", "c1",1920,1080);
 			c[2] = new TCanvas("c2", "c2",1920,1080);
@@ -252,6 +260,7 @@ cout << "cut number: " << i_cr << endl;
 			c[5] = new TCanvas("c5", "c5",1920,1080);
 			c[6] = new TCanvas("c6", "c6",1920,1080);
 			c[7] = new TCanvas("c7", "c7",1920,1080);
+			c[8] = new TCanvas("c8", "c8",1920,1080);
 			
 			c[0]->cd();
 			h_Ncharged[i_im]->Draw("HIST");
@@ -297,6 +306,11 @@ cout << "cut number: " << i_cr << endl;
 			c[7]->Close();
 		}//end of save graphics loop
 
+		//print graph with non-cut E_LEP for report
+		c[8]->cd();
+		h_E_Lep[7]->Draw("HIST");
+		c[8]->SaveAs("data_graphs/all_lep/" + cutname[i_cr] +  "_E_Lep.png");
+		c[8]->Close();
 
 		//write ee-cut histogram
 		if(i_cr==1) {
