@@ -1,7 +1,9 @@
 #ignore results folder
-results/MC_results/*
-results/data_results/*
-results/matrix/*
+results/MC_results/*.png
+results/data_results/*.root
+results/data_results/[0-9][0-9].[0-9]
+results/data_results/all_lep
+results/matrix/*.txt
 
 #ignore data folder
 daten/
