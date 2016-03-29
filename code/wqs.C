@@ -120,7 +120,7 @@ void wqs(){
 		dat[i]->Draw("AP");
 		//func -> Draw("SAME");
 		dat[i] -> Fit("func","","",88.48021,93.71841);
-		c->SaveAs("WQ "+names[i]+".png");
+		c->SaveAs("data_results\\wqs\\WQ "+names[i]+".png");
 		c->Close();
 	}
 }

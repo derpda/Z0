@@ -2,7 +2,7 @@
 #include <sstream>
 
 
-spaghetti()
+void cutMC()
 {
 	gStyle->SetHistLineWidth(2.);
 	gStyle->SetLabelSize(0.05, "x");
@@ -263,7 +263,7 @@ spaghetti()
 			if(ip<4) leg->AddEntry(h_Ncharged[ip], name[ip], "L");
 		}
 		leg->Draw("SAME");
-		c[0]->SaveAs("graphs/" + cutname[i_cr] +  "_Ncharged.png");
+		c[0]->SaveAs("../results/MC_results/" + cutname[i_cr] +  "_Ncharged.png");
 		c[0]->Close();
 		c[1]->cd();
 		for(int ip=0; ip < n_sim; ++ip) {
@@ -277,7 +277,7 @@ spaghetti()
 			else if(ip<4) h_Pcharged[ip]->Draw("SAME HIST");
 		}
 		leg->Draw("SAME");
-		c[1]->SaveAs("graphs/" + cutname[i_cr] +  "_Pcharged.png");
+		c[1]->SaveAs("../results/MC_results/" + cutname[i_cr] +  "_Pcharged.png");
 		c[1]->Close();
 		c[2]->cd();
 		for(int ip=0; ip < n_sim; ++ip) {
@@ -291,7 +291,7 @@ spaghetti()
 			else if(ip<4) h_E_Ecal[ip]->Draw("SAME HIST");
 		}
 		leg->Draw("SAME");
-		c[2]->SaveAs("graphs/" + cutname[i_cr] +  "_E_Ecal.png");
+		c[2]->SaveAs("../results/MC_results/" + cutname[i_cr] +  "_E_Ecal.png");
 		c[2]->Close();
 		c[3]->cd();
 		for(int ip=0; ip < n_sim; ++ip) {
@@ -305,7 +305,7 @@ spaghetti()
 			else if(ip<4) h_E_Hcal[ip]->Draw("SAME HIST");
 		}
 		leg->Draw("SAME");
-		c[3]->SaveAs("graphs/" + cutname[i_cr] +  "_E_Hcal.png");
+		c[3]->SaveAs("../results/MC_results/" + cutname[i_cr] +  "_E_Hcal.png");
 		c[3]->Close();
 		c[4]->cd();
 		for(int ip=0; ip < n_sim; ++ip) {
@@ -319,7 +319,7 @@ spaghetti()
 			else if(ip<4) h_cos_thru[ip]->Draw("SAME HIST");
 		}
 		leg->Draw("SAME");
-		c[4]->SaveAs("graphs/" + cutname[i_cr] +  "_cos_thru.png");
+		c[4]->SaveAs("../results/MC_results/" + cutname[i_cr] +  "_cos_thru.png");
 		c[4]->Close();
 		c[5]->cd();
 		for(int ip=0; ip < n_sim; ++ip) {
@@ -334,7 +334,7 @@ spaghetti()
 			else if(ip<4) h_cos_thet[ip]->Draw("SAME HIST");
 		}
 		leg->Draw("SAME");
-		c[5]->SaveAs("graphs/" + cutname[i_cr] +  "_cos_theta.png");
+		c[5]->SaveAs("../results/MC_results/" + cutname[i_cr] +  "_cos_theta.png");
 		c[5]->Close();
 		
 		for(int ip=0; ip < n_sim; ++ip) {
@@ -343,7 +343,7 @@ spaghetti()
 			h_E_Ecal_vs_Pcharged[ip]->GetXaxis()->SetTitle("Pcharged");
 			h_E_Ecal_vs_Pcharged[ip]->GetYaxis()->SetTitle("E_Ecal");
 			h_E_Ecal_vs_Pcharged[ip]->Draw("HIST COLZ");
-			c[6]->SaveAs("graphs/" + cutname[i_cr] + "_" + name[ip] + "_E_Ecal_vs_Pcharged.png");
+			c[6]->SaveAs("../results/MC_results/" + cutname[i_cr] + "_" + name[ip] + "_E_Ecal_vs_Pcharged.png");
 			
 		}
 		c[6]->Close();

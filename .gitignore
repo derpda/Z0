@@ -1,0 +1,8 @@
+#ignore results folder
+results/MC_results/*
+results/data_results/*
+results/matrix/*
+
+#ignore data folder
+daten/
+

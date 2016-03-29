@@ -7,24 +7,49 @@ using namespace std;
 
 void useMatrix(){
   //Filling a matrix
-
-  TMatrixD matrix(4,4);
-  matrix(0,0)=0.98182;
-  matrix(0,1)=0.00002;
-  matrix(0,2)=0.01062;
-  matrix(0,3)=0.00036;
-  matrix(1,0)=0.00047;
-  matrix(1,1)=0.94427;
-  matrix(1,2)=0.00747;
-  matrix(1,3)= 0.00001;
-  matrix(2,0)=0.00286;
-  matrix(2,1)=0.02244;
-  matrix(2,2)=0.91643;
-  matrix(2,3)=0.00152;
-  matrix(3,0)=0.00007;
-  matrix(3,1)=0.00001;
-  matrix(3,2)=0.00688;
-  matrix(3,3)=0.98970;
+	
+	const int n_invmass=7;
+	float factors[n_invmass]={0.308238,0.45956,0.589088,0.701125,0.684967,0.664385,0.583014};
+	ofstream matrixprint;
+	matrixprint .open("matrix\\matrices.txt");
+	
+	
+	TMatrixD matrix(4,4);
+	matrix(0,0)=0.486685;
+	matrix(0,1)=0.000181233;
+	matrix(0,2)=0.00300633;
+	matrix(0,3)=7.46253e-05;
+	matrix(1,0)=2.11907e-05;
+	matrix(1,1)=0.901707;
+	matrix(1,2)=0.0242104;
+	matrix(1,3)=1.05954e-05;
+	matrix(2,0)=0.00988462;
+	matrix(2,1)=0.00611003;
+	matrix(2,2)=0.919623;
+	matrix(2,3)=0.00686747;
+	matrix(3,0)=0.000355103;
+	matrix(3,1)=1.01458e-05;
+	matrix(3,2)=0.00153202;
+	matrix(3,3)=0.989702;
+	
+	matrixprint <<"Original matrix\n" << endl;
+	//print original matrix
+	matrixprint << "{";
+	for(int i=0; i<4; ++i){
+		matrixprint << "{";
+		for(int j=0; j<3; ++j) {
+			if(j<3) {matrixprint << matrix[i][j] <<", ";
+			}
+			else { matrixprint << matrix[i][j];
+			}
+		}
+		if(i<3) {matrixprint << matrix[i][3] << "},\n";
+		}
+		else {matrixprint << matrix[i][3] << "}\n";
+		}
+	}
+	
+	matrixprint << "}\n" << endl;
   cout<<"Matrix" << endl;
   matrix.Print();
 	//Total Number of simulated events per kind
@@ -37,21 +62,54 @@ void useMatrix(){
 	double mean[4][4];
 	for(int i=0;i<4;i++){
 		for(int j=0;j<4;j++){
-			mean[i][j]=matrix(i,j);}}
+			mean[i][j]=matrix(i,j);
+		}
+	}
 
+	matrixprint<<"\n\nBinomial error matrix\n"<< endl;
 	//binomial error
 	double err[4][4];
-	for(int i=0;i<4;i++){
-		for(int j=0;j<4;j++){
+	
+	//calculate and print binomial error matrix to file
+	matrixprint << "{";
+	for(int i=0; i<4; ++i){
+		matrixprint << "{";
+		for(int j=0; j<3; ++j) {
 			err[i][j]=sqrt(mean[i][j]*(1.0-mean[i][j])/N[j]);
-			cout<< err[i][j]<<endl;}}
-
+			if(j<3) {matrixprint << err[i][j] <<", ";
+			}
+			else { matrixprint << err[i][j];
+			}
+		}
+		if(i<3) {matrixprint << err[i][3] << "},\n";
+		}
+		else {matrixprint << err[i][3] << "}\n";
+		}
+	}
+	matrixprint << "}\n" << endl;
   //Inverting the matrix 
   TMatrixD Inverse(4,4);
   Inverse = matrix.Invert();
   cout<<"Inverse"<< endl;
   Inverse.Print();
 
+	//print inverse matrix to file
+	matrixprint << "{";
+	for(int i=0; i<4; ++i){
+		matrixprint << "{";
+		for(int j=0; j<3; ++j) {
+			if(j<3) {matrixprint << Inverse[i][j] <<", ";
+			}
+			else { matrixprint << Inverse[i][j];
+			}
+		}
+		if(i<3) {matrixprint << Inverse[i][3] << "},\n";
+		}
+		else {matrixprint << Inverse[i][3] << "}\n";
+		}
+	}
+	matrixprint << "}\n" << endl;
+	
   TRandom3 *r = new TRandom3();
   int ntoy = 10000;
   
@@ -218,4 +276,22 @@ void useMatrix(){
       cout<<"errors"<<endl;
     }
   }
+	//print error matrix of inverse matrix to file
+	matrixprint<<"\n\nErrormatrix for inverse matrix\n"<<endl;
+	matrixprint << "{";
+	for(int i=0; i<4; ++i){
+		matrixprint << "{";
+		for(int j=0; j<3; ++j) {
+			err[i][j]=sqrt(mean[i][j]*(1.0-mean[i][j])/N[j]);
+			if(j<3) {matrixprint << inverse_err[i][j] <<", ";
+			}
+			else { matrixprint << inverse_err[i][j];
+			}
+		}
+		if(i<3) {matrixprint << inverse_err[i][3] << "},\n";
+		}
+		else {matrixprint << inverse_err[i][3] << "}\n";
+		}
+	}
+	matrixprint << "}";
 }
