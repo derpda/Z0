@@ -9,7 +9,7 @@ void useMatrixAll(){
 	//Filling a matrix
 
 	const int n_invmass=7;
-	float factors[n_invmass]={0.583014, 0.664385, 0.684967, 0.701125, 0.589088, 0.459561, 0.308238};
+	float factors[n_invmass]={0.308238,0.45956,0.589088,0.701125,0.684967,0.664385,0.583014};
 	TString invmassname[n_invmass];
 	invmassname[0]="44.2";
 	invmassname[1]="44.7";
@@ -27,25 +27,24 @@ void useMatrixAll(){
 	ofstream matrixprint[n_invmass];
 	//FOR BENNI: EDIT FILE PATHS
 	matrixprint[i_im].open("matrix\\matrices_" + invmassname[i_im] + ".txt");
-	
 
 	TMatrixD matrix(4,4);
-	matrix(0,0)=0.48668*factors[i_im];
-	matrix(0,1)=0.00002;
-	matrix(0,2)=0.00988;
-	matrix(0,3)=0.00036;
-	matrix(1,0)=0.00018;
-	matrix(1,1)=0.90171;
-	matrix(1,2)=0.00611;
-	matrix(1,3)=0.00001;
-	matrix(2,0)=0.00301;
-	matrix(2,1)=0.02421;
-	matrix(2,2)=0.91962;
-	matrix(2,3)=0.00153;
-	matrix(3,0)=0.00007;
-	matrix(3,1)=0.00001;
-	matrix(3,2)=0.00687;
-	matrix(3,3)=0.98970;
+	matrix(0,0)=0.486685*factors[i_im];
+	matrix(0,1)=0.000181233;
+	matrix(0,2)=0.00300633;
+	matrix(0,3)=7.46253e-05;
+	matrix(1,0)=2.11907e-05;
+	matrix(1,1)=0.901707;
+	matrix(1,2)=0.0242104;
+	matrix(1,3)=1.05954e-05;
+	matrix(2,0)=0.00988462;
+	matrix(2,1)=0.00611003;
+	matrix(2,2)=0.919623;
+	matrix(2,3)=0.00686747;
+	matrix(3,0)=0.000355103;
+	matrix(3,1)=1.01458e-05;
+	matrix(3,2)=0.00153202;
+	matrix(3,3)=0.989702;
 
 	matrixprint[i_im] <<"Original matrix\n" << endl;
 	//print original matrix
@@ -58,9 +57,9 @@ void useMatrixAll(){
 			else { matrixprint[i_im] << matrix[i][j];
 			}
 		}
-		if(i<3) {matrixprint[i_im] << matrix[i][3] << "}, ";
+		if(i<3) {matrixprint[i_im] << matrix[i][3] << "},\n";
 		}
-		else {matrixprint[i_im] << matrix[i][3] << "}";
+		else {matrixprint[i_im] << matrix[i][3] << "}\n";
 		}
 	}
 	matrixprint[i_im] << "}\n" << endl;
@@ -94,9 +93,9 @@ void useMatrixAll(){
 			else { matrixprint[i_im] << err[i][j];
 			}
 		}
-		if(i<3) {matrixprint[i_im] << err[i][3] << "}, ";
+		if(i<3) {matrixprint[i_im] << err[i][3] << "},\n";
 		}
-		else {matrixprint[i_im] << err[i][3] << "}";
+		else {matrixprint[i_im] << err[i][3] << "}\n";
 		}
 	}
 	matrixprint[i_im] << "}\n" << endl;
@@ -116,9 +115,9 @@ void useMatrixAll(){
 			else { matrixprint[i_im] << Inverse[i][j];
 			}
 		}
-		if(i<3) {matrixprint[i_im] << Inverse[i][3] << "}, ";
+		if(i<3) {matrixprint[i_im] << Inverse[i][3] << "},\n";
 		}
-		else {matrixprint[i_im] << Inverse[i][3] << "}";
+		else {matrixprint[i_im] << Inverse[i][3] << "}\n";
 		}
 	}
 	matrixprint[i_im] << "}\n" << endl;
@@ -293,10 +292,11 @@ void useMatrixAll(){
 			else { matrixprint[i_im] << inverse_err[i][j];
 			}
 		}
-		if(i<3) {matrixprint[i_im] << inverse_err[i][3] << "}, ";
+		if(i<3) {matrixprint[i_im] << inverse_err[i][3] << "},\n";
 		}
-		else {matrixprint[i_im] << inverse_err[i][3] << "}";
+		else {matrixprint[i_im] << inverse_err[i][3] << "}\n";
 		}
 	}
+	matrixprint[i_im] << "}";
 }//end of for loop over invariant masses
 }
