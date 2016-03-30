@@ -36,8 +36,9 @@ void cutMC()
 	TH1F *h_cos_thru[n_sim];
 	TH1F *h_cos_thet[n_sim];
 	TH2F *h_E_Ecal_vs_Pcharged[n_sim];
+	TH2F *h_Ncharged_vs_Pcharged[n_sim];
 
-	const int n_histos = 7;
+	const int n_histos = 8;
 	for(int isim = 0; isim < n_sim; ++isim) {
 		h_Ncharged[isim] = new TH1F("h_Ncharged_" + name[isim], "Number of tracks", 40, 0., 40.);
 		h_Ncharged[isim]->Sumw2();
@@ -53,6 +54,8 @@ void cutMC()
 		h_cos_thet[isim]->Sumw2();
 		h_E_Ecal_vs_Pcharged[isim] = new TH2F("h_E_Ecal_vs_Pcharged_" + name[isim], "E_Ecal vs Pcharged", 120, 0., 120., 120, 0., 120.);
 		h_E_Ecal_vs_Pcharged[isim]->Sumw2();
+		h_Ncharged_vs_Pcharged[isim] = new TH2F("h_Ncharged_vs_Pcharged_" + name[isim], "Ncharged vs Pcharged", 120, 0., 120., 7, 0., 7.);
+		h_Ncharged_vs_Pcharged[isim]->Sumw2();
 	}
 
 
@@ -80,6 +83,7 @@ void cutMC()
 			h_cos_thru[isim]->Reset("M");
 			h_cos_thet[isim]->Reset("M");
 			h_E_Ecal_vs_Pcharged[isim]->Reset("M");
+			h_Ncharged_vs_Pcharged[isim]->Reset("M");
 			mc_trees[isim]->SetBranchAddress("event", &event);
 			mc_trees[isim]->SetBranchAddress("run", &run);
 			mc_trees[isim]->SetBranchAddress("Ncharged", &Ncharged);
@@ -120,7 +124,7 @@ void cutMC()
 						break;
 					case 1:
 						//ee cuts
-						if (Ncharged < 7 && E_ECal >= 70 && Pcharged != 0 && ( (cos_theta > -0.9 && cos_theta < 0.9)) ) {
+						if (Ncharged < 7 && E_ECal >= 70 && Pcharged != 0 && cos_theta > 0.9) {   //( (cos_theta > -0.9 && cos_theta < 0.9)) ) {
 							n_events_cut += 1;
 							h_Ncharged[isim]->Fill(Ncharged, weights[isim]);
 							h_Pcharged[isim]->Fill(Pcharged, weights[isim]);
@@ -129,6 +133,7 @@ void cutMC()
 							h_cos_thru[isim]->Fill(cos_thru, weights[isim]);
 							h_cos_thet[isim]->Fill(cos_theta, weights[isim]); 
 							h_E_Ecal_vs_Pcharged[isim]->Fill(Pcharged, E_ECal, weights[isim]);
+							h_Ncharged_vs_Pcharged[isim]->Fill(Pcharged, Ncharged, weights[isim]);
 						}
 						break;
 					case 2:
@@ -198,6 +203,7 @@ void cutMC()
 		c[4] = new TCanvas("c4", "c4",1920,1080);
 		c[5] = new TCanvas("c5", "c5",1920,1080);
 		c[6] = new TCanvas("c6", "c6",1920,1080);
+		c[6] = new TCanvas("c6", "c6",1920,1080);
 		EColor color[n_sim];
 		color[0] = kBlue;
 		color[1] = kRed;
@@ -205,7 +211,7 @@ void cutMC()
 		color[3] = kYellow;
 	
 		
-		float max[n_histos] = {0., 0., 0., 0., 0., 0., 0.};
+		float max[n_histos] = {0., 0., 0., 0., 0., 0., 0., 0.};
 		for(int i=0; i<n_sim; ++i) {
 			float act_max = h_Ncharged[i]->GetMaximum();
 			if(act_max > max[0]) {
@@ -246,6 +252,12 @@ void cutMC()
 			float act_max = h_E_Ecal_vs_Pcharged[i]->GetMaximum();
 			if(act_max > max[6]) {
 				max[6] = act_max;
+			}
+		}
+		for(int i=0; i<n_sim; ++i) {
+			float act_max = h_Ncharged_vs_Pcharged[i]->GetMaximum();
+			if(act_max > max[7]) {
+				max[7] = act_max;
 			}
 		}
 	
@@ -347,6 +359,17 @@ void cutMC()
 			
 		}
 		c[6]->Close();
+		
+		for(int ip=0; ip < n_sim; ++ip) {
+			c[7]->cd();
+			h_Ncharged_vs_Pcharged[ip]->Draw("HIST COLZ");
+			h_Ncharged_vs_Pcharged[ip]->GetXaxis()->SetTitle("Pcharged");
+			h_Ncharged_vs_Pcharged[ip]->GetYaxis()->SetTitle("Ncharged");
+			h_Ncharged_vs_Pcharged[ip]->Draw("HIST COLZ");
+			c[7]->SaveAs("../results/MC_results/" + cutname[i_cr] + "_" + name[ip] + "_Ncharged_vs_Pcharged.png");
+			
+		}
+		c[7]->Close();
 	} //end of cut region loop
 
 
