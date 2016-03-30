@@ -143,7 +143,7 @@ cout << "cut number: " << i_cr << endl;
 					break;
 				case 1:
 				//ee cuts
-					if (Ncharged < 7 && E_ECal >= 70 && Pcharged !=0 && ( (cos_theta > -0.9 && cos_theta < 0.9) || cos_theta > 1) ) {
+					if (Ncharged < 7 && E_ECal >= 70 && Pcharged !=0 && ( (cos_theta > -0.9 && cos_theta < 0.9)) ) {
 					//cout << iev << endl;
 					//determine i_im
 						if( E_LEP > 44.1 && E_LEP < 44.4 ) {i_im=0;
@@ -193,7 +193,7 @@ cout << "cut number: " << i_cr << endl;
 					break;
 				case 3:
 				//tt cuts
-					if ( Pcharged != 0 && Pcharged <= 71 && Ncharged <7 && E_ECal < 75 && ( (cos_theta > -0.9 && cos_theta < 0.9) || cos_theta > 1) 
+					if ( Pcharged != 0 && Pcharged <= 71 && Ncharged <7 && E_ECal < 75 && ( (cos_theta > -0.9 && cos_theta < 0.9)) 
 					( cos_thru > -0.9 && cos_thru < 0.9) ) {
 					//cout << iev << endl;
 						//determine i_im
@@ -321,14 +321,15 @@ cout << "cut number: " << i_cr << endl;
 
 	} //end of cut region loop
 
-
-	cout << "Event counts of the cuts at different invariant masses" << endl;
-	cout << "\t" << cutname[0] << "\t" << cutname[1] << cutname[2] << "\t" << cutname[3] << "\t" << cutname[4] << "\t" << endl;
+	ofstream neventprint;
+	neventprint .open("..\\results\\matrix\\nevent.txt");
+	neventprint<< "Event counts of the cuts at different invariant masses" << endl;
+	neventprint << "\t" << cutname[0] << "\t" << cutname[1] << cutname[2] << "\t" << cutname[3] << "\t" << cutname[4] << "\t" << endl;
 	for(int i=0; i < n_invmass; ++i){
-		cout << invmassname[i] << "\t" << a_eventcount[i][0] << "\t" << a_eventcount[i][1] << "\t" << 
+		neventprint << invmassname[i] << "\t" << a_eventcount[i][0] << "\t" << a_eventcount[i][1] << "\t" << 
 			a_eventcount[i][2] << "\t" << a_eventcount[i][3] << "\t" << a_eventcount[i][4] << endl;
 	}
-
+	neventprint.close();
 	for(int i=0; i < n_invmass; ++i) {
 		f_out[i]->Close();
 	}

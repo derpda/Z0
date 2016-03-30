@@ -15,22 +15,22 @@ void useMatrix(){
 	
 	
 	TMatrixD matrix(4,4);
-	matrix(0,0)=0.486685;
-	matrix(0,1)=0.000181233;
-	matrix(0,2)=0.00300633;
-	matrix(0,3)=7.46253e-05;
-	matrix(1,0)=2.11907e-05;
-	matrix(1,1)=0.901707;
-	matrix(1,2)=0.0242104;
-	matrix(1,3)=1.05954e-05;
-	matrix(2,0)=0.00988462;
-	matrix(2,1)=0.00611003;
-	matrix(2,2)=0.919623;
-	matrix(2,3)=0.00686747;
-	matrix(3,0)=0.000355103;
-	matrix(3,1)=1.01458e-05;
-	matrix(3,2)=0.00153202;
-	matrix(3,3)=0.989702;
+matrix(0,0)=0.390898;
+matrix(0,1)=0.000181233;
+matrix(0,2)=0.00300633;
+matrix(0,3)=7.46253e-005;
+matrix(1,0)=2.11907e-005;
+matrix(1,1)=0.901707;
+matrix(1,2)=0.0242104;
+matrix(1,3)=1.05954e-005;
+matrix(2,0)=0.00441841;
+matrix(2,1)=0.00611003;
+matrix(2,2)=0.919623;
+matrix(2,3)=0.00686747;
+matrix(3,0)=2.02916e-005;
+matrix(3,1)=1.01458e-005;
+matrix(3,2)=0.00153202;
+matrix(3,3)=0.989702;
 	
 	matrixprint <<"Original matrix\n" << endl;
 	//print original matrix
@@ -81,9 +81,13 @@ void useMatrix(){
 			else { matrixprint << err[i][j];
 			}
 		}
-		if(i<3) {matrixprint << err[i][3] << "},\n";
+		if(i<3) {
+			err[i][3]=sqrt(mean[i][3]*(1.0-mean[i][3])/N[3]);
+			matrixprint << err[i][3] << "},\n";
 		}
-		else {matrixprint << err[i][3] << "}\n";
+		else {
+			err[i][3]=sqrt(mean[i][3]*(1.0-mean[i][3])/N[3]);
+			matrixprint << err[i][3] << "}\n";
 		}
 	}
 	matrixprint << "}\n" << endl;
@@ -92,6 +96,8 @@ void useMatrix(){
   Inverse = matrix.Invert();
   cout<<"Inverse"<< endl;
   Inverse.Print();
+	
+	matrixprint<<"\n\nInverted matrix\n"<< endl;
 
 	//print inverse matrix to file
 	matrixprint << "{";

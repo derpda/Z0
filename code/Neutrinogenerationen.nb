@@ -10,16 +10,172 @@
 NotebookFileLineBreakTest
 NotebookFileLineBreakTest
 NotebookDataPosition[       158,          7]
-NotebookDataLength[      4421,        146]
-NotebookOptionsPosition[      3814,        120]
-NotebookOutlinePosition[      4161,        135]
-CellTagsIndexPosition[      4118,        132]
+NotebookDataLength[     10438,        343]
+NotebookOptionsPosition[      8690,        276]
+NotebookOutlinePosition[      9037,        291]
+CellTagsIndexPosition[      8994,        288]
 WindowFrame->Normal*)
 
 (* Beginning of Notebook Content *)
 Notebook[{
 
 Cell[CellGroupData[{
+Cell["Leptonenuniversalit\[ADoubleDot]t", "Title",
+ CellChangeTimes->{{3.6683191455239043`*^9, 3.66831915438472*^9}}],
+
+Cell[CellGroupData[{
+
+Cell["Messergebnisse", "Chapter",
+ CellChangeTimes->{{3.6683192779545374`*^9, 3.6683192816361437`*^9}, 
+   3.6683193460486565`*^9, {3.6683205247347374`*^9, 3.668320530491148*^9}}],
+
+Cell[BoxData[{
+ RowBox[{
+  RowBox[{"em", "=", " ", "0.1097"}], ";"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{"mm", "=", " ", "0.08239"}], ";"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{"tm", "=", " ", "0.06988"}], ";"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{"hm", "=", " ", "0.3838"}], ";"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{"arm", "=", 
+   RowBox[{"{", 
+    RowBox[{"em", ",", "mm", ",", "tm", ",", "hm"}], "}"}]}], 
+  ";"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{"s", "=", 
+   RowBox[{"{", 
+    RowBox[{"0.004", ",", "0.0018", ",", "0.0019", ",", "0.002"}], "}"}]}], 
+  ";"}]}], "Input",
+ CellChangeTimes->{{3.66832068554082*^9, 3.6683207215300837`*^9}, {
+  3.668320754904343*^9, 3.668320784934396*^9}, {3.668320835244484*^9, 
+  3.668320840829294*^9}, {3.668321902460457*^9, 3.668321926094498*^9}, {
+  3.6683238247670217`*^9, 3.668323825923088*^9}}],
+
+Cell[BoxData[
+ RowBox[{
+  RowBox[{"mean", "=", 
+   RowBox[{"WeightedData", "[", 
+    RowBox[{
+     RowBox[{"arm", "[", 
+      RowBox[{"[", 
+       RowBox[{"1", ";;", "3"}], "]"}], "]"}], ",", 
+     RowBox[{"1", "/", 
+      RowBox[{
+       RowBox[{"(", 
+        RowBox[{"s", "[", 
+         RowBox[{"[", 
+          RowBox[{"1", ";;", "3"}], "]"}], "]"}], ")"}], "^", "2"}]}]}], 
+    "]"}]}], ";"}]], "Input",
+ CellChangeTimes->{{3.668323847435318*^9, 3.6683238603920593`*^9}, {
+  3.6683239124080343`*^9, 3.668323936509413*^9}, {3.6683239757031965`*^9, 
+  3.668324014172864*^9}, {3.668324209674199*^9, 3.6683242227938223`*^9}, {
+  3.668324583912531*^9, 3.668324591166544*^9}}],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+ RowBox[{"Mean", "[", "mean", "]"}]], "Input",
+ CellChangeTimes->{{3.66832392124854*^9, 3.6683239551594796`*^9}}],
+
+Cell[BoxData["0.07967689626402763`"], "Output",
+ CellChangeTimes->{3.6683239268708615`*^9, 3.6683239583056593`*^9, 
+  3.66832422700583*^9, 3.6683245994969587`*^9}]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+ RowBox[{"StandardDeviation", "[", "mean", "]"}]], "Input",
+ CellChangeTimes->{{3.668324665547475*^9, 3.6683246728326874`*^9}}],
+
+Cell[BoxData["0.01503745789613784`"], "Output",
+ CellChangeTimes->{3.668324675562692*^9}]
+}, Open  ]],
+
+Cell[BoxData[""], "Input",
+ CellChangeTimes->{{3.6683246084825745`*^9, 3.668324613474583*^9}}],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+ RowBox[{"arm", "[", 
+  RowBox[{"[", "0", "]"}], "]"}]], "Input",
+ CellChangeTimes->{{3.6683242513418727`*^9, 3.668324368655079*^9}}],
+
+Cell[BoxData["List"], "Output",
+ CellChangeTimes->{{3.668324301808961*^9, 3.6683243692478795`*^9}}]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+ RowBox[{"arm", "[", 
+  RowBox[{"[", 
+   RowBox[{"1", ";;", "2", ";;", "4"}], "]"}], "]"}]], "Input",
+ CellChangeTimes->{{3.668324015810867*^9, 3.668324047277122*^9}, {
+  3.6683241480540915`*^9, 3.6683241955561743`*^9}}],
+
+Cell[BoxData[
+ RowBox[{"{", "0.1097`", "}"}]], "Output",
+ CellChangeTimes->{{3.668324019929274*^9, 3.6683240480571237`*^9}, {
+  3.6683241538573017`*^9, 3.6683241962425756`*^9}}]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell["Leptonenuniversalit\[ADoubleDot]t", "Subsection",
+ CellChangeTimes->{{3.6683205423627687`*^9, 3.6683205655288095`*^9}, {
+  3.6683219060796633`*^9, 3.6683219082168665`*^9}}],
+
+Cell[BoxData[""], "Input",
+ CellChangeTimes->{{3.668320627259118*^9, 3.6683206340139294`*^9}, {
+  3.668320672124797*^9, 3.668320672421197*^9}}]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell["keine Leptonenuniversalit\[ADoubleDot]t", "Subsection",
+ CellChangeTimes->{{3.6683205052191033`*^9, 3.6683205130191174`*^9}}],
+
+Cell[BoxData[""], "Input",
+ CellChangeTimes->{{3.668319616553132*^9, 3.668319636521167*^9}, 
+   3.6683238232529354`*^9}],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+ RowBox[{
+  RowBox[{"arm", "^", "2"}], "/", "em"}]], "Input",
+ CellChangeTimes->{{3.6683196388611712`*^9, 3.6683196558340006`*^9}, {
+  3.66831968946766*^9, 3.6683197113076982`*^9}, {3.6683197416965513`*^9, 
+  3.6683197420397525`*^9}, {3.6683203280451913`*^9, 3.6683203300731945`*^9}}],
+
+Cell[BoxData[
+ RowBox[{"{", 
+  RowBox[{
+  "0.10969999999999999`", ",", "0.06187887055606199`", ",", 
+   "0.044514260711030075`", ",", "1.342775205104831`"}], "}"}]], "Output",
+ CellChangeTimes->{
+  3.6683196593440075`*^9, {3.668319690637662*^9, 3.66831974612696*^9}, 
+   3.668320331430397*^9}]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell[BoxData["hm"], "Input",
+ CellChangeTimes->{{3.6683196960820713`*^9, 3.6683196966904726`*^9}}],
+
+Cell[BoxData["1.342775205104831`"], "Output",
+ CellChangeTimes->{3.668319698328476*^9}]
+}, Open  ]]
+}, Open  ]]
+}, Open  ]]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
 Cell["Neutrinogenerationen", "Title",
  CellChangeTimes->{{3.6682503192052617`*^9, 3.6682503259856496`*^9}}],
 
@@ -119,7 +275,7 @@ Cell[BoxData["0.`"], "Output",
 }, Open  ]]
 },
 WindowSize->{767, 606},
-WindowMargins->{{Automatic, 291}, {22, Automatic}},
+WindowMargins->{{Automatic, 29}, {-26, Automatic}},
 FrontEndVersion->"10.0 for Microsoft Windows (64-bit) (September 9, 2014)",
 StyleDefinitions->"Default.nb"
 ]
@@ -135,17 +291,58 @@ CellTagsIndex->{}
 (*NotebookFileOutline
 Notebook[{
 Cell[CellGroupData[{
-Cell[580, 22, 107, 1, 90, "Title"],
-Cell[690, 25, 963, 27, 132, "Input"],
+Cell[580, 22, 117, 1, 90, "Title"],
 Cell[CellGroupData[{
-Cell[1678, 56, 312, 7, 52, "Input"],
-Cell[1993, 65, 111, 1, 31, "Output"],
-Cell[2107, 68, 111, 1, 31, "Output"]
+Cell[722, 27, 179, 2, 64, "Chapter"],
+Cell[904, 31, 885, 22, 132, "Input"],
+Cell[1792, 55, 673, 18, 31, "Input"],
+Cell[CellGroupData[{
+Cell[2490, 77, 127, 2, 31, "Input"],
+Cell[2620, 81, 163, 2, 31, "Output"]
 }, Open  ]],
-Cell[2233, 72, 485, 13, 132, "Input"],
 Cell[CellGroupData[{
-Cell[2743, 89, 966, 24, 52, "Input"],
-Cell[3712, 115, 74, 1, 31, "Output"]
+Cell[2820, 88, 141, 2, 31, "Input"],
+Cell[2964, 92, 89, 1, 31, "Output"]
+}, Open  ]],
+Cell[3068, 96, 94, 1, 31, "Input"],
+Cell[CellGroupData[{
+Cell[3187, 101, 147, 3, 31, "Input"],
+Cell[3337, 106, 99, 1, 31, "Output"]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[3473, 112, 234, 5, 31, "Input"],
+Cell[3710, 119, 177, 3, 31, "Output"]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[3924, 127, 178, 2, 43, "Subsection"],
+Cell[4105, 131, 143, 2, 31, "Input"]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[4285, 138, 131, 1, 43, "Subsection"],
+Cell[4419, 141, 120, 2, 31, "Input"],
+Cell[CellGroupData[{
+Cell[4564, 147, 298, 5, 31, "Input"],
+Cell[4865, 154, 293, 7, 31, "Output"]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[5195, 166, 98, 1, 31, "Input"],
+Cell[5296, 169, 87, 1, 31, "Output"]
+}, Open  ]]
+}, Open  ]]
+}, Open  ]]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[5456, 178, 107, 1, 90, "Title"],
+Cell[5566, 181, 963, 27, 132, "Input"],
+Cell[CellGroupData[{
+Cell[6554, 212, 312, 7, 52, "Input"],
+Cell[6869, 221, 111, 1, 31, "Output"],
+Cell[6983, 224, 111, 1, 31, "Output"]
+}, Open  ]],
+Cell[7109, 228, 485, 13, 132, "Input"],
+Cell[CellGroupData[{
+Cell[7619, 245, 966, 24, 52, "Input"],
+Cell[8588, 271, 74, 1, 31, "Output"]
 }, Open  ]]
 }, Open  ]]
 }
@@ -153,4 +350,3 @@ Cell[3712, 115, 74, 1, 31, "Output"]
 *)
 
 (* End of internal cache information *)
-

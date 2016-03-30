@@ -120,7 +120,7 @@ void cutMC()
 						break;
 					case 1:
 						//ee cuts
-						if (Ncharged < 7 && E_ECal >= 70 && Pcharged != 0 && ( (cos_theta > -0.9 && cos_theta < 0.9) || cos_theta > 1) ) {
+						if (Ncharged < 7 && E_ECal >= 70 && Pcharged != 0 && ( (cos_theta > -0.9 && cos_theta < 0.9)) ) {
 							n_events_cut += 1;
 							h_Ncharged[isim]->Fill(Ncharged, weights[isim]);
 							h_Pcharged[isim]->Fill(Pcharged, weights[isim]);
@@ -146,7 +146,7 @@ void cutMC()
 						break;
 					case 3:
 						//tt cuts
-						if ( Pcharged != 0 && Pcharged <= 71 && Ncharged <7 && E_ECal < 75 && ( (cos_theta > -0.9 && cos_theta < 0.9) || cos_theta > 1) 
+						if ( Pcharged != 0 && Pcharged <= 71 && Ncharged <7 && E_ECal < 75 && ( (cos_theta > -0.9 && cos_theta < 0.9)) 
 						( cos_thru > -0.9 && cos_thru < 0.9) ) {
 							n_events_cut += 1;
 							h_Ncharged[isim]->Fill(Ncharged, weights[isim]);
