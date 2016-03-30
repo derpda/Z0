@@ -124,7 +124,7 @@ void cutMC()
 						break;
 					case 1:
 						//ee cuts
-						if (Ncharged < 7 && E_ECal >= 70 && Pcharged != 0 && cos_theta > 0.9) {   //( (cos_theta > -0.9 && cos_theta < 0.9)) ) {
+						if (Ncharged < 7 && E_ECal >= 70 && Pcharged != 0 && cos_theta > 1) {   //( (cos_theta > -0.9 && cos_theta < 0.9)) ) {
 							n_events_cut += 1;
 							h_Ncharged[isim]->Fill(Ncharged, weights[isim]);
 							h_Pcharged[isim]->Fill(Pcharged, weights[isim]);
@@ -203,7 +203,7 @@ void cutMC()
 		c[4] = new TCanvas("c4", "c4",1920,1080);
 		c[5] = new TCanvas("c5", "c5",1920,1080);
 		c[6] = new TCanvas("c6", "c6",1920,1080);
-		c[6] = new TCanvas("c6", "c6",1920,1080);
+		c[7] = new TCanvas("c7", "c7",1920,1080);
 		EColor color[n_sim];
 		color[0] = kBlue;
 		color[1] = kRed;

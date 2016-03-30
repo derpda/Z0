@@ -92,6 +92,7 @@ void wqs(){
 	//Canvas seiten
 	Double_t w = 1000;
 	Double_t h = 618;
+	TFitResultPtr r;
 	//i-te Zerfallsart
 	for(int i=0; i<4;i++){
 		//für jede Schwerpunktsenergie j
@@ -119,7 +120,8 @@ void wqs(){
 		c->SetWindowSize(w + (w - c->GetWw()), h + (h - c->GetWh()));
 		dat[i]->Draw("AP");
 		//func -> Draw("SAME");
-		dat[i] -> Fit("func","","",88.48021,93.71841);
+		r=dat[i] -> Fit("func","S","",88.48021,93.71841);
+		r->Print("V");
 		c->SaveAs("C:\\Users\\benjamin\\Documents\\FPII\\Z0\\results\\data_results\\wqs\\WQ"+names[i]+".png");
 		c->Close();
 	}
