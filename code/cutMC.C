@@ -20,7 +20,9 @@ void cutMC()
 	TTree *mc_trees[n_sim];
 	for(int i=0; i<n_sim; ++i) mc_trees[i] = (TTree*) files[i]->Get("h3");
 
-
+	//size of graphs
+	const int w = 1920;
+	const int h = 1080;
 
 	//define histograms
 	TString name[n_sim];
@@ -122,7 +124,7 @@ void cutMC()
 						break;
 					case 1:
 						//ee cuts
-						if (Ncharged < 7 && E_ECal >= 70 && Pcharged != 0 && cos_theta > 1) {   //( (cos_theta > -0.9 && cos_theta < 0.9)) ) {
+						if (Ncharged < 7 && E_ECal >= 70 && Pcharged != 0 && cos_theta > -0.9 && cos_theta < 0.9) {   //( (cos_theta > -0.9 && cos_theta < 0.9)) ) {
 							n_events_cut += 1;
 							h_Ncharged[isim]->Fill(Ncharged, weights[isim]);
 							h_Pcharged[isim]->Fill(Pcharged, weights[isim]);
@@ -194,6 +196,10 @@ void cutMC()
 
 	
 		TCanvas *c[n_histos];
+		//for (int i = 0; i < 8; ++i) {
+		//	c[i] = new TCanvas("c" + i, "c" + i, w, h);
+		//	c[i]->SetWindowSize(w + (w - c[i]->GetWw()), h + (h - c[i]->GetWh()));
+		//}
 		c[0] = new TCanvas("c0", "c0",1920,1080);
 		c[1] = new TCanvas("c1", "c1",1920,1080);
 		c[2] = new TCanvas("c2", "c2",1920,1080);
@@ -207,7 +213,7 @@ void cutMC()
 		color[1] = kRed;
 		color[2] = kGreen;
 		color[3] = kYellow;
-	
+
 		
 		float max[n_histos] = {0., 0., 0., 0., 0., 0., 0., 0.};
 		for(int i=0; i<n_sim; ++i) {
@@ -258,7 +264,7 @@ void cutMC()
 				max[7] = act_max;
 			}
 		}
-	
+
 		TLegend *leg = new TLegend(0.76, 0.64, 0.88, 0.88); 
 		c[0]->cd();
 		for(int ip=0; ip < n_sim; ++ip) {
@@ -273,7 +279,7 @@ void cutMC()
 			if(ip<4) leg->AddEntry(h_Ncharged[ip], name[ip], "L");
 		}
 		leg->Draw("SAME");
-		c[0]->SaveAs("../results/MC_results/" + cutname[i_cr] +  "_Ncharged.png");
+		c[0]->SaveAs("../results/MC_results/" + cutname[i_cr] + "/Ncharged.png");
 		c[0]->Close();
 		c[1]->cd();
 		for(int ip=0; ip < n_sim; ++ip) {
@@ -287,7 +293,7 @@ void cutMC()
 			else if(ip<4) h_Pcharged[ip]->Draw("SAME HIST");
 		}
 		leg->Draw("SAME");
-		c[1]->SaveAs("../results/MC_results/" + cutname[i_cr] +  "_Pcharged.png");
+		c[1]->SaveAs("../results/MC_results/" + cutname[i_cr] + "/Pcharged.png");
 		c[1]->Close();
 		c[2]->cd();
 		for(int ip=0; ip < n_sim; ++ip) {
@@ -301,7 +307,7 @@ void cutMC()
 			else if(ip<4) h_E_Ecal[ip]->Draw("SAME HIST");
 		}
 		leg->Draw("SAME");
-		c[2]->SaveAs("../results/MC_results/" + cutname[i_cr] +  "_E_Ecal.png");
+		c[2]->SaveAs("../results/MC_results/" + cutname[i_cr] + "/E_Ecal.png");
 		c[2]->Close();
 		c[3]->cd();
 		for(int ip=0; ip < n_sim; ++ip) {
@@ -315,7 +321,7 @@ void cutMC()
 			else if(ip<4) h_E_Hcal[ip]->Draw("SAME HIST");
 		}
 		leg->Draw("SAME");
-		c[3]->SaveAs("../results/MC_results/" + cutname[i_cr] +  "_E_Hcal.png");
+		c[3]->SaveAs("../results/MC_results/" + cutname[i_cr] + "/E_Hcal.png");
 		c[3]->Close();
 		c[4]->cd();
 		for(int ip=0; ip < n_sim; ++ip) {
@@ -329,7 +335,7 @@ void cutMC()
 			else if(ip<4) h_cos_thru[ip]->Draw("SAME HIST");
 		}
 		leg->Draw("SAME");
-		c[4]->SaveAs("../results/MC_results/" + cutname[i_cr] +  "_cos_thru.png");
+		c[4]->SaveAs("../results/MC_results/" + cutname[i_cr] + "/cos_thru.png");
 		c[4]->Close();
 		c[5]->cd();
 		for(int ip=0; ip < n_sim; ++ip) {
@@ -344,28 +350,31 @@ void cutMC()
 			else if(ip<4) h_cos_thet[ip]->Draw("SAME HIST");
 		}
 		leg->Draw("SAME");
-		c[5]->SaveAs("../results/MC_results/" + cutname[i_cr] +  "_cos_theta.png");
+		c[5]->SaveAs("../results/MC_results/" + cutname[i_cr] + "/cos_theta.png");
 		c[5]->Close();
-		
-		for(int ip=0; ip < n_sim; ++ip) {
-			c[6]->cd();
-			h_E_Ecal_vs_Pcharged[ip]->Draw("HIST COLZ");
-			h_E_Ecal_vs_Pcharged[ip]->GetXaxis()->SetTitle("Pcharged");
-			h_E_Ecal_vs_Pcharged[ip]->GetYaxis()->SetTitle("E_Ecal");
-			h_E_Ecal_vs_Pcharged[ip]->Draw("HIST COLZ");
-			c[6]->SaveAs("../results/MC_results/" + cutname[i_cr] + "_" + name[ip] + "_E_Ecal_vs_Pcharged.png");
-			
+
+
+		for (int ip = 0; ip < n_sim; ++ip) {
+			if (ip == i_cr-1) {
+				c[6]->cd();
+				h_E_Ecal_vs_Pcharged[ip]->Draw("HIST COLZ");
+				h_E_Ecal_vs_Pcharged[ip]->GetXaxis()->SetTitle("Pcharged");
+				h_E_Ecal_vs_Pcharged[ip]->GetYaxis()->SetTitle("E_Ecal");
+				h_E_Ecal_vs_Pcharged[ip]->Draw("HIST COLZ");
+				c[6]->SaveAs("../results/MC_results/" + cutname[i_cr] + "/" + name[ip] + "_E_Ecal_vs_Pcharged.png");
+			}
 		}
 		c[6]->Close();
 		
-		for(int ip=0; ip < n_sim; ++ip) {
-			c[7]->cd();
-			h_Ncharged_vs_Pcharged[ip]->Draw("HIST COLZ");
-			h_Ncharged_vs_Pcharged[ip]->GetXaxis()->SetTitle("Pcharged");
-			h_Ncharged_vs_Pcharged[ip]->GetYaxis()->SetTitle("Ncharged");
-			h_Ncharged_vs_Pcharged[ip]->Draw("HIST COLZ");
-			c[7]->SaveAs("../results/MC_results/" + cutname[i_cr] + "_" + name[ip] + "_Ncharged_vs_Pcharged.png");
-			
+		for (int ip = 0; ip < n_sim; ++ip) {
+			if (ip == i_cr - 1) {
+				c[7]->cd();
+				h_Ncharged_vs_Pcharged[ip]->Draw("HIST COLZ");
+				h_Ncharged_vs_Pcharged[ip]->GetXaxis()->SetTitle("Pcharged");
+				h_Ncharged_vs_Pcharged[ip]->GetYaxis()->SetTitle("Ncharged");
+				h_Ncharged_vs_Pcharged[ip]->Draw("HIST COLZ");
+				c[7]->SaveAs("../results/MC_results/" + cutname[i_cr] + "/" + name[ip] + "_Ncharged_vs_Pcharged.png");
+			}
 		}
 		c[7]->Close();
 	} //end of cut region loop
@@ -376,12 +385,12 @@ void cutMC()
 
 
 	cout << "Efficiency array: \n" << endl;
-	cout << "\t  "<< name[0] <<"\t  "<< name[1] <<"\t  "<< name[2] <<"\t  "<< name[3] <<"\t\t"<< "Purity" 
+	cout << "\t  "<< name[0] <<"\t\t  "<< name[1] <<"\t\t  "<< name[2] <<"\t\t  "<< name[3] <<"\t\t"<< "Purity" 
 		<<"\t"<< "Product" << endl;
 	for (i=0 ; i < n_cutregions -1 ; ++i) {
-		cout << cutname[i+1] <<"\t\t"<< efficiency[i][0] <<"\t\t"
-		<< efficiency[i][1] <<"\t\t"<< efficiency[i][2] <<"\t\t"<< efficiency[i][3] <<"\t\t"<< purity[i] 
-		<< "\t"<< efficiency[i][i]*purity[i] << endl; 
+		cout << cutname[i+1] <<"\t"<< efficiency[i][0] <<"\t"
+		<< efficiency[i][1] <<"\t"<< efficiency[i][2] <<"\t"<< efficiency[i][3] <<"\t\t"<< purity[i] 
+		<< "\t\t"<< efficiency[i][i]*purity[i] << endl; 
 	}
 	for(int i=0; i < n_cutregions -1 ; ++i) {
 		for(int j=0; j < n_sim; ++j) {
