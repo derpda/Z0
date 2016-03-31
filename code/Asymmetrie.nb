@@ -1,0 +1,140 @@
+(* Content-type: application/vnd.wolfram.mathematica *)
+
+(*** Wolfram Notebook File ***)
+(* http://www.wolfram.com/nb *)
+
+(* CreatedBy='Mathematica 10.4' *)
+
+(*CacheID: 234*)
+(* Internal cache information:
+NotebookFileLineBreakTest
+NotebookFileLineBreakTest
+NotebookDataPosition[       158,          7]
+NotebookDataLength[      3927,        132]
+NotebookOptionsPosition[      3427,        110]
+NotebookOutlinePosition[      3772,        125]
+CellTagsIndexPosition[      3729,        122]
+WindowFrame->Normal*)
+
+(* Beginning of Notebook Content *)
+Notebook[{
+Cell[BoxData[{
+ RowBox[{
+  RowBox[{"fwcount", "=", "315"}], ";"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{"bwcount", "=", "322"}], ";"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{"efwcount", "=", 
+   RowBox[{"Sqrt", "[", "fwcount", "]"}]}], ";"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{"ebwcount", "=", 
+   RowBox[{"Sqrt", "[", "bwcount", "]"}]}], ";"}]}], "Input",
+ CellChangeTimes->{{3.668408440677277*^9, 3.66840845608687*^9}, {
+   3.668408564467784*^9, 3.6684085916406364`*^9}, {3.668408630433909*^9, 
+   3.6684086406431684`*^9}, 3.66840905298251*^9}],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+ RowBox[{
+  RowBox[{"A", "[", 
+   RowBox[{"f_", ",", "b_"}], "]"}], "=", 
+  FractionBox[
+   RowBox[{"f", "-", "b"}], 
+   RowBox[{"f", "+", "b"}]]}]], "Input",
+ CellChangeTimes->{{3.668408507480013*^9, 3.6684085308605814`*^9}, {
+  3.668408921611007*^9, 3.668408948719227*^9}}],
+
+Cell[BoxData[
+ FractionBox[
+  RowBox[{
+   RowBox[{"-", "b"}], "+", "f"}], 
+  RowBox[{"b", "+", "f"}]]], "Output",
+ CellChangeTimes->{{3.6684085278747544`*^9, 3.668408548961475*^9}, 
+   3.668408642972663*^9, {3.668408949289082*^9, 3.6684089642532253`*^9}}]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[{
+ RowBox[{
+  RowBox[{
+   RowBox[{"A", "[", 
+    RowBox[{"f", ",", "b"}], "]"}], "/.", 
+   RowBox[{"{", 
+    RowBox[{
+     RowBox[{"f", "\[Rule]", "fwcount"}], ",", 
+     RowBox[{"b", "\[Rule]", "bwcount"}]}], "}"}]}], "//", 
+  "N"}], "\[IndentingNewLine]", 
+ RowBox[{"eA", "=", 
+  RowBox[{
+   RowBox[{
+    RowBox[{"Sqrt", "[", 
+     RowBox[{
+      RowBox[{
+       RowBox[{
+        RowBox[{"(", 
+         RowBox[{"D", "[", 
+          RowBox[{
+           RowBox[{"A", "[", 
+            RowBox[{"f", ",", "b"}], "]"}], ",", "f"}], "]"}], ")"}], "^", 
+        "2"}], "*", 
+       RowBox[{"efwcount", "^", "2"}]}], "+", 
+      RowBox[{
+       RowBox[{
+        RowBox[{"(", 
+         RowBox[{"D", "[", 
+          RowBox[{
+           RowBox[{"A", "[", 
+            RowBox[{"f", ",", "b"}], "]"}], ",", "b"}], "]"}], ")"}], "^", 
+        "2"}], "*", 
+       RowBox[{"ebwcount", "^", "2"}]}]}], "]"}], "/.", 
+    RowBox[{"{", 
+     RowBox[{
+      RowBox[{"f", "\[Rule]", "fwcount"}], ",", 
+      RowBox[{"b", "\[Rule]", "bwcount"}]}], "}"}]}], "//", "N"}]}]}], "Input",
+ CellChangeTimes->{{3.668408646682089*^9, 3.6684087032083936`*^9}, {
+   3.668408748299542*^9, 3.668408864644908*^9}, 3.6684089065935144`*^9, {
+   3.6684089699135857`*^9, 3.668409028405768*^9}, {3.6684090720108023`*^9, 
+   3.668409112378396*^9}}],
+
+Cell[BoxData[
+ RowBox[{"-", "0.01098901098901099`"}]], "Output",
+ CellChangeTimes->{{3.668409028953328*^9, 3.6684090555528393`*^9}, {
+  3.6684090861621137`*^9, 3.668409113676817*^9}}],
+
+Cell[BoxData["0.03961905020502542`"], "Output",
+ CellChangeTimes->{{3.668409028953328*^9, 3.6684090555528393`*^9}, {
+  3.6684090861621137`*^9, 3.668409113678316*^9}}]
+}, Open  ]]
+},
+WindowSize->{638, 668},
+WindowMargins->{{Automatic, -7}, {Automatic, 0}},
+FrontEndVersion->"10.4 for Microsoft Windows (64-bit) (February 25, 2016)",
+StyleDefinitions->"Default.nb"
+]
+(* End of Notebook Content *)
+
+(* Internal cache information *)
+(*CellTagsOutline
+CellTagsIndex->{}
+*)
+(*CellTagsIndex
+CellTagsIndex->{}
+*)
+(*NotebookFileOutline
+Notebook[{
+Cell[558, 20, 569, 13, 92, "Input"],
+Cell[CellGroupData[{
+Cell[1152, 37, 289, 8, 46, "Input"],
+Cell[1444, 47, 255, 6, 46, "Output"]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[1736, 58, 1320, 40, 112, "Input"],
+Cell[3059, 100, 183, 3, 31, "Output"],
+Cell[3245, 105, 166, 2, 31, "Output"]
+}, Open  ]]
+}
+]
+*)
+

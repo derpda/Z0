@@ -87,7 +87,7 @@ void cutData()
 	int forward_count=0;
 	int backward_count=0;
 
-	for(int i_cr = 0; i_cr < n_cutregions; ++i_cr) {
+	for(int i_cr = 2; i_cr < 3; ++i_cr) {
 		//define parameters
 		float event, run, Ncharged, Pcharged, E_ECal, E_HCal, E_LEP, cos_thru, cos_theta;
 
@@ -192,8 +192,12 @@ cout << "cut number: " << i_cr << endl;
 						h_E_Lep[7]->Fill(E_LEP); //histo with all lepton energies
 						h_E_Ecal_vs_Pcharged[i_im]->Fill(Pcharged, E_ECal);
 						a_eventcount[i_im][i_cr] += 1;
-						if(cos_theta <= 1 && cos_theta > 0){ forward_count+=1;
-						}else if (cos_theta < 0 && cos_theta >= -1) { backward_count+=1;}
+						if (i_im == 4) {
+							if (cos_theta < 0.9 && cos_theta > 0) {
+								forward_count += 1;
+							}
+							else if (cos_theta < 0 && cos_theta > -0.9) { backward_count += 1; }
+						}
 					} 
 					break;
 				case 3:
@@ -251,7 +255,6 @@ cout << "cut number: " << i_cr << endl;
 				break;
 			}//end of switch
 		}//end of events loop
-
 
 		//loop to save graphs for each i_im
 		for (int i_im=0; i_im < n_invmass; ++i_im) {
@@ -325,6 +328,10 @@ cout << "cut number: " << i_cr << endl;
 		}
 
 	} //end of cut region loop
+
+	//print forward backward count
+	cout << "Forward count: " << forward_count << endl;
+	cout << "Backward count: " << backward_count << endl;
 
 	ofstream neventprint;
 	neventprint .open("../results/matrix/nevent.txt");
