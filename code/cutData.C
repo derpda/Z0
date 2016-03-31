@@ -91,7 +91,6 @@ void cutData()
 		//define parameters
 		float event, run, Ncharged, Pcharged, E_ECal, E_HCal, E_LEP, cos_thru, cos_theta;
 
-
 		//reset TH1F histograms
 		for (int i=0; i < n_invmass; ++i) {
 		h_Ncharged[i]->Reset("M");
