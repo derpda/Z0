@@ -184,14 +184,14 @@ void cutMC()
 			}//end of events loop
 
 		//fill efficiency matrix for all but first cut region (no cut) and last isim (data)
-		if(isim < 4 && i_cr > 0) efficiency[isim][i_cr-1] = n_events_cut/nevents ;
+		if(i_cr > 0) efficiency[i_cr-1][isim] = n_events_cut/nevents ;
 
 		}//end of isim loop
 
 		//fill purity vector (needs all results of isim, thus after loop)
 		if(i_cr > 0)	{
-			purity[i_cr-1] = weights[i_cr-1]*efficiency[i_cr-1][i_cr-1]/(weights[0]*efficiency[0][i_cr-1] + weights[1]*efficiency[1][i_cr-1] + 
-					weights[2]*efficiency[2][i_cr-1] + weights[3]*efficiency[3][i_cr-1]);
+			purity[i_cr-1] = weights[i_cr-1]*efficiency[i_cr-1][i_cr-1]/(weights[0]*efficiency[i_cr - 1][0] + weights[1]*efficiency[i_cr - 1][1] +
+					weights[2]*efficiency[i_cr - 1][2] + weights[3]*efficiency[i_cr - 1][3]);
 		}
 
 	
