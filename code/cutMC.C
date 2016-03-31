@@ -105,8 +105,6 @@ void cutMC()
 			//set weights for different decays
 			float weights[n_sim]={83.8/2486.2,83.8/2486.2,83.8/2486.2,1732/2486.2};
 
-			//std::cout << "Cut: " << i_cr << std::endl;
-			//std::cout << "Process: " << name[isim] << std::endl;
 			//apply the different cuts via switch
 			for(int iev = 0; iev < nevents; ++iev) {
 				mc_trees[isim]->GetEntry(iev);
@@ -151,8 +149,8 @@ void cutMC()
 						break;
 					case 3:
 						//tt cuts
-						if ( Pcharged != 0 && Pcharged <= 71 && Ncharged <7 && E_ECal < 75 && ( (cos_theta > -0.9 && cos_theta < 0.9)) 
-						( cos_thru > -0.9 && cos_thru < 0.9) ) {
+						if ( Pcharged != 0 && Pcharged <= 71 && Ncharged <7 && E_ECal < 75 && cos_theta > -0.9 && cos_theta < 0.9 &&
+							cos_thru > -0.9 && cos_thru < 0.9 ) {
 							n_events_cut += 1;
 							h_Ncharged[isim]->Fill(Ncharged, weights[isim]);
 							h_Pcharged[isim]->Fill(Pcharged, weights[isim]);

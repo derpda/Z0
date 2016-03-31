@@ -144,7 +144,7 @@ cout << "cut number: " << i_cr << endl;
 					break;
 				case 1:
 				//ee cuts
-					if (Ncharged < 7 && E_ECal >= 70 && Pcharged !=0 && ( (cos_theta > -0.9 && cos_theta < 0.9)) ) {
+					if (Ncharged < 7 && E_ECal >= 70 && Pcharged !=0 && cos_theta > -0.9 && cos_theta < 0.9 ) {
 					//cout << iev << endl;
 					//determine i_im
 						if( E_LEP > 44.1 && E_LEP < 44.4 ) {i_im=0;
@@ -200,8 +200,8 @@ cout << "cut number: " << i_cr << endl;
 					break;
 				case 3:
 				//tt cuts
-					if ( Pcharged != 0 && Pcharged <= 71 && Ncharged <7 && E_ECal < 75 && ( (cos_theta > -0.9 && cos_theta < 0.9)) 
-					( cos_thru > -0.9 && cos_thru < 0.9) ) {
+					if ( Pcharged != 0 && Pcharged <= 71 && Ncharged <7 && E_ECal < 75 && cos_theta > -0.9 && cos_theta < 0.9 &&
+						cos_thru > -0.9 && cos_thru < 0.9 ) {
 					//cout << iev << endl;
 						//determine i_im
 						if( E_LEP > 44.1 && E_LEP < 44.4 ) {i_im=0;
