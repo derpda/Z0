@@ -29,7 +29,6 @@ void cutData()
 	invmassname[5]="46.5";
 	invmassname[6]="46.9";
 
-
 	TFile* f_out[n_invmass];
 	f_out[0] = new TFile("../results/data_results/histos44.2.root", "RECREATE");
 	f_out[1] = new TFile("../results/data_results/histos44.7.root", "RECREATE");
