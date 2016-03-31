@@ -1,15 +1,14 @@
 #ignore results folder
-results/MC_results/*.png
-results/data_results/*.root
-results/data_results/*.txt
+**/*.png
+**/*.txt
+**/*.root
 results/data_results/[0-9][0-9].[0-9]
-results/matrix/*.txt
-results/data_results/cosp_fits/*.png
-results/data_results/wqs/*.png
-results/data_results/all_lep/*.png
+
+#ignore tex log files etc
+!tex/*.tex
 
 #ignore db files
-*.db
+**/*.db
 
 
 #ignore data folder
