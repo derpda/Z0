@@ -13,21 +13,22 @@ void useMatrix(){
 	
 	TMatrixD matrix(4,4);
 	matrix(0, 0) = 0.390898;
-	matrix(0, 1) = 0.000181233;
-	matrix(0, 2) = 0.00251594;
-	matrix(0, 3) = 7.46253e-005;
-	matrix(1, 0) = 2.11907e-005;
+	matrix(0, 1) = 2.11907e-005;
+	matrix(0, 2) = 0.00441841;
+	matrix(0, 3) = 2.02916e-005;
+	matrix(1, 0) = 0.000181233;
 	matrix(1, 1) = 0.901707;
-	matrix(1, 2) = 0.0215086;
-	matrix(1, 3) = 1.05954e-005;
-	matrix(2, 0) = 0.00441841;
-	matrix(2, 1) = 0.00611003;
-	matrix(2, 2) = 0.488664;
-	matrix(2, 3) = 0.00686747;
-	matrix(3, 0) = 2.02916e-005;
-	matrix(3, 1) = 1.01458e-005;
-	matrix(3, 2) = 1.01458e-005;
+	matrix(1, 2) = 0.00611003;
+	matrix(1, 3) = 1.01458e-005;
+	matrix(2, 0) = 0.000394448;
+	matrix(2, 1) = 0.00945105;
+	matrix(2, 2) = 0.838766;
+	matrix(2, 3) = 0.000963851;
+	matrix(3, 0) = 7.46253e-005;
+	matrix(3, 1) = 1.05954e-005;
+	matrix(3, 2) = 0.00686747;
 	matrix(3, 3) = 0.989702;
+
 
 	
 	matrixprint <<"Original matrix\n" << endl;
