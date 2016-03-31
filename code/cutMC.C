@@ -151,7 +151,7 @@ void cutMC()
 						break;
 					case 3:
 						//tt cuts
-						if ( Pcharged != 0 && Pcharged <= 71 && Ncharged <7 && E_ECal < 75 && cos_theta > -0.9 && cos_theta < 0.9 &&
+						if ( Pcharged != 0 && Pcharged <= 71 && Ncharged <7 && E_ECal < 75  &&
 							cos_thru > -0.9 && cos_thru < 0.9 ) {
 							n_events_cut += 1;
 							h_Ncharged[isim]->Fill(Ncharged, weights[isim]);
@@ -196,10 +196,6 @@ void cutMC()
 
 	
 		TCanvas *c[n_histos];
-		//for (int i = 0; i < 8; ++i) {
-		//	c[i] = new TCanvas("c" + i, "c" + i, w, h);
-		//	c[i]->SetWindowSize(w + (w - c[i]->GetWw()), h + (h - c[i]->GetWh()));
-		//}
 		c[0] = new TCanvas("c0", "c0",1920,1080);
 		c[1] = new TCanvas("c1", "c1",1920,1080);
 		c[2] = new TCanvas("c2", "c2",1920,1080);

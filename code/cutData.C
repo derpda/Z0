@@ -200,7 +200,7 @@ cout << "cut number: " << i_cr << endl;
 					break;
 				case 3:
 				//tt cuts
-					if ( Pcharged != 0 && Pcharged <= 71 && Ncharged <7 && E_ECal < 75 && cos_theta > -0.9 && cos_theta < 0.9 &&
+					if ( Pcharged != 0 && Pcharged <= 71 && Ncharged <7 && E_ECal < 75 &&
 						cos_thru > -0.9 && cos_thru < 0.9 ) {
 					//cout << iev << endl;
 						//determine i_im
