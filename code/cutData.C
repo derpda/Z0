@@ -86,7 +86,7 @@ void cutData()
 	int forward_count=0;
 	int backward_count=0;
 
-	for(int i_cr = 2; i_cr < 3; ++i_cr) {
+	for(int i_cr = 0; i_cr < n_cutregions; ++i_cr) {
 		//define parameters
 		float event, run, Ncharged, Pcharged, E_ECal, E_HCal, E_LEP, cos_thru, cos_theta;
 
