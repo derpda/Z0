@@ -151,7 +151,7 @@ void cutMC()
 						break;
 					case 3:
 						//tt cuts
-						if ( Pcharged != 0 && Pcharged <= 71 && Ncharged <7 && E_ECal < 75  &&
+						if ( Pcharged != 0 && Pcharged <= 60 && Ncharged <7 && E_ECal < 60  &&
 							cos_thru > -0.9 && cos_thru < 0.9 ) {
 							n_events_cut += 1;
 							h_Ncharged[isim]->Fill(Ncharged, weights[isim]);
