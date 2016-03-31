@@ -383,18 +383,24 @@ void cutMC()
 	//close opened files
 	for(int iFile = 0; iFile < n_sim; ++iFile) files[iFile]->Close();
 
-
-	cout << "Efficiency array: \n" << endl;
-	cout << "\t  "<< name[0] <<"\t\t  "<< name[1] <<"\t\t  "<< name[2] <<"\t\t  "<< name[3] <<"\t\t"<< "Purity" 
-		<<"\t"<< "Product" << endl;
+	ofstream pur_out;
+	pur_out.open("../results/matrix/efficiency_and_purity.txt");
+	pur_out << "Efficiency array: \n" << endl;
+	pur_out << "\t  "<< name[0] <<"\t\t  "<< name[1] <<"\t\t  "<< name[2] <<"\t\t  "<< name[3] <<"\t\t\t"<< "Purity"
+		<<"\t\t"<< "Product" << endl;
 	for (i=0 ; i < n_cutregions -1 ; ++i) {
-		cout << cutname[i+1] <<"\t"<< efficiency[i][0] <<"\t"
+		pur_out << cutname[i+1] <<"\t"<< efficiency[i][0] <<"\t"
 		<< efficiency[i][1] <<"\t"<< efficiency[i][2] <<"\t"<< efficiency[i][3] <<"\t\t"<< purity[i] 
 		<< "\t\t"<< efficiency[i][i]*purity[i] << endl; 
 	}
+	pur_out.close();
+
+	ofstream eff_out;
+	eff_out.open("../results/matrix/efficiency_list.txt");
 	for(int i=0; i < n_cutregions -1 ; ++i) {
 		for(int j=0; j < n_sim; ++j) {
-			cout << "matrix(" << i << "," << j << ")=" << efficiency[i][j] << ";" << endl;
+			eff_out << "matrix(" << i << "," << j << ")=" << efficiency[i][j] << ";" << endl;
 		}
 	}
+	eff_out.close();
 }	
