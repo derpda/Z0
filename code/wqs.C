@@ -122,7 +122,7 @@ void wqs(){
 		//func -> Draw("SAME");
 		r=dat[i] -> Fit("func","S","",88.48021,93.71841);
 		r->Print("V");
-		c->SaveAs("C:\\Users\\benjamin\\Documents\\FPII\\Z0\\results\\data_results\\wqs\\WQ"+names[i]+".png");
+		c->SaveAs("../results/data_results/wqs/WQ"+names[i]+".png");
 		c->Close();
 	}
 }

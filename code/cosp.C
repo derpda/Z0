@@ -27,7 +27,7 @@ void cosp(){
 	Double_t w = 1000;
 	Double_t h = 618;
 	for(int i=0; i<7; i++){
-		fname="..\\results\\data_results\\histos"+names[i]+".root";
+		fname="../results/data_results/histos"+names[i]+".root";
 		cout << fname << endl;
 		files[i]= new TFile(fname,"READ");
 		hname="h_costhet_"+names[i];
@@ -41,7 +41,7 @@ void cosp(){
 		TMatrixDSym cov = r->GetCovarianceMatrix();
 		hcos[i]->Draw("HIST");
 		func -> Draw("SAME");
-		c->SaveAs("C:\\Users\\benjamin\\Documents\\FPII\\Z0\\results\\data_results\\cosp_fits\\fit"+names[i]+".png");
+		c->SaveAs("C:/Users/benjamin/Documents/FPII/Z0/results/data_results/cosp_fits/fit"+names[i]+".png");
 		c->Close();
 		float S = func->GetParameter(0);
 		float T = func->GetParameter(1);
@@ -56,7 +56,7 @@ void cosp(){
 		cout << "Ns=" << Ns << endl;	
 	}
 	ofstream tfile;
-	tfile.open("..\\results\\data_results\\fs.txt");
+	tfile.open("../results/data_results/fs.txt");
 	tfile << "fs: ";
 	for(int j=0;j<7;j++){
 		cout<< fs_a[j] <<"("<<j<<") ";
