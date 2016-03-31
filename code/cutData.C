@@ -1,6 +1,6 @@
 #include <sstream>
 
-cutData()
+void cutData()
 {
 	gStyle->SetHistLineWidth(2.);
 	gStyle->SetLabelSize(0.05, "x");
@@ -82,7 +82,10 @@ cutData()
 	cutname[3]="tt_cut";
 	cutname[4]="qq_cut";
 
+	//event counters
 	int a_eventcount[n_invmass][n_cutregions]={{0, 0, 0, 0, 0},{0, 0, 0, 0, 0},{0, 0, 0, 0, 0},{0, 0, 0, 0, 0},{0, 0, 0, 0, 0},{0, 0, 0, 0, 0},{0, 0, 0, 0, 0}};
+	int forward_count=0;
+	int backward_count=0;
 
 	for(int i_cr = 0; i_cr < n_cutregions; ++i_cr) {
 		//define parameters
@@ -189,6 +192,8 @@ cout << "cut number: " << i_cr << endl;
 						h_E_Lep[7]->Fill(E_LEP); //histo with all lepton energies
 						h_E_Ecal_vs_Pcharged[i_im]->Fill(Pcharged, E_ECal);
 						a_eventcount[i_im][i_cr] += 1;
+						if(cos_theta <= 1 && cos_theta > 0){ forward_count+=1;
+						}else if (cos_theta < 0 && cos_theta >= -1) { backward_count+=1;}
 					} 
 					break;
 				case 3:
