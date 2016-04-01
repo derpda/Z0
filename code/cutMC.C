@@ -1,6 +1,8 @@
-
 #include <sstream>
+#include <myfunctions.h>
+#include <string> //for to_string
 
+using namespace std;
 
 void cutMC()
 {
@@ -10,6 +12,7 @@ void cutMC()
 	gStyle->SetOptStat(0);
 	gStyle->SetLabelFont(42, "x");
 	gStyle->SetLabelFont(42, "y");
+	gStyle->SetOptTitle(0);
 
 	const int n_sim = 4;
 	TFile *files[n_sim];
@@ -20,9 +23,11 @@ void cutMC()
 	TTree *mc_trees[n_sim];
 	for(int i=0; i<n_sim; ++i) mc_trees[i] = (TTree*) files[i]->Get("h3");
 
-	//size of graphs
+	//Graph settings
 	const int w = 1920;
 	const int h = 1080;
+	const float offset = 1.3;
+
 
 	//define histograms
 	TString name[n_sim];
@@ -61,7 +66,6 @@ void cutMC()
 	}
 
 
-
 	//Loop over the four different cuts as well no the no cut option
 	int n_cutregions = 5;
 	TString cutname[n_cutregions];
@@ -71,12 +75,16 @@ void cutMC()
 	cutname[3]="tt_cut";
 	cutname[4]="qq_cut";
 
-	for(int i_cr = 0; i_cr < n_cutregions; ++i_cr) {
+	//counter for fwd and bwd
+	int forward_count = 0;
+	int backward_count = 0;
+
+	for (int i_cr = 0; i_cr < n_cutregions; ++i_cr) {
 		//define parameters
 		float event, run, Ncharged, Pcharged, E_ECal, E_HCal, E_LEP, cos_thru, cos_theta;
 
 
-		for(int isim = 0; isim < n_sim; ++isim) {
+		for (int isim = 0; isim < n_sim; ++isim) {
 			//reset TH1F histograms
 			h_Ncharged[isim]->Reset("M");
 			h_Pcharged[isim]->Reset("M");
@@ -96,177 +104,192 @@ void cutMC()
 			mc_trees[isim]->SetBranchAddress("cos_thru", &cos_thru);
 			mc_trees[isim]->SetBranchAddress("cos_thet", &cos_theta);
 			const int nevents = mc_trees[isim]->GetEntries();
-//			cout << "number of events for " << name[isim] <<" :" << nevents <<endl;
+			//			cout << "number of events for " << name[isim] <<" :" << nevents <<endl;
 
-			//event counters and efficiency, purity matrix
+						//event counters and efficiency, purity matrix
 			float n_events_cut = 0; //save to variable later
-			float n_events_cut_w[4]=; //save to variable later
+			float n_events_cut_w[4] = ; //save to variable later
 			float efficiency[4][4];
-			float purity[4]=;
+			float purity[4] = ;
 
 			//set weights for different decays
-			float weights[n_sim]={83.8/2486.2,83.8/2486.2,83.8/2486.2,1732/2486.2};
+			float weights[n_sim] = { 83.8 / 2486.2,83.8 / 2486.2,83.8 / 2486.2,1732 / 2486.2 };
 
 			//apply the different cuts via switch
-			for(int iev = 0; iev < nevents; ++iev) {
+			for (int iev = 0; iev < nevents; ++iev) {
 				mc_trees[isim]->GetEntry(iev);
-				switch (i_cr){
+				switch (i_cr) {
 
-					case 0:
-						//no cuts
-						h_Ncharged[isim]->Fill(Ncharged);
-						h_Pcharged[isim]->Fill(Pcharged);
-						h_E_Ecal[isim]->Fill(E_ECal);
-						h_E_Hcal[isim]->Fill(E_HCal);
-						h_cos_thru[isim]->Fill(cos_thru);
-						h_cos_thet[isim]->Fill(cos_theta); 
-						h_E_Ecal_vs_Pcharged[isim]->Fill(Pcharged, E_ECal);
-						break;
-					case 1:
-						//ee cuts
-						if (Ncharged < 7 && E_ECal >= 70 && Pcharged != 0 && cos_theta > -0.9 && cos_theta < 0.9) {   //( (cos_theta > -0.9 && cos_theta < 0.9)) ) {
-							n_events_cut += 1;
-							h_Ncharged[isim]->Fill(Ncharged, weights[isim]);
-							h_Pcharged[isim]->Fill(Pcharged, weights[isim]);
-							h_E_Ecal[isim]->Fill(E_ECal, weights[isim]);
-							h_E_Hcal[isim]->Fill(E_HCal, weights[isim]);
-							h_cos_thru[isim]->Fill(cos_thru, weights[isim]);
-							h_cos_thet[isim]->Fill(cos_theta, weights[isim]); 
-							h_E_Ecal_vs_Pcharged[isim]->Fill(Pcharged, E_ECal, weights[isim]);
-							h_Ncharged_vs_Pcharged[isim]->Fill(Pcharged, Ncharged, weights[isim]);
+				case 0:
+					//no cuts
+					h_Ncharged[isim]->Fill(Ncharged);
+					h_Pcharged[isim]->Fill(Pcharged);
+					h_E_Ecal[isim]->Fill(E_ECal);
+					h_E_Hcal[isim]->Fill(E_HCal);
+					h_cos_thru[isim]->Fill(cos_thru);
+					h_cos_thet[isim]->Fill(cos_theta);
+					h_E_Ecal_vs_Pcharged[isim]->Fill(Pcharged, E_ECal);
+					break;
+				case 1:
+					//ee cuts
+					if (Ncharged < 7 && E_ECal >= 70 && Pcharged != 0 && cos_theta > -0.9 && cos_theta < 0.9) {   //( (cos_theta > -0.9 && cos_theta < 0.9)) ) {
+						n_events_cut += 1;
+						h_Ncharged[isim]->Fill(Ncharged, weights[isim]);
+						h_Pcharged[isim]->Fill(Pcharged, weights[isim]);
+						h_E_Ecal[isim]->Fill(E_ECal, weights[isim]);
+						h_E_Hcal[isim]->Fill(E_HCal, weights[isim]);
+						h_cos_thru[isim]->Fill(cos_thru, weights[isim]);
+						h_cos_thet[isim]->Fill(cos_theta, weights[isim]);
+						h_E_Ecal_vs_Pcharged[isim]->Fill(Pcharged, E_ECal, weights[isim]);
+						h_Ncharged_vs_Pcharged[isim]->Fill(Pcharged, Ncharged, weights[isim]);
+					}
+					break;
+				case 2:
+					//mm cuts
+					if (Pcharged > 71 && Pcharged != 0 && E_ECal < 50 && Ncharged == 2) {
+						n_events_cut += 1;
+						h_Ncharged[isim]->Fill(Ncharged, weights[isim]);
+						h_Pcharged[isim]->Fill(Pcharged, weights[isim]);
+						h_E_Ecal[isim]->Fill(E_ECal, weights[isim]);
+						h_E_Hcal[isim]->Fill(E_HCal, weights[isim]);
+						h_cos_thru[isim]->Fill(cos_thru, weights[isim]);
+						h_cos_thet[isim]->Fill(cos_theta, weights[isim]);
+						h_E_Ecal_vs_Pcharged[isim]->Fill(Pcharged, E_ECal, weights[isim]);
+						h_Ncharged_vs_Pcharged[isim]->Fill(Pcharged, Ncharged, weights[isim]);
+						if (cos_theta < 0.9 && cos_theta > 0) {
+							forward_count += 1;
 						}
-						break;
-					case 2:
-						//mm cuts
-						if (Pcharged > 71 && Pcharged !=0 && E_ECal < 50 && Ncharged ==2) {
-							n_events_cut += 1;
-							h_Ncharged[isim]->Fill(Ncharged, weights[isim]);
-							h_Pcharged[isim]->Fill(Pcharged, weights[isim]);
-							h_E_Ecal[isim]->Fill(E_ECal, weights[isim]);
-							h_E_Hcal[isim]->Fill(E_HCal, weights[isim]);
-							h_cos_thru[isim]->Fill(cos_thru, weights[isim]);
-							h_cos_thet[isim]->Fill(cos_theta, weights[isim]); 
-							h_E_Ecal_vs_Pcharged[isim]->Fill(Pcharged, E_ECal, weights[isim]);
-						} 
-						break;
-					case 3:
-						//tt cuts
-						if ( Pcharged != 0 && Pcharged <= 60 && Ncharged <7 && E_ECal < 60  &&
-							cos_thru > -0.9 && cos_thru < 0.9 ) {
-							n_events_cut += 1;
-							h_Ncharged[isim]->Fill(Ncharged, weights[isim]);
-							h_Pcharged[isim]->Fill(Pcharged, weights[isim]);
-							h_E_Ecal[isim]->Fill(E_ECal, weights[isim]);
-							h_E_Hcal[isim]->Fill(E_HCal, weights[isim]);
-							h_cos_thru[isim]->Fill(cos_thru, weights[isim]);
-							h_cos_thet[isim]->Fill(cos_theta, weights[isim]);  
-							h_E_Ecal_vs_Pcharged[isim]->Fill(Pcharged, E_ECal, weights[isim]);
-						}
-						break;
-					case 4:
-						//qq cuts
-						if (Ncharged >= 8 && Pcharged != 0 ) {
-							n_events_cut += 1;
-							h_Ncharged[isim]->Fill(Ncharged, weights[isim]);
-							h_Pcharged[isim]->Fill(Pcharged, weights[isim]);
-							h_E_Ecal[isim]->Fill(E_ECal, weights[isim]);
-							h_E_Hcal[isim]->Fill(E_HCal, weights[isim]);
-							h_cos_thru[isim]->Fill(cos_thru, weights[isim]);
-							h_cos_thet[isim]->Fill(cos_theta, weights[isim]);  
-							h_E_Ecal_vs_Pcharged[isim]->Fill(Pcharged, E_ECal, weights[isim]);
-						}
-						break;
+						else if (cos_theta < 0 && cos_theta > -0.9) { backward_count += 1; }
+					}
+					break;
+				case 3:
+					//tt cuts
+					if (Pcharged != 0 && Pcharged <= 60 && Ncharged < 7 && E_ECal < 60 &&
+						cos_thru > -0.9 && cos_thru < 0.9) {
+						n_events_cut += 1;
+						h_Ncharged[isim]->Fill(Ncharged, weights[isim]);
+						h_Pcharged[isim]->Fill(Pcharged, weights[isim]);
+						h_E_Ecal[isim]->Fill(E_ECal, weights[isim]);
+						h_E_Hcal[isim]->Fill(E_HCal, weights[isim]);
+						h_cos_thru[isim]->Fill(cos_thru, weights[isim]);
+						h_cos_thet[isim]->Fill(cos_theta, weights[isim]);
+						h_E_Ecal_vs_Pcharged[isim]->Fill(Pcharged, E_ECal, weights[isim]);
+						h_Ncharged_vs_Pcharged[isim]->Fill(Pcharged, Ncharged, weights[isim]);
+					}
+					break;
+				case 4:
+					//qq cuts
+					if (Ncharged >= 8 && Pcharged != 0) {
+						n_events_cut += 1;
+						h_Ncharged[isim]->Fill(Ncharged, weights[isim]);
+						h_Pcharged[isim]->Fill(Pcharged, weights[isim]);
+						h_E_Ecal[isim]->Fill(E_ECal, weights[isim]);
+						h_E_Hcal[isim]->Fill(E_HCal, weights[isim]);
+						h_cos_thru[isim]->Fill(cos_thru, weights[isim]);
+						h_cos_thet[isim]->Fill(cos_theta, weights[isim]);
+						h_E_Ecal_vs_Pcharged[isim]->Fill(Pcharged, E_ECal, weights[isim]);
+						h_Ncharged_vs_Pcharged[isim]->Fill(Pcharged, Ncharged, weights[isim]);
+					}
+					break;
 				}//end of switch
 
 				//if no events registered, add one
-				if(n_events_cut == 0) n_events_cut += 1;
+				if (n_events_cut == 0) n_events_cut += 1;
 
 			}//end of events loop
 
 		//fill efficiency matrix for all but first cut region (no cut) and last isim (data)
-		if(i_cr > 0) efficiency[i_cr-1][isim] = n_events_cut/nevents ;
+			if (i_cr > 0) efficiency[i_cr - 1][isim] = n_events_cut / nevents;
 
 		}//end of isim loop
 
 		//fill purity vector (needs all results of isim, thus after loop)
-		if(i_cr > 0)	{
-			purity[i_cr-1] = weights[i_cr-1]*efficiency[i_cr-1][i_cr-1]/(weights[0]*efficiency[i_cr - 1][0] + weights[1]*efficiency[i_cr - 1][1] +
-					weights[2]*efficiency[i_cr - 1][2] + weights[3]*efficiency[i_cr - 1][3]);
+		if (i_cr > 0) {
+			purity[i_cr - 1] = weights[i_cr - 1] * efficiency[i_cr - 1][i_cr - 1] / (weights[0] * efficiency[i_cr - 1][0] + weights[1] * efficiency[i_cr - 1][1] +
+				weights[2] * efficiency[i_cr - 1][2] + weights[3] * efficiency[i_cr - 1][3]);
 		}
 
-	
+
 		TCanvas *c[n_histos];
-		c[0] = new TCanvas("c0", "c0",1920,1080);
-		c[1] = new TCanvas("c1", "c1",1920,1080);
-		c[2] = new TCanvas("c2", "c2",1920,1080);
-		c[3] = new TCanvas("c3", "c3",1920,1080);
-		c[4] = new TCanvas("c4", "c4",1920,1080);
-		c[5] = new TCanvas("c5", "c5",1920,1080);
-		c[6] = new TCanvas("c6", "c6",1920,1080);
-		c[7] = new TCanvas("c7", "c7",1920,1080);
+		//for (i = 0; i < n_histos; ++i) {
+		//	c[i] = new TCanvas("c" + to_string(i), "c" + to_string(i), w, h);
+		//}
+		c[0] = new TCanvas("c0", "c0", 1920, 1080);
+		c[1] = new TCanvas("c1", "c1", 1920, 1080);
+		c[2] = new TCanvas("c2", "c2", 1920, 1080);
+		c[3] = new TCanvas("c3", "c3", 1920, 1080);
+		c[4] = new TCanvas("c4", "c4", 1920, 1080);
+		c[5] = new TCanvas("c5", "c5", 1920, 1080);
+		c[6] = new TCanvas("c6", "c6", 1920, 1080);
+		c[7] = new TCanvas("c7", "c7", 1920, 1080);
 		EColor color[n_sim];
 		color[0] = kBlue;
 		color[1] = kRed;
 		color[2] = kGreen;
 		color[3] = kYellow;
 
-		
-		float max[n_histos] = {0., 0., 0., 0., 0., 0., 0., 0.};
-		for(int i=0; i<n_sim; ++i) {
+
+		float max[n_histos] = { 0., 0., 0., 0., 0., 0., 0., 0. };
+		for (int i = 0; i < n_sim; ++i) {
 			float act_max = h_Ncharged[i]->GetMaximum();
-			if(act_max > max[0]) {
+			if (act_max > max[0]) {
 				max[0] = act_max;
 			}
 		}
-		for(int i=0; i<n_sim; ++i) {
+		for (int i = 0; i < n_sim; ++i) {
 			float act_max = h_Pcharged[i]->GetMaximum();
-			if(act_max > max[1]) {
+			if (act_max > max[1]) {
 				max[1] = act_max;
 			}
 		}
-		for(int i=0; i<n_sim; ++i) {
+		for (int i = 0; i < n_sim; ++i) {
 			float act_max = h_E_Ecal[i]->GetMaximum();
-			if(act_max > max[2]) {
+			if (act_max > max[2]) {
 				max[2] = act_max;
 			}
 		}
-		for(int i=0; i<n_sim; ++i) {
+		for (int i = 0; i < n_sim; ++i) {
 			float act_max = h_E_Hcal[i]->GetMaximum();
-			if(act_max > max[3]) {
+			if (act_max > max[3]) {
 				max[3] = act_max;
 			}
 		}
-		for(int i=0; i<n_sim; ++i) {
+		for (int i = 0; i < n_sim; ++i) {
 			float act_max = h_cos_thru[i]->GetMaximum();
-			if(act_max > max[4]) {
+			if (act_max > max[4]) {
 				max[4] = act_max;
 			}
 		}
-		for(int i=0; i<n_sim; ++i) {
+		for (int i = 0; i < n_sim; ++i) {
 			float act_max = h_cos_thet[i]->GetMaximum();
-			if(act_max > max[5]) {
+			if (act_max > max[5]) {
 				max[5] = act_max;
 			}
 		}
-		for(int i=0; i<n_sim; ++i) {
+		for (int i = 0; i < n_sim; ++i) {
 			float act_max = h_E_Ecal_vs_Pcharged[i]->GetMaximum();
-			if(act_max > max[6]) {
+			if (act_max > max[6]) {
 				max[6] = act_max;
 			}
 		}
-		for(int i=0; i<n_sim; ++i) {
+		for (int i = 0; i < n_sim; ++i) {
 			float act_max = h_Ncharged_vs_Pcharged[i]->GetMaximum();
-			if(act_max > max[7]) {
+			if (act_max > max[7]) {
 				max[7] = act_max;
 			}
 		}
+		//define legend
+		TLegend *leg = new TLegend(0.76, 0.64, 0.88, 0.88);
 
-		TLegend *leg = new TLegend(0.76, 0.64, 0.88, 0.88); 
+
 		c[0]->cd();
+		//set windows size for first graph to prevent bug
+		c[0]->SetWindowSize(w + (w - c[0]->GetWw()), h + (h - c[0]->GetWh()));
 		for(int ip=0; ip < n_sim; ++ip) {
+			graphstyle(h_Ncharged[ip], "Ncharged", "Relative number of events per bin");
 			if(i_cr==0) {
 			h_Ncharged[ip]->Scale(1/(h_Ncharged[ip]->GetEntries()));
-			h_Ncharged[ip]->SetMaximum(0.8);
+			h_Ncharged[ip]->SetMaximum(0.7);
 			}
 			if(i_cr>0) h_Ncharged[ip]->SetMaximum(max[0]*1.3);
 			h_Ncharged[ip]->SetLineColor(color[ip]);
@@ -277,8 +300,10 @@ void cutMC()
 		leg->Draw("SAME");
 		c[0]->SaveAs("../results/MC_results/" + cutname[i_cr] + "/Ncharged.png");
 		c[0]->Close();
+
 		c[1]->cd();
 		for(int ip=0; ip < n_sim; ++ip) {
+			graphstyle(h_Pcharged[ip], "Pcharged [GeV]", "Relative number of events per bin");
 			if(i_cr==0) {
 			h_Pcharged[ip]->Scale(1/(h_Pcharged[ip]->GetEntries()));
 			h_Pcharged[ip]->SetMaximum(0.16);
@@ -291,8 +316,10 @@ void cutMC()
 		leg->Draw("SAME");
 		c[1]->SaveAs("../results/MC_results/" + cutname[i_cr] + "/Pcharged.png");
 		c[1]->Close();
+
 		c[2]->cd();
 		for(int ip=0; ip < n_sim; ++ip) {
+			graphstyle(h_E_Ecal[ip], "E_Ecal [GeV]", "Relative number of events per bin");
 			if(i_cr==0) {
 			h_E_Ecal[ip]->Scale(1/(h_E_Ecal[ip]->GetEntries()));
 			h_E_Ecal[ip]->SetMaximum(0.6);
@@ -305,8 +332,10 @@ void cutMC()
 		leg->Draw("SAME");
 		c[2]->SaveAs("../results/MC_results/" + cutname[i_cr] + "/E_Ecal.png");
 		c[2]->Close();
+
 		c[3]->cd();
 		for(int ip=0; ip < n_sim; ++ip) {
+			graphstyle(h_E_Hcal[ip], "E_Hcal [GeV]","Relative number of events per bin");
 			if(i_cr==0) {
 			h_E_Hcal[ip]->Scale(1/(h_E_Hcal[ip]->GetEntries()));			
 			h_E_Hcal[ip]->SetMaximum(0.8);
@@ -319,8 +348,10 @@ void cutMC()
 		leg->Draw("SAME");
 		c[3]->SaveAs("../results/MC_results/" + cutname[i_cr] + "/E_Hcal.png");
 		c[3]->Close();
+
 		c[4]->cd();
 		for(int ip=0; ip < n_sim; ++ip) {
+			graphstyle(h_cos_thru[ip], "Cos_thrust", "Relative number of entries");
 			if(i_cr==0) {
 			h_cos_thru[ip]->Scale(1/(h_cos_thru[ip]->GetEntries()));			
 			h_cos_thru[ip]->SetMaximum(0.1);
@@ -333,17 +364,18 @@ void cutMC()
 		leg->Draw("SAME");
 		c[4]->SaveAs("../results/MC_results/" + cutname[i_cr] + "/cos_thru.png");
 		c[4]->Close();
+
 		c[5]->cd();
 		for(int ip=0; ip < n_sim; ++ip) {
+			graphstyle(h_cos_thet[ip], "Cos_theta", "Relative number of entries");
 			if(i_cr==0) {
 			h_cos_thet[ip]->Scale(1/(h_cos_thet[ip]->GetEntries()));			
 			h_cos_thet[ip]->SetMaximum(0.06);
 			}
-			h_cos_thet[ip]->SetLineColor(color[ip]);
 			if(i_cr>0) h_cos_thet[ip]->SetMaximum(max[5]*1.3);
 			h_cos_thet[ip]->SetLineColor(color[ip]);
-			if(ip==0) h_cos_thet[ip]->Draw("HIST");
-			else if(ip<4) h_cos_thet[ip]->Draw("SAME HIST");
+			if (ip == 0) h_cos_thet[ip]->Draw("HIST");
+			else if (ip<4) h_cos_thet[ip]->Draw("SAME HIST");
 		}
 		leg->Draw("SAME");
 		c[5]->SaveAs("../results/MC_results/" + cutname[i_cr] + "/cos_theta.png");
@@ -353,11 +385,9 @@ void cutMC()
 		for (int ip = 0; ip < n_sim; ++ip) {
 			if (ip == i_cr-1) {
 				c[6]->cd();
+				graphstyle(h_E_Ecal_vs_Pcharged[ip], "Sum of track energies [Gev]", "Energy deposited in electronic calorimeter [GeV]");
 				h_E_Ecal_vs_Pcharged[ip]->Draw("HIST COLZ");
-				h_E_Ecal_vs_Pcharged[ip]->GetXaxis()->SetTitle("Pcharged");
-				h_E_Ecal_vs_Pcharged[ip]->GetYaxis()->SetTitle("E_Ecal");
-				h_E_Ecal_vs_Pcharged[ip]->Draw("HIST COLZ");
-				c[6]->SaveAs("../results/MC_results/" + cutname[i_cr] + "/" + name[ip] + "_E_Ecal_vs_Pcharged.png");
+				c[6]->SaveAs("../results/MC_results/" + cutname[i_cr] + "/E_Ecal_vs_Pcharged.png");
 			}
 		}
 		c[6]->Close();
@@ -365,11 +395,9 @@ void cutMC()
 		for (int ip = 0; ip < n_sim; ++ip) {
 			if (ip == i_cr - 1) {
 				c[7]->cd();
+				graphstyle(h_Ncharged_vs_Pcharged[ip], "Sum of track energies [Gev]", "Number of charged tracks");
 				h_Ncharged_vs_Pcharged[ip]->Draw("HIST COLZ");
-				h_Ncharged_vs_Pcharged[ip]->GetXaxis()->SetTitle("Pcharged");
-				h_Ncharged_vs_Pcharged[ip]->GetYaxis()->SetTitle("Ncharged");
-				h_Ncharged_vs_Pcharged[ip]->Draw("HIST COLZ");
-				c[7]->SaveAs("../results/MC_results/" + cutname[i_cr] + "/" + name[ip] + "_Ncharged_vs_Pcharged.png");
+				c[7]->SaveAs("../results/MC_results/" + cutname[i_cr] + "/Ncharged_vs_Pcharged.png");
 			}
 		}
 		c[7]->Close();
@@ -378,6 +406,10 @@ void cutMC()
 
 	//close opened files
 	for(int iFile = 0; iFile < n_sim; ++iFile) files[iFile]->Close();
+
+	//print forward backward count
+	cout << "Forward count: " << forward_count << endl;
+	cout << "Backward count: " << backward_count << endl;
 
 	ofstream pur_out;
 	pur_out.open("../results/matrix/efficiency_and_purity.txt");
