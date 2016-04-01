@@ -1,19 +1,25 @@
-#ignore results folder
+#ignore all pngs (so that graphic output of root code is ignored)
 **/*.png
-**/*.txt
-!results/matrix/*.txt
-**/*.root
-results/data_results/[0-9][0-9].[0-9]
 
-#ignore tex log files etc
+
+#ignore all txt files
+**/*.txt
+#expect the matrix files (used by the code) from the ignore of txt files
+!results/matrix/*.txt
+
+#ignore root files
+**/*.root
+
+#ignore data folder
+daten/
+
+#ignore tex log files etc but except the actual tex files
 tex/*
 !tex/*.tex
+#also except the graphics folder of commonly used graphics from above ignore
 !tex/graphics/*.png
 
 #ignore db files
 **/*.db
 
-
-#ignore data folder
-daten/
 
