@@ -1,5 +1,6 @@
 #ignore results folder
 **/*.png
+!tex/graphics/*.png
 **/*.txt
 !results/matrix/*.txt
 **/*.root

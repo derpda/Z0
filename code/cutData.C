@@ -1,4 +1,5 @@
 #include <sstream>
+#include <myfunctions.h>
 
 void cutData()
 {
@@ -8,6 +9,7 @@ void cutData()
 	gStyle->SetOptStat(0);
 	gStyle->SetLabelFont(42, "x");
 	gStyle->SetLabelFont(42, "y");
+	gStyle->SetOptTitle(0);
 
 
 	TFile *data;
@@ -269,44 +271,49 @@ cout << "cut number: " << i_cr << endl;
 			c[8] = new TCanvas("c8", "c8",1920,1080);
 			
 			c[0]->cd();
+			graphstyle(h_Ncharged[i_im], "Ncharged", "Number of events");
 			h_Ncharged[i_im]->Draw("HIST");
 			c[0]->SaveAs("../results/data_results/" + invmassname[i_im] + "/" + cutname[i_cr] +  "_Ncharged.png");
 			c[0]->Close();
 
 			c[1]->cd();
 			h_Pcharged[i_im]->Draw("HIST");
+			graphstyle(h_Pcharged[i_im], "Pcharged [GeV]", "Number of events");
 			c[1]->SaveAs("../results/data_results/" + invmassname[i_im] + "/" + cutname[i_cr] +  "_Pcharged.png");
 			c[1]->Close();
 
 			c[2]->cd();
+			graphstyle(h_E_Ecal[i_im], "E_Ecal [GeV]", "Number of events");
 			h_E_Ecal[i_im]->Draw("HIST");
 			c[2]->SaveAs("../results/data_results/" + invmassname[i_im] + "/" + cutname[i_cr] +  "_E_Ecal.png");
 			c[2]->Close();
 
 			c[3]->cd();
+			graphstyle(h_E_Hcal[i_im], "E_Hcal [GeV]", "Number of events");
 			h_E_Hcal[i_im]->Draw("HIST");
 			c[3]->SaveAs("../results/data_results/" + invmassname[i_im] + "/" + cutname[i_cr] +  "_E_Hcal.png");
 			c[3]->Close();
 
 			c[4]->cd();
+			graphstyle(h_cos_thru[i_im], "Cos_theta", "Number of events");
 			h_cos_thru[i_im]->Draw("HIST");
 			c[4]->SaveAs("../results/data_results/" + invmassname[i_im] + "/" + cutname[i_cr] +  "_cos_thru.png");
 			c[4]->Close();
 
 			c[5]->cd();
+			graphstyle(h_cos_thet[i_im], "Cos_thrust", "Number of events");
 			h_cos_thet[i_im]->Draw("HIST");
 			c[5]->SaveAs("../results/data_results/" + invmassname[i_im] + "/" + cutname[i_cr] +  "_cos_theta.png");
 			c[5]->Close();
 
 			c[6]->cd();
+			graphstyle(h_E_Lep[i_im], "E_Lep [GeV]", "Number of entries");
 			h_E_Lep[i_im]->Draw("HIST");
 			c[6]->SaveAs("../results/data_results/" + invmassname[i_im] + "/" + cutname[i_cr] +  "_E_Lep.png");
 			c[6]->Close();
 
 			c[7]->cd();
-			h_E_Ecal_vs_Pcharged[i_im]->Draw("HIST COLZ");
-			h_E_Ecal_vs_Pcharged[i_im]->GetXaxis()->SetTitle("Pcharged");
-			h_E_Ecal_vs_Pcharged[i_im]->GetYaxis()->SetTitle("E_Ecal");
+			graphstyle(h_E_Ecal_vs_Pcharged[i_im], "Sum of track energies [Gev]", "Energy deposited in electronic calorimeter [GeV]");
 			h_E_Ecal_vs_Pcharged[i_im]->Draw("HIST COLZ");
 			c[7]->SaveAs("../results/data_results/" + invmassname[i_im] + "/" + cutname[i_cr] +  "_E_Ecal_vs_Pcharged.png");
 			c[7]->Close();
