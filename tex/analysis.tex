@@ -9,12 +9,12 @@ As no data was surveyed by the authors, there will be no chapter on the experime
 \subsection{Selection of cuts}
 In a first step, the data from the Monte Carlo simulations is plotted over adequate range in the following parameters:
 \begin{itemize}
-	\item{\makebox[2.5cm][l]{\textbf{NCHARGED:}} The number of tracks visible in the drift chamber}
-	\item{\makebox[2.5cm][l]{\textbf{PCHARGED:}} Energy of particles that left a track in the drift chamber}
-	\item{\makebox[2.5cm][l]{\textbf{E\_ECAL:}} Energy deposited in the electromagnetic calorimeter}
-	\item{\makebox[2.5cm][l]{\textbf{E\_HCAL:}} Energy deposited in the hadronic calorimeter}
-	\item{\makebox[2.5cm][l]{\textbf{COS\_THET:}} Angle $\theta$ between created the positive lepton and the \\incident positron beam}
-	\item{\makebox[2.5cm][l]{\textbf{COS\_THRU:}} Angle between the thrust axis for hadronic events and the \\incident positron beam}
+	\item{\makebox[3cm][l]{\textbf{NCHARGED:}}The number of tracks visible in the drift chamber}
+	\item{\makebox[3cm][l]{\textbf{PCHARGED:}}Energy of particles that left a track in the drift chamber}
+	\item{\makebox[3cm][l]{\textbf{E\_ECAL:}}Energy deposited in the electromagnetic calorimeter}
+	\item{\makebox[3cm][l]{\textbf{E\_HCAL:}}Energy deposited in the hadronic calorimeter}
+	\item{\makebox[3cm][l]{\textbf{COS\_THET:}}Angle $\theta$ between created the positive lepton and the \\\makebox[3cm][l]{}incident positron beam}
+	\item{\makebox[3cm][l]{\textbf{COS\_THRU:}}Angle between the thrust axis for hadronic events and the \\\makebox[3cm][l]{}incident positron beam}
 \end{itemize}
 These plots include the simulation events from decays to electrons, myons, tauons as well as quarks in similar amounts. These ratios are not a representation of the actual ratios as they would be expected in the real data, as the decay width of quarks is much greater than that of the three types of leptons. \\
 To further improve comparability of the different data sets, all histograms were normed to an integral of 1. The resulting plots are shown in graphics !!ADD GRAPHS REF!!. Using these graphs, as well as the knowledge of the type of event, cuts are established which will later be used to separate the actual data, where there is no initial knowledge of the type of event.\\
@@ -28,7 +28,7 @@ Thus, for every type of educts, a cut is to be made with maximum possible effici
 \label{fig:Ncharged}
 \end{figure}
 
-\subsection{Cuts in Ncharged}
+\subsubsection{Cuts in Ncharged}
 Above figure suggests a good way to separate the data sets. In particular, all three lepton generations hardly ever leave more than 6 cuts, which then suggests the following cuts:
 
 \begin{itemize}
@@ -46,10 +46,14 @@ Above figure suggests a good way to separate the data sets. In particular, all t
 \label{fig:Pcharged}
 \end{figure}
 
-\subsection{Cuts in Pcharged}
-The separation of the data sets is less obvious in the Pcharged channel. Most datasets overlap, preventing the very clean cuts as they were in the Ncharged channel.
+\subsubsection{Cuts in Pcharged}
+The separation of the data sets is less obvious in the Pcharged channel. Most datasets overlap, preventing the very clean cuts as they were in the Ncharged channel. However, since we have conveniently already cut against quarks in the Ncharged channel, we can ignore said dataset and separate tauons and muons as follows:
+\begin{itemize}
+	\item{\makebox[2.5cm][l]{\textbf{Tauon cuts}} Pcharged $>71$ GeV}
+	\item{\makebox[2.5cm][l]{\textbf{Muon cut:}} Pcharged $\le60$ GeV}
+\end{itemize}
 
-
+\newpage
 \begin{figure}[h]
 \centering
 \includegraphics[width=1\linewidth]{../results/MC_results/nocut/E_Ecal}
@@ -57,7 +61,26 @@ The separation of the data sets is less obvious in the Pcharged channel. Most da
 \label{fig:E_Ecal}
 \end{figure}
 
+\subsubsection{Cuts in E\_Ecal}
 
+
+\begin{itemize}
+	\item{\makebox[2.5cm][l]{\textbf{Tauon cuts}} Pcharged $>71$ GeV}
+	\item{\makebox[2.5cm][l]{\textbf{Muon cut:}} Pcharged $\le60$}
+\end{itemize}
+
+\newpage
+\begin{figure}[h]
+\centering
+\includegraphics[width=1\linewidth]{../results/MC_results/nocut/E_Hcal}
+\caption[E\_Hcal in simulation data]{a}
+\label{fig:E_Hcal}
+\end{figure}
+
+\subsubsection{Cuts in E\_Hcal}
+
+
+\newpage
 \begin{figure}[h]
 \centering
 \includegraphics[width=1\linewidth]{../results/MC_results/nocut/cos_theta}
@@ -65,10 +88,11 @@ The separation of the data sets is less obvious in the Pcharged channel. Most da
 \label{fig:cos_theta}
 \end{figure}
 
-\subsection{Cuts in Cos\_theta}
+\subsubsection{Cuts in Cos\_theta}
 MENTION NON EXISTING QUARKS DATA
 
 
+\newpage
 \begin{figure}[h]
 \centering
 \includegraphics[width=1\linewidth]{../results/MC_results/nocut/cos_thru}
@@ -76,7 +100,7 @@ MENTION NON EXISTING QUARKS DATA
 \label{fig:cos_thru}
 \end{figure}
 
-\subsection{Cuts in Cos\_thrust}
+\subsubsection{Cuts in Cos\_thrust}
 
 
 
