@@ -1,7 +1,7 @@
 #include "TMatrixD.h"
 #include <iostream>
 #include <algorithm>
-#include <vector>	
+#include <vector>
 #include <sstream>
 using namespace std;
 
@@ -128,9 +128,7 @@ void useMatrix(){
 		}
 	}
 	matrixprint << "}\n" << endl;
-
 	//tex output for the inverted matrix
-	TString eventname[4] = { "$e^+e^-$","$\\mu^+\\mu^-$","$\\tau^+\\tau^-$","$q^+q^-$" };
 
 	ofstream eff_inv_tex;
 	eff_inv_tex.open("../results/matrix/efficiency_inverted_tex.txt");
@@ -138,7 +136,6 @@ void useMatrix(){
 		eff_inv_tex << setprecision(4) << fixed << "&" << eventname[i] << "&" << Inverse[i][0] * 100 << "&" << Inverse[i][1] * 100 << "&" << Inverse[i][2] * 100 << "&" << Inverse[i][3] * 100 << "\\\\" << endl;
 	}
 	eff_inv_tex.close();
-
 
   TRandom3 *r = new TRandom3();
   int ntoy = 10000;
@@ -326,9 +323,8 @@ void useMatrix(){
 	matrixprint << "}";
 	matrixprint.close();
 
-
+	cout << "hi" << endl;
 	//tex output for the errormatrix of the inverted matrix
-	TString eventname[4] = { "$e^+e^-$","$\\mu^+\\mu^-$","$\\tau^+\\tau^-$","$q^+q^-$" };
 
 	ofstream eff_inv_err_tex;
 	eff_inv_err_tex.open("../results/matrix/efficiency_inverted_error_tex.txt");
