@@ -118,10 +118,10 @@ The final cuts thus are
 		\toprule
 		&			&Ncharged	&Pcharged [GeV]	&E\_Ecal [GeV] &Cos\_theta				&Cos\_thrust\\ 
 		\midrule
-		&Electron	&			&				&$\ge70$		&$\ge-0.9$ \& $\le0.9$	&\\
-		&Muon		&			&$\le60$		&$<50$			&						&\\
-		&Tauon		&$<7$		&$>71$			&$<60$			&						&\\
-		&Quark		&$\ge8$		&				&				&						&$\ge-0.9$ \& $\le0.9$	\\
+		&$e^+e^-$	&			&				&$\ge70$		&$\ge-0.9$ \& $\le0.9$	&\\
+		&$\mu^+\mu^-$		&			&$\le60$		&$<50$			&						&\\
+		&$\tau^+\tau^-$		&$<7$		&$>71$			&$<60$			&						&\\
+		&$q\overline{q}$		&$\ge8$		&				&				&						&$\ge-0.9$ \& $\le0.9$	\\
 		\bottomrule
 	\end{tabular}
 	\caption[Table of cuts]{Cuts applied to separate the datasets. The Pcharged $\ne0$ cut is not shown here but was applied to all datasets.}
@@ -142,9 +142,9 @@ Since these events send out either two pairs of fermions or no fermions at all i
 These cuts are now applied to the simulated data, where the kind of event is known. This way, one can determine the efficiency and purity of the cuts and judge how well they work. 
 The efficiency matrix is relatively easily calculated as
 \begin{equation}
-E_{ij}=\frac{n^{cut_{ij}}}{N_i}
+E_{ij}=\frac{n^{cut}_{ij}}{N_i}
 \end{equation}
-where the indexes $i$ and $j$ represent the kind of event. $n^{cut}_{ij}$ is thus the amount of events of type $i$ left over after applying the cut for type $j$ and $N_i$ is the overall number of events $i$ in the simulation data.
+where the indexes $i$ and $j$ represent the kind of event. $n_{ij}^{cut}$ is thus the amount of events of type $i$ left over after applying the cut for type $j$ and $N_i$ is the overall number of events $i$ in the simulation data.
 \begin{table}[H]\centering
 	\begin{tabular}{@{}llllll@{}}
 		\toprule
@@ -154,7 +154,7 @@ where the indexes $i$ and $j$ represent the kind of event. $n^{cut}_{ij}$ is thu
 		&$e^+e^-$&0.39090&0.00002&0.00442&0.00002\\
 		&$\mu^+\mu^-$&0.00018&0.90171&0.00611&0.00001\\
 		&$\tau^+\tau^-$&0.00039&0.00945&0.83877&0.00096\\
-		&$q^+q^-$&0.00007&0.00001&0.00687&0.98970\\
+		&$q\overline{q}$&0.00007&0.00001&0.00687&0.98970\\
 	\end{tabular}
 	\caption[Efficiency matrix]{Efficiency matrix of the applied cuts. The diagonal elements are the self efficiency.}
 	\label{tb:efficiency}
@@ -175,7 +175,7 @@ where $N_i$ is the number of simulated events of the appropriate kind. This yiel
 		&$e^+e^-$&0.001593&0.000015&0.000236&0.000014\\
 		&$\mu^+\mu^-$&0.000044&0.000969&0.000277&0.000010\\
 		&$\tau^+\tau^-$&0.000065&0.000315&0.001307&0.000099\\
-		&$q^+q^-$&0.000028&0.000011&0.000293&0.000322\\
+		&$q\overline{q}$&0.000028&0.000011&0.000293&0.000322\\
 		\bottomrule
 	\end{tabular}
 	\caption[Efficiency error matrix]{Errors of the efficiency matrix elements calculated under the assumption of binomial distribution.}
@@ -201,7 +201,7 @@ which yields the following results:
 		&$e^+e^-$&0.9877\\
 		&$\mu^+\mu^-$&0.9928\\
 		&$\tau^+\tau^-$&0.9657\\
-		&$q^+q^-$&0.9996\\
+		&$q\overline{q}$&0.9996\\
 		\bottomrule
 	\end{tabular}
 	\caption[Purity of the cuts]{Purity of the cuts. All purities are above 95\%, indicating that the cuts work reasonably well.}
@@ -231,7 +231,7 @@ The inverse matrix $\boldsymbol{I}$ is
 		&$e^+e^-$&2.55823&0.00008&-0.01348&-0.00004\\
 		&$\mu^+\mu^-$&-0.00051&1.10909&-0.00808&-0.00000\\
 		&$\tau^+\tau^-$&-0.00120&-0.01250&1.19233&-0.00116\\
-		&$q^+q^-$&-0.00018&0.00007&-0.00827&1.01041\\
+		&$q\overline{q}$&-0.00018&0.00007&-0.00827&1.01041\\
 		\bottomrule
 	\end{tabular}
 	\caption[Inverse efficiency matrix]{The inverse of the efficiency matrix displayed in table \ref{tb:efficiency}.}
@@ -256,7 +256,7 @@ The resulting matrix is displayed in table \ref{tb:invefficiencyerror}
 		&$e^+e^-$&2.558226&0.000081&-0.013476&-0.000039\\
 		&$\mu^+\mu^-$&-0.000506&1.109092&-0.008077&-0.000003\\
 		&$\tau^+\tau^-$&-0.001197&-0.012497&1.192334&-0.001161\\
-		&$q^+q^-$&-0.000185&0.000075&-0.008272&1.010413\\
+		&$q\overline{q}$&-0.000185&0.000075&-0.008272&1.010413\\
 		\bottomrule
 	\end{tabular}
 	\caption[Inverse efficiency error matrix]{Errors of the inverse efficiency matrix (table \ref{tb:invefficiency}) calculated using the \emph{toy experiments} method.}
@@ -264,10 +264,10 @@ The resulting matrix is displayed in table \ref{tb:invefficiencyerror}
 \end{table}
 
 \subsection{Separation of s- and t-channel}
-\subsection{Cross sections}
-With the data cleared of underground effects, the cross sections can be calculated. The number of events after the respective cuts $\vec{N}_c$ are Poisson-distributed, thus
+\subsection{Cross sections and the mass of Z$^0$}
+With the data cleared of underground effects, the cross sections can be calculated. The number of events after the respective cuts $\vec{C}$ are Poisson-distributed, thus
 \begin{equation}
-s_{\vec{C}}=\sqrt{\vec{C}_i}
+s_{C_i}=\sqrt{C_i}
 \end{equation}
 With equation \ref{eq:numberevents}, the error on the events $\vec{N}$ that presumably occurred can be calculated as
 \begin{equation}
@@ -282,15 +282,15 @@ In order to calculate the cross sections, the radiation corrections and the lumi
 \begin{table}[H]\centering
 	\begin{tabular}{@{}llllllll@{}}
 		\toprule
-		  &$\sqrt{s}$ [GeV]       &L [\nicefrac{1}{nb}]       &$s_L^{stat}$[\nicefrac{1}{nb}]       &$s_L^{sys}$[\nicefrac{1}{nb}]       &$s_L^{total}$[\nicefrac{1}{nb}]&$c_{beam,l^+l^-}$ [nb]&$c_{beam,q\overline{q}}$ [nb]\\
+		  &$\sqrt{s}$ [GeV]	&L [\nicefrac{1}{nb}]	&$s_L^{stat}$[\nicefrac{1}{nb}]	&$s_L^{sys}$[\nicefrac{1}{nb}]	&$s_L^{total}$[\nicefrac{1}{nb}]&$c_{beam,l^+l^-}$ [nb]&$c_{beam,q\overline{q}}$ [nb]\\
 		  \midrule
-		  &88.48       &675.9       &3.5       &4.5        &5.7&0.09&2.0\\  
-		  &89.47       &543.6       &3.2       &3.6       &4.8&0.20&4.3\\  
-		  &90.23       &419.8       &2.8       &2.8       &4.0&0.36&7.7\\  
-		  &91.23       &3122.2       &7.8       &20.9       &22.3&0.52&10.8\\  
-		  &91.97       &639.8       &3.6       &4.2       &5.6&0.22&4.7\\  
-		  &92.97       &479.2       &3.1       &3.2       &4.5&-0.01&0.2\\  
-		  &93.72       &766.8       &4.0       &5.1       &6.5&-0.08&-1.6\\
+		  &88.48	&675.9	&3.5	&4.5	&5.7	&0.09	&2.0\\  
+		  &89.47	&543.6	&3.2	&3.6	&4.8	&0.20	&4.3\\  
+		  &90.23	&419.8	&2.8	&2.8	&4.0	&0.36	&7.7\\  
+		  &91.23	&3122.2	&7.8	&20.9	&22.3	&0.52	&10.8\\  
+		  &91.97	&639.8	&3.6	&4.2	&5.6	&0.22	&4.7\\  
+		  &92.97	&479.2	&3.1	&3.2	&4.5	&-0.01	&0.2\\  
+		  &93.72	&766.8	&4.0	&5.1	&6.5	&-0.08	&-1.6\\
 		\bottomrule
 	\end{tabular}
 	\caption[Table of luminosities]{The luminosities L and radiation corrections $c_{beam}$ for the different mean energies $\sqrt{s}$. The radiation corrections where found in \cite{anleitung}, where no error was given.}
@@ -302,8 +302,58 @@ The cross section and their error can then be calculated as
 \sigma_i=\frac{N_i}{L}+c_{beam,i}, \qquad s_{\sigma_i}=\sqrt{(\frac{s_{N_i}}{L})^2+(\frac{N_i\cdot s_L^{total}}{L^2})^2}
 \end{equation}
 
+Figures \ref{fig:WQee} - \ref{fig:WQqq} show the results of the calculations. The Breit-Wigner function from equation \ref{eq:principles:breitwigner} was fitted to the data.
 
-\subsection{Analysis of decay widths}
+\begin{figure}[H]
+\centering
+\includegraphics[width=1.0\linewidth]{../results/data_results/wqs/WQee}
+\caption[Cross sections for electron cut]{Cross sections of the different $\sqrt{s}$ in the electron cut.}
+\label{fig:WQee}
+\end{figure}
 
+\begin{figure}
+\centering
+\includegraphics[width=1.0\linewidth]{../results/data_results/wqs/WQmm}
+\caption[Cross sections for muon cut]{Cross sections of the different $\sqrt{s}$ in the muon cut.}
+\label{fig:WQmm}
+\end{figure}
+
+\begin{figure}
+	\centering
+	\includegraphics[width=1.0\linewidth]{../results/data_results/wqs/WQTT}
+	\caption[Cross sections for tauon cut]{Cross sections of the different $\sqrt{s}$ in the tauon cut.}
+	\label{fig:WQTT}
+\end{figure}
+
+\begin{figure}
+\centering
+\includegraphics[width=1.0\linewidth]{../results/data_results/wqs/WQqq}
+\caption[Cross sections for quark cut]{Cross sections of the different $\sqrt{s}$ in the quark cut.}
+\label{fig:WQqq}
+\end{figure}
+
+From fits yielded the following values for the mass of the Z$^0$-boson
+\begin{table}[H]\centering
+	\begin{tabular}{@{}llll@{}}
+		\toprule
+		&Event type&$M_{Z^0}$ [GeV]&$s_{M_{Z^0}}$ [GeV]\\
+		\midrule
+		&$e^+e^-$&91.20&0.03\\
+		&$\mu^+\mu^-$&91.11&0.06\\
+		&$\tau^+\tau^-$&91.18&0.04\\
+		&$q\overline{q}$&91.19&0.009\\
+		\midrule
+		&Weighted mean&91.189&0.008\\
+		&Literature value&91.1876&0.0021\\
+		\bottomrule
+	\end{tabular}
+	\caption[Fitresults for $M_{Z^0}$]{The mass of Z$^0$ as it was calculated from the fits for the different cuts as well as their weighted mean.}
+	\label{tb:Z0massfitresults}
+\end{table}
+
+
+
+\subsection{Analysis of the decay widths}
+\subsection{Forward-backward asymmetry}
 
 
