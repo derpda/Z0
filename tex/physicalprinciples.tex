@@ -12,42 +12,54 @@
 Figure~\ref{fig:principles:Standard_Model_of_Elementary_Particles} gives an overview of the fundamental particles in the Standard Model. Quarks and Leptons obey the Pauli exclusion principle and are therefore fermions. Each of those also has a corresponding antiparticle with the same mass but opposite charge. Fundamental interactions are mediated by the Gauge Bosons, namely two particles interact with each other by exchanging said bosons. The original theory stated that fermions and bosons are massless, they gain mass via the Higgs-Kibble mechanism which implies the existence of another particle, the Higgs Boson\cite{muenchen}.
 
 \subsection{Electroweak force and Weinberg Angle}
-1967 Glasgow, Salam and Weinberg were able to unify the electromagnetic and weak force. In this model the electroweak interaction is mediated by four Bosons $W^1$, $W^2$, $W^3$ and $B^0$. The Bosons of the Standard Model are then described as a linear combination of those Bosons\cite{Grif}:
+1967 Glasgow, Salam and Weinberg were able to unify the electromagnetic and weak force. In this model the electroweak interaction is mediated by four Bosons $W^1$, $W^2$, $W^3$ and $B^0$. The Bosons of the Standard Model are then described as a linear combination of those Bosons, with the photon and $Z^0$ as  neutral orthogonal sates\cite{Grif}:
 \begin{equation}
 \begin{aligned}
-\gamma &= B^0 cos(\theta_w) + W^0 sin(\theta_w) \\
-Z^0 &= -B^0 sin(\theta_w) + W^0 cos(\theta_w)
+\ket{W^{\pm}}&=(1/\sqrt{2}) (\ket{W^1}\mp i\ket{W^2})\\
+\ket{\gamma} &=  cos(\theta_w)\ket{B^0} + sin(\theta_w) \ket{W^0}\\
+\ket{Z^0} &= -sin(\theta_w) \ket{B^0} + cos(\theta_w) \ket{W^0}
 \end{aligned}
 \end{equation}
+The mixing angle $\theta_w$ is called \emph{Weinberg angle}. It is further related to the fine-structure constant  $\alpha$, the Fermi coupling constant $G_F$ and the mass of the $Z^0$ Boson\cite{muenchen}:
 \begin{equation}
 sin^2(\theta_w)+cos^2(\theta_w) = \frac{\pi\alpha}{\sqrt{2}G_FM_Z^2}
 \end{equation}
+The mass of the $W^{\pm}$ Bosons can be expressed as:
 \begin{equation}
 M_W = M_Z~cos(\theta_w)
 \end{equation}
 
 \subsection{$e^-e^+$ Interactions}
-\paragraph{$e^-e^+ \rightarrow e^-e^+$}
-
-%stelle finden
+\begin{figure}[ht]
+	\centering
+	\includegraphics{graphics/annihilation.png}
+	\caption{Feynamn diagram of the $e^-e^+ \rightarrow f\bar{f}$ in first order, where f is an arbitrary fermion}
+	\label{fig:principles:annihilation.png}
+\end{figure}
+The relevant reaction for this experiment is the $e^-e^+\rightarrow\bar{f}$ interaction. Figure \ref{fig:principles:annihilation.png} shows the s-channel: Electron and positron annihilate each other and a $Z^0$ Boson or a photon is produced, which in turn decay to a fermion and its corresponding antiparticle. The photon process is repressed at energies close to the Mass of the $Z^0$ Boson.%wie stark?
+Figure \ref{fig:principles:BhabbaStreuung.png} shows the t-channel of the  $e^-e^+ \rightarrow e^-e^+$ reaction. The partial cross sections for s- and t-channel differ in their relation to the polar angle $\theta$ (with the beam axis as z-axis) of the scatter electron and positron:
+\begin{equation}
+\sigma_s \tilde (1+cos^2(\theta)), \sigma_t \tilde (1-cos(\theta))^{-2}
+\end{equation}
 \begin{figure}[hb]
 	\centering
 	\includegraphics{graphics/BhabbaStreuung.png}
 	\caption{Feynman diagrams of the $e^-e^+ \rightarrow e^-e^+$ scattering (t-channel)}
 	\label{fig:principles:BhabbaStreuung.png}
 \end{figure}
- 
-\paragraph{$e^-e^+ \rightarrow f^-f^+$}
-\begin{figure}[hb]
-	\centering
-	\includegraphics{graphics/annihilation.png}
-	\caption{Feynamn diagram of the $e^-e^+ \rightarrow f^-f^+$ in first order, where f is an arbitrary fermion}
-\end{figure}
 
-\subsection{Cross Section}
+\subsection{Cross Section and resonance width}
+The cross section $\sigma$ is a measure for the probability or rate of a reaction during collision of two particles. In this experiment it is related to the Luminosity $L$ of the electron beam and the total Number of reactions $N$:
 \begin{equation}
 \sigma = \frac{N}{\int L~\text{d}t}
 \end{equation}
+\begin{equation}
+\sigma(e^+e^- \rightarrow f\bar{f})=\sigma_{Z^0}+\sigma_\gamma+\sigma_{Z^0\gamma}
+\end{equation}
+\begin{equation}
+\sigma_f(s) = \frac{12\pi}{M_Z^2} \frac{s\Gamma_e\Gamma_f}{(s-M_Z^2)^2+(s^2\Gamma_Z^2/M_Z^2)}
+\end{equation}
+
 
 \subsection{Forwards-backwards Asymmetry}
 \begin{equation}
