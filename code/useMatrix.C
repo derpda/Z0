@@ -90,11 +90,25 @@ void useMatrix(){
 		}
 	}
 	matrixprint << "}\n" << endl;
-  //Inverting the matrix 
-  TMatrixD Inverse(4,4);
-  Inverse = matrix.Invert();
-  cout<<"Inverse"<< endl;
-  Inverse.Print();
+
+
+	//tex output for the errormatrix
+	TString eventname[4] = { "$e^+e^-$","$\\mu^+\\mu^-$","$\\tau^+\\tau^-$","$q^+q^-$" };
+
+	ofstream eff_err_tex;
+	eff_err_tex.open("../results/matrix/efficiency_error_tex.txt");
+	for (int i = 0; i < 4; ++i) {
+		eff_err_tex << setprecision(4) << fixed << "&" << eventname[i] << "&" << err[i][0] * 100 << "&" << err[i][1] * 100 << "&" << err[i][2] * 100 << "&" << err[i][3] * 100 << "\\\\" << endl;
+	}
+	eff_err_tex.close();
+
+
+
+	//Inverting the matrix 
+	TMatrixD Inverse(4,4);
+	Inverse = matrix.Invert();
+	cout<<"Inverse"<< endl;
+	Inverse.Print();
 	
 	matrixprint<<"\n\nInverted matrix\n"<< endl;
 
@@ -114,7 +128,18 @@ void useMatrix(){
 		}
 	}
 	matrixprint << "}\n" << endl;
-	
+
+	//tex output for the inverted matrix
+	TString eventname[4] = { "$e^+e^-$","$\\mu^+\\mu^-$","$\\tau^+\\tau^-$","$q^+q^-$" };
+
+	ofstream eff_inv_tex;
+	eff_inv_tex.open("../results/matrix/efficiency_inverted_tex.txt");
+	for (int i = 0; i < 4; ++i) {
+		eff_inv_tex << setprecision(4) << fixed << "&" << eventname[i] << "&" << Inverse[i][0] * 100 << "&" << Inverse[i][1] * 100 << "&" << Inverse[i][2] * 100 << "&" << Inverse[i][3] * 100 << "\\\\" << endl;
+	}
+	eff_inv_tex.close();
+
+
   TRandom3 *r = new TRandom3();
   int ntoy = 10000;
   
@@ -300,4 +325,18 @@ void useMatrix(){
 	}
 	matrixprint << "}";
 	matrixprint.close();
+
+
+	//tex output for the errormatrix of the inverted matrix
+	TString eventname[4] = { "$e^+e^-$","$\\mu^+\\mu^-$","$\\tau^+\\tau^-$","$q^+q^-$" };
+
+	ofstream eff_inv_err_tex;
+	eff_inv_err_tex.open("../results/matrix/efficiency_inverted_error_tex.txt");
+	for (int i = 0; i < 4; ++i) {
+		eff_inv_err_tex << setprecision(4) << fixed << "&" << eventname[i] << "&" << Inverse[i][0] * 100 << "&" << Inverse[i][1] * 100 << "&" << Inverse[i][2] * 100 << "&" << Inverse[i][3] * 100 << "\\\\" << endl;
+	}
+	eff_inv_err_tex.close();
+
+
+
 }
