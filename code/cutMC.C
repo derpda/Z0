@@ -439,7 +439,7 @@ void cutMC()
 	ofstream eff_tex;
 	eff_tex.open("../results/matrix/efficiency_list_tex.txt");
 	for (int i = 0; i < n_cutregions - 1; ++i) {
-		eff_tex << setprecision(3) << fixed << "&" << eventname[i] <<"&"<< efficiency[i][0] * 100 << "&" << efficiency[i][1] * 100 << "&" << efficiency[i][2] * 100 << "&" << efficiency[i][3] * 100 <<"\\\\" << endl;
+		eff_tex << setprecision(5) << fixed << "&" << eventname[i] <<"&"<< efficiency[i][0] << "&" << efficiency[i][1] << "&" << efficiency[i][2] << "&" << efficiency[i][3] <<"\\\\" << endl;
 	}
 	eff_tex.close();
 }	

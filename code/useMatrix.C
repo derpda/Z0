@@ -98,7 +98,7 @@ void useMatrix(){
 	ofstream eff_err_tex;
 	eff_err_tex.open("../results/matrix/efficiency_error_tex.txt");
 	for (int i = 0; i < 4; ++i) {
-		eff_err_tex << setprecision(4) << fixed << "&" << eventname[i] << "&" << err[i][0] * 100 << "&" << err[i][1] * 100 << "&" << err[i][2] * 100 << "&" << err[i][3] * 100 << "\\\\" << endl;
+		eff_err_tex << setprecision(6) << fixed << "&" << eventname[i] << "&" << err[i][0] << "&" << err[i][1] << "&" << err[i][2] << "&" << err[i][3] << "\\\\" << endl;
 	}
 	eff_err_tex.close();
 
@@ -133,7 +133,7 @@ void useMatrix(){
 	ofstream eff_inv_tex;
 	eff_inv_tex.open("../results/matrix/efficiency_inverted_tex.txt");
 	for (int i = 0; i < 4; ++i) {
-		eff_inv_tex << setprecision(4) << fixed << "&" << eventname[i] << "&" << Inverse[i][0] * 100 << "&" << Inverse[i][1] * 100 << "&" << Inverse[i][2] * 100 << "&" << Inverse[i][3] * 100 << "\\\\" << endl;
+		eff_inv_tex << setprecision(5) << fixed << "&" << eventname[i] << "&" << Inverse[i][0] << "&" << Inverse[i][1] << "&" << Inverse[i][2] << "&" << Inverse[i][3] << "\\\\" << endl;
 	}
 	eff_inv_tex.close();
 
@@ -329,7 +329,7 @@ void useMatrix(){
 	ofstream eff_inv_err_tex;
 	eff_inv_err_tex.open("../results/matrix/efficiency_inverted_error_tex.txt");
 	for (int i = 0; i < 4; ++i) {
-		eff_inv_err_tex << setprecision(4) << fixed << "&" << eventname[i] << "&" << Inverse[i][0] * 100 << "&" << Inverse[i][1] * 100 << "&" << Inverse[i][2] * 100 << "&" << Inverse[i][3] * 100 << "\\\\" << endl;
+		eff_inv_err_tex << setprecision(6) << fixed << "&" << eventname[i] << "&" << Inverse[i][0] << "&" << Inverse[i][1] << "&" << Inverse[i][2] << "&" << Inverse[i][3] << "\\\\" << endl;
 	}
 	eff_inv_err_tex.close();
 
