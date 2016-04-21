@@ -21,10 +21,10 @@ To further improve comparability of the different data sets, all histograms were
 Thus, for every type of educts, a cut is to be made with maximum possible efficiency in detecting the respective kind of event, as well as maximum purity, meaning that other events are falsely allotted as rarely as possible.
 
 \newpage
-\begin{figure}[h]
+\begin{figure}[H]
 \centering
 \includegraphics[width=1\linewidth]{../results/MC_results/nocut/Ncharged}
-\caption[Ncharged in simulation data]{This figure shows the number of charged tracks in the simulation data. Almost all muon events leave two tracks. The peak is cut off to increase visibility of the other data.}
+\caption[Ncharged in simulation data]{The number of charged tracks in the simulation data for the various decay events (color-coded). Almost all muon events leave two tracks. The peak is cut off to increase visibility of the other data.}
 \label{fig:Ncharged}
 \end{figure}
 
@@ -39,7 +39,7 @@ Above figure suggests a good way to separate the data sets. In particular, all t
 
 
 \newpage
-\begin{figure}[h]
+\begin{figure}[H]
 \centering
 \includegraphics[width=1\linewidth]{../results/MC_results/nocut/Pcharged}
 \caption[Pcharged in simulation data]{This figure shows the sum of track energies in the simulation data. }
@@ -54,10 +54,10 @@ The separation of the data sets is less obvious in the Pcharged channel. Most da
 \end{itemize}
 
 \newpage
-\begin{figure}[h]
+\begin{figure}[H]
 \centering
 \includegraphics[width=1\linewidth]{../results/MC_results/nocut/E_Ecal}
-\caption[E\_Ecal in simulations]{asd}
+\caption[E\_Ecal in simulations]{The energies deposited in the electronic calorimeter show clear differences for the four decay types and allow for effective cuts.}
 \label{fig:E_Ecal}
 \end{figure}
 
@@ -71,18 +71,18 @@ As has been the case for the cuts in Pcharged, we can ignore the quark data. Ins
 \end{itemize}
 
 \newpage
-\begin{figure}[h]
+\begin{figure}[H]
 \centering
 \includegraphics[width=1\linewidth]{../results/MC_results/nocut/E_Hcal}
-\caption[E\_Hcal in simulation data]{a}
+\caption[E\_Hcal in simulation data]{The plot shows the energies deposited in the hadronic calorimeter. The distribution of the decay types overlap significantly.}
 \label{fig:E_Hcal}
 \end{figure}
 
 \subsubsection{Cuts in E\_Hcal}
-In the data from the hadronic calorimeter, the overlap between all four kinds of decay events is too great to allow for any kind of meaningful cuts.
+In the data from the hadronic calorimeter, the overlap between all four kinds of decay events does not allow for any kind of meaningful cuts.
 
 \newpage
-\begin{figure}[h]
+\begin{figure}[H]
 \centering
 \includegraphics[width=1\linewidth]{../results/MC_results/nocut/cos_theta}
 \caption[Cos\_theta in simulation data]{This figure shows the cosine of the angle between the beam and the direction of the created anti-lepton. Note the asymmetric peaks in the electron data, which will be discussed in the chapter on the separation of s- and t-channel.}
@@ -98,7 +98,7 @@ Since the electron data is later divided into s- and t-channel events, for which
 \end{itemize}
 
 \newpage
-\begin{figure}[h]
+\begin{figure}[H]
 \centering
 \includegraphics[width=1\linewidth]{../results/MC_results/nocut/cos_thru}
 \caption[Cos\_thru in simulation data]{This figure shows the cosine of the angle between the beam and the thrust direction.}
@@ -124,8 +124,19 @@ The final cuts thus are
 		&Quark		&$\ge8$		&				&				&						&$\ge-0.9$ \& $\le0.9$	\\
 		\bottomrule
 	\end{tabular}
-	\caption[Table of cuts]{Cuts applied to separate the datasets. The Pcharged $!=0$ cut, which is discussed later, was applied to all datasets.}
+	\caption[Table of cuts]{Cuts applied to separate the datasets. The Pcharged $\ne0$ cut is not shown here but was applied to all datasets.}
 \end{table}
+
+\subsection{Two-photon events TODOTODOTODOTODOTODOTODO}
+One possible source of background are two-photon events. Figure \ref{fig:twophotonfeynman} shows possible Feynman-graphs of such events. Two photons are created, without an intermediate Z$^0$. As such, these measurements need to be excluded using cuts.\\
+Since these events send out either two pairs of fermions or no fermions at all into the detector, proper values of cos\_theta and cos\_thrust cannot be assigned. These are then automatically set to $999.00$. Thus, the applied cuts in those two variables already effectively filter against many of these events. One exception however would be, if one of the created photons in an event such as the left one in figure \ref{fig:twophotonfeynman} causes pair production. In such 
+\begin{figure}[H]
+\centering
+\includegraphics[width=1.0\linewidth]{graphics/twophotonfeynman_both.pdf}
+\caption[Two-photon Feynman-graph]{Two examplary Feynman-graphs of two-photon events. A Z$^0$ is never created, which means that these event should not contribute to our measurement.}
+\label{fig:twophotonfeynman}
+\end{figure}
+
 \newpage
 \subsection{Purity and the efficiency matrix}
 These cuts are now applied to the simulated data, where the kind of event is known. This way, one can determine the efficiency and purity of the cuts and judge how well they work. 
@@ -140,13 +151,12 @@ where the indexes $i$ and $j$ represent the kind of event. $n^{cut}_{ij}$ is thu
 		&Events &$e^+e^-$&$\mu^+\mu^-$&$\tau^+\tau^-$&$q^+q^-$\\
 		\midrule
 		&Cut&&&&\\
-		&$e^+e^-$&39.090&0.002&0.442&0.002\\
-		&$\mu^+\mu^-$&0.018&90.171&0.611&0.001\\
-		&$\tau^+\tau^-$&0.039&0.945&83.877&0.096\\
-		&$q^+q^-$&0.007&0.001&0.687&98.970\\
-		\bottomrule
+		&$e^+e^-$&0.39090&0.00002&0.00442&0.00002\\
+		&$\mu^+\mu^-$&0.00018&0.90171&0.00611&0.00001\\
+		&$\tau^+\tau^-$&0.00039&0.00945&0.83877&0.00096\\
+		&$q^+q^-$&0.00007&0.00001&0.00687&0.98970\\
 	\end{tabular}
-	\caption[Efficiency matrix]{Efficiency matrix of the applied cuts. All values are given in percent.}
+	\caption[Efficiency matrix]{Efficiency matrix of the applied cuts. The diagonal elements are the self efficiency.}
 	\label{tb:efficiency}
 \end{table}
 
@@ -162,13 +172,13 @@ where $N_i$ is the number of simulated events of the appropriate kind. This yiel
 		&Events &$e^+e^-$&$\mu^+\mu^-$&$\tau^+\tau^-$&$q^+q^-$\\
 		\midrule
 		&Cut&&&&\\
-		&$e^+e^-$&0.1593&0.0015&0.0236&0.0014\\
-		&$\mu^+\mu^-$&0.0044&0.0969&0.0277&0.0010\\
-		&$\tau^+\tau^-$&0.0065&0.0315&0.1307&0.0099\\
-		&$q^+q^-$&0.0028&0.0011&0.0293&0.0322\\
+		&$e^+e^-$&0.001593&0.000015&0.000236&0.000014\\
+		&$\mu^+\mu^-$&0.000044&0.000969&0.000277&0.000010\\
+		&$\tau^+\tau^-$&0.000065&0.000315&0.001307&0.000099\\
+		&$q^+q^-$&0.000028&0.000011&0.000293&0.000322\\
 		\bottomrule
 	\end{tabular}
-	\caption[Efficiency error matrix]{Errors of the efficiency matrix elements calculated under the assumption of binomial distribution. All values are given in percent.}
+	\caption[Efficiency error matrix]{Errors of the efficiency matrix elements calculated under the assumption of binomial distribution.}
 	\label{tb:efficiencyerr}
 \end{table}
 
@@ -202,29 +212,98 @@ which yields the following results:
 The efficiency matrix allows the calculation of the number of events after applying the cuts to a set of measurements where the kind of event is known:
 
 \begin{equation}
-\vec{N_c}=\boldsymbol{E}\cdot\vec{N}
+\vec{C}=\boldsymbol{E}\cdot\vec{N}
 \end{equation} 
 
-where $\vec{N}$ is a vector whose components are the numbers of events of the four different kinds and $\vec{N_c}$ is a vector whose components are the number of events allocated to the four different cuts. 
+where $\vec{N}$ is a vector whose components are the numbers of events of the four different kinds and $\vec{C}$ is a vector whose components are the number of events allocated to the four different cuts. 
 In reality however, the kind of event is unknown and has to be determined by the cuts. Thus, the inverse of $\boldsymbol{E}$ can be used to calculate the number of actual events from the known number of events after the different cuts:
 \begin{equation}
-\vec{N}=\boldsymbol{E}^{-1}\cdot\vec{N_c}
+\vec{N}=\boldsymbol{E}^{-1}\cdot\vec{C}=:\boldsymbol{I}\cdot\vec{C}
+\label{eq:numberevents}
 \end{equation} 
-The inverse of $\boldsymbol{E}$ is
+The inverse matrix $\boldsymbol{I}$ is
 \begin{table}[H]\centering
 	\begin{tabular}{@{}llllll@{}}
 		\toprule
 		&Events &$e^+e^-$&$\mu^+\mu^-$&$\tau^+\tau^-$&$q^+q^-$\\
 		\midrule
 		&Cut&&&&\\
-		&$e^+e^-$&255.8226&0.0081&-1.3476&-0.0039\\
-		&$\mu^+\mu^-$&-0.0506&110.9092&-0.8077&-0.0003\\
-		&$\tau^+\tau^-$&-0.1197&-1.2497&119.2334&-0.1161\\
-		&$q^+q^-$&-0.0185&0.0075&-0.8272&101.0413\\
+		&$e^+e^-$&2.55823&0.00008&-0.01348&-0.00004\\
+		&$\mu^+\mu^-$&-0.00051&1.10909&-0.00808&-0.00000\\
+		&$\tau^+\tau^-$&-0.00120&-0.01250&1.19233&-0.00116\\
+		&$q^+q^-$&-0.00018&0.00007&-0.00827&1.01041\\
 		\bottomrule
 	\end{tabular}
 	\caption[Inverse efficiency matrix]{The inverse of the efficiency matrix displayed in table \ref{tb:efficiency}.}
+	\label{tb:invefficiency}
 \end{table}
 
-To calculate the error of the inverse matrix, a method called \emph{toy-experiments} has to be used. 
+To calculate the error of the inverse matrix, a method called \emph{toy experiments} has to be used. A normal-distribution random variable $G=\mathcal{N}(0,1)$ is multiplied by the error of an element of the efficiency matrix and then added to said element.
+\begin{equation}
+E^{k}_{ij}=E_{ij}+G^k\cdot s_{E_{ij}}
+\end{equation}
+This is done $N=100000$ times, resulting in 100000 randomly varied efficiency matrix, which are then inverted. The standard deviation of the thus calculated elements $I^k_{ij}$ of the inverse matrix is used as the error for the inverse matrix elements $I_{ij}$: 
+\begin{equation}
+s_{I_{ij}}=\sqrt{\frac{1}{N-1}\sum_{k=1}^{N}\left(I^k_{ij}-I_{ij}\right)^2}
+\end{equation}
+The resulting matrix is displayed in table \ref{tb:invefficiencyerror}
+\begin{table}[H]\centering
+	\begin{tabular}{@{}llllll@{}}
+		\toprule
+		&Events &$e^+e^-$&$\mu^+\mu^-$&$\tau^+\tau^-$&$q^+q^-$\\
+		\midrule
+		&Cut&&&&\\
+		&$e^+e^-$&2.558226&0.000081&-0.013476&-0.000039\\
+		&$\mu^+\mu^-$&-0.000506&1.109092&-0.008077&-0.000003\\
+		&$\tau^+\tau^-$&-0.001197&-0.012497&1.192334&-0.001161\\
+		&$q^+q^-$&-0.000185&0.000075&-0.008272&1.010413\\
+		\bottomrule
+	\end{tabular}
+	\caption[Inverse efficiency error matrix]{Errors of the inverse efficiency matrix (table \ref{tb:invefficiency}) calculated using the \emph{toy experiments} method.}
+	\label{tb:invefficiencyerror}
+\end{table}
+
+\subsection{Separation of s- and t-channel}
+\subsection{Cross sections}
+With the data cleared of underground effects, the cross sections can be calculated. The number of events after the respective cuts $\vec{N}_c$ are Poisson-distributed, thus
+\begin{equation}
+s_{\vec{C}}=\sqrt{\vec{C}_i}
+\end{equation}
+With equation \ref{eq:numberevents}, the error on the events $\vec{N}$ that presumably occurred can be calculated as
+\begin{equation}
+s_{N_i}=\sqrt{\sum_{i,j}\left((C_j\cdot s_{I_{ij}})^2+(I_{ij}\cdot s_{M_j})^2\right)}
+\end{equation}
+For electron-positron events, the s-t-channel separation has yet to be implemented:
+\begin{equation}
+N'_{e^+e^-}=c_{st}\cdot N_{e^+e^-}, \qquad s_{N'_{e^+e^-}}=\sqrt{(c_{st}\cdot s_{N_{e^+e^-}})^2+(N_{e^+e^-}\cdot s_{c_{st}})^2}
+\end{equation}
+In order to calculate the cross sections, the radiation corrections and the luminosity of the accelerator are needed. Both were provided and are listed in the following table
+
+\begin{table}[H]\centering
+	\begin{tabular}{@{}llllllll@{}}
+		\toprule
+		  &$\sqrt{s}$ [GeV]       &L [\nicefrac{1}{nb}]       &$s_L^{stat}$[\nicefrac{1}{nb}]       &$s_L^{sys}$[\nicefrac{1}{nb}]       &$s_L^{total}$[\nicefrac{1}{nb}]&$c_{beam,l^+l^-}$ [nb]&$c_{beam,q\overline{q}}$ [nb]\\
+		  \midrule
+		  &88.48       &675.9       &3.5       &4.5        &5.7&0.09&2.0\\  
+		  &89.47       &543.6       &3.2       &3.6       &4.8&0.20&4.3\\  
+		  &90.23       &419.8       &2.8       &2.8       &4.0&0.36&7.7\\  
+		  &91.23       &3122.2       &7.8       &20.9       &22.3&0.52&10.8\\  
+		  &91.97       &639.8       &3.6       &4.2       &5.6&0.22&4.7\\  
+		  &92.97       &479.2       &3.1       &3.2       &4.5&-0.01&0.2\\  
+		  &93.72       &766.8       &4.0       &5.1       &6.5&-0.08&-1.6\\
+		\bottomrule
+	\end{tabular}
+	\caption[Table of luminosities]{The luminosities L and radiation corrections $c_{beam}$ for the different mean energies $\sqrt{s}$. The radiation corrections where found in \cite{anleitung}, where no error was given.}
+	\label{tb:luminosity}
+\end{table}
+
+The cross section and their error can then be calculated as
+\begin{equation}
+\sigma_i=\frac{N_i}{L}+c_{beam,i}, \qquad s_{\sigma_i}=\sqrt{(\frac{s_{N_i}}{L})^2+(\frac{N_i\cdot s_L^{total}}{L^2})^2}
+\end{equation}
+
+
+\subsection{Analysis of decay widths}
+
+
 

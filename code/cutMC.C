@@ -132,7 +132,7 @@ void cutMC()
 					break;
 				case 1:
 					//ee cuts
-					if (Ncharged < 7 && E_ECal >= 70 && Pcharged != 0 && cos_theta > -0.9 && cos_theta < 0.9) {   //( (cos_theta > -0.9 && cos_theta < 0.9)) ) {
+					if (Ncharged < 7 && E_ECal >= 70 && Pcharged != 0 && cos_theta > -0.9 && cos_theta < 0.9) {
 						n_events_cut += 1;
 						h_Ncharged[isim]->Fill(Ncharged, weights[isim]);
 						h_Pcharged[isim]->Fill(Pcharged, weights[isim]);
@@ -146,7 +146,7 @@ void cutMC()
 					break;
 				case 2:
 					//mm cuts
-					if (Pcharged > 71 && Pcharged != 0 && E_ECal < 50 && Ncharged == 2) {
+					if (Pcharged > 71 /*&& Pcharged != 0*/ && E_ECal < 50 && Ncharged == 2) {
 						n_events_cut += 1;
 						h_Ncharged[isim]->Fill(Ncharged, weights[isim]);
 						h_Pcharged[isim]->Fill(Pcharged, weights[isim]);
@@ -164,7 +164,7 @@ void cutMC()
 					break;
 				case 3:
 					//tt cuts
-					if (Pcharged != 0 && Pcharged <= 60 && Ncharged < 7 && E_ECal < 60 &&
+					if (/*Pcharged != 0 &&*/ Pcharged <= 60 && Ncharged < 7 && E_ECal < 60 &&
 						cos_thru > -0.9 && cos_thru < 0.9) {
 						n_events_cut += 1;
 						h_Ncharged[isim]->Fill(Ncharged, weights[isim]);
@@ -179,7 +179,7 @@ void cutMC()
 					break;
 				case 4:
 					//qq cuts
-					if (Ncharged >= 8 && Pcharged != 0) {
+					if (Ncharged >= 8 /*&& Pcharged != 0*/) {
 						n_events_cut += 1;
 						h_Ncharged[isim]->Fill(Ncharged, weights[isim]);
 						h_Pcharged[isim]->Fill(Pcharged, weights[isim]);
@@ -384,7 +384,7 @@ void cutMC()
 
 		for (int ip = 0; ip < n_sim; ++ip) {
 			if (ip == i_cr-1) {
-				c[6]->cd();
+				c[6]->cd(); 
 				graphstyle(h_E_Ecal_vs_Pcharged[ip], "Sum of track energies [Gev]", "Energy deposited in electronic calorimeter [GeV]");
 				h_E_Ecal_vs_Pcharged[ip]->Draw("HIST COLZ");
 				c[6]->SaveAs("../results/MC_results/" + cutname[i_cr] + "/E_Ecal_vs_Pcharged.png");
@@ -395,7 +395,7 @@ void cutMC()
 		for (int ip = 0; ip < n_sim; ++ip) {
 			if (ip == i_cr - 1) {
 				c[7]->cd();
-				graphstyle(h_Ncharged_vs_Pcharged[ip], "Sum of track energies [Gev]", "Number of charged tracks");
+				graphstyle(h_Ncharged_vs_Pcharged[ip], "Sum of track energies [GeV]", "Number of charged tracks");
 				h_Ncharged_vs_Pcharged[ip]->Draw("HIST COLZ");
 				c[7]->SaveAs("../results/MC_results/" + cutname[i_cr] + "/Ncharged_vs_Pcharged.png");
 			}
