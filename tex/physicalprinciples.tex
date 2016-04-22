@@ -68,7 +68,15 @@ BR_i=\frac{\Gamma_i}{\Gamma}
 \end{figure}
 
 The reaction were interested for this experiment is the $e^-e^+\rightarrow\bar{f}$ interaction. Figure \ref{fig:principles:annihilation.png} shows the s-channel: Electron and positron annihilate each other and a $Z^0$ Boson or a photon is produced, which in turn decay to a lepton or a Quark and its corresponding antiparticle (except for the top quark, since the center-of-mass energy is less than the mass of two top quarks). The photon process is repressed at energies close to the Mass of the $Z^0$ Boson\cite{muenchen}.\\%wie stark?
-The cross section for the $e^-e^+\rightarrow f\bar{f}$ reaction is a function of the center-of-mass energy, which exhibits a peak at 91.187 GeV caused by the $Z^0$ resonance. Neglecting the fermion masses and at energies close to the resonance this function can be described with a Breit-Wigner curve\footnote{For a table of theoretical decay widths and cross section and their calculation s. appendix}\cite{staatsex}:
+The cross section for the $e^-e^+\rightarrow f\bar{f}$ reaction is a function of the center-of-mass energy, which exhibits a peak at 91.187 GeV caused by the $Z^0$ resonance(s. fig \ref{fig:principles:crosssection}).
+\begin{figure}[H]
+\centering
+\includegraphics[width=\linewidth]{graphics/crosssection}
+\caption{cross section as a function of the center-of-mass energy}
+\label{fig:principles:crosssection}
+\end{figure}
+
+ Neglecting the fermion masses and at energies close to the resonance this function can be described with a Breit-Wigner curve\footnote{For a table of theoretical decay widths and cross section and their calculation s. appendix}\cite{staatsex}:
 \begin{equation}
 \sigma_f(s) = \frac{12\pi}{M_Z^2} \frac{s\Gamma_e\Gamma_f}{(s-M_Z^2)^2+(s^2\Gamma_Z^2/M_Z^2)}
 \label{eq:principles:breitwigner}
@@ -87,7 +95,7 @@ Figure \ref{fig:principles:BhabbaStreuung.png} shows the t-channel of the  $e^-e
 \end{equation}
 \subsection{radiation correction}
 The Feynman diagrams in the previous chapter were only first order. Neglecting higher orders (Born approximation) does not yield accurate predictions\cite{muenchen}. Three different corrections have to made: the photonic, the non-photonic and the Quantum chromodynamic (QCD) correction.
-\begin{figure}[hb]
+\begin{figure}[H]
 \centering
 \includegraphics{graphics/Bremsstrahlungskorrektur}
 \caption{Feynman diagram for initial state (left) and final state radiation (right)}
@@ -97,14 +105,14 @@ During initial and final state radiation (see fig. \ref{fig:principles:Bremsstra
 Non photonic processes have the same final state as the first order process, but as seen in figure \ref{fig:principles:vertexschleifen} the interaction is complicated by vertex loops. Those additional Feynman diagrams have to be accounted for in the cross section.\\
 \begin{figure}[H]
 	\centering
-	\includegraphics[width=0.7\linewidth]{graphics/vertexschleifen}
+	\includegraphics[width=1.0\linewidth]{graphics/vertexschleifen}
 	\caption{Feynman diagram for virtual radiation correction }
 	\label{fig:principles:vertexschleifen}
 \end{figure}
 If the produced fermions are quarks,  an additional correction has to be made to account for gluon radiation(fig \ref{fig:principles:QCDkorrektur}) of the strong interaction.
 \begin{figure}[H]
 \centering
-\includegraphics[width=0.7\linewidth]{graphics/QCDkorrektur}
+\includegraphics[width=1.0\linewidth]{graphics/QCDkorrektur}
 \caption{Feynman diagram of gluon radiation}
 \label{fig:principles:QCDkorrektur}
 \end{figure}
