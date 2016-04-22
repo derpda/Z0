@@ -17,7 +17,7 @@ daten/
 tex/*
 !tex/*.tex
 #also except the graphics folder of commonly used graphics from above ignore
-!tex/graphics/*.png
+!tex/graphics/*
 
 #ignore db files
 **/*.db
