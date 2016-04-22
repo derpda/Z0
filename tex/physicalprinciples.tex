@@ -31,7 +31,14 @@ The mass of the $W^{\pm}$ Bosons can be expressed as:
 \begin{equation}
 M_W = M_Z~cos(\theta_w)
 \end{equation}
-
+In electroweak interaction one distinguishes two forms of coupling, vector (changes sign under parity transformation) and axial vector (does not change sign under parity transformation) coupling. The coupling strengths for a fermion $f$ with the third component of weak isospin $I^f_3$ and the charge $Q_f$ is given by\cite{muenchen}:
+\begin{equation}
+\begin{aligned}
+g_V^f &= I^f_3-2 Q_f sin^2(\theta_w)\\
+g_A^f &= I^f_3
+\end{aligned}
+\label{eq:principles:coupling strengths}
+\end{equation}
 \subsection{Cross Section and decay width}
 The cross section $\sigma$ is a measure for the probability or rate of a reaction during collision of two particles. In this experiment it is related to the Luminosity $L$ of the electron beam and the total Number of reactions $N$:
 \begin{equation}
@@ -61,7 +68,7 @@ BR_i=\frac{\Gamma_i}{\Gamma}
 \end{figure}
 
 The reaction were interested for this experiment is the $e^-e^+\rightarrow\bar{f}$ interaction. Figure \ref{fig:principles:annihilation.png} shows the s-channel: Electron and positron annihilate each other and a $Z^0$ Boson or a photon is produced, which in turn decay to a lepton or a Quark and its corresponding antiparticle (except for the top quark, since the center-of-mass energy is less than the mass of two top quarks). The photon process is repressed at energies close to the Mass of the $Z^0$ Boson\cite{muenchen}.\\%wie stark?
-The cross section for the $e^-e^+\rightarrow f\bar{f}$ reaction is a function of the center-of-mass energy, which exhibits a peak at 91.187 GeV caused by the $Z^0$ resonance. Neglecting the fermion masses and at energies close to the resonance this function can be described with a Breit-Wigner curve\cite{staatsex}:
+The cross section for the $e^-e^+\rightarrow f\bar{f}$ reaction is a function of the center-of-mass energy, which exhibits a peak at 91.187 GeV caused by the $Z^0$ resonance. Neglecting the fermion masses and at energies close to the resonance this function can be described with a Breit-Wigner curve\footnote{For a table of theoretical decay widths and cross section and their calculation s. appendix}\cite{staatsex}:
 \begin{equation}
 \sigma_f(s) = \frac{12\pi}{M_Z^2} \frac{s\Gamma_e\Gamma_f}{(s-M_Z^2)^2+(s^2\Gamma_Z^2/M_Z^2)}
 \label{eq:principles:breitwigner}
@@ -112,8 +119,8 @@ The forwards backwards asymmetry is then defined as:
 A_{fb}=\frac{\sigma_f-\sigma_b}{\sigma_f+\sigma_b}
 \label{eq:principles:asymmetry definition}
 \end{equation}
-At the resonance peak the asymmetry for leptons is related to the Weinberg angle\cite{muenchen}:
+At the resonance peak the difference in coupling strength for vector and axial vector coupling (s. eq.\ref{eq:principles:coupling strengths}) causes an asymmetry as defined above. For leptons it can be expressed as:
 \begin{equation}
-A_{fb}^{l,peak}\approx 3\cdot (1-4 sin^2(\theta_w))
+A_{fb}^{l,peak}\approx 3 (g^l_V/g^l_A)^2=3\cdot (1-4 sin^2(\theta_w))
 \label{eq:principles:asymmetry weinberg angle}
 \end{equation}
