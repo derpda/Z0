@@ -1,2 +1,105 @@
 \section{Calculation of decay widths and cross sections at resonance}
-The decay width for the decay into a fermion $f$ is given by 
+\subsection{decay widths}
+The decay width for the decay of a $Z^0$ boson into a fermion $f$ is given by \cite{muenchen}:
+\begin{equation}
+\frac{N_c^f \cdot \sqrt{2}}{12\pi}\cdot G_F \cdot M_Z^3 \cdot (g_V^{f2}+g_A^{f2})
+\end{equation}
+with the color factor $N_c^f$, the Fermi constant $G_F$, the $Z^0$ mass $M_Z$, the electric charge $Q_f$, the vector coupling strength $g_V^f$ and the axial vector coupling strength $g_A^f$.\\
+using equation \ref{eq:principles:coupling strengths} one obtains:
+\begin{equation}
+\frac{N_c^f \cdot \sqrt{2}}{12\pi}\cdot G_F \cdot M_Z^3 \cdot \left( \left( I^f_3-2 Q_f sin^2(\theta_w)\right)^2+I^{f2}_3 \right)
+\label{eq:appendix:decay width}
+\end{equation}
+The Fermi constant an the  $Z^0$ mass are\cite{muenchen}
+\begin{equation}
+\begin{aligned}
+G_F &= 1.16639\cdot 10^{-5}GeV^{-2}\\
+M_Z &= 91.187 GeV
+\end{aligned}
+\end{equation}
+and for Weinberg angle the following relation is used\cite{Grif}:
+\begin{equation}
+sin^2(\theta_w)=0.23 
+\end{equation}
+The other parameters depend on which fermion is produced:
+\begin{equation}
+N_c^f = \begin{cases}
+1 & \text{if } f = \nu,e,\mu,\tau\\
+3(1+\delta_{QCD}) & \text{if } f = u,d,s,c,b
+\end{cases}
+\end{equation}
+The $\delta_{QCD}= 1.05 \frac{\alpha_S(M_Z)}{\pi}$ is a correction factor to account  for higher order processes of the strong interaction(s. \ref{sec:principles:radiation correction}). With the strong coupling constant $\alpha_S(M_Z)=1/128.87$.\\
+The third component of the weak isospin is:
+\begin{equation}
+I^f_3 = \begin{cases}
+1/2 & \text{if } f = \nu,u,c\\
+-1/2 & \text{if } f = e^-,\mu^-,\tau^-,d,s,b
+\end{cases}
+\end{equation}
+And the electric charge:
+\begin{equation}
+Q_f = \begin{cases}
+0 & \text{if } f = \nu\\
+-1 & \text{if } f = e^-,\mu^-,\tau^-\\
+2/3 & \text{if } f = u,c\\
+-1/3 & \text{if } f = d,s,b
+\end{cases}
+\end{equation}
+Plugging those values in equation \ref{eq:appendix:decay width} yields table \ref{tb:appendix:decay widths}:
+
+\begin{table}[H]\centering
+	\begin{tabular}{@{}llllll@{}}
+		\toprule
+		 & $\Gamma _{\text{rech}}\text{/MeV}$ & $\Gamma
+		 _{\text{lit}}\text{/MeV}$ \\
+		 \midrule
+		 e,$\mu $,$\tau $ & 83.4106 & 83.8 \\
+		 $\nu _e$,$\nu _{\mu }$,$\nu _{\tau }$ & 165.881 & 167.6 \\
+		 u,c & 296.868 & 299 \\
+		 d,s,b & 382.646 & 378 \\
+		 \bottomrule
+	\end{tabular}
+	\caption{Table of decay widths for different fermions, calculated and literature value\cite{muenchen}}
+	\label{tb:appendix:decay widths}
+\end{table}
+To get partial decay width for the decay to any charged lepton one must simply sum up the decay width of the charged leptons. Similarly the hadronic, the neutral leptonic and the total decay width can be calculated (s. table \ref{tb:appendix:summarized decay widths}).
+\begin{table}[H]\centering
+	\begin{tabular}{@{}llllll@{}}
+		\toprule
+		& $\Gamma _{\text{rech}}\text{/MeV}$ & $\Gamma
+		_{\text{lit}}\text{/MeV}$ \\
+		\midrule
+		$\Gamma_e+\Gamma_{\mu}+\Gamma_{\tau}$ & 250.232 & 251.4 \\
+		$3\cdot \Gamma_{\nu}$ & 497.643 & 502.8 \\
+		$\sum_q\Gamma_q$ & 1741.67 & 1732 \\
+		total & 2489.55 & 2486.2 \\
+		\bottomrule
+	\end{tabular}
+	\caption{summarized decay widths}
+	\label{tb:appendix:summarized decay widths}
+\end{table}
+If anotherlepton family exists one expects the total decay width to increase by:
+\begin{equation}
+\frac{\Gamma_e + \Gamma_{\nu_e}}{\Gamma_{total}}=10.0 \%
+\end{equation}
+\subsection{cross sections at resonance peak}
+With the values calculated above the expected cross section at the resonance peak ($\sqrt{s}=M_Z$) can be calculated with equation \ref{eq:principles:breitwigner}.
+The results can be seen in table \ref{tb:appendix:cross sections}
+\begin{table}[H]\centering
+	\begin{tabular}{@{}llllll@{}}
+		\toprule
+		& $\sigma_{peak}[nb]$\\
+		\midrule
+		e,$\mu $,$\tau $ & 2.00524 \\
+		$\nu _e,\nu _{\mu },\nu _{\tau }$ & 4.01047 \\
+		u,c & 7.15472 \\
+		d,s,b & 9.0451 \\
+		$e+\mu+\tau$ & 6.01571\\
+		$\nu _e+\nu _{\mu }+\nu _{\tau }$ & 12.0314\\
+		hardronic & 41.4447 \\
+		total & 59.4871 \\
+		\bottomrule
+	\end{tabular}
+	\caption{summarized decay widths}
+	\label{tb:appendix:cross sections}
+\end{table}
