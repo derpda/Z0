@@ -255,10 +255,10 @@ The resulting matrix is displayed in table \ref{tb:invefficiencyerror}
 		&Events &$e^+e^-$&$\mu^+\mu^-$&$\tau^+\tau^-$&$q^+q^-$\\
 		\midrule
 		&Cut&&&&\\
-		&$e^+e^-$&0.010372&0.000043&0.000703&0.000037\\
-		&$\mu^+\mu^-$&0.000123&0.001187&0.000366&0.000011\\
-		&$\tau^+\tau^-$&0.000196&0.000416&0.001870&0.000119\\
-		&$q^+q^-$&0.000074&0.000013&0.000353&0.000403\\
+		&$e^+e^-$&2.558226&0.000081&-0.013476&-0.000039\\
+		&$\mu^+\mu^-$&-0.000506&1.109092&-0.008077&-0.000003\\
+		&$\tau^+\tau^-$&-0.001197&-0.012497&1.192334&-0.001161\\
+		&$q\overline{q}$&-0.000185&0.000075&-0.008272&1.010413\\
 		\bottomrule
 	\end{tabular}
 	\caption[Inverse efficiency error matrix]{Errors of the inverse efficiency matrix (table \ref{tb:invefficiency}) calculated using the \emph{toy experiments} method.}
@@ -266,7 +266,6 @@ The resulting matrix is displayed in table \ref{tb:invefficiencyerror}
 \end{table}
 
 \subsection{Separation of s- and t-channel}
-
 \subsection{Cross sections and the mass of Z$^0$}
 With the data cleared of underground effects, the cross sections can be calculated. The number of events after the respective cuts $\vec{C}$ are Poisson-distributed, thus
 \begin{equation}
@@ -276,7 +275,7 @@ With equation \ref{eq:numberevents}, the error on the events $\vec{N}$ that pres
 \begin{equation}
 s_{N_i}=\sqrt{\sum_{i,j}\left((C_j\cdot s_{I_{ij}})^2+(I_{ij}\cdot s_{M_j})^2\right)}
 \end{equation}
-For electron-positron events, the s-t-channel separation has to be implemented:
+For electron-positron events, the s-t-channel separation has yet to be implemented:
 \begin{equation}
 N'_{e^+e^-}=c_{st}\cdot N_{e^+e^-}, \qquad s_{N'_{e^+e^-}}=\sqrt{(c_{st}\cdot s_{N_{e^+e^-}})^2+(N_{e^+e^-}\cdot s_{c_{st}})^2}
 \end{equation}
@@ -305,11 +304,11 @@ The cross section and their error can then be calculated as
 \sigma_i=\frac{N_i}{L}+c_{beam,i}, \qquad s_{\sigma_i}=\sqrt{(\frac{s_{N_i}}{L})^2+(\frac{N_i\cdot s_L^{total}}{L^2})^2}
 \end{equation}
 
-Figures \ref{fig:WQee} - \ref{fig:WQqq} show the results of the calculations. The Breit-Wigner function from equation \ref{eq:principles:breitwigner} was changed to be
+Figures \ref{fig:WQee} - \ref{fig:WQqq} show the results of the calculations. The Breit-Wigner function from equation \ref{eq:principles:breitwigner}
 \begin{equation}
-\sigma_f(s) = \frac{12\pi}{M_Z^2} \frac{s\Gamma_f^2}{(s-M_Z^2)^2+(s^2\Gamma_Z^2/M_Z^2)}
+\sigma_f(s) = \frac{12\pi}{M_Z^2} \frac{s\Gamma_e\Gamma_f}{(s-M_Z^2)^2+(s^2\Gamma_Z^2/M_Z^2)}
 \end{equation}
-where, instead of $\Gamma_e\Gamma_f$, $\Gamma_f^2$ was used. For the leptons, this means assuming lepton universality. For the hadrons, this makes an additional calculation, which will be discussed in the next section. This function was used for all of the following fits.
+was fitted to the data. For all fits, instead of $\Gamma_e\Gamma_f$, $\Gamma_f^2$ was used. For the leptons, this means assuming lepton universality.
 
 \begin{figure}[H]
 \centering
@@ -361,30 +360,22 @@ The fits yielded the following values for the mass of the Z$^0$-boson
 The weighted mean is in good agreement with the literature value
 
 \subsection{Decay widths and the neutrino generations}
-The Breit-Wigner fits also included the decay widths as fit parameters. The results are listed in table \ref{tb:decaywidthfitresults}.  
-
+The Breit-Wigner fits also included the decay widths as fit parameters. The results are listed in table \ref{tb:decaywidthfitresults}. As
 \begin{table}[H]\centering
-	\begin{tabular}{@{}llllllll@{}}
+	\begin{tabular}{@{}lllllll@{}}
 		\toprule
-		&Event $i$&$\Gamma_{total}$ [GeV]&$s_{\Gamma_{total}}$ [GeV]&$\Gamma_i$ [MeV]&$s_{\Gamma_i}$ [MeV]&$\Gamma^{lit}_i$ [MeV]&$\Gamma^{calc}_i$ [MeV]\\
+		&Event $i$&$\Gamma_{total}$ [GeV]&$s_{\Gamma_{total}}$ [GeV]&$\Gamma_i$ [MeV]&$s_{\Gamma_i}$ [MeV]&$\Gamma^{lit}_i$ [MeV]\\
 		\midrule
-		&$e^+e^-$&2.30&0.11&95&4&83.8&83.4\\
-		&$\mu^+\mu^-$&2.52&0.06&82.9&1.7&83.8&83.4\\
-		&$\tau^+\tau^-$&2.48&0.07&77.0&1.9&83.8&83.4\\
-		&$q\overline{q}$&2.526&0.019&1777&41&1732&1742\\
+		&$e^+e^-$&2.30&0.11&95&4&83.8\\
+		&$\mu^+\mu^-$&2.52&0.06&82.9&1.7&83.8\\
+		&$\tau^+\tau^-$&2.48&0.07&77.0&1.9&83.8\\
+		&$q\overline{q}$&2.526&0.019&&&1732\\
 		\bottomrule
 	\end{tabular}
-	\caption[Breit-Wigner fit results: Decay widths ]{The decay widths resulting from the Breit-Wigner fits and their literature value (from \cite{staatsex}, nor error given) for comparison. The values that were theoretically calculated by the authors during the preparation for the experiment are listed in the last column.}
+	\caption[Breit-Wigner fit results: Decay widths ]{The decay widths resulting from the Breit-Wigner fits and their literature value for comparison }
 	\label{tb:decaywidthfitresults}
 \end{table}
 
-The partial decay width $\Gamma_q$ of the quark events was calculated from the fit parameter $\Gamma_f^q$ as
-\begin{equation}
-\Gamma_q=\frac{(\Gamma_{f}^q)^2}{\Gamma_e},\qquad
-s_{\Gamma_q}=\sqrt{\left(\frac{2\Gamma_f^q}{\Gamma_e}\cdot s_{\Gamma_f^q}\right)^2+\left(\frac{(\Gamma_f^q)^2}{\Gamma_e^2}\cdot s_{\Gamma_e}\right)^2}
-\end{equation}
-where the results from the muon fits were used for the partial decay width of the electron $\Gamma_e$. This can be done since we have already assumed lepton universality and is reasonable, because the electron results include the s-t channel separation, which, as discussed, is a significant source of error. Furthermore, the purity (table \ref{tb:purity}), was the highest for muon cuts, while the efficiency was still the best for among the lepton cuts. The tauon events are a less reliable source due to their comparatively complex signature (see figure \ref{fig:tauonopal}). 
-Incidentally, the muon events are also the only lepton event that includes the literature and theoretical values in their $1\sigma$ interval. The results for the electron events is higher than expected and includes said values only in its $3\sigma$ interval. This is likely due to the s-t channel separation. If not all Bhabha scattering events are excluded, the cross section increases and with it does the decay width resulting from the fits. More data could improve the fit that was done to the cos\_theta distribution of the electron cuts. 
 
 \subsection{Forward-backward asymmetry}
 
