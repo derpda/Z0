@@ -6,6 +6,7 @@
 **/*.txt
 #expect the matrix files (used by the code) from the ignore of txt files
 !results/matrix/*.txt
+!results/data_results/*.txt
 
 #ignore root files
 **/*.root
