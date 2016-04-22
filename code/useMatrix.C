@@ -328,7 +328,7 @@ void useMatrix(){
 	ofstream eff_inv_err_tex;
 	eff_inv_err_tex.open("../results/matrix/efficiency_inverted_error_tex.txt");
 	for (int i = 0; i < 4; ++i) {
-		eff_inv_err_tex << setprecision(6) << fixed << "&" << eventname[i] << "&" << Inverse[i][0] << "&" << Inverse[i][1] << "&" << Inverse[i][2] << "&" << Inverse[i][3] << "\\\\" << endl;
+		eff_inv_err_tex << setprecision(6) << fixed << "&" << eventname[i] << "&" << inverse_err[i][0] << "&" << inverse_err[i][1] << "&" << inverse_err[i][2] << "&" << inverse_err[i][3] << "\\\\" << endl;
 	}
 	eff_inv_err_tex.close();
 

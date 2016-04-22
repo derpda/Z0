@@ -107,7 +107,7 @@ Since the electron data is later divided into s- and t-channel events, for which
 \end{figure}
 
 \subsubsection{Cuts in Cos\_thrust}
-Figure \ref{fig:cos_thru} suggests a cut to separate tauons from the rest of the particles, especially electrons, which often have have $cos_thrust>0.9$ or $cos_thrust<-0.9$
+Figure \ref{fig:cos_thru} suggests a cut to separate tauons from the rest of the particles, especially electrons, which often have have cos\_thrust $>0.9$ or cos\_thrust $<-0.9$.
 
 \begin{itemize}
 	\item{\makebox[2.5cm][l]{\textbf{Tauon cut}} $-0.9\le$ cos\_thrust $\le0.9$}
@@ -130,7 +130,7 @@ The final cuts thus are
 
 \subsection{Two-photon events}
 One possible source of background are two-photon events. Figure \ref{fig:twophotonfeynman} shows possible Feynman-graphs of such events. Two photons are created, without an intermediate Z$^0$. As such, these measurements need to be excluded using cuts.\\
-In the event described by the Feynman graph on the right of figure \ref{fig:twophotonfeynman}, the incedent electron and proton scatter, but don't lose much energy in the process. They continue without diverging much from the beam direction. Naturally, there is no detecting capacity in beam direction, meaning these two particles are not registered. In the process of scattering, a fermion anti-fermion pair with low energy is created. They can be effectively cut by restricting Pcharged $> \unit[5]{GeV}$ without losing much in terms of efficiency.
+In the event described by the Feynman graph on the right of figure \ref{fig:twophotonfeynman}, the incedent electron and proton scatter, but don't lose much energy in the process. They continue without diverging much from the beam direction. Naturally, there is no detecting capacity in beam direction, meaning these two particles are not registered. In the process of scattering, a fermion anti-fermion pair with low energy is created. They can be effectively cut by restricting Pcharged $> \unit{5}{GeV}$ without losing much in terms of efficiency.
 As no charged particles are created in the event type described by the Feynman graph on the left of figure \ref{fig:twophotonfeynman}, the cut in Pcharged also effectively cuts against these kinds of events.
 \begin{figure}[H]
 \centering
@@ -153,10 +153,10 @@ where the indexes $i$ and $j$ represent the kind of event. $n_{ij}^{cut}$ is thu
 		&Events &$e^+e^-$&$\mu^+\mu^-$&$\tau^+\tau^-$&$q^+q^-$\\
 		\midrule
 		&Cut&&&&\\
-		&$e^+e^-$&0.39090&0.00002&0.00442&0.00002\\
+		&$e^+e^-$&0.39078&0.00002&0.00422&0.00002\\
 		&$\mu^+\mu^-$&0.00018&0.90171&0.00611&0.00001\\
-		&$\tau^+\tau^-$&0.00039&0.00945&0.83877&0.00096\\
-		&$q\overline{q}$&0.00007&0.00001&0.00687&0.98970\\
+		&$\tau^+\tau^-$&0.00039&0.00940&0.83413&0.00094\\
+		&$q^+q^-$&0.00007&0.00001&0.00685&0.98437\\
 	\end{tabular}
 	\caption[Efficiency matrix]{Efficiency matrix of the applied cuts. The diagonal elements are the self efficiency.}
 	\label{tb:efficiency}
@@ -174,10 +174,10 @@ where $N_i$ is the number of simulated events of the appropriate kind. This yiel
 		&Events &$e^+e^-$&$\mu^+\mu^-$&$\tau^+\tau^-$&$q^+q^-$\\
 		\midrule
 		&Cut&&&&\\
-		&$e^+e^-$&0.001593&0.000015&0.000236&0.000014\\
+		&$e^+e^-$&0.001593&0.000015&0.000230&0.000014\\
 		&$\mu^+\mu^-$&0.000044&0.000969&0.000277&0.000010\\
-		&$\tau^+\tau^-$&0.000065&0.000315&0.001307&0.000099\\
-		&$q\overline{q}$&0.000028&0.000011&0.000293&0.000322\\
+		&$\tau^+\tau^-$&0.000065&0.000314&0.001322&0.000098\\
+		&$q^+q^-$&0.000028&0.000011&0.000293&0.000395\\
 		\bottomrule
 	\end{tabular}
 	\caption[Efficiency error matrix]{Errors of the efficiency matrix elements calculated under the assumption of binomial distribution.}
@@ -200,10 +200,10 @@ which yields the following results:
 		\toprule
 		&Cut&Purity\\
 		\midrule
-		&$e^+e^-$&0.9877\\
+		&$e^+e^-$&0.9882\\
 		&$\mu^+\mu^-$&0.9928\\
-		&$\tau^+\tau^-$&0.9657\\
-		&$q\overline{q}$&0.9996\\
+		&$\tau^+\tau^-$&0.9661\\
+		&$q\overline{q}$&0.9997\\
 		\bottomrule
 	\end{tabular}
 	\caption[Purity of the cuts]{Purity of the cuts. All purities are above 95\%, indicating that the cuts work reasonably well.}
@@ -230,10 +230,10 @@ The inverse matrix $\boldsymbol{I}$ is
 		&Events &$e^+e^-$&$\mu^+\mu^-$&$\tau^+\tau^-$&$q^+q^-$\\
 		\midrule
 		&Cut&&&&\\
-		&$e^+e^-$&2.55823&0.00008&-0.01348&-0.00004\\
-		&$\mu^+\mu^-$&-0.00051&1.10909&-0.00808&-0.00000\\
-		&$\tau^+\tau^-$&-0.00120&-0.01250&1.19233&-0.00116\\
-		&$q\overline{q}$&-0.00018&0.00007&-0.00827&1.01041\\
+		&$e^+e^-$&2.55899&0.00007&-0.01294&-0.00004\\
+		&$\mu^+\mu^-$&-0.00051&1.10909&-0.00812&-0.00000\\
+		&$\tau^+\tau^-$&-0.00120&-0.01250&1.19896&-0.00115\\
+		&$q^+q^-$&-0.00019&0.00008&-0.00835&1.01589\\
 		\bottomrule
 	\end{tabular}
 	\caption[Inverse efficiency matrix]{The inverse of the efficiency matrix displayed in table \ref{tb:efficiency}.}
