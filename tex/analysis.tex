@@ -309,7 +309,7 @@ Figures \ref{fig:WQee} - \ref{fig:WQqq} show the results of the calculations. Th
 \begin{equation}
 \sigma_f(s) = \frac{12\pi}{M_Z^2} \frac{s\Gamma_f^2}{(s-M_Z^2)^2+(s^2\Gamma_Z^2/M_Z^2)}
 \end{equation}
-where, instead of $\Gamma_e\Gamma_f$, $\Gamma_f^2$ was used. For the leptons, this means assuming lepton universality. For the hadrons, this makes an additional calculation, which will be discussed in the next section. This function was used for all of the following fits.
+where, instead of $\Gamma_e\Gamma_f$, $\Gamma_f^2$ was used, reducing the number of fit parameters. For the leptons, this means assuming lepton universality. For the hadrons, this makes an additional calculation, which will be discussed in the next section. This function was used for all of the following fits.
 
 \begin{figure}[H]
 \centering
@@ -345,20 +345,20 @@ The fits yielded the following values for the mass of the Z$^0$-boson
 		\toprule
 		&Event type&$M_{Z^0}$ [GeV]&$s_{M_{Z^0}}$ [GeV]\\
 		\midrule
-		&$e^+e^-$&91.20&0.03\\
-		&$\mu^+\mu^-$&91.11&0.06\\
+		&$e^+e^-$&91.11&0.06\\
+		&$\mu^+\mu^-$&91.20&0.03\\
 		&$\tau^+\tau^-$&91.18&0.04\\
 		&$q\overline{q}$&91.189&0.009\\
 		\midrule
-		&Weighted mean&91.189&0.008\\
-		&Literature value&91.1876&0.0021\\
+		&Weighted mean&91.188&0.008\\
+		&Literature value&91.187&\\
 		\bottomrule
 	\end{tabular}
-	\caption[Breit-Wigner fit results: $M_{Z^0}$]{The mass of Z$^0$ as it was calculated from the fits for the different cuts as well as their weighted mean.}
+	\caption[Breit-Wigner fit results: $M_{Z^0}$]{The mass of Z$^0$ as it was calculated from the fits for the different cuts as well as their weighted mean. The literature value was found in \cite{muenchen} (no error listed).}
 	\label{tb:Z0massfitresults}
 \end{table}
 
-The weighted mean is in good agreement with the literature value
+The weighted mean is in very good agreement with the literature value, enclosing it in its relatively small (<0.01\%) $1\sigma$ interval.
 
 \subsection{Decay widths and the neutrino generations}
 The Breit-Wigner fits also included the decay widths as fit parameters. The results are listed in table \ref{tb:decaywidthfitresults}.  
@@ -368,9 +368,9 @@ The Breit-Wigner fits also included the decay widths as fit parameters. The resu
 		\toprule
 		&Event $i$&$\Gamma_{total}$ [GeV]&$s_{\Gamma_{total}}$ [GeV]&$\Gamma_i$ [MeV]&$s_{\Gamma_i}$ [MeV]&$\Gamma^{lit}_i$ [MeV]&$\Gamma^{calc}_i$ [MeV]\\
 		\midrule
-		&$e^+e^-$&2.30&0.11&95&4&83.8&83.4\\
+		&$e^+e^-$&2.28&0.11&94&4&83.8&83.4\\
 		&$\mu^+\mu^-$&2.52&0.06&82.9&1.7&83.8&83.4\\
-		&$\tau^+\tau^-$&2.48&0.07&77.0&1.9&83.8&83.4\\
+		&$\tau^+\tau^-$&2.48&0.07&76.9&1.9&83.8&83.4\\
 		&$q\overline{q}$&2.526&0.019&1777&41&1732&1742\\
 		\bottomrule
 	\end{tabular}
@@ -383,7 +383,8 @@ The partial decay width $\Gamma_q$ of the quark events was calculated from the f
 \Gamma_q=\frac{(\Gamma_{f}^q)^2}{\Gamma_e},\qquad
 s_{\Gamma_q}=\sqrt{\left(\frac{2\Gamma_f^q}{\Gamma_e}\cdot s_{\Gamma_f^q}\right)^2+\left(\frac{(\Gamma_f^q)^2}{\Gamma_e^2}\cdot s_{\Gamma_e}\right)^2}
 \end{equation}
-where the results from the muon fits were used for the partial decay width of the electron $\Gamma_e$. This can be done since we have already assumed lepton universality and is reasonable, because the electron results include the s-t channel separation, which, as discussed, is a significant source of error. Furthermore, the purity (table \ref{tb:purity}), was the highest for muon cuts, while the efficiency was still the best for among the lepton cuts. The tauon events are a less reliable source due to their comparatively complex signature (see figure \ref{fig:tauonopal}). 
+where the results from the muon fits were used for the partial decay width of the electron $\Gamma_e$. This can be done since we have already assumed lepton universality and is reasonable, because the electron results include the s-t channel separation, which, as discussed, is a significant source of error. Furthermore, the purity (table \ref{tb:purity}), was the highest for muon cuts, while the efficiency was still the best for among the lepton cuts.\\
+The tauon events are a less reliable source due to their comparatively complex signature (see figure \ref{fig:tauonopal}). As a result, the simulated tauon data showed significant overlaps with the other data sets in all analysis channels, thus making it difficult to define efficient cuts with high purity. 
 Incidentally, the muon events are also the only lepton event that includes the literature and theoretical values in their $1\sigma$ interval. The results for the electron events is higher than expected and includes said values only in its $3\sigma$ interval. This is likely due to the s-t channel separation. If not all Bhabha scattering events are excluded, the cross section increases and with it does the decay width resulting from the fits. More data could improve the fit that was done to the cos\_theta distribution of the electron cuts. 
 
 \subsection{Forward-backward asymmetry}
