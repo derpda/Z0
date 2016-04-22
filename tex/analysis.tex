@@ -29,11 +29,12 @@ Thus, for every type of educts, a cut is to be made with maximum possible effici
 \end{figure}
 
 \subsubsection{Cuts in Ncharged}
-Above figure suggests a good way to separate the data sets. In particular, all three lepton generations hardly ever leave more than 6 cuts, which then suggests the following cuts:
+Above figure suggests a good way to separate the data sets. In particular, all three lepton generations hardly ever leave more than 6 tracks, with muons hardly having anything but two tracks in the drift chamber. This suggests the following cuts:
 
 \begin{itemize}
 	\item{\makebox[2.5cm][l]{\textbf{Lepton cuts:}} Ncharged $<7$}
 	\item{\makebox[2.5cm][l]{\textbf{Quark cut:}} Ncharged $\ge8$}
+	\item{\makebox[2.5cm][l]{\textbf{Muon cut:}} Ncharged $=2$}
 \end{itemize}
 
 
@@ -124,12 +125,13 @@ The final cuts thus are
 		&$q\overline{q}$		&$\ge8$		&				&				&						&$\ge-0.9$ \& $\le0.9$	\\
 		\bottomrule
 	\end{tabular}
-	\caption[Table of cuts]{Cuts applied to separate the datasets. The Pcharged $\ne0$ cut is not shown here but was applied to all datasets.}
+	\caption[Table of cuts]{Cuts applied to separate the datasets. An additional cut on Pcharged, which is not listed here, is discussed below.}
 \end{table}
 
-\subsection{Two-photon events TODOTODOTODOTODOTODOTODO}
+\subsection{Two-photon events}
 One possible source of background are two-photon events. Figure \ref{fig:twophotonfeynman} shows possible Feynman-graphs of such events. Two photons are created, without an intermediate Z$^0$. As such, these measurements need to be excluded using cuts.\\
-Since these events send out either two pairs of fermions or no fermions at all into the detector, proper values of cos\_theta and cos\_thrust cannot be assigned. These are then automatically set to $999.00$. Thus, the applied cuts in those two variables already effectively filter against many of these events. One exception however would be, if one of the created photons in an event such as the left one in figure \ref{fig:twophotonfeynman} causes pair production. In such 
+In the event described by the Feynman graph on the right of figure \ref{fig:twophotonfeynman}, the incedent electron and proton scatter, but don't lose much energy in the process. They continue without diverging much from the beam direction. Naturally, there is no detecting capacity in beam direction, meaning these two particles are not registered. In the process of scattering, a fermion anti-fermion pair with low energy is created. They can be effectively cut by restricting Pcharged $> \unit[5]{GeV}$ without losing much in terms of efficiency.
+As no charged particles are created in the event type described by the Feynman graph on the left of figure \ref{fig:twophotonfeynman}, the cut in Pcharged also effectively cuts against these kinds of events.
 \begin{figure}[H]
 \centering
 \includegraphics[width=1.0\linewidth]{graphics/twophotonfeynman_both.pdf}
@@ -302,7 +304,11 @@ The cross section and their error can then be calculated as
 \sigma_i=\frac{N_i}{L}+c_{beam,i}, \qquad s_{\sigma_i}=\sqrt{(\frac{s_{N_i}}{L})^2+(\frac{N_i\cdot s_L^{total}}{L^2})^2}
 \end{equation}
 
-Figures \ref{fig:WQee} - \ref{fig:WQqq} show the results of the calculations. The Breit-Wigner function from equation \ref{eq:principles:breitwigner} was fitted to the data.
+Figures \ref{fig:WQee} - \ref{fig:WQqq} show the results of the calculations. The Breit-Wigner function from equation \ref{eq:principles:breitwigner}
+\begin{equation}
+\sigma_f(s) = \frac{12\pi}{M_Z^2} \frac{s\Gamma_e\Gamma_f}{(s-M_Z^2)^2+(s^2\Gamma_Z^2/M_Z^2)}
+\end{equation}
+was fitted to the data. For all fits, instead of $\Gamma_e\Gamma_f$, $\Gamma_f^2$ was used. For the leptons, this means assuming lepton universality.
 
 \begin{figure}[H]
 \centering
@@ -311,28 +317,28 @@ Figures \ref{fig:WQee} - \ref{fig:WQqq} show the results of the calculations. Th
 \label{fig:WQee}
 \end{figure}
 
-\begin{figure}
+\begin{figure}[H]
 \centering
 \includegraphics[width=1.0\linewidth]{../results/data_results/wqs/WQmm}
 \caption[Cross sections for muon cut]{Cross sections of the different $\sqrt{s}$ in the muon cut.}
 \label{fig:WQmm}
 \end{figure}
 
-\begin{figure}
+\begin{figure}[H]
 	\centering
 	\includegraphics[width=1.0\linewidth]{../results/data_results/wqs/WQTT}
 	\caption[Cross sections for tauon cut]{Cross sections of the different $\sqrt{s}$ in the tauon cut.}
 	\label{fig:WQTT}
 \end{figure}
 
-\begin{figure}
+\begin{figure}[H]
 \centering
 \includegraphics[width=1.0\linewidth]{../results/data_results/wqs/WQqq}
 \caption[Cross sections for quark cut]{Cross sections of the different $\sqrt{s}$ in the quark cut.}
 \label{fig:WQqq}
 \end{figure}
-
-From fits yielded the following values for the mass of the Z$^0$-boson
+\newpage
+The fits yielded the following values for the mass of the Z$^0$-boson
 \begin{table}[H]\centering
 	\begin{tabular}{@{}llll@{}}
 		\toprule
@@ -341,19 +347,36 @@ From fits yielded the following values for the mass of the Z$^0$-boson
 		&$e^+e^-$&91.20&0.03\\
 		&$\mu^+\mu^-$&91.11&0.06\\
 		&$\tau^+\tau^-$&91.18&0.04\\
-		&$q\overline{q}$&91.19&0.009\\
+		&$q\overline{q}$&91.189&0.009\\
 		\midrule
 		&Weighted mean&91.189&0.008\\
 		&Literature value&91.1876&0.0021\\
 		\bottomrule
 	\end{tabular}
-	\caption[Fitresults for $M_{Z^0}$]{The mass of Z$^0$ as it was calculated from the fits for the different cuts as well as their weighted mean.}
+	\caption[Breit-Wigner fit results: $M_{Z^0}$]{The mass of Z$^0$ as it was calculated from the fits for the different cuts as well as their weighted mean.}
 	\label{tb:Z0massfitresults}
 \end{table}
 
+The weighted mean is in good agreement with the literature value
+
+\subsection{Decay widths and the neutrino generations}
+The Breit-Wigner fits also included the decay widths as fit parameters. The results are listed in table \ref{tb:decaywidthfitresults}. As
+\begin{table}[H]\centering
+	\begin{tabular}{@{}lllllll@{}}
+		\toprule
+		&Event $i$&$\Gamma_{total}$ [GeV]&$s_{\Gamma_{total}}$ [GeV]&$\Gamma_i$ [MeV]&$s_{\Gamma_i}$ [MeV]&$\Gamma^{lit}_i$ [MeV]\\
+		\midrule
+		&$e^+e^-$&2.30&0.11&95&4&83.8\\
+		&$\mu^+\mu^-$&2.52&0.06&82.9&1.7&83.8\\
+		&$\tau^+\tau^-$&2.48&0.07&77.0&1.9&83.8\\
+		&$q\overline{q}$&2.526&0.019&&&1732\\
+		\bottomrule
+	\end{tabular}
+	\caption[Breit-Wigner fit results: Decay widths ]{The decay widths resulting from the Breit-Wigner fits and their literature value for comparison }
+	\label{tb:decaywidthfitresults}
+\end{table}
 
 
-\subsection{Analysis of the decay widths}
 \subsection{Forward-backward asymmetry}
 
 
