@@ -1,6 +1,6 @@
 #ignore all pngs (so that graphic output of root code is ignored)
 **/*.png
-
+!results/data_results/cosp_fits/*.png
 
 #ignore all txt files
 **/*.txt
