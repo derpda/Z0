@@ -8,7 +8,7 @@
 !results/matrix/*.txt
 
 #ignore root files
-**/*.root
+#**/*.root
 
 #ignore data folder
 daten/
