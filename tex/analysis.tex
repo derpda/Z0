@@ -5,6 +5,43 @@ As no data was surveyed by the authors, there will be no chapter on the experime
 	\item Actual data from the OPAL detector at the LEP collider.
 \end{enumerate}
 
+\subsection{Event signatures}
+The four main types of events leave distinct signatures, which can be inspected in the detector cross sections. Figures \ref{fig:electronopal} to \ref{fig:quarkopal} show said cross sections. 
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.75\linewidth]{graphics/electronopal}
+\caption[OPAL cross secion electron event]{The OPAL cross section of an electron event. The energy deposition only being in the electromagnetic calorimeter clearly characterizes this event.}
+\label{fig:electronopal}
+\end{figure}
+\paragraph{Electron event:} The two charged tracks in the drift chamber and the large depositions in the electromagnetic calorimeter (yellow bars) are characteristic for an electron event. Additional depositions in the electromagnetic calorimeter are due to bremsstrahlung.
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.75\linewidth]{graphics/muonopal}
+\caption[OPAL cross section muon event]{OPAL cross section of a muon event. The red arrows in the muon chambers (outermost ring) make muon events easy to spot.}
+\label{fig:muonopal}
+\end{figure}
+\paragraph{Muon event:} Muons only interact very weakly with matter, which explains the low depositions in both the electromagnetic and hadronic calorimeters (purple bars). The muon chambers detect the outgoing muons, which is depicted as red vectors pointing outward in figure \ref{fig:muonopal}.
+\newpage
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.75\linewidth]{graphics/tauonopal}
+\caption[OPAL cross section tauon event]{OPAL cross section of a tauon event. Tauon are very short lived and have in this case decayed to four charged pions.}
+\label{fig:tauonopal}
+\end{figure}
+\paragraph{Tauon event:} The short life span of tauons makes their signature more complex and diverse. In above figure, one tauon decayed to one charged pion while the other decayed to three charged pions. There are many other possibilities, in all of which undetected neutrinos or anti-neutrinos are also created. The tauon decays hadronically roughly $64.79\%$ of the time and otherwise leptonically into a tau-neutrino, an electron or muon and the respective anti-neutrino \cite{taudata}.
+
+\newpage
+\begin{figure}
+\centering
+\includegraphics[width=0.75\linewidth]{graphics/quarkopal}
+\caption[OPAL cross section quark event]{Opal cross section of a quark event. The particle jet and the large depositions in the hadronic calorimeter are characteristic for a quark decay.}
+\label{fig:quarkopal}
+\end{figure}
+\paragraph{Quark event:} These events are easily recognizable by the large number of charged particles, the so-called hadron jets. The energy is deposited in both electromagnetic and hadronic calorimeters.
+\newpage
+
 
 \subsection{Selection of cuts}
 In a first step, the data from the Monte Carlo simulations is plotted over adequate range in the following parameters:
@@ -16,7 +53,7 @@ In a first step, the data from the Monte Carlo simulations is plotted over adequ
 	\item{\makebox[3cm][l]{\textbf{COS\_THET:}}Angle $\theta$ between created the positive lepton and the \\\makebox[3cm][l]{}incident positron beam}
 	\item{\makebox[3cm][l]{\textbf{COS\_THRU:}}Angle between the thrust axis for hadronic events and the \\\makebox[3cm][l]{}incident positron beam}
 \end{itemize}
-These plots include the simulation events from decays to electrons, myons, tauons as well as quarks in similar amounts. These ratios are not a representation of the actual ratios as they would be expected in the real data, as the decay width of quarks is much greater than that of the three types of leptons. \\
+These plots include the simulation events from decays to electrons, muons, tauons as well as quarks in similar amounts. These ratios are not a representation of the actual ratios as they would be expected in the real data, as the decay width of quarks is much greater than that of the three types of leptons. \\
 To further improve comparability of the different data sets, all histograms were normed to an integral of 1. The resulting plots are shown in figures \ref{fig:Ncharged} to \ref{fig:cos_thru}. Using these graphs, as well as the knowledge of the type of event, cuts are established which will later be used to separate the actual data, where there is no initial knowledge of the type of event.\\
 Thus, for every type of educts, a cut is to be made with maximum possible efficiency in detecting the respective kind of event, as well as maximum purity, meaning that other events are falsely allotted as rarely as possible.
 
@@ -371,7 +408,7 @@ The Breit-Wigner fits also included the decay widths as fit parameters. The resu
 		&$q\overline{q}$&2.526&0.019&1777&41&1732&1742\\
 		\bottomrule
 	\end{tabular}
-	\caption[Breit-Wigner fit results: Decay widths ]{The decay widths resulting from the Breit-Wigner fits and their literature value (from \cite{staatsex}, nor error given) for comparison. The values that were theoretically calculated by the authors during the preparation for the experiment are listed in the last column.}
+	\caption[Breit-Wigner fit results: Decay widths ]{The decay widths resulting from the Breit-Wigner fits and their literature value (from \cite{staatsex}, no error given) for comparison. The values that were theoretically calculated by the authors during the preparation for the experiment are listed in the last column.}
 	\label{tb:decaywidthfitresults}
 \end{table}
 
@@ -391,9 +428,9 @@ To calculate the amount of neutrino generations $n_{\nu-gen}$, on first has to c
 where $\Gamma_{Z}^{ave}=\unit{(2.516\pm0.017)}{GeV}$ is the weighted average of the four calculated $\Gamma_{Z}$. Again assuming lepton universality, the muon result was used for $\Gamma_e$.
 The blind decay width is then divided by the theoretically calculated decay width $\Gamma_{\nu}^{calc}=\unit{0.1676}{GeV}$ (see table \ref{tb:appendix:decay widths}) of a single neutrino generation.
 \begin{equation}
-	n_{\nu-gen}=\frac{\Gamma_{blind}}{\Gamma_{\nu}^{calc}}=(2.9\pm0.5)
+	n_{\nu-gen}=\frac{\Gamma_{blind}}{\Gamma_{\nu}^{calc}}=(2.93\pm0.26)
 \end{equation}
-While the relative error,being roughly 17\%, is large, the only integer that the $1\sigma$ interval encloses is 3. Since the $2\sigma$ interval additionally includes 2 and the $3\sigma$ interval encloses 4, the results suggest that there are 3 neutrino generations, but do not satisfactory rule out the possibility that there are 2 or 4 neutrino generations.
+Even the $3\sigma$ interval encloses no other integers than 3, meaning that it can be said with quite some confidence that there are 3 neutrino generations.
 
 
 \subsection{Forward-backward asymmetry}
@@ -429,5 +466,4 @@ s_{\theta_w}&=\sqrt{\frac{\pi}{4\sqrt{2}}}\cdot\sqrt{\frac{s_{M_Z}^2\cdot\alpha(
 \end{aligned}
 \end{equation}
 Converted to degrees, the results it $\theta_w=(28.746\pm0.004)$°, which encloses the literature value $\theta_w^{lit}=28.7426$° \cite{muenchen} in its $1\sigma$ interval.
-
 
