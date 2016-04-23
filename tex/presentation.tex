@@ -1,0 +1,126 @@
+%% LaTeX Beamer presentation template (requires beamer package)
+%% see http://bitbucket.org/rivanvx/beamer/wiki/Home
+%% idea contributed by H. Turgut Uyar
+%% template based on a template by Till Tantau
+%% this template is still evolving - it might differ in future releases!
+
+\documentclass{beamer}
+
+\mode<presentation>
+
+\usetheme{Malmoe}
+\useoutertheme{infolines}
+\useinnertheme{default}
+\setbeamercovered{transparent}
+\setbeamertemplate{itemize items}[circle]  % itemize circles
+\renewcommand\textbullet{\ensuremath{\bullet}}  % no error for bullets
+\setbeamertemplate{caption}[numbered]      % numbered captions
+\beamertemplatenavigationsymbolsempty
+
+% PACKAGES + MODIFICATIONS
+
+\usepackage[ngerman]{babel} %language and fonts
+\usepackage[utf8]{inputenc}
+\usepackage{lmodern}
+\usepackage{textgreek}
+
+\usepackage{amsmath}	% math, use [fleqn] for equations on the left
+\usepackage{amssymb}	% more symbols
+\usepackage{mathtools}  % for := (\coloneqq)
+
+\usepackage{graphicx}	%graphics
+
+\usepackage{feynmf}		% feynman graphs
+\DeclareGraphicsRule{*}{mf}{*}{}
+
+\usepackage{pifont}% http://ctan.org/pkg/pifont
+\newcommand{\cmark}{\ding{51}}%
+\newcommand{\xmark}{\ding{55}}%
+
+\usepackage{enumerate}	% better way to config enumerates
+
+\usepackage{tikz}		% flexible arrows
+\usetikzlibrary{tikzmark,positioning}
+
+\usepackage[skins,theorems]{tcolorbox}	%colored box
+\tcbset{highlight math style={enhanced,colframe=red,colback=white,arc=0pt,boxrule=1pt}}
+
+\usepackage{booktabs} % nicer hlines in tables
+
+\usepackage{siunitx}
+\sisetup{input-symbols = {()\%},  % do not treat "(", ")" and "%" in any special way
+         group-digits  = false} % no grouping of digits
+
+% NEW COMMANDS
+\newcommand{\difd}{\mathrm{d}}							% differential d
+\newcommand{\abs}[1]{\left|#1\right|}					% |.|
+\newcommand{\avg}[1]{\left\langle#1\right\rangle}		% <.>
+\newcommand{\dfour}{\delta^{(4)}}						% 4-dim. delta-distribution
+\newcommand{\const}{const.}								% const.
+\newcommand{\tptm}{{\tau^+ \tau^-}}						% \tau^+ \tau-
+\newcommand{\qqbar}{\text{q} \bar{\text{q}}}			% q q~
+\newcommand{\mathematica}{\textsc{Mathematica}}			% Mathematica in small capitals
+\newcommand{\mg}{\textsc{MadGraph}}						% MadGraph in small capitals
+\newcommand{\mgfive}{\textsc{MadGraph}~5}				% MadGraph in small capitals with version number
+\newcommand{\vegas}{VEGAS}								% VEGAS
+\newcommand{\cuba}{\textsc{Cuba}}						% Cuba in small capitals
+\newcommand{\unit}[1]{\,\text{#1}}						% physical unit
+\newcommand{\matrixm}{\mathcal{M}}						% matrix element M
+\newcommand<>{\uncoverubrace}[2]{
+  \onslide#3 \underbrace{ \onslide<1->
+  #1
+  \onslide#3 }_{#2} \onslide<1->
+}
+\newcommand{\emptynl}{\mbox{}\\}						% empty new line
+
+\DeclareMathOperator{\sgn}{sgn}
+
+% DOCUMENT SETTINGS
+
+\title{$Z^0$ Resonanz am LEP}
+\subtitle{FP II Präsentation}
+\author{B. Winkelmann, P. Spalthoff}
+\institute{}
+\date{27.04.2016}
+
+
+% This is only inserted into the PDF information catalog. Can be left out.
+\subject{\texorpdfstring{$Z^0$}{Z0} resonance at the LEP}
+
+\begin{document}
+
+\begin{frame}[noframenumbering, plain]
+\titlepage
+\end{frame}
+
+\begin{frame}[noframenumbering]
+\frametitle{Inhalt}
+\tableofcontents[hideallsubsections]
+\end{frame}
+
+\AtBeginSection[]
+{
+\begin{frame}<beamer>[noframenumbering]
+\frametitle{}
+\tableofcontents[currentsection,hideothersubsections]
+\end{frame}
+}
+
+\input{presentation-theory}
+
+\input{presentation-LEPOPAL}
+
+\input{presentation-analysis}
+
+\input{presentation-conclusion}
+
+\AtBeginSection[]{}
+
+
+\bgroup
+\setbeamercolor{background canvas}{bg=black}
+\begin{frame}[plain]{}
+\end{frame}
+\egroup
+
+\end{document}
