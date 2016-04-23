@@ -13,25 +13,33 @@ Figure~\ref{fig:principles:Standard_Model_of_Elementary_Particles} gives an over
 
 \subsection{Electroweak force and Weinberg Angle}
 1967 Glasgow, Salam and Weinberg were able to unify the electromagnetic and weak force. In this model the electroweak interaction is mediated by four Bosons $W^1$, $W^2$, $W^3$ and $B^0$. The Bosons of the Standard Model are then described as a linear combination of those Bosons; two charged states
+
 \begin{equation}
 \ket{W^{\pm}}=(1/\sqrt{2}) (\ket{W^1}\mp i\ket{W^2})
 \end{equation}
+
 and the photon and $Z^0$ Boson as orthogonal neutral states\cite{Grif}
+
 \begin{equation}
 \begin{aligned}
 \ket{\gamma} &=  cos(\theta_w)\ket{B^0} + sin(\theta_w) \ket{W^0}\\
 \ket{Z^0} &= -sin(\theta_w) \ket{B^0} + cos(\theta_w) \ket{W^0}
 \end{aligned}
 \end{equation}
+
 The mixing angle $\theta_w$ is called \emph{Weinberg angle}. It is further related to the fine-structure constant  $\alpha$, the Fermi coupling constant $G_F$ and the mass of the $Z^0$ Boson\cite{muenchen}:
+
 \begin{equation}
 sin^2(\theta_w)\cdot cos^2(\theta_w) = \frac{\pi\alpha}{\sqrt{2}G_FM_Z^2}
 \end{equation}
+
 The mass of the $W^{\pm}$ Bosons can be expressed as:
 \begin{equation}
 M_W = M_Z~cos(\theta_w)
 \end{equation}
+
 In electroweak interaction one distinguishes two forms of coupling, vector (changes sign under parity transformation) and axial vector (does not change sign under parity transformation) coupling. The coupling strengths for a fermion $f$ with the third component of weak isospin $I^f_3$ and the charge $Q_f$ is given by\cite{muenchen}:
+
 \begin{equation}
 \begin{aligned}
 g_V^f &= I^f_3-2 Q_f sin^2(\theta_w)\\
@@ -39,21 +47,29 @@ g_A^f &= I^f_3
 \end{aligned}
 \label{eq:principles:coupling strengths}
 \end{equation}
+
 \subsection{Cross Section and decay width}
 The cross section $\sigma$ is a measure for the probability or rate of a reaction during collision of two particles. In this experiment it is related to the Luminosity $L$ of the electron beam and the total Number of reactions $N$:
+
 \begin{equation}
 \sigma = \frac{N}{\int L~\text{d}t}
 \end{equation}
+
 In those collisions new particles can be created that in turn may decay with a mean life time $T$.
 Heisenberg's uncertainty principle relates the mean life with the (total)\emph{decay width}:
+
 \begin{equation}
 \hbar=T\cdot\Gamma
 \end{equation}
+
 Often the particle can decay through different channels. The probability that a decay takes channel $i$ is called the branching ratio $BR_i$. It can be described with the \emph{partial} decay width $\Gamma_i$:
+
 \begin{equation}
 \Gamma = \sum_i \Gamma_i
 \end{equation}
+
 The branching ratio is then:
+
 \begin{equation}
 BR_i=\frac{\Gamma_i}{\Gamma}
 \label{eq:principles:branching ratio}
@@ -64,24 +80,27 @@ BR_i=\frac{\Gamma_i}{\Gamma}
 \begin{figure}[ht]
 	\centering
 	\includegraphics{graphics/annihilation.png}
-	\caption{Feynamn diagram of the $e^-e^+ \rightarrow f\bar{f}$ in first order, where f is an arbitrary fermion}
+	\caption{Feynman diagram of the $e^-e^+ \rightarrow f\bar{f}$ in first order, where f is an arbitrary fermion}
 	\label{fig:principles:annihilation.png}
 \end{figure}
 
 The reaction were interested for this experiment is the $e^-e^+\rightarrow\bar{f}$ interaction. Figure \ref{fig:principles:annihilation.png} shows the s-channel: Electron and positron annihilate each other and a $Z^0$ Boson or a photon is produced, which in turn decay to a lepton or a Quark and its corresponding antiparticle (except for the top quark, since the center-of-mass energy is less than the mass of two top quarks). The photon process is repressed at energies close to the Mass of the $Z^0$ Boson\cite{muenchen}.\\%wie stark?
 The cross section for the $e^-e^+\rightarrow f\bar{f}$ reaction is a function of the center-of-mass energy, which exhibits a peak at 91.187 GeV caused by the $Z^0$ resonance(s. fig \ref{fig:principles:crosssection}).
+
 \begin{figure}[H]
 \centering
 \includegraphics[width=\linewidth]{graphics/crosssection}
-\caption{cross section as a function of the center-of-mass energy}
+\caption{cross section as a function of the center-of-mass energy\cite{jakobs}}
 \label{fig:principles:crosssection}
 \end{figure}
 
- Neglecting the fermion masses and at energies close to the resonance this function can be described with a Breit-Wigner curve\footnote{For a table of theoretical decay widths and cross section and their calculation s. appendix}\cite{staatsex}:
+ Neglecting the fermion masses and at energies close to the resonance this function can be described with a Breit-Wigner curve\footnote{For a table of theoretical decay widths and cross section and their calculation s. appendix}\cite{muenchen}:
+ 
 \begin{equation}
-\sigma_f(s) = \frac{12\pi}{M_Z^2} \frac{s\Gamma_e\Gamma_f}{(s-M_Z^2)^2+(s^2\Gamma_Z^2/M_Z^2)}
+\sigma_f(s) = \frac{12\pi}{M_Z^2} \frac{s\Gamma_e\Gamma_f}{(s-M_Z^2)^2+s^2\Gamma_Z^2/M_Z^2}
 \label{eq:principles:breitwigner}
 \end{equation}
+
 Where $\sqrt{s}$ is the center-of-mass energy, $M_Z$ the $Z_0$ mass, $\Gamma_Z$ the total \emph{decay width}, $\Gamma_e$ the partial decay width for electrons and $\Gamma_f$ the partial decay width.
 \begin{figure}[H]
 	\centering
@@ -95,6 +114,7 @@ Figure \ref{fig:principles:BhabbaStreuung.png} shows the t-channel of the  $e^-e
 \label{eq:principles:s-t-channel}
 \end{equation}
 \subsection{radiation correction}
+\label{sec:principles:radiation correction}
 The Feynman diagrams in the previous chapter were only first order. Neglecting higher orders (Born approximation) does not yield accurate predictions\cite{muenchen}. Three different corrections have to made: the photonic, the non-photonic and the Quantum chromodynamic (QCD) correction.
 \begin{figure}[H]
 \centering
