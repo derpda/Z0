@@ -17,7 +17,7 @@ In a first step, the data from the Monte Carlo simulations is plotted over adequ
 	\item{\makebox[3cm][l]{\textbf{COS\_THRU:}}Angle between the thrust axis for hadronic events and the \\\makebox[3cm][l]{}incident positron beam}
 \end{itemize}
 These plots include the simulation events from decays to electrons, myons, tauons as well as quarks in similar amounts. These ratios are not a representation of the actual ratios as they would be expected in the real data, as the decay width of quarks is much greater than that of the three types of leptons. \\
-To further improve comparability of the different data sets, all histograms were normed to an integral of 1. The resulting plots are shown in graphics !!ADD GRAPHS REF!!. Using these graphs, as well as the knowledge of the type of event, cuts are established which will later be used to separate the actual data, where there is no initial knowledge of the type of event.\\
+To further improve comparability of the different data sets, all histograms were normed to an integral of 1. The resulting plots are shown in figures \ref{fig:Ncharged} to \ref{fig:cos_thru}. Using these graphs, as well as the knowledge of the type of event, cuts are established which will later be used to separate the actual data, where there is no initial knowledge of the type of event.\\
 Thus, for every type of educts, a cut is to be made with maximum possible efficiency in detecting the respective kind of event, as well as maximum purity, meaning that other events are falsely allotted as rarely as possible.
 
 \newpage
@@ -139,7 +139,6 @@ As no charged particles are created in the event type described by the Feynman g
 \label{fig:twophotonfeynman}
 \end{figure}
 
-\newpage
 \subsection{Purity and the efficiency matrix}
 These cuts are now applied to the simulated data, where the kind of event is known. This way, one can determine the efficiency and purity of the cuts and judge how well they work. 
 The efficiency matrix is relatively easily calculated as
@@ -266,18 +265,25 @@ The resulting matrix is displayed in table \ref{tb:invefficiencyerror}
 \end{table}
 
 \subsection{Separation of s- and t-channel}
-A linear combination of the equations for $\sigma_s$ and $\sigma_t$ (equation \ref{eq:principles:s-t-channel}),
+The electron data still includes the scattering events (t-channel), where no real $Z^0$ is created. The results from these measurements thus give no information about the properties of the $Z^0$ boson and need to be excluded from the results. In section \ref{sec:ee interaction}, it was explained that these two kinda of events show different angular distributions. A linear combination of said distributions, $\sigma_s$ and $\sigma_t$ (equation \ref{eq:principles:s-t-channel}),
 \begin{equation}
-N(x)=A_1\cdot(1-x^2)+A_2\cdot(1-x)^{-2}
+N(x)=A_s\cdot(1-x^2)+A_t\cdot(1-x)^{-2}
 \end{equation}
-was fitted to the cos\_theta-channel data of the events classified by the cuts as electron events. The result can be seen in figure \ref{fig:stchannelseparation}.
+where $A_s$ and $A_t$ are fit parameters and $x=$cos\_theta is the variable, was fitted to the cos\_theta-channel data of the events classified by the cuts as electron events. The result can be seen in figure \ref{fig:stchannelseparation}.
 \begin{figure}
 \centering
 \includegraphics[width=1.0\linewidth]{../results/data_results/cosp_fits/stchannelexample46.png}
-\caption[s-t channel separation $\sqrt{s}\approx92$ GeV]{sada}
+\caption[s-t-channel separation $\sqrt{s}\approx\unit{92}{GeV}$ GeV]{S-t channel separation for $\sqrt{s}\approx\unit{92}{GeV}$. The electron cut limits cos\_theta to the range $-0.9\le$cos\_theta$\le0.9$.}
 \label{fig:stchannelseparation}
 \end{figure}
-
+The number of events in the s-channel $N_s$ and t-channel $N_t$ can then be calculated by integrating the summands respectively
+\begin{equation}
+N_s=s\cdot\int_{-0.9}^{0.9}1+x^2dx=:s\cdot I_s,\qquad N_t=t\cdot\int_{-0.9}^{0.9}(1-x)^{-2}dx=:t\cdot I_t
+\end{equation}
+The integrals are mere constants,$I_s\approx2.3$ and $I_t\approx9.5$, thus making the error calculations simpler as they might seem on first glance. The following quotient can later be used to correct the number of $e^+e^-$-events after the cuts
+\begin{equation}
+c_{st}=\frac{N_s}{N_s+N_t},\qquad s_{c_{st}}=\sqrt{\left(\frac{I_s\cdot N_t}{(N_s+N_t)^2}\cdot s_s\right)^2+\left(\frac{I_t\cdot N_s}{(N_s+N_t)^2}\cdot s_t\right)^2}
+\end{equation}
 
 \subsection{Cross sections and the mass of Z$^0$}
 With the data cleared of underground effects, the cross sections can be calculated. The number of events after the respective cuts $\vec{C}$ are Poisson-distributed, thus
@@ -317,40 +323,19 @@ The cross section and their error can then be calculated as
 \sigma_i=\frac{N_i}{L}+c_{beam,i}, \qquad s_{\sigma_i}=\sqrt{(\frac{s_{N_i}}{L})^2+(\frac{N_i\cdot s_L^{total}}{L^2})^2}
 \end{equation}
 
-Figures \ref{fig:WQee} - \ref{fig:WQqq} show the results of the calculations. The Breit-Wigner function from equation \ref{eq:principles:breitwigner} was changed to be
+Figure \ref{fig:WQmm} shows the result of the calculations for the muon cut (for the other graphs, see appendix). The Breit-Wigner function from equation \ref{eq:principles:breitwigner} was changed to be
 \begin{equation}
-\sigma_f(s) = \frac{12\pi}{M_Z^2} \frac{s\Gamma_f^2}{(s-M_Z^2)^2+(s^2\Gamma_Z^2/M_Z^2)}
+\sigma_f(s) = \frac{12\pi}{M_Z^2} \frac{s\Gamma_f^2}{(s-M_Z^2)^2+s^2\Gamma_Z^2/M_Z^2}
 \end{equation}
-where, instead of $\Gamma_e\Gamma_f$, $\Gamma_f^2$ was used, reducing the number of fit parameters. For the leptons, this means assuming lepton universality. For the hadrons, this makes an additional calculation, which will be discussed in the next section. This function was used for all of the following fits.
+where, instead of $\Gamma_e\Gamma_f$, $\Gamma_f^2$ was used for all fits, reducing the number of fit parameters. For the leptons, this means assuming lepton universality. For the hadrons, this makes an additional calculation, which will be discussed in the next section. This function was used for all of the following fits.
 
-\begin{figure}[H]
-\centering
-\includegraphics[width=1.0\linewidth]{../results/data_results/wqs/WQee}
-\caption[Cross sections for electron cut]{Cross sections of the different $\sqrt{s}$ in the electron cut.}
-\label{fig:WQee}
-\end{figure}
-
-\begin{figure}[H]
+\begin{figure}
 \centering
 \includegraphics[width=1.0\linewidth]{../results/data_results/wqs/WQmm}
-\caption[Cross sections for muon cut]{Cross sections of the different $\sqrt{s}$ in the muon cut.}
+\caption[Cross sections for muon cut]{Cross sections of the different $\sqrt{s}$ in the muon cut. The graphs for the other cuts can be found in the appendix.}
 \label{fig:WQmm}
 \end{figure}
 
-\begin{figure}[H]
-	\centering
-	\includegraphics[width=1.0\linewidth]{../results/data_results/wqs/WQTT}
-	\caption[Cross sections for tauon cut]{Cross sections of the different $\sqrt{s}$ in the tauon cut.}
-	\label{fig:WQTT}
-\end{figure}
-
-\begin{figure}[H]
-\centering
-\includegraphics[width=1.0\linewidth]{../results/data_results/wqs/WQqq}
-\caption[Cross sections for quark cut]{Cross sections of the different $\sqrt{s}$ in the quark cut.}
-\label{fig:WQqq}
-\end{figure}
-\newpage
 The fits yielded the following values for the mass of the Z$^0$-boson
 \begin{table}[H]\centering
 	\begin{tabular}{@{}llll@{}}
@@ -378,7 +363,7 @@ The Breit-Wigner fits also included the decay widths as fit parameters. The resu
 \begin{table}[h]\centering
 	\begin{tabular}{@{}llllllll@{}}
 		\toprule
-		&Event $i$&$\Gamma_{total}$ [GeV]&$s_{\Gamma_{total}}$ [GeV]&$\Gamma_i$ [MeV]&$s_{\Gamma_i}$ [MeV]&$\Gamma^{lit}_i$ [MeV]&$\Gamma^{calc}_i$ [MeV]\\
+		&Event $i$&$\Gamma_{Z}$ [GeV]&$s_{\Gamma_{Z}}$ [GeV]&$\Gamma_i$ [MeV]&$s_{\Gamma_i}$ [MeV]&$\Gamma^{lit}_i$ [MeV]&$\Gamma^{calc}_i$ [MeV]\\
 		\midrule
 		&$e^+e^-$&2.28&0.11&94&4&83.8&83.4\\
 		&$\mu^+\mu^-$&2.52&0.06&82.9&1.7&83.8&83.4\\
@@ -395,10 +380,54 @@ The partial decay width $\Gamma_q$ of the quark events was calculated from the f
 \Gamma_q=\frac{(\Gamma_{f}^q)^2}{\Gamma_e},\qquad
 s_{\Gamma_q}=\sqrt{\left(\frac{2\Gamma_f^q}{\Gamma_e}\cdot s_{\Gamma_f^q}\right)^2+\left(\frac{(\Gamma_f^q)^2}{\Gamma_e^2}\cdot s_{\Gamma_e}\right)^2}
 \end{equation}
-where the results from the muon fits were used for the partial decay width of the electron $\Gamma_e$. This can be done since we have already assumed lepton universality and is reasonable, because the electron results include the s-t channel separation, which, as discussed, is a significant source of error. Furthermore, the purity (table \ref{tb:purity}), was the highest for muon cuts, while the efficiency was still the best for among the lepton cuts.\\
+where the results from the muon fits were used for the partial decay width of the electron $\Gamma_e$. This can be done since we have already assumed lepton universality and is reasonable, because the electron results include the s-t-channel separation, which, as discussed, is a significant source of error. Furthermore, the purity (table \ref{tb:purity}), was the highest for muon cuts, while the efficiency was still the best for among the lepton cuts.\\
 The tauon events are a less reliable source due to their comparatively complex signature (see figure \ref{fig:tauonopal}). As a result, the simulated tauon data showed significant overlaps with the other data sets in all analysis channels, thus making it difficult to define efficient cuts with high purity. 
-Incidentally, the muon events are also the only lepton event that includes the literature and theoretical values in their $1\sigma$ interval. The results for the electron events is higher than expected and includes said values only in its $3\sigma$ interval. This is likely due to the s-t channel separation. If not all Bhabha scattering events are excluded, the cross section increases and with it does the decay width resulting from the fits. More data could improve the fit that was done to the cos\_theta distribution of the electron cuts. 
+Incidentally, the muon events are also the only lepton event that includes the literature and theoretical values in their $1\sigma$ interval. The results for the electron events is higher than expected and includes said values only in its $3\sigma$ interval. This is likely due to the s-t-channel separation. If not all Bhabha scattering events are excluded, the cross section increases and with it does the decay width resulting from the fits. More data could improve the fit that was done to the cos\_theta distribution of the electron cuts. \\
+
+To calculate the amount of neutrino generations $n_{\nu-gen}$, on first has to calculate the blind decay width
+\begin{equation}
+	\Gamma_{blind}=\Gamma_{Z}^{ave}-3\cdot\Gamma_e-\Gamma_{q\overline{q}}=\unit{(0.49\pm0.04)}{GeV}
+\end{equation}
+where $\Gamma_{Z}^{ave}=\unit{(2.516\pm0.017)}{GeV}$ is the weighted average of the four calculated $\Gamma_{Z}$. Again assuming lepton universality, the muon result was used for $\Gamma_e$.
+The blind decay width is then divided by the theoretically calculated decay width $\Gamma_{\nu}^{calc}=\unit{0.1676}{GeV}$ (see table \ref{tb:appendix:decay widths}) of a single neutrino generation.
+\begin{equation}
+	n_{\nu-gen}=\frac{\Gamma_{blind}}{\Gamma_{\nu}^{calc}}=(2.9\pm0.5)
+\end{equation}
+While the relative error,being roughly 17\%, is large, the only integer that the $1\sigma$ interval encloses is 3. Since the $2\sigma$ interval additionally includes 2 and the $3\sigma$ interval encloses 4, the results suggest that there are 3 neutrino generations, but do not satisfactory rule out the possibility that there are 2 or 4 neutrino generations.
+
 
 \subsection{Forward-backward asymmetry}
+The forward ($0<$ cos\_theta $<1$) and backward ($-1<$ cos\_theta $<0$) events were counted for the second, forth and sixth center-of-mass energies, $\sqrt{s}\approx89.5\text{, }91.23$ and $\unit{93.0}{GeV}$. This represents the integrals in equation \ref{eq:priciples:fbintegral}, as the cross sections are proportional to the number of events. The asymmetry can then be calculated as
+\begin{equation}
+A_{fb}=\frac{N_f-N_b}{N_f+N_b},\qquad s_{A_{fb}}=2\sqrt{\frac{N_f^2s_{N_b}^2+N_b^2s_{N_f}^2}{(N_f+N_b)^4}}=2\sqrt{\frac{N_fN_b}{(N_f+N_b)^3}}
+\end{equation}
+where $N_f$ and $N_b$ are the event counts, $s_{N_f}=\sqrt{N_f}$ and $s_{N_b}=\sqrt{N_b}$ are their binomial errors, thus justifying the simplification in above equation. 
+Equation \ref{eq:principles:asymmetry weinberg angle} now allows the calculation of the Weinberg angle. For that it has to be solved for the angle
+\begin{equation}
+\theta_w=\arcsin(\sqrt{\frac{1-\sqrt{A_{fb}/3}}{4}}),\qquad s_{\theta_w}=\frac{1}{4}\sqrt{-\frac{s_{A_{fb}}^2}{A_{fb}(\sqrt{12A_{fb}}+A_{fb}-9)}}
+\end{equation}
+Table \ref{tb:weinbergangle} shows the results of this calculation. Inserting the value $\theta_w=28.7$ ° \cite{Grif} in equation \ref{eq:principles:asymmetry weinberg angle} yields an expected asymmetry of $A_{bf}^{lit}\approx0.018$.\\
+\begin{table}[h]\centering
+	\begin{tabular}{@{}llllllll@{}}
+		\toprule
+		&$\sqrt{s}$ [GeV]&$N_f$&$N_b$&$A_{fb}$&$s_{A_{fb}}$&$\theta_w$ [°]&$s_{\theta_w}$ [°]\\
+		\midrule
+		&89.5&117&112&0.02&0.07&28.6&2.2\\
+		&91.23&1845&1881&-0.010&0.016&&\\
+		&93.0&153&99&0.21&0.06&25.3&0.7\\
+		\bottomrule
+	\end{tabular}
+	\caption[A\_{fb} and the Weinberg angle]{The Weinberg angle for calculated for three different center-of-mass energies. The Weinberg angle can be found in \cite{muenchen} as $\theta_w^{lit}=28.7426$°. Calculations for $\sqrt{s}\approx\unit{91.23}{GeV}$ yielded complex angles.}
+	\label{tb:weinbergangle}
+\end{table}
+As the asymmetry is negative for $\sqrt{s}\approx\unit{91.23}{GeV}$, the calculated Weinberg angle is complex. The $1\sigma$ interval around the asymmetry includes positive values and the $2\sigma$ interval includes the expected value for the asymmetry. In fact, all values for the asymmetry include the expected value, but their errors margins, in particular that for $\sqrt{s}\approx\unit{89.5}{GeV}$ being  $>300\%$, are very wide. This stems from the low number of counts and the fact that a difference of two values with a large relative error is calculated. More data would greatly increase the accuracy and allow for more reliable results for the asymmetry.\\
+According to \cite{muenchen}, the Weinberg angle itself can also be calculated as from the mass of the $Z^0$-boson and some constants. 
+\begin{equation}
+\begin{aligned}
+\theta_w&=\arcsin\left(\sqrt{\frac{1}{2}-\sqrt{\frac{1}{4}-\frac{\pi\cdot\alpha(M_Z^2)}{\sqrt{2}\cdot G_F\cdot M_Z^2}}}\right)\\
+s_{\theta_w}&=\sqrt{\frac{\pi}{4\sqrt{2}}}\cdot\sqrt{\frac{s_{M_Z}^2\cdot\alpha(M_Z^2)}{M_Z^2\cdot(G_FM_Z-2\sqrt{2}\pi\alpha(M_Z^2))}}
+\end{aligned}
+\end{equation}
+Converted to degrees, the results it $\theta_w=(28.746\pm0.004)$°, which encloses the literature value $\theta_w^{lit}=28.7426$° \cite{muenchen} in its $1\sigma$ interval.
 
 

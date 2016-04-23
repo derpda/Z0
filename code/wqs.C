@@ -4,11 +4,30 @@
 #include "TString.h"
 #include "TLegend.h"
 #include <iostream>
+#include <myfunctions.h>
+#include <string>
 
 void wqs(){
 	double factors[7]={0.118084,0.371194,0.517685,0.688433,0.656156,0.438832,0.473246};
 	double factors_err[7]={0.022072,0.0225952,0.0228781,0.00812138,0.0208721,0.0301878,0.0257884 };
 	//Luminositaeten
+
+	//Plot styling settings
+	gStyle->SetLabelSize(0.05, "x");
+	gStyle->SetLabelSize(0.05, "y");
+	gStyle->SetOptStat(0);
+	gStyle->SetLabelFont(42, "x");
+	gStyle->SetLabelFont(42, "y");
+	gStyle->SetOptTitle(0);
+	gStyle->SetOptFit(111);
+	gStyle->SetOptStat(0);
+
+	//create histogram objects
+	TLegend leg[4];
+	leg[0] = new TLegend(0.62, 0.62, 1.0, 1.0);
+	leg[1] = new TLegend(0.62, 0.62, 1.0, 1.0);
+	leg[2] = new TLegend(0.62, 0.62, 1.0, 1.0);
+	leg[3] = new TLegend(0.62, 0.62, 1.0, 1.0);
 
 	double L[7];
 	L[0]=675.8590;
@@ -118,11 +137,54 @@ void wqs(){
 		dat[i]->SetMarkerStyle(5);
 		TCanvas * c1 = new TCanvas("c", "c", w, h);
 		c->SetWindowSize(w + (w - c->GetWw()), h + (h - c->GetWh()));
-		dat[i]->Draw("AP");
+
 		//func -> Draw("SAME");
-		r=dat[i] -> Fit("func","S","",88.48021,93.71841);
+		r=dat[i]->Fit("func","S","",88.48021,93.71841);
 		r->Print("V");
+		//set graph axis labels
+		TF1 * f = dat[i]->GetFunction("func");
+		Double_t chi2 = f->GetChisquare();
+		Double_t mZ = f->GetParameter(0);
+		Double_t e_mZ = f->GetParError(0);
+		Double_t GZ = f->GetParameter(1);
+		Double_t e_GZ = f->GetParError(1);
+		Double_t Gf = f->GetParameter(2);
+		Double_t e_Gf = f->GetParError(2);
+		cout << "chi2 of cut " << i + 1 << ": " << chi2 << endl;
+		cout << "mZ of cut " << i + 1 << ": " << mZ << "+-" << e_mZ << endl;
+		cout << "GZ of cut " << i + 1 << ": " << GZ << "+-" << e_GZ << endl;
+		cout << "Gf of cut " << i + 1 << ": " << Gf << "+-" << e_Gf << endl;
+		graphstyle(dat[i], "Center-of-mass energy [GeV]", "Cross section #sigma [nb]");
+		dat[i]->Draw("AP");
+		TLegendEntry *le = leg[i]->AddEntry(f, "#\\frac{12\\pi}{M^2_Z}\\frac{s\\Gamma_f^2}{(s-M_Z^2)^2+s^2\\Gamma_Z^2/M_Z^2}","l");
+		//le->SetTextSize(0.032);
+		if (i == 0) {
+			leg[i]->AddEntry((TObject*)0, "#\\chi^2/DoF=4.7","");
+			leg[i]->AddEntry((TObject*)0, "#M_Z=91.10\\pm0.06\\quad GeV","");
+			leg[i]->AddEntry((TObject*)0, "#\\Gamma_Z=2.28\\pm0.11\\quad GeV","");
+			leg[i]->AddEntry((TObject*)0, "#\\Gamma_f=0.094\\pm0.004\\quad GeV","");
+		}
+		if (i == 1) {
+			leg[i]->AddEntry((TObject*)0, "#\\chi^2/DoF=2.3", "");
+			leg[i]->AddEntry((TObject*)0, "#M_Z=91.20\\pm0.03\\quad GeV", "");
+			leg[i]->AddEntry((TObject*)0, "#\\Gamma_Z=2.52\\pm0.06\\quad GeV", "");
+			leg[i]->AddEntry((TObject*)0, "#\\Gamma_f=0.0829\\pm0.0017\\quad GeV", "");
+		}
+		if (i == 2) {
+			leg[i]->AddEntry((TObject*)0, "#\\chi^2/DoF=3.1", "");
+			leg[i]->AddEntry((TObject*)0, "#M_Z=91.18\\pm0.04\\quad GeV", "");
+			leg[i]->AddEntry((TObject*)0, "#\\Gamma_Z=2.48\\pm0.07\\quad GeV", "");
+			leg[i]->AddEntry((TObject*)0, "#\\Gamma_f=0.0769\\pm0.0019\\quad GeV", "");
+		}
+		if (i == 3) {
+			leg[i]->AddEntry((TObject*)0, "#\\chi^2/DoF=3.1", "");
+			leg[i]->AddEntry((TObject*)0, "#M_Z=91.19\\pm0.09\\quad GeV", "");
+			leg[i]->AddEntry((TObject*)0, "#\\Gamma_Z=2.526\\pm0.019\\quad GeV", "");
+			leg[i]->AddEntry((TObject*)0, "#\\Gamma_f=0.3839\\pm0.0021\\quad GeV", "");
+		}
+		leg[i]->Draw();
 		c->SaveAs("../results/data_results/wqs/WQ"+names[i]+".png");
 		c->Close();
 	}
 }
+

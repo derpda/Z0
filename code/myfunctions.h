@@ -42,7 +42,23 @@ void graphstyle(TH2F *histo, string xin, string yin) {
 	histo->GetXaxis()->SetTitle(("#bf{" + xin + "}").c_str());
 	histo->GetYaxis()->SetTitle(("#bf{" + yin + "}").c_str());
 }
+/*Overloading of above function to accomodate TGraphErrors objects.*/
 
+void graphstyle(TGraphErrors *histo, string xin, string yin) {
+	//put char arrays into string
+
+	//set axis title styles
+	histo->GetXaxis()->SetTitleOffset(1.3);
+	histo->GetYaxis()->SetTitleOffset(1.3);
+	histo->GetXaxis()->CenterTitle();
+	histo->GetYaxis()->CenterTitle();
+	histo->GetXaxis()->SetTitleSize(0.039);
+	histo->GetYaxis()->SetTitleSize(0.039);
+	//set axis titles
+
+	histo->GetXaxis()->SetTitle(("#bf{" + xin + "}").c_str());
+	histo->GetYaxis()->SetTitle(("#bf{" + yin + "}").c_str());
+}
 
 
 
