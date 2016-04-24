@@ -11,7 +11,7 @@ The four main types of events leave distinct signatures, which can be inspected 
 \begin{figure}[H]
 \centering
 \includegraphics[width=0.75\linewidth]{graphics/electronopal}
-\caption[OPAL cross secion electron event]{The OPAL cross section of an electron event. The energy deposition only being in the electromagnetic calorimeter clearly characterizes this event.}
+\caption[OPAL cross secion electron event]{The OPAL cross section of an electron event. The energy deposition only being in the electromagnetic calorimeter clearly characterizes this event. \cite{cern}}
 \label{fig:electronopal}
 \end{figure}
 \paragraph{Electron event:} The two charged tracks in the drift chamber and the large depositions in the electromagnetic calorimeter (yellow bars) are characteristic for an electron event. Additional depositions in the electromagnetic calorimeter are due to bremsstrahlung.
@@ -19,15 +19,15 @@ The four main types of events leave distinct signatures, which can be inspected 
 \begin{figure}[H]
 \centering
 \includegraphics[width=0.75\linewidth]{graphics/muonopal}
-\caption[OPAL cross section muon event]{OPAL cross section of a muon event. The red arrows in the muon chambers (outermost ring) make muon events easy to spot.}
+\caption[OPAL cross section muon event]{OPAL cross section of a muon event. The red arrows in the muon chambers (outermost ring) make muon events easy to spot. \cite{cern}}
 \label{fig:muonopal}
 \end{figure}
 \paragraph{Muon event:} Muons only interact very weakly with matter, which explains the low depositions in both the electromagnetic and hadronic calorimeters (purple bars). The muon chambers detect the outgoing muons, which is depicted as red vectors pointing outward in figure \ref{fig:muonopal}.
 \newpage
 \begin{figure}[H]
 \centering
-\includegraphics[width=0.75\linewidth]{graphics/tauonopal}
-\caption[OPAL cross section tauon event]{OPAL cross section of a tauon event. Tauon are very short lived and have in this case decayed to four charged pions.}
+\includegraphics[width=0.75\linewidth]{graphics/tauonopalhadronisch}
+\caption[OPAL cross section tauon event]{OPAL cross section of a tauon event. Tauon are very short lived and have in this case decayed to four charged pions. \cite{cern}}
 \label{fig:tauonopal}
 \end{figure}
 \paragraph{Tauon event:} The short life span of tauons makes their signature more complex and diverse. In above figure, one tauon decayed to one charged pion while the other decayed to three charged pions. There are many other possibilities, in all of which undetected neutrinos or anti-neutrinos are also created. The tauon decays hadronically roughly $64.79\%$ of the time and otherwise leptonically into a tau-neutrino, an electron or muon and the respective anti-neutrino \cite{taudata}.
@@ -36,7 +36,7 @@ The four main types of events leave distinct signatures, which can be inspected 
 \begin{figure}[H]
 \centering
 \includegraphics[width=0.75\linewidth]{graphics/quarkopal}
-\caption[OPAL cross section quark event]{Opal cross section of a quark event. The particle jet and the large depositions in the hadronic calorimeter are characteristic for a quark decay.}
+\caption[OPAL cross section quark event]{Opal cross section of a quark event. The particle jet and the large depositions in the hadronic calorimeter are characteristic for a quark decay. \cite{cern}}
 \label{fig:quarkopal}
 \end{figure}
 \paragraph{Quark event:} These events are easily recognizable by the large number of charged particles, the so-called hadron jets. The energy is deposited in both electromagnetic and hadronic calorimeters.
@@ -69,9 +69,10 @@ Thus, for every type of educts, a cut is to be made with maximum possible effici
 Above figure suggests a good way to separate the data sets. In particular, all three lepton generations hardly ever leave more than 6 tracks, with muons hardly having anything but two tracks in the drift chamber. This suggests the following cuts:
 
 \begin{itemize}
-	\item{\makebox[2.5cm][l]{\textbf{Lepton cuts:}} Ncharged $<7$}
-	\item{\makebox[2.5cm][l]{\textbf{Quark cut:}} Ncharged $\ge8$}
+	\item{\makebox[2.5cm][l]{\textbf{Elektron cut:}} Ncharged $<7$}
 	\item{\makebox[2.5cm][l]{\textbf{Muon cut:}} Ncharged $=2$}
+	\item{\makebox[2.5cm][l]{\textbf{Tauon cut:}} Ncharged $<7$}
+	\item{\makebox[2.5cm][l]{\textbf{Quark cut:}} Ncharged $\ge8$}
 \end{itemize}
 
 
@@ -87,8 +88,8 @@ Above figure suggests a good way to separate the data sets. In particular, all t
 \subsubsection{Cuts in Pcharged}
 The separation of the data sets is less obvious in the Pcharged channel. Most datasets overlap, preventing the very clean cuts as they were in the Ncharged channel. However, since we have conveniently already cut against quarks in the Ncharged channel, we can ignore said dataset and separate tauons and muons as follows:
 \begin{itemize}
-	\item{\makebox[2.5cm][l]{\textbf{Muon cut:}} Pcharged $\le60$ GeV}
-	\item{\makebox[2.5cm][l]{\textbf{Tauon cut}} Pcharged $>71$ GeV}
+	\item{\makebox[2.5cm][l]{\textbf{Muon cut:}} Pcharged $>71$ GeV}
+	\item{\makebox[2.5cm][l]{\textbf{Tauon cut}} Pcharged $\le60$ GeV}
 \end{itemize}
 
 \newpage
@@ -156,9 +157,9 @@ The final cuts thus are
 		\toprule
 		&			&Ncharged	&Pcharged [GeV]	&E\_Ecal [GeV] &Cos\_theta				&Cos\_thrust\\ 
 		\midrule
-		&$e^+e^-$	&			&				&$\ge70$		&$\ge-0.9$ \& $\le0.9$	&\\
-		&$\mu^+\mu^-$		&$=2$			&$\le60$		&$<50$			&						&\\
-		&$\tau^+\tau^-$		&$<7$		&$>71$			&$<60$			&						&\\
+		&$e^+e^-$	&$<7$		&				&$\ge70$		&$\ge-0.9$ \& $\le0.9$	&\\
+		&$\mu^+\mu^-$		&$=2$			&$>71$		&$<50$			&						&\\
+		&$\tau^+\tau^-$		&$<7$		&$\le60$			&$<60$			&						&\\
 		&$q\overline{q}$		&$\ge8$		&				&				&						&$\ge-0.9$ \& $\le0.9$	\\
 		\bottomrule
 	\end{tabular}
@@ -185,13 +186,13 @@ where the indexes $i$ and $j$ represent the kind of event. $n_{ij}^{cut}$ is thu
 \begin{table}[H]\centering
 	\begin{tabular}{@{}llllll@{}}
 		\toprule
-		&Events &$e^+e^-$&$\mu^+\mu^-$&$\tau^+\tau^-$&$q^+q^-$\\
+		&Events &$e^+e^-$&$\mu^+\mu^-$&$\tau^+\tau^-$&$q\overline{q}$\\
 		\midrule
 		&Cut&&&&\\
 		&$e^+e^-$&0.39078&0.00002&0.00422&0.00002\\
 		&$\mu^+\mu^-$&0.00018&0.90171&0.00611&0.00001\\
 		&$\tau^+\tau^-$&0.00039&0.00940&0.83413&0.00094\\
-		&$q^+q^-$&0.00007&0.00001&0.00685&0.98437\\
+		&$q\overline{q}$&0.00007&0.00001&0.00685&0.98437\\
 	\end{tabular}
 	\caption[Efficiency matrix]{Efficiency matrix of the applied cuts. The diagonal elements are the self efficiency.}
 	\label{tb:efficiency}
@@ -206,13 +207,13 @@ where $N_i$ is the number of simulated events of the appropriate kind. This yiel
 \begin{table}[H]\centering
 	\begin{tabular}{@{}llllll@{}}
 		\toprule
-		&Events &$e^+e^-$&$\mu^+\mu^-$&$\tau^+\tau^-$&$q^+q^-$\\
+		&Events &$e^+e^-$&$\mu^+\mu^-$&$\tau^+\tau^-$&$q\overline{q}$\\
 		\midrule
 		&Cut&&&&\\
 		&$e^+e^-$&0.001593&0.000015&0.000230&0.000014\\
 		&$\mu^+\mu^-$&0.000044&0.000969&0.000277&0.000010\\
 		&$\tau^+\tau^-$&0.000065&0.000314&0.001322&0.000098\\
-		&$q^+q^-$&0.000028&0.000011&0.000293&0.000395\\
+		&$q\overline{q}$&0.000028&0.000011&0.000293&0.000395\\
 		\bottomrule
 	\end{tabular}
 	\caption[Efficiency error matrix]{Errors of the efficiency matrix elements calculated under the assumption of binomial distribution.}
@@ -262,13 +263,13 @@ The inverse matrix $\boldsymbol{I}$ is
 \begin{table}[H]\centering
 	\begin{tabular}{@{}llllll@{}}
 		\toprule
-		&Events &$e^+e^-$&$\mu^+\mu^-$&$\tau^+\tau^-$&$q^+q^-$\\
+		&Events &$e^+e^-$&$\mu^+\mu^-$&$\tau^+\tau^-$&$q\overline{q}$\\
 		\midrule
 		&Cut&&&&\\
 		&$e^+e^-$&2.55899&0.00007&-0.01294&-0.00004\\
 		&$\mu^+\mu^-$&-0.00051&1.10909&-0.00812&-0.00000\\
 		&$\tau^+\tau^-$&-0.00120&-0.01250&1.19896&-0.00115\\
-		&$q^+q^-$&-0.00019&0.00008&-0.00835&1.01589\\
+		&$q\overline{q}$&-0.00019&0.00008&-0.00835&1.01589\\
 		\bottomrule
 	\end{tabular}
 	\caption[Inverse efficiency matrix]{The inverse of the efficiency matrix displayed in table \ref{tb:efficiency}.}
@@ -287,13 +288,13 @@ The resulting matrix is displayed in table \ref{tb:invefficiencyerror}
 \begin{table}[H]\centering
 	\begin{tabular}{@{}llllll@{}}
 		\toprule
-		&Events &$e^+e^-$&$\mu^+\mu^-$&$\tau^+\tau^-$&$q^+q^-$\\
+		&Events &$e^+e^-$&$\mu^+\mu^-$&$\tau^+\tau^-$&$q\overline{q}$\\
 		\midrule
 		&Cut&&&&\\
 		&$e^+e^-$&0.010372&0.000043&0.000703&0.000037\\
 		&$\mu^+\mu^-$&0.000123&0.001187&0.000366&0.000011\\
 		&$\tau^+\tau^-$&0.000196&0.000416&0.001870&0.000119\\
-		&$q^+q^-$&0.000074&0.000013&0.000353&0.000403\\
+		&$q\overline{q}$&0.000074&0.000013&0.000353&0.000403\\
 		\bottomrule
 	\end{tabular}
 	\caption[Inverse efficiency error matrix]{Errors of the inverse efficiency matrix (table \ref{tb:invefficiency}) calculated using the \emph{toy experiments} method.}
@@ -424,7 +425,7 @@ To calculate the amount of neutrino generations $n_{\nu-gen}$, on first has to c
 \begin{equation}
 	\Gamma_{blind}=\Gamma_{Z}^{ave}-3\cdot\Gamma_e-\Gamma_{q\overline{q}}=\unit{(0.49\pm0.04)}{GeV}
 \end{equation}
-where $\Gamma_{Z}^{ave}=\unit{(2.516\pm0.017)}{GeV}$ is the weighted average of the four calculated $\Gamma_{Z}$. Again assuming lepton universality, the muon result was used for $\Gamma_e$.
+where $\Gamma_{Z}^{ave}=\unit{(2.516\pm0.017)}{GeV}$ is the weighted average of the four calculated $\Gamma_Z$. Again assuming lepton universality, the muon result was used for $\Gamma_e$.
 The blind decay width is then divided by the theoretically calculated decay width $\Gamma_{\nu}^{calc}=\unit{0.1676}{GeV}$ (see table \ref{tb:appendix:decay widths}) of a single neutrino generation.
 \begin{equation}
 	n_{\nu-gen}=\frac{\Gamma_{blind}}{\Gamma_{\nu}^{calc}}=(2.93\pm0.26)
@@ -433,7 +434,7 @@ Even the $3\sigma$ interval encloses no other integers than 3, meaning that it c
 
 
 \subsection{Forward-backward asymmetry}
-The forward ($0<$ cos\_theta $<1$) and backward ($-1<$ cos\_theta $<0$) events were counted for the second, forth and sixth center-of-mass energies, $\sqrt{s}\approx89.5\text{, }91.23$ and $\unit{93.0}{GeV}$. This represents the integrals in equation \ref{eq:priciples:fbintegral}, as the cross sections are proportional to the number of events. The asymmetry can then be calculated as
+The forward ($0<$ cos\_theta $<1$) and backward ($-1<$ cos\_theta $<0$) events were counted for the second, forth and sixth center-of-mass energies, $\sqrt{s}\approx89.5\text{, }91.23$ and $\unit{93.0}{GeV}$. This represents the integrals in equation \ref{eq:principles:fbintegral}, as the cross sections are proportional to the number of events. The asymmetry can then be calculated as
 \begin{equation}
 A_{fb}=\frac{N_f-N_b}{N_f+N_b},\qquad s_{A_{fb}}=2\sqrt{\frac{N_f^2s_{N_b}^2+N_b^2s_{N_f}^2}{(N_f+N_b)^4}}=2\sqrt{\frac{N_fN_b}{(N_f+N_b)^3}}
 \end{equation}
