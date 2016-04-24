@@ -160,7 +160,7 @@ void cutData()
 				break;
 			case 1:
 				//ee cuts
-				if (Ncharged < 7 && E_ECal >= 80 && Pcharged > 40 && cos_theta > -0.9 && cos_theta < 0.9) {
+				if (Ncharged < 7 && E_ECal >= 70 && Pcharged > 5 && cos_theta > -0.9 && cos_theta < 0.9) {
 					//cout << iev << endl;
 					//determine i_im
 					if (E_LEP > 44.1 && E_LEP < 44.4) {
@@ -198,7 +198,7 @@ void cutData()
 				break;
 			case 2:
 				//mm cuts
-				if (Pcharged > 80 && Pcharged > 5 && E_ECal < 50 && Ncharged == 2) {
+				if (Pcharged > 71 && Pcharged > 5 && E_ECal < 50 && Ncharged == 2) {
 					//cout << iev << endl;
 						//determine i_im
 					if (E_LEP > 44.1 && E_LEP < 44.4) {
@@ -250,7 +250,7 @@ void cutData()
 				break;
 			case 3:
 				//tt cuts
-				if (Pcharged > 5 && Pcharged <= 50 && Ncharged < 5 && E_ECal < 60 &&
+				if (Pcharged > 5 && Pcharged <= 60 && Ncharged < 7 && E_ECal < 60 &&
 					cos_thru > -0.9 && cos_thru < 0.9) {
 					//cout << iev << endl;
 						//determine i_im
