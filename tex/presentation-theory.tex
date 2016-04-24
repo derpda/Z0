@@ -21,7 +21,7 @@
  	\frametitle{Das Standardmodell}
  	\begin{figure}
  	\begin{center}
- 	  \includegraphics[width=0.66\textwidth]{graphics/SM1.png}
+ 	  \includegraphics[width=0.9\textwidth]{graphics/SM1.png}
  	\end{center}
 	\end{figure}
  \end{frame}
@@ -61,19 +61,7 @@
 		\end{equation*}
 	\end{center}
 \end{frame}
-\subsection{Wirkungsquerschnitt und Zerfallsbreite}
-\begin{frame}
-	\frametitle{Wirkungsquerschnitt}
-	\begin{center}
-		\begin{equation*}
-		\dot{N} = \sigma \cdot L
-		\end{equation*}
-		\\
-		\begin{equation*}
-		\sigma = \frac{N}{\int L~\text{d}t}
-		\end{equation*}
-	\end{center}
-\end{frame}
+
 \subsection{$e^+e^-$ Kollisionen}
 \begin{frame}
 	\frametitle{$e^+e^- \rightarrow f\bar{f}$ }
@@ -89,35 +77,52 @@
 		\begin{equation*}
 		\sigma_f(s) = \frac{12\pi}{M_Z^2} \frac{s\Gamma_e\Gamma_f}{(s-M_Z^2)^2+s^2\Gamma_Z^2/M_Z^2}
 		\end{equation*}
+		
+	\end{center}
+\end{frame}
+\begin{frame}
+	\frametitle{Bhabha Streuung }
+	\begin{center}
+		\begin{figure}
+			\includegraphics[width=0.8\textwidth]{graphics/Bhabbastreuung.png}
+		\end{figure}
+	\end{center}
+	\begin{equation*}
+	\frac{d\sigma_s}{d\Omega} \propto (1+cos^2(\theta)),\qquad\frac{d\sigma_t}{d\Omega}t \propto (1-cos(\theta))^{-2}
+	\end{equation*}
+\end{frame}
+\subsection{Strahlungskorrekturen}
+\begin{frame}
+	\frametitle{Strahlungskorrekturen}
+	\begin{figure}
+		\includegraphics[width=0.75\linewidth]{graphics/Bremsstrahlungskorrektur}
+	\end{figure}
+	\begin{center}
+	\begin{minipage}{0.4\linewidth}
+			\begin{figure}
+				\includegraphics[width=0.8\linewidth]{graphics/presentationvertexschleifen}
+			\end{figure}
+	\end{minipage}
+	\begin{minipage}{0.4\linewidth}
+	\begin{figure}
+			\includegraphics[width=0.8\linewidth]{graphics/presentation_QCDkorrektur}
+	\end{figure}
+	\end{minipage}
 	\end{center}
 \end{frame}
 
-\subsection{Strahlungskorrektur}
+\subsection{Wirkungsquerschnitt und Zerfallsbreite}
 \begin{frame}
-	\frametitle{höhere Ordnungen}
-	\begin{figure}
-		\begin{center}
-			\includegraphics[width=1.0\linewidth]{graphics/vertexschleifen}
-		\end{center}
-	\end{figure}
+	\frametitle{Wirkungsquerschnitt}
+	\hspace{1cm} Ereignisrate bei Luminosität $L$:
+	\begin{equation*}
+	\scalebox{1.5}{$\dot{N} = \sigma \cdot L$}
+	\end{equation*}
+	\hspace{1cm} Wirkungsquerschnitt messen:
+	\begin{equation*}
+	\scalebox{1.5}{$\sigma = \frac{N}{\int L~\text{d}t}$}
+	\end{equation*}
 \end{frame}
- \begin{frame}
- 	\frametitle{Bremsstrahlung}
- 	\begin{figure}
- 		\begin{center}
- 			\includegraphics[width=1.0\textwidth]{graphics/Bremsstrahlungskorrektur}
- 		\end{center}
- 	\end{figure}
- \end{frame}
-\begin{frame}
-	\frametitle{QCD}
-	\begin{figure}
-		\begin{center}
-			\includegraphics[width=1.0\linewidth]{graphics/QCDkorrektur}
-		\end{center}
-	\end{figure}
-\end{frame}
-
 \subsection{Vorwärts Rückwärts Asymmetrie}
 \begin{frame}
 	\frametitle{Vorwärts Rückwärts Asymmetrie}
@@ -152,6 +157,7 @@
 \begin{frame}
 	\frametitle{Vorwärts Rückwärts Asymmetrie}
 	\begin{center}
+		Für Leptonen am Resonanzpeak:
 		\begin{equation*}
 		A_{fb}^{\ell,peak}\approx 3 \left ( \frac{g^{\ell}_V}{g^{\ell}_A} \right )^2=3\cdot (1-4 sin^2(\theta_w))
 		\end{equation*}
