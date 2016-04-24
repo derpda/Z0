@@ -41,7 +41,7 @@ void cosp(){
 		TMatrixDSym cov = r->GetCovarianceMatrix();
 		hcos[i]->Draw("HIST");
 		func -> Draw("SAME");
-		c->SaveAs("C:/Users/benjamin/Documents/FPII/Z0/results/data_results/cosp_fits/fit"+names[i]+".png");
+		c->SaveAs("../results/data_results/cosp_fits/fit"+names[i]+".png");
 		c->Close();
 		float S = func->GetParameter(0);
 		float T = func->GetParameter(1);

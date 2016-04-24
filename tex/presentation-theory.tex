@@ -73,12 +73,47 @@
 \end{frame}
 \begin{frame}
 	\frametitle{Der Wirkungsquerschnitt}
-	\begin{center}
-		\begin{equation*}
-		\sigma_f(s) = \frac{12\pi}{M_Z^2} \frac{s\Gamma_e\Gamma_f}{(s-M_Z^2)^2+s^2\Gamma_Z^2/M_Z^2}
-		\end{equation*}
-		
-	\end{center}
+	\begin{equation*}
+		\sigma(s) = \frac{12\pi}{ \tikzmark{MZ1}M_Z^2}
+		\frac{s\tikzmark{gammae}\Gamma_e \tikzmark{gammaf}\Gamma_f}{(s-\tikzmark{MZ2}M_Z^2)^2 + s^2\cdot\tikzmark{gammaZ}\Gamma_Z^2 / \tikzmark{MZ3}M_Z^2}
+	\end{equation*}
+	\begin{tikzpicture}[
+	remember picture,
+	overlay,
+	expl1/.style={draw=orange,fill=orange!30,rounded corners},
+	expl2/.style={draw=gray!20,fill=gray!10,rounded corners},
+	arrow1/.style={red!80!black,ultra thick,->,>=latex},
+	arrow2/.style={gray!20,ultra thick,->,>=latex}
+	]
+	\node[expl1]
+	(gammaeexpl)
+	at (2,2cm)
+	{\textcolor{black}{Zerfallsbreite Elektron}};
+	\node[expl1]
+	(gammafexpl)
+	at (10,2cm)
+	{\textcolor{black}{Zerfallsbreite Fermion}};
+	\node[expl1]
+	(MZexpl)
+	at (1,-1cm)
+	{Masse $Z^0$};
+	\node[expl1]
+	(gammaZexpl)
+	at (9.8,-1cm)
+	{\textcolor{black}{Gesamtzerfallsbreite $Z^0$}};
+	\draw[arrow1]
+	(gammafexpl.west) to[out=180,in=90] ([yshift=-8.2ex,xshift=1.5ex]{pic cs:gammaf});
+	\draw[arrow1]
+	(gammaeexpl.east) to[out=0,in=90] ([yshift=2ex,xshift=0.5ex]{pic cs:gammae});
+	\draw[arrow1]
+	(gammaZexpl.west) to[out=180,in=270] ([yshift=-10.5ex,xshift=0.5ex]{pic cs:gammaZ});
+	\draw[arrow1]
+	(MZexpl.east) to[out=0,in=270] ([yshift=-10.5ex,xshift=1ex]{pic cs:MZ1});
+	%\draw[arrow1]
+	%(MZexpl.east) to[out=0,in=270] ([yshift=-10.5ex,xshift=1ex]{pic cs:MZ2});
+	%\draw[arrow1]
+	%(MZexpl.east) to[out=0,in=270] ([yshift=-10.5ex,xshift=1ex]{pic cs:MZ3});
+	\end{tikzpicture}
 \end{frame}
 \begin{frame}
 	\frametitle{Bhabha Streuung }
