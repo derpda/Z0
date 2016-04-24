@@ -2,155 +2,279 @@
 \subsection{Detektor Bilder}
 \begin{frame}
 	\frametitle{Elektronen Events}
-	\begin{columns}[T] % align columns
-		\begin{column}{.54\textwidth}
-			\begin{figure}
-				\centering
-				\includegraphics[width=1.0\linewidth]{graphics/electronopal}
-			\end{figure}
-		\end{column}%
-		\hfill%
-		\begin{column}{.42\textwidth}
-			\begin{center}
-				\begin{itemize}
-					\item Meistens 2 geladene Spuren
-					\item Energiedeposition im EM-Kalorimeter
-				\end{itemize}
-			\end{center}
-		\end{column}%
-	\end{columns}
+	\begin{figure}
+		\centering
+		\includegraphics[width=0.63\linewidth]{graphics/electronopal}
+	\end{figure}
 \end{frame}
 
 \begin{frame}
 	\frametitle{Myonen Events}
-	\begin{columns}[T] % align columns
-		\begin{column}{.54\textwidth}
-			\begin{figure}
-				\centering
-				\includegraphics[width=1.0\linewidth]{graphics/muonopal}
-			\end{figure}
-		\end{column}%
-		\hfill%
-		\begin{column}{.42\textwidth}
-			\begin{center}
-				\begin{itemize}
-					\item 2 geladene Spuren
-					\item Wenig Deposition in EM- und Hadronenkalorimeter
-					\item Vektorspuren in Muonenkammer
-				\end{itemize}
-			\end{center}
-		\end{column}%
-	\end{columns}
+	\begin{figure}
+		\centering
+		\includegraphics[width=0.63\linewidth]{graphics/muonopal}
+	\end{figure}
 	
 \end{frame}
 \begin{frame}
 	\frametitle{Tauonen Events}
-	\begin{columns}[T] % align columns
-		\begin{column}{.54\textwidth}
-			\begin{figure}
-				\centering
-				\includegraphics[width=1.0\linewidth]{graphics/tauonopal}
-			\end{figure}
-		\end{column}%
-		\hfill%
-		\begin{column}{.42\textwidth}
-			\begin{center}
-				\begin{itemize}
-					\item Tauonen sehr kurzlebig \\$\Rightarrow$ Zerfallsprodukte
-					\item $64.79\%$ Zerfall in 2-4 $\pi^{0,\pm}$ und $\nu_\tau$
-					\item Sonst $e^{\pm}$/$\mu^{\pm}$ und $\nu_\tau$
-					\item Hier: 3 bzw. 1 geladenes Pion
-					\item Einzelnes Myon aus Hadronenkalorimeter
-				\end{itemize}
-			\end{center}
-		\end{column}%
-	\end{columns}
+	\begin{figure}
+		\centering
+		\includegraphics[width=0.63\linewidth]{graphics/tauonopal}
+	\end{figure}
 	
 \end{frame}
 \begin{frame}
 	\frametitle{Quark Events}
-	\begin{columns}[T] % align columns
-		\begin{column}{.54\textwidth}
-			\begin{figure}
-				\centering
-				\includegraphics[width=1.0\linewidth]{graphics/quarkopal}
-			\end{figure}
-		\end{column}%
-		\hfill%
-		\begin{column}{.42\textwidth}
-			\begin{center}
-				\begin{itemize}
-					\item Hadronen Jets
-					\item bis zu 35 Spuren
-					\item Energie in EM- und Hadronenkalorimeter
-				\end{itemize}
-			\end{center}
-		\end{column}%
-	\end{columns}
-	
-\end{frame}
-\subsection{Daten der Monte-Carlo Simulation}
-\begin{frame}
-	\frametitle{Monte-Carlo und Detektorsimulationen}
-	\begin{center}
-		\begin{itemize}
-			\item Benötigt um Events zu klassifizieren
-			\item 
-		\end{itemize}
-	\end{center}
+	\begin{figure}
+		\centering
+		\includegraphics[width=0.63\linewidth]{graphics/quarkopal}
+	\end{figure}
 \end{frame}
 \subsection{Cuts und Aufbereitung der Daten}
 \begin{frame}
 	\frametitle{E\_Ecal Histogramm}
-	
+	\begin{figure}
+		\centering
+		\includegraphics[width=0.9\linewidth]{../results/MC_results/nocut/E_Ecal}
+	\end{figure}
+	\begin{center}
+		\begin{itemize}
+			\item \makebox[3cm][l]{\textbf{Elektronen Cut:}} $\ge 70 \unit{GeV}$
+			\item \makebox[3cm][l]{\textbf{Myonen Cut:}} $< 50 \unit{GeV}$
+			\item \makebox[3cm][l]{\textbf{Tauonen Cut:}} $< 60 \unit{GeV}$
+		\end{itemize}
+	\end{center}
 \end{frame}
 
 \begin{frame}
 	\frametitle{Zwei Photon Untergrund}
-	
+	\begin{figure}
+		\centering
+		\includegraphics[width=0.55\linewidth]{graphics/twophotonfeynman}
+	\end{figure}
+\end{frame}
+
+
+\begin{frame}
+	\frametitle{Die Effizienzmatrix}
+	\begin{equation*}
+	E_{ij}=\frac{n^{cut}_{ij}}{N_i},\qquad \vec{C}=\boldsymbol{E}\cdot\vec{N}
+	\end{equation*}
+	\begin{table}[H]\centering
+		\begin{tabular}{@{}llllll@{}}
+			\toprule
+			&Events &$e^+e^-$&$\mu^+\mu^-$&$\tau^+\tau^-$&$q^+q^-$\\
+			\midrule
+			&Cut&&&&\\
+			&$e^+e^-$&0.39078&0.00002&0.00422&0.00002\\
+			&$\mu^+\mu^-$&0.00018&0.90171&0.00611&0.00001\\
+			&$\tau^+\tau^-$&0.00039&0.00940&0.83413&0.00094\\
+			&$q^+q^-$&0.00007&0.00001&0.00685&0.98437\\
+		\end{tabular}\\
+		\noindent\textbox{\hfil Effizienzmatrix\hfil}
+	\end{table}
 \end{frame}
 
 \begin{frame}
 	\frametitle{Reinheit der Cuts}
-	
+	\hspace{2cm} Branching Ratios
+	\begin{equation*}
+		BR_i=\frac{\Gamma_i}{\sum_{j}\Gamma_{j}}
+	\end{equation*}
+	\hspace{2cm} Reinheit
+	\begin{equation*}
+		P_i=\frac{BR_i\cdot E_{ii}}{\sum_{j}BR_j\cdot E_{ij}}
+	\end{equation*}
+	\begin{table}\centering
+		\begin{tabular}{@{}lll@{}}
+			\toprule
+			&Cut&Purity\\
+			\midrule
+			&$e^+e^-$&0.9882\\
+			&$\mu^+\mu^-$&0.9928\\
+			&$\tau^+\tau^-$&0.9661\\
+			&$q\overline{q}$&0.9997\\
+			\bottomrule
+		\end{tabular}
+	\end{table}
 \end{frame}
-\begin{frame}
-	\frametitle{Die Effizienzmatrix}
-	
-\end{frame}
+
+\begingroup
+\Large
 \begin{frame}
 	\frametitle{Die Inverse Effizienzmatrix}
-	
+	\hspace{2cm} Eigentliche Anzahl gesucht:
+	\begin{equation*}
+		\vec{N}=\boldsymbol{E}^{-1}\cdot\vec{C}=:\boldsymbol{I}\cdot\vec{C}
+	\end{equation*}
+	\hspace{2cm} Toy Experiments:
+	\begin{equation*}
+		E^{k}_{ij}=E_{ij}+G^k\cdot s_{E_{ij}}
+	\end{equation*}
+\end{frame}
+\endgroup
+
+\begin{frame}
+	\frametitle{S-t-Kanal Trennung}
+	\begin{figure}
+		\centering
+		\includegraphics[width=0.85\linewidth]{../results/data_results/cosp_fits/stchannelexample46.png}
+	\end{figure}
+	\hspace{2cm} Fit Funktion (x=cos\_theta)
+	\begin{equation*}
+		N(x)=A_s\cdot(1-x^2)+A_t\cdot(1-x)^{-2}
+	\end{equation*}
 \end{frame}
 
 \subsection{Auswertung der aufgearbeiteten Daten}
 \begin{frame}
 	\frametitle{Wirkungsquerschnitte}
-
+	\begin{figure}
+		\centering
+		\includegraphics[width=0.85\linewidth]{../results/data_results/wqs/WQmm}
+	\end{figure}
+	\begin{equation*}
+		\sigma_i=\frac{N_i}{L}+c_{beam,i}
+	\end{equation*}
 \end{frame}
 \begin{frame}
 	\frametitle{Masse des $Z^0$ Bosons}
-	
+	\begin{equation*}
+		M_{Z^0}=(91.188\pm0.008)\unit{GeV}
+	\end{equation*}
+	\mbox{}\\\mbox{}\\\mbox{}\\
+	\begin{equation*}
+		\sigma(s) = \frac{12\pi}{ \tikzmark{MZ1}M_Z^2}\frac{s \tikzmark{gammaf}\Gamma_f^2}{(\sqrt{s}-\tikzmark{MZ2}M_Z^2)^2+s^2\cdot\tikzmark{gammaZ}\Gamma_Z^2 / \tikzmark{MZ3}M_Z^2}
+	\end{equation*}
+	\begin{tikzpicture}[
+	remember picture,
+	overlay,
+	expl1/.style={draw=orange,fill=orange!30,rounded corners},
+	expl2/.style={draw=gray!20,fill=gray!10,rounded corners},
+	arrow1/.style={red!80!black,ultra thick,->,>=latex},
+	arrow2/.style={gray!20,ultra thick,->,>=latex}
+	]
+	\node[expl2]
+	(gammafexpl)
+	at (2,2cm)
+	{\textcolor{gray}{Zerfallsbreite Fermion}};
+	\node[expl1]
+	(MZexpl)
+	at (1,-1cm)
+	{Masse $Z^0$};
+	\node[expl2]
+	(gammaZexpl)
+	at (10.5,-1cm)
+	{\textcolor{gray}{Zerfallsbreite $Z^0$}};
+	\draw[arrow2]
+	(gammafexpl.east) to[out=0,in=90] ([yshift=-15ex,xshift=0.75ex]{pic cs:gammaf});
+	\draw[arrow2]
+	(gammaZexpl.west) to[out=180,in=270] ([yshift=-18ex,xshift=0.5ex]{pic cs:gammaZ});
+	\draw[arrow1]
+	(MZexpl.east) to[out=0,in=270] ([yshift=-18ex,xshift=1ex]{pic cs:MZ1});
+	\draw[arrow1]
+	(MZexpl.east) to[out=0,in=270] ([yshift=-18ex,xshift=1ex]{pic cs:MZ2});
+	\draw[arrow1]
+	(MZexpl.east) to[out=0,in=270] ([yshift=-18ex,xshift=1ex]{pic cs:MZ3});
+	\end{tikzpicture}
+	\mbox{}\\\mbox{}\\\mbox{}\\
 \end{frame}
 \begin{frame}
-	\frametitle{Zerfallsbreiten}
-	
-\end{frame}
-\begin{frame}
-	\frametitle{Leptonenuniversalität}
-	
+	\frametitle{Zerfallsbreiten und Leptonenuniversalität}
+	\mbox{}\\
+	\begin{equation*}
+		\sigma(s) = \frac{12\pi}{ \tikzmark{MZ1}M_Z^2}\frac{s \tikzmark{gammaf}\Gamma_f^2}{(\sqrt{s}-\tikzmark{MZ2}M_Z^2)^2+s^2\cdot\tikzmark{gammaZ}\Gamma_Z^2 / \tikzmark{MZ3}M_Z^2}
+	\end{equation*}
+	\begin{tikzpicture}[
+	remember picture,
+	overlay,
+	expl1/.style={draw=orange,fill=orange!30,rounded corners},
+	expl2/.style={draw=gray!20,fill=gray!10,rounded corners},
+	arrow1/.style={red!80!black,ultra thick,->,>=latex},
+	arrow2/.style={gray!20,ultra thick,->,>=latex}
+	]
+	\node[expl1]
+	(gammafexpl)
+	at (2,2cm)
+	{\textcolor{black}{Zerfallsbreite Fermion}};
+	\node[expl2]
+	(MZexpl)
+	at (1,-1cm)
+	{\textcolor{gray}{Masse $Z^0$}};
+	\node[expl1]
+	(gammaZexpl)
+	at (10.5,-1cm)
+	{\textcolor{black}{Zerfallsbreite $Z^0$}};
+	\draw[arrow1]
+	(gammafexpl.east) to[out=0,in=90] ([yshift=2ex,xshift=0.75ex]{pic cs:gammaf});
+	\draw[arrow2]
+	(MZexpl.east) to[out=0,in=270] ([yshift=-1ex,xshift=0.5ex]{pic cs:MZ1});
+	\draw[arrow2]
+	(MZexpl.east) to[out=0,in=270] ([yshift=-1ex,xshift=0.5ex]{pic cs:MZ2});
+	\draw[arrow2]
+	(MZexpl.east) to[out=0,in=270] ([yshift=-1ex,xshift=0.5ex]{pic cs:MZ3});
+	\draw[arrow1]
+	(gammaZexpl.west) to[out=180,in=270] ([yshift=-1ex,xshift=0.5ex]{pic cs:gammaZ});
+	\end{tikzpicture}
+	\mbox{}\\\mbox{}\\\mbox{}\\\mbox{}\\
+	\begin{table}[h]\centering
+		\begin{tabular}{@{}llllll@{}}
+			\toprule
+			&Event $i$&$\Gamma_{Z}$ [GeV]&$s_{\Gamma_{Z}}$ [GeV]&$\Gamma_i$ [MeV]&$s_{\Gamma_i}$ [MeV]\\
+			\midrule
+			&$e^+e^-$&2.28&0.11&94&4\\
+			&$\mu^+\mu^-$&2.52&0.06&82.9&1.7\\
+			&$\tau^+\tau^-$&2.48&0.07&76.9&1.9\\
+			&$q\overline{q}$&2.526&0.019&1777&41\\
+			\bottomrule
+		\end{tabular}
+	\end{table}
 \end{frame}
 \begin{frame}
 	\frametitle{Neutrinogenerationen}
-	
+	\hspace{2cm} Blinde Zerfallsbreite
+	\begin{equation*}
+		\Gamma_{blind}=\Gamma_{Z}^{ave}-3\cdot\Gamma_e-\Gamma_{q\overline{q}}=(0.49\pm0.04)\unit{GeV}
+	\end{equation*}
+	\hspace{2cm} Anzahl Neutrinogenerationen
+	\begin{equation*}
+		n_{\nu-gen}=\frac{\Gamma_{blind}}{\Gamma_{\nu}^{calc}}=(2.93\pm0.26)
+	\end{equation*}
 \end{frame}
 \begin{frame}
 	\frametitle{Vorwärts-Rückwärts Asymmetrie}
-	
+	\begin{equation*}
+		A_{fr}=\frac{N_f-N_b}{N_f+N_b}
+	\end{equation*}
+	\begin{table}[h]\centering
+		\begin{tabular}{@{}llllll@{}}
+			\toprule
+			&$\sqrt{s}$ [GeV]&$N_f$&$N_b$&$A_{fb}$&$s_{A_{fb}}$\\
+			\midrule
+			&89.5&117&112&0.02&0.07\\
+			&91.23&1845&1881&\textcolor{red}{-0.010}&0.016\\
+			&93.0&153&99&0.21&0.06\\
+			\bottomrule
+		\end{tabular}
+	\end{table}
 \end{frame}
 \begin{frame}
 	\frametitle{Berechnung des Weinberg Winkels}
-	
+	\begin{equation*}
+		\theta_w=\arcsin(\sqrt{\frac{1-\sqrt{A_{fb}/3}}{4}})
+	\end{equation*}
+	\begin{table}[h]\centering
+		\begin{tabular}{@{}llll@{}}
+			\toprule
+			&$\sqrt{s}$ [GeV]&$\theta_w$ 	[°]&$s_{\theta_w}$ [°]\\
+			\midrule
+			&89.5&28.6&2.2\\
+			&91.23&-&-\\
+			&93.0&25.3&0.7\\
+			\bottomrule
+		\end{tabular}
+	\end{table}
 \end{frame}
 
 

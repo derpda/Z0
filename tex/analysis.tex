@@ -180,7 +180,6 @@ As no charged particles are created in the event type described by the Feynman g
 These cuts are now applied to the simulated data, where the kind of event is known. This way, one can determine the efficiency and purity of the cuts and judge how well they work. 
 The efficiency matrix is relatively easily calculated as
 \begin{equation}
-E_{ij}=\frac{n^{cut}_{ij}}{N_i}
 \end{equation}
 where the indexes $i$ and $j$ represent the kind of event. $n_{ij}^{cut}$ is thus the amount of events of type $i$ left over after applying the cut for type $j$ and $N_i$ is the overall number of events $i$ in the simulation data.
 \begin{table}[H]\centering
@@ -222,7 +221,7 @@ where $N_i$ is the number of simulated events of the appropriate kind. This yiel
 
 To calculate the purity, it has to be taken into account that the different events do not occur with the same probability in nature but are roughly equally represented in the simulated data. This is expressed by the branching ratio
 \begin{equation}
-BR_i=\frac{\Gamma_i}{\sum_{i,j}\Gamma_{i}}
+BR_i=\frac{\Gamma_i}{\sum_{j}\Gamma_{j}}
 \end{equation}
 where $\Gamma_i$ is the partial decay width corresponding to event $i$. The partial decay widths of leptons $\Gamma_l=\unit{83.8}{\mega\electronvolt}$ and of quarks $\Gamma_q=\unit{1732}{\mega\electronvolt}$ are given in \cite{staatsex} without error.
 Using this, the purity can be calculated as
@@ -315,11 +314,11 @@ where $A_s$ and $A_t$ are fit parameters and $x=$cos\_theta is the variable, was
 \end{figure}
 The number of events in the s-channel $N_s$ and t-channel $N_t$ can then be calculated by integrating the summands respectively
 \begin{equation}
-N_s=s\cdot\int_{-0.9}^{0.9}1+x^2dx=:s\cdot I_s,\qquad N_t=t\cdot\int_{-0.9}^{0.9}(1-x)^{-2}dx=:t\cdot I_t
+N_s=A_s\cdot\int_{-0.9}^{0.9}1+x^2dx=:s\cdot I_s,\qquad N_t=A_t\cdot\int_{-0.9}^{0.9}(1-x)^{-2}dx=:t\cdot I_t
 \end{equation}
 The integrals are mere constants,$I_s\approx2.3$ and $I_t\approx9.5$, thus making the error calculations simpler as they might seem on first glance. The following quotient can later be used to correct the number of $e^+e^-$-events after the cuts
 \begin{equation}
-c_{st}=\frac{N_s}{N_s+N_t},\qquad s_{c_{st}}=\sqrt{\left(\frac{I_s\cdot N_t}{(N_s+N_t)^2}\cdot s_s\right)^2+\left(\frac{I_t\cdot N_s}{(N_s+N_t)^2}\cdot s_t\right)^2}
+c_{st}=\frac{N_s}{N_s+N_t},\qquad s_{c_{st}}=\sqrt{\left(\frac{I_s\cdot N_t}{(N_s+N_t)^2}\cdot s_{A_s}\right)^2+\left(\frac{I_t\cdot N_s}{(N_s+N_t)^2}\cdot s_{A_t}\right)^2}
 \end{equation}
 
 \subsection{Cross sections and the mass of Z$^0$}

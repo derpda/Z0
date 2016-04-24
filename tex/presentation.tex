@@ -4,7 +4,7 @@
 %% template based on a template by Till Tantau
 %% this template is still evolving - it might differ in future releases!
 
-\documentclass{beamer}
+\documentclass[16pt]{beamer}
 
 \mode<presentation>
 
@@ -23,6 +23,8 @@
 \usepackage[utf8]{inputenc}
 \usepackage{lmodern}
 \usepackage{textgreek}
+\usepackage{textcomp} %for ° symbol
+
 
 \usepackage{amsmath}	% math, use [fleqn] for equations on the left
 \usepackage{amssymb}	% more symbols
@@ -72,6 +74,9 @@
   \onslide#3 }_{#2} \onslide<1->
 }
 \newcommand{\emptynl}{\mbox{}\\}						% empty new line
+\newcommand\textbox[1]{									% textbox for hor. alignment
+	\parbox{.333\textwidth}{#1}%
+}
 
 \DeclareMathOperator{\sgn}{sgn}
 
