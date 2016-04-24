@@ -34,18 +34,25 @@
 		\end{equation*}
 		\begin{equation*}
 		\ket{Z^0} = -sin(\theta_w) \ket{B^0} + cos(\theta_w) \ket{W^0}
-		\end{equation}
+		\end{equation*}\\
+		\begin{equation*}
+		\textcolor{lightgray}{g_V^f = I^f_3-2 Q_f sin^2(\theta_w)}
+		\end{equation*}
+		\begin{equation*}
+		\textcolor{lightgray}{g_A^f = I^f_3}
+		\end{equation*}
 	\end{center}
 \end{frame}
 \begin{frame}
 	\frametitle{Weinbergwinkel und Kopplungsstärken}
 	\begin{center}
 		\begin{equation*}
-		\ket{\gamma} =  cos(\theta_w)\ket{B^0} + sin(\theta_w) \ket{W^0}
+		\textcolor{lightgray}{\ket{\gamma} =  cos(\theta_w)\ket{B^0} + sin(\theta_w) \ket{W^0}}
 		\end{equation*}
 		\begin{equation*}
-		\ket{Z^0} = -sin(\theta_w) \ket{B^0} + cos(\theta_w) \ket{W^0}
+		\textcolor{lightgray}{\ket{Z^0} = -sin(\theta_w) \ket{B^0} + cos(\theta_w) \ket{W^0}}
 		\end{equation*}
+		\\
 		\begin{equation*}
 			g_V^f = I^f_3-2 Q_f sin^2(\theta_w)
 		\end{equation*}
@@ -54,14 +61,28 @@
 		\end{equation*}
 	\end{center}
 \end{frame}
+\subsection{Wirkungsquerschnitt und Zerfallsbreite}
 \begin{frame}
-	\frametitle{Vektor und Axialvektorkopplung}
+	\frametitle{Wirkungsquerschnitt}
 	\begin{center}
+		\begin{equation*}
+		\dot{N} = \sigma \cdot L
+		\end{equation*}
+		\\
+		\begin{equation*}
+		\sigma = \frac{N}{\int L~\text{d}t}
+		\end{equation*}
 	\end{center}
 \end{frame}
-\subsection{Wirkungsquerschnitt und Zerfallsbreite}
-
 \subsection{$e^+e^-$ Kollisionen}
+\begin{frame}
+	\frametitle{$e^+e^- \rightarrow f\bar{f}$ }
+	\begin{center}
+		\begin{figure}
+			\includegraphics[width=0.8\textwidth]{graphics/annihilation.png}
+		\end{figure}
+	\end{center}
+\end{frame}
 \begin{frame}
 	\frametitle{Der Wirkungsquerschnitt}
 	\begin{center}
@@ -72,5 +93,67 @@
 \end{frame}
 
 \subsection{Strahlungskorrektur}
+\begin{frame}
+	\frametitle{höhere Ordnungen}
+	\begin{figure}
+		\begin{center}
+			\includegraphics[width=1.0\linewidth]{graphics/vertexschleifen}
+		\end{center}
+	\end{figure}
+\end{frame}
+ \begin{frame}
+ 	\frametitle{Bremsstrahlung}
+ 	\begin{figure}
+ 		\begin{center}
+ 			\includegraphics[width=1.0\textwidth]{graphics/Bremsstrahlungskorrektur}
+ 		\end{center}
+ 	\end{figure}
+ \end{frame}
+\begin{frame}
+	\frametitle{QCD}
+	\begin{figure}
+		\begin{center}
+			\includegraphics[width=1.0\linewidth]{graphics/QCDkorrektur}
+		\end{center}
+	\end{figure}
+\end{frame}
 
 \subsection{Vorwärts Rückwärts Asymmetrie}
+\begin{frame}
+	\frametitle{Vorwärts Rückwärts Asymmetrie}
+	\begin{center}
+		\begin{equation*}
+		\sigma_f=\int_{0}^{1}\frac{\text{d}\sigma}{\text{d}cos(\theta)}~\text{d}cos(\theta)
+		\end{equation*}
+		\begin{equation*}
+		\sigma_b=\int_{-1}^{0}\frac{\text{d}\sigma}{\text{d}cos(\theta)}~\text{d}cos(\theta)
+		\end{equation*}
+		\\
+		\begin{equation*}
+		\textcolor{lightgray}{A_{fb}=\frac{\sigma_f-\sigma_b}{\sigma_f+\sigma_b}}
+		\end{equation*}
+	\end{center}
+\end{frame}
+\begin{frame}
+	\frametitle{Vorwärts Rückwärts Asymmetrie}
+	\begin{center}
+		\begin{equation*}
+		\textcolor{lightgray}{\sigma_f=\int_{0}^{1}\frac{\text{d}\sigma}{\text{d}cos(\theta)}~\text{d}cos(\theta)}
+		\end{equation*}
+		\begin{equation*}
+		\textcolor{lightgray}{\sigma_b=\int_{-1}^{0}\frac{\text{d}\sigma}{\text{d}cos(\theta)}~\text{d}cos(\theta)}
+		\end{equation*}
+		\\
+		\begin{equation*}
+		A_{fb}=\frac{\sigma_f-\sigma_b}{\sigma_f+\sigma_b}
+		\end{equation*}
+	\end{center}
+\end{frame}
+\begin{frame}
+	\frametitle{Vorwärts Rückwärts Asymmetrie}
+	\begin{center}
+		\begin{equation*}
+		A_{fb}^{\ell,peak}\approx 3 \left ( \frac{g^{\ell}_V}{g^{\ell}_A} \right )^2=3\cdot (1-4 sin^2(\theta_w))
+		\end{equation*}
+	\end{center}
+\end{frame}
