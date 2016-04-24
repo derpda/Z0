@@ -279,7 +279,7 @@ To calculate the error of the inverse matrix, a method called \emph{toy experime
 \begin{equation}
 E^{k}_{ij}=E_{ij}+G^k\cdot s_{E_{ij}}
 \end{equation}
-This is done $N=100000$ times, resulting in 100000 randomly varied efficiency matrix, which are then inverted. The standard deviation of the thus calculated elements $I^k_{ij}$ of the inverse matrix is used as the error for the inverse matrix elements $I_{ij}$: 
+This is done $N=10000$ times, resulting in 10000 randomly varied efficiency matrix, which are then inverted. The standard deviation of the thus calculated elements $I^k_{ij}$ of the inverse matrix is used as the error for the inverse matrix elements $I_{ij}$: 
 \begin{equation}
 s_{I_{ij}}=\sqrt{\frac{1}{N-1}\sum_{k=1}^{N}\left(I^k_{ij}-I_{ij}\right)^2}
 \end{equation}

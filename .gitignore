@@ -10,7 +10,7 @@
 
 #ignore root files
 **/*.root
-
+!results/data_results/*.root
 #ignore data folder
 daten/
 
