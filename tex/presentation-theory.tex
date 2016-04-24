@@ -25,9 +25,8 @@
  	\end{center}
 	\end{figure}
  \end{frame}
-\subsection{Elektroschwache Wechselwirkung}
 \begin{frame}
-	\frametitle{Weinbergwinkel und Kopplungsstärken}
+	\frametitle{Elektroschwacher Mischwinkel}
 	\begin{center}
 		\begin{equation*}
 			\ket{\gamma} =  cos(\theta_w)\ket{B^0} + sin(\theta_w) \ket{W^0}
@@ -64,18 +63,60 @@
 
 \subsection{$e^+e^-$ Kollisionen}
 \begin{frame}
-	\frametitle{$e^+e^- \rightarrow f\bar{f}$ }
+	\frametitle{Annihilation $e^+e^- \rightarrow f\bar{f}$ }
 	\begin{center}
 		\begin{figure}
-			\includegraphics[width=0.8\textwidth]{graphics/annihilation.png}
+			\includegraphics[width=1.0\textwidth]{graphics/annihilation.png}
 		\end{figure}
 	\end{center}
 \end{frame}
 \begin{frame}
+	\frametitle{Bhabha Streuung $e^+e^- \rightarrow e^+e^-$ }
+	\begin{center}
+		\begin{figure}
+			\includegraphics[width=0.8\textwidth]{graphics/Bhabbastreuung.png}
+		\end{figure}
+	\end{center}
+	\begin{equation*}
+	\frac{d\sigma_s}{d\Omega} \propto (1+cos^2(\theta)),\qquad\frac{d\sigma_t}{d\Omega}t \propto (1-cos(\theta))^{-2}
+	\end{equation*}
+\end{frame}
+\begin{frame}
+	\frametitle{Strahlungskorrekturen}
+	\begin{figure}
+		\includegraphics[width=0.75\linewidth]{graphics/Bremsstrahlungskorrektur}
+	\end{figure}
+	\begin{center}
+	\begin{minipage}{0.4\linewidth}
+			\begin{figure}
+				\includegraphics[width=0.8\linewidth]{graphics/presentationvertexschleifen}
+			\end{figure}
+	\end{minipage}
+	\begin{minipage}{0.4\linewidth}
+	\begin{figure}
+			\includegraphics[width=0.8\linewidth]{graphics/presentation_QCDkorrektur}
+	\end{figure}
+	\end{minipage}
+	\end{center}
+\end{frame}
+
+\subsection{Wirkungsquerschnitt und Zerfallsbreite}
+\begin{frame}
+	\frametitle{Wirkungsquerschnitt}
+	\hspace{1cm} Ereignisrate bei Luminosität $L$:
+	\begin{equation*}
+	\scalebox{1.5}{$\dot{N} = \sigma \cdot L$}
+	\end{equation*}
+	\hspace{1cm} Wirkungsquerschnitt messen:
+	\begin{equation*}
+	\scalebox{1.5}{$\sigma = \frac{N}{\int L~\text{d}t}$}
+	\end{equation*}
+\end{frame}
+\begin{frame}
 	\frametitle{Der Wirkungsquerschnitt}
 	\begin{equation*}
-		\sigma(s) = \frac{12\pi}{ \tikzmark{MZ1}M_Z^2}
-		\frac{s\tikzmark{gammae}\Gamma_e \tikzmark{gammaf}\Gamma_f}{(s-\tikzmark{MZ2}M_Z^2)^2 + s^2\cdot\tikzmark{gammaZ}\Gamma_Z^2 / \tikzmark{MZ3}M_Z^2}
+	\sigma(s) = \frac{12\pi}{ \tikzmark{MZ1}M_Z^2}
+	\frac{s\tikzmark{gammae}\Gamma_e \tikzmark{gammaf}\Gamma_f}{(s-\tikzmark{MZ2}M_Z^2)^2 + s^2\cdot\tikzmark{gammaZ}\Gamma_Z^2 / \tikzmark{MZ3}M_Z^2}
 	\end{equation*}
 	\begin{tikzpicture}[
 	remember picture,
@@ -114,49 +155,6 @@
 	%\draw[arrow1]
 	%(MZexpl.east) to[out=0,in=270] ([yshift=-10.5ex,xshift=1ex]{pic cs:MZ3});
 	\end{tikzpicture}
-\end{frame}
-\begin{frame}
-	\frametitle{Bhabha Streuung }
-	\begin{center}
-		\begin{figure}
-			\includegraphics[width=0.8\textwidth]{graphics/Bhabbastreuung.png}
-		\end{figure}
-	\end{center}
-	\begin{equation*}
-	\frac{d\sigma_s}{d\Omega} \propto (1+cos^2(\theta)),\qquad\frac{d\sigma_t}{d\Omega}t \propto (1-cos(\theta))^{-2}
-	\end{equation*}
-\end{frame}
-\subsection{Strahlungskorrekturen}
-\begin{frame}
-	\frametitle{Strahlungskorrekturen}
-	\begin{figure}
-		\includegraphics[width=0.75\linewidth]{graphics/Bremsstrahlungskorrektur}
-	\end{figure}
-	\begin{center}
-	\begin{minipage}{0.4\linewidth}
-			\begin{figure}
-				\includegraphics[width=0.8\linewidth]{graphics/presentationvertexschleifen}
-			\end{figure}
-	\end{minipage}
-	\begin{minipage}{0.4\linewidth}
-	\begin{figure}
-			\includegraphics[width=0.8\linewidth]{graphics/presentation_QCDkorrektur}
-	\end{figure}
-	\end{minipage}
-	\end{center}
-\end{frame}
-
-\subsection{Wirkungsquerschnitt und Zerfallsbreite}
-\begin{frame}
-	\frametitle{Wirkungsquerschnitt}
-	\hspace{1cm} Ereignisrate bei Luminosität $L$:
-	\begin{equation*}
-	\scalebox{1.5}{$\dot{N} = \sigma \cdot L$}
-	\end{equation*}
-	\hspace{1cm} Wirkungsquerschnitt messen:
-	\begin{equation*}
-	\scalebox{1.5}{$\sigma = \frac{N}{\int L~\text{d}t}$}
-	\end{equation*}
 \end{frame}
 \subsection{Vorwärts Rückwärts Asymmetrie}
 \begin{frame}
