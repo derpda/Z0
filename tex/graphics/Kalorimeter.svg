@@ -17,7 +17,10 @@
    id="svg2"
    version="1.1"
    inkscape:version="0.91 r13725"
-   sodipodi:docname="Kalorimeter.svg">
+   sodipodi:docname="Kalorimeter.svg"
+   inkscape:export-filename="C:\Users\Peter\Documents\Physik\FP2\Z0\tex\graphics\Kalorimeter.png"
+   inkscape:export-xdpi="296.45001"
+   inkscape:export-ydpi="296.45001">
   <defs
      id="defs4">
     <marker
@@ -254,7 +257,7 @@
        id="linearGradient5287"
        x1="426.68299"
        y1="841.875"
-       x2="560"
+       x2="540"
        y2="842.36224"
        gradientUnits="userSpaceOnUse" />
     <linearGradient
@@ -459,8 +462,8 @@
      inkscape:pageopacity="0.0"
      inkscape:pageshadow="2"
      inkscape:zoom="1.4"
-     inkscape:cx="342.96506"
-     inkscape:cy="200.63806"
+     inkscape:cx="266.26746"
+     inkscape:cy="214.55173"
      inkscape:document-units="px"
      inkscape:current-layer="layer1"
      showgrid="true"
@@ -632,11 +635,6 @@
        height="30.06493"
        x="24.967546"
        y="716.61536" />
-    <path
-       style="fill:none;fill-rule:evenodd;stroke:#000000;stroke-width:4;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1;stroke-miterlimit:4;stroke-dasharray:none;marker-end:url(#Arrow1Send)"
-       d="m 70,652.36221 120,0"
-       id="path5432"
-       inkscape:connector-curvature="0" />
     <path
        style="fill:none;fill-rule:evenodd;stroke:#000000;stroke-width:4.27146626;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1;marker-end:url(#Arrow1Send-3)"
        d="m 148.072,746.89373 88.41714,59.68944"
