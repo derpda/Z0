@@ -28,59 +28,64 @@
 \begin{frame}
 	\frametitle{Elektroschwache Wechselwirkung}
 	\begin{center}
-%		\begin{itemize}
-%			\item
-%			Bei hohen Energien haben elektromagnetische und schwache WW ähnliche Kopplungsstärken.
-%			\item
-%			Vereinheitlichung der Theorien durch Glasgow Salam und Weinberg
-%			\item
-%			Einführung der Bosonen $W^1$, $W^2$, $W^3$ und $B^0$ mit Physikalische Zuständen als Linearkombinationen
-%		\end{itemize}
-%		\begin{equation*}
-%		\ket{W^{\pm}}=(1/\sqrt{2}) (\ket{W^1}\mp i\ket{W^2})
-%		\end{equation*}
+		\begin{itemize}
+			\item
+			Bei hohen Energien haben elektromagnetische und schwache WW ähnliche Kopplungsstärken.
+			\item
+			Vereinheitlichung der Theorien durch Glasgow Salam und Weinberg
+			\item
+			Einführung der Bosonen $W^1$, $W^2$, $W^3$, die am schwachen Isospin I koppeln und $B^0$, das an die schwache Hyperladung koppelt.
+			\item
+			Physikalische Zustände werden als Mischung dieser Bosonen beschrieben.
+		\end{itemize}
+		\begin{equation*}
+		\begin{pmatrix}
+		\ket{\gamma\;}\\
+		\ket{Z^0}
+		\end{pmatrix} = 
+		\begin{pmatrix}
+		cos(\theta_w) & sin(\theta_w)\\
+		-sin(\theta_w) & cos(\theta_w)\\
+		\end{pmatrix}
+		\begin{pmatrix}
+		\ket{B^0\:}\\
+		\ket{W^3}
+		\end{pmatrix}
+		\end{equation*}
 		\begin{equation*}
 			\ket{\gamma} =  cos(\theta_w)\ket{B^0} + sin(\theta_w) \ket{W^3}
 		\end{equation*}
 		\begin{equation*}
 		\ket{Z^0} = -sin(\theta_w) \ket{B^0} + cos(\theta_w) \ket{W^3}
-		\end{equation*}\\
-		\begin{equation*}
-		\textcolor{lightgray}{sin^2(\theta_w)\cdot cos^2(\theta_w) = \frac{\pi\alpha}{\sqrt{2}G_FM_Z^2}}
-		\end{equation*}
-		\begin{equation*}
-		\textcolor{lightgray}{M_W = M_Z~cos(\theta_w)}
-		\end{equation*}
-		\begin{equation*}
-		\textcolor{lightgray}{g_V^f = I^f_3-2 Q_f sin^2(\theta_w)}
-		\end{equation*}
-		\begin{equation*}
-		\textcolor{lightgray}{g_A^f = I^f_3}
 		\end{equation*}
 	\end{center}
 \end{frame}
 \begin{frame}
 	\frametitle{Elektroschwache Wechselwirkung}
 	\begin{center}
+		Elektromagnetische und schwache Kopplungskonstante:
 		\begin{equation*}
-		\textcolor{lightgray}{\ket{\gamma} =  cos(\theta_w)\ket{B^0} + sin(\theta_w) \ket{W^3}}
+		\alpha_{em} = \alpha_W \cdot sin^2(\theta_w)
 		\end{equation*}
-		\begin{equation*}
-		\textcolor{lightgray}{\ket{Z^0} = -sin(\theta_w) \ket{B^0} + cos(\theta_w) \ket{W^3}}
-		\end{equation*}
-		\\
-		\begin{equation*}
-		sin^2(\theta_w)\cdot cos^2(\theta_w) = \frac{\pi\alpha}{\sqrt{2}G_FM_Z^2}
-		\end{equation*}
+		Z- und W-Bosonen Massen:
 		\begin{equation*}
 		M_W = M_Z~cos(\theta_w)
 		\end{equation*}
-		\begin{equation*}
-			\textcolor{lightgray}{g_V^f = I^f_3-2 Q_f sin^2(\theta_w)}
-		\end{equation*}
-		\begin{equation*}
-			\textcolor{lightgray}{g_A^f = I^f_3}
-		\end{equation*}
+		
+	\end{center}
+\end{frame}
+\begin{frame}
+	\begin{center}
+	\frametitle{Elektroschwache Wechselwirkung}
+	Vektorkopplung (negativ bei Paritätstransformation)
+	\begin{equation*}
+	g_V^f = I^f_3-2 Q_f sin^2(\theta_w)
+	\end{equation*}
+	Axialvektorkopplung (postiv bei Paritätstransformation)
+	\begin{equation*}
+	g_A^f = I^f_3
+	\end{equation*}
+	Asymmetrie in der schwachen WW.
 	\end{center}
 \end{frame}
 
@@ -168,7 +173,7 @@
 	\end{equation*}
 	\hspace{1cm} Gesamtzerfallsbreite:
 	\begin{equation*}
-	\Gamma_Z = \Gamma_e+ \Gamma_{\mu} + \Gamma_{\tau} + 3 \cdot \Gamma_{\nu}
+	\Gamma_Z = \Gamma_e+ \Gamma_{\mu} + \Gamma_{\tau}+\Gamma_q + 3 \cdot \Gamma_{\nu}
 	\end{equation*}
 \end{frame}
 
@@ -220,9 +225,11 @@
 \begin{frame}
 	\frametitle{Vorwärts Rückwärts Asymmetrie}
 	\begin{center}
+		Vordere Hemisphäre
 		\begin{equation*}
 		\sigma_f=\int_{0}^{1}\frac{\text{d}\sigma}{\text{d}cos(\theta)}~\text{d}cos(\theta)
 		\end{equation*}
+		Hintere Hemisphäre
 		\begin{equation*}
 		\sigma_b=\int_{-1}^{0}\frac{\text{d}\sigma}{\text{d}cos(\theta)}~\text{d}cos(\theta)
 		\end{equation*}
@@ -241,7 +248,6 @@
 		\begin{equation*}
 		\textcolor{lightgray}{\sigma_b=\int_{-1}^{0}\frac{\text{d}\sigma}{\text{d}cos(\theta)}~\text{d}cos(\theta)}
 		\end{equation*}
-		\\
 		\begin{equation*}
 		A_{fb}=\frac{\sigma_f-\sigma_b}{\sigma_f+\sigma_b}
 		\end{equation*}
