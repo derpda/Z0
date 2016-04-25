@@ -41,7 +41,7 @@
 \end{frame}
 \subsection{Cuts und Aufbereitung der Daten}
 \begin{frame}
-	\frametitle{E\_Ecal Histogramm}
+	\frametitle{Energie im EM Kalorimeter}
 	\begin{figure}
 		\centering
 		\includegraphics[width=0.9\linewidth]{../results/MC_results/nocut/E_Ecal}
@@ -56,7 +56,7 @@
 \end{frame}
 
 \begin{frame}
-	\frametitle{NCharged Histogramm}
+	\frametitle{Anzahl der geladenen Spuren}
 	\begin{figure}
 		\centering
 		\includegraphics[width=0.85\linewidth]{../results/MC_results/nocut/Ncharged}
@@ -82,13 +82,45 @@
 			\includegraphics[width=1.1\linewidth]{graphics/Ncharged_vergleich_qq}
 		\end{minipage}
 \end{frame}
-
+\begin{frame}
+	\frametitle{Übersicht über die Cuts}
+	\begin{table}[H]\centering
+		\begin{tabular}{@{}llllll@{}}
+			\toprule
+			&			&Ncharged	&Pcharged [GeV]	&E\_Ecal [GeV] &Cos\_theta\\ 
+			\midrule
+			&$e^+e^-$	&$<7$		&				&$\ge70$		&$\ge-0.9$ \& $\le0.9$\\
+			&$\mu^+\mu^-$		&$=2$			&$>71$		&$<50$			&			\\
+			&$\tau^+\tau^-$		&$<7$		&$\le60$			&$<60$			&					\\
+			&$q\overline{q}$		&$\ge8$		&				&				&			\\
+			\bottomrule
+		\end{tabular}
+	\end{table}
+	\begin{minipage}{0.48\linewidth}
+		\centering
+		\includegraphics[width=1.1\linewidth]{graphics/Ncharged_final_mm}
+	\end{minipage}
+	\begin{minipage}{0.48\linewidth}
+		\centering
+		\includegraphics[width=1.1\linewidth]{graphics/Ncharged_final_tt}
+	\end{minipage}
+\end{frame}
 \begin{frame}
 	\frametitle{Zwei Photon Untergrund}
-	\begin{figure}
+	\begin{minipage}{0.48\linewidth}
 		\centering
-		\includegraphics[width=0.55\linewidth]{graphics/twophotonfeynman}
-	\end{figure}
+		\includegraphics[width=1.0\linewidth]{graphics/twophotonfeynman}
+	\end{minipage}
+	\begin{minipage}{0.48\linewidth}
+		\begin{center}
+			\begin{itemize}
+				\item Inelastisches Streuungsereignis
+				\item Elektronen verlieren wenig Energie
+				\item Kein $Z^0$ beteiligt $\Rightarrow$ Untergrund
+				\item 
+			\end{itemize}
+		\end{center}
+	\end{minipage}
 \end{frame}
 
 
