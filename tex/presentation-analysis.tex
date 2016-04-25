@@ -120,7 +120,7 @@
 	\end{equation*}
 	\hspace{2cm} Reinheit
 	\begin{equation*}
-		P_i=\frac{BR_i\cdot E_{ii}}{\sum_{j}BR_j\cdot E_{ij}}
+		P_i=\frac{BR_i\cdot E_{ii}/N_i}{\sum_{j}BR_j\cdot E_{ij}/N_j}
 	\end{equation*}
 	\begin{table}\centering
 		\begin{tabular}{@{}lll@{}}
@@ -163,15 +163,34 @@
 	\end{equation*}
 \end{frame}
 
+\begin{frame}
+	\frametitle{Berechnung des Korrekturfaktors}
+	\begin{equation*}
+		c_{st}=\frac{A_s\int_{-0.9}^{0.9}(1+x^2)dx}{A_s\int_{-0.9}^{0.9}(1+x^2)dx+A_t\int_{-0.9}^{0.9}(1-x)^{-2}dx}
+	\end{equation*}\\
+	\hfill\\
+	\hspace{2cm} Integrale sind konstant
+	\begin{align*}
+		\int_{-0.9}^{0.9}(1+x^2)dx&=2.286\\
+		\int_{-0.9}^{0.9}(1-x)^{-2}dx&=9.474
+	\end{align*}
+\end{frame}
+
 \subsection{Auswertung der aufgearbeiteten Daten}
 \begin{frame}
-	\frametitle{Wirkungsquerschnitte}
-	\begin{figure}
+	\frametitle{Wirkungsquerschnitte Myonen Cut}
 		\centering
-		\includegraphics[width=0.85\linewidth]{../results/data_results/wqs/WQmm}
-	\end{figure}
+		\includegraphics[width=0.90\linewidth]{../results/data_results/wqs/WQmm}
 	\begin{equation*}
 		\sigma_i=\frac{N_i}{L}+c_{beam,i}
+	\end{equation*}
+\end{frame}
+\begin{frame}
+	\frametitle{Wirkungsquerschnitte Quark Cut}
+	\centering
+	\includegraphics[width=0.90\linewidth]{../results/data_results/wqs/WQqq}
+	\begin{equation*}
+		\Gamma_q=\frac{\Gamma_f^2}{\Gamma_\mu}=(1777\pm41)\unit{MeV}
 	\end{equation*}
 \end{frame}
 \begin{frame}
@@ -294,25 +313,10 @@
 			\bottomrule
 		\end{tabular}
 	\end{table}
-\end{frame}
-\begin{frame}
-	\frametitle{Berechnung des Weinberg Winkels}
 	\begin{equation*}
-		\theta_w\approx\arcsin(\sqrt{\frac{1-\sqrt{A_{fb}/3}}{4}})
+	\theta_w\approx\arcsin(\sqrt{\frac{1-\sqrt{A_{fb}/3}}{4}})
 	\end{equation*}
-	\begin{table}[h]\centering
-		\begin{tabular}{@{}llll@{}}
-			\toprule
-			&$\sqrt{s}$ [GeV]&$\theta_w$ 	[°]&$s_{\theta_w}$ [°]\\
-			\midrule
-			&89.5&28.6&2.2\\
-			&91.23&-&-\\
-			&93.0&25.3&0.7\\
-			\bottomrule
-		\end{tabular}
-	\end{table}
 \end{frame}
-
 
 
 
