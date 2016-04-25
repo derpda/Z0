@@ -132,7 +132,7 @@ void cutMC()
 					break;
 				case 1:
 					//ee cuts
-					if (Ncharged < 7 && E_ECal >= 70 && Pcharged > 5 && cos_theta > -0.9 && cos_theta < 0.9) {
+					if (Ncharged < 7 && E_ECal >= 70 /*&& Pcharged > 5 && cos_theta > -0.9 && cos_theta < 0.9*/) {
 						n_events_cut += 1;
 						h_Ncharged[isim]->Fill(Ncharged, weights[isim]);
 						h_Pcharged[isim]->Fill(Pcharged, weights[isim]);
@@ -146,7 +146,7 @@ void cutMC()
 					break;
 				case 2:
 					//mm cuts
-					if (Pcharged > 71 && Pcharged > 5 && E_ECal < 50 && Ncharged == 2) {
+					if (/*Pcharged > 71 && Pcharged > 5 && */E_ECal < 50 && Ncharged == 2) {
 						n_events_cut += 1;
 						h_Ncharged[isim]->Fill(Ncharged, weights[isim]);
 						h_Pcharged[isim]->Fill(Pcharged, weights[isim]);
@@ -164,8 +164,8 @@ void cutMC()
 					break;
 				case 3:
 					//tt cuts
-					if ( Pcharged > 5 && Pcharged <= 60 && Ncharged < 7 && E_ECal < 60 &&
-						cos_thru > -0.9 && cos_thru < 0.9) {
+					if ( /*Pcharged > 5 && Pcharged <= 60 && */Ncharged < 7 && E_ECal < 60 /* &&
+						cos_thru > -0.9 && cos_thru < 0.9*/) {
 						n_events_cut += 1;
 						h_Ncharged[isim]->Fill(Ncharged, weights[isim]);
 						h_Pcharged[isim]->Fill(Pcharged, weights[isim]);
@@ -179,7 +179,7 @@ void cutMC()
 					break;
 				case 4:
 					//qq cuts
-					if (Ncharged >= 8 && Pcharged > 5) {
+					if (Ncharged >= 8/* && Pcharged > 5*/) {
 						n_events_cut += 1;
 						h_Ncharged[isim]->Fill(Ncharged, weights[isim]);
 						h_Pcharged[isim]->Fill(Pcharged, weights[isim]);
@@ -226,7 +226,7 @@ void cutMC()
 		color[0] = kBlue;
 		color[1] = kRed;
 		color[2] = kGreen;
-		color[3] = kYellow;
+		color[3] = kBlack;
 
 
 		float max[n_histos] = { 0., 0., 0., 0., 0., 0., 0., 0. };
@@ -291,6 +291,7 @@ void cutMC()
 			h_Ncharged[ip]->Scale(1/(h_Ncharged[ip]->GetEntries()));
 			h_Ncharged[ip]->SetMaximum(0.7);
 			}
+			graphstyle(h_Ncharged[ip], "Ncharged", "Number of events per bin");
 			if(i_cr>0) h_Ncharged[ip]->SetMaximum(max[0]*1.3);
 			h_Ncharged[ip]->SetLineColor(color[ip]);
 			if(ip==0) h_Ncharged[ip]->Draw("HIST");
@@ -298,10 +299,10 @@ void cutMC()
 			if(ip<4) leg->AddEntry(h_Ncharged[ip], name[ip], "L");
 		}
 		leg->Draw("SAME");
-		c[0]->SaveAs("../results/MC_results/" + cutname[i_cr] + "/Ncharged.png");
+		c[0]->SaveAs("../results/MC_results/" + cutname[i_cr] + "/Ncharged_vergleich.png");
 		c[0]->Close();
 
-		c[1]->cd();
+		/*c[1]->cd();
 		for(int ip=0; ip < n_sim; ++ip) {
 			graphstyle(h_Pcharged[ip], "Pcharged [GeV]", "Relative number of events per bin");
 			if(i_cr==0) {
@@ -400,7 +401,7 @@ void cutMC()
 				c[7]->SaveAs("../results/MC_results/" + cutname[i_cr] + "/Ncharged_vs_Pcharged.png");
 			}
 		}
-		c[7]->Close();
+		c[7]->Close();*/
 	} //end of cut region loop
 
 
