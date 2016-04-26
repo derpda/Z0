@@ -60,20 +60,7 @@
 		\end{equation*}
 	\end{center}
 \end{frame}
-\begin{frame}
-	\frametitle{Elektroschwache Wechselwirkung}
-	\begin{center}
-		Elektromagnetische und schwache Kopplungskonstante:
-		\begin{equation*}
-		\alpha_{em} = \alpha_W \cdot sin^2(\theta_w)
-		\end{equation*}
-		Z- und W-Bosonen Massen:
-		\begin{equation*}
-		M_W = M_Z~cos(\theta_w)
-		\end{equation*}
-		
-	\end{center}
-\end{frame}
+
 \begin{frame}
 	\begin{center}
 	\frametitle{Elektroschwache Wechselwirkung}
@@ -85,54 +72,129 @@
 	\begin{equation*}
 	g_A^f = I^f_3
 	\end{equation*}
-	Asymmetrie in der schwachen WW.
+	Paritätsverletzung
 	\end{center}
 \end{frame}
-
+\subsection{Wirkungsquerschnitt und Zerfallsbreite}
 \begin{frame}
-	\frametitle{Elektroschwache Wechselwirkung}
-	\begin{center}
-		\begin{equation*}
-		\textcolor{lightgray}{\ket{\gamma} =  cos(\theta_w)\ket{B^0} + sin(\theta_w) \ket{W^3}}
-		\end{equation*}
-		\begin{equation*}
-		\textcolor{lightgray}{\ket{Z^0} = -sin(\theta_w) \ket{B^0} + cos(\theta_w) \ket{W^3}}
-		\end{equation*}
-		\\
-		\begin{equation*}
-		\textcolor{lightgray}{sin^2(\theta_w)\cdot cos^2(\theta_w) = \frac{\pi\alpha}{\sqrt{2}G_FM_Z^2}}
-		\end{equation*}
-		\begin{equation*}
-		\textcolor{lightgray}{M_W = M_Z~cos(\theta_w)}
-		\end{equation*}
-		\begin{equation*}
-		g_V^f = I^f_3-2 Q_f sin^2(\theta_w)
-		\end{equation*}
-		\begin{equation*}
-		g_A^f = I^f_3
-		\end{equation*}
-	\end{center}
+	\frametitle{Wirkungsquerschnitt}
+	\hspace{1cm} Ereignisrate bei Luminosität $L$:
+	\begin{equation*}
+	\scalebox{1.5}{$\dot{N} = \sigma \cdot L$}
+	\end{equation*}
+	\hspace{1cm} Wirkungsquerschnitt messen:
+	\begin{equation*}
+	\scalebox{1.5}{$\sigma = \frac{N}{\int L~\text{d}t}$}
+	\end{equation*}
 \end{frame}
-
 \subsection{$e^+e^-$ Kollisionen}
 \begin{frame}
 	\frametitle{Annihilation $e^+e^- \rightarrow f\bar{f}$ }
 	\begin{center}
 		\begin{figure}
-			\includegraphics[width=1.0\textwidth]{graphics/annihilation.png}
+			\includegraphics[width=0.5\textwidth]{graphics/annihilation.png}
 		\end{figure}
 	\end{center}
+	Untersuchte Prozesse:\\
+	\begin{equation*}
+	\begin{aligned}
+	Z &\rightarrow e^+e^-\\
+	Z &\rightarrow \mu^+\mu^-\\
+	Z &\rightarrow \tau^+\tau^-\\
+	Z &\rightarrow q\bar{q} \qquad\text{(außer top-Quark, da $M_{top} > M_Z$)}
+	\end{aligned}
+	\end{equation*}
+	Nicht detektierbar:
+	$Z \rightarrow \nu \bar\nu$
+\end{frame}	
+\begin{frame}
+	\frametitle{theoretische Zerfallsbreiten der Prozesse}
+	Unter Vernachlässigung der Fermionmassen gilt:
+	\begin{equation*}	
+	\Gamma_f=\frac{N_c^f \cdot \sqrt{2}}{12\pi}\cdot G_F \cdot M_Z^3 \cdot (g_V^{f2}+g_A^{f2})
+	\end{equation*}
+	\begin{table}[H]\centering
+		\begin{tabular}{@{}llllll@{}}
+			\toprule
+			Fermion & $\Gamma _f\text{/MeV}$ \\
+			\midrule
+			e,$\mu $,$\tau $ & 83.4\\
+			$\nu _e$,$\nu _{\mu }$,$\nu _{\tau }$ & 165.9\\
+			u+d+c+s+b & 1741.7 \\
+			\bottomrule
+		\end{tabular}
+	\end{table}
+	Gesamtbreite:
+	\begin{equation*}
+	\Gamma_Z = \Gamma_e+ \Gamma_{\mu} + \Gamma_{\tau}+\Gamma_q + 3 \cdot \Gamma_{\nu}= 2489.6 GeV
+	\end{equation*}
 \end{frame}
 \begin{frame}
-	\frametitle{Bhabha Streuung $e^+e^- \rightarrow e^+e^-$ }
-	\begin{center}
-		\begin{figure}
-			\includegraphics[width=0.8\textwidth]{graphics/Bhabbastreuung.png}
-		\end{figure}
-	\end{center}
+	\frametitle{Schwerpunktsenergie und Wirkungsquerschnitt}
 	\begin{equation*}
-	\frac{d\sigma_s}{d\Omega} \propto (1+cos^2(\theta)),\qquad\frac{d\sigma_t}{d\Omega} \propto (1-cos(\theta))^{-2}
+	\sigma(s) = \frac{12\pi}{ \tikzmark{MZ1}M_Z^2}
+	\frac{s\tikzmark{gammae}\Gamma_e \tikzmark{gammaf}\Gamma_f}{(s-\tikzmark{MZ2}M_Z^2)^2 + s^2\cdot\tikzmark{gammaZ}\Gamma_Z^2 / \tikzmark{MZ3}M_Z^2}
 	\end{equation*}
+	%	\begin{tikzpicture}[
+	%	remember picture,
+	%	overlay,
+	%	expl1/.style={draw=orange,fill=orange!30,rounded corners},
+	%	expl2/.style={draw=gray!20,fill=gray!10,rounded corners},
+	%	arrow1/.style={red!80!black,ultra thick,->,>=latex},
+	%	arrow2/.style={gray!20,ultra thick,->,>=latex}
+	%	]
+	%	\node[expl1, text width=4cm]
+	%	(gammaeexpl)
+	%	at (2,2cm)
+	%	{\textcolor{black}{Zerfallsbreite Elektron (Eduktteilchen)}};
+	%	\node[expl1, text width=4cm]
+	%	(gammafexpl)
+	%	at (10,2cm)
+	%	{\textcolor{black}{Zerfallsbreite Fermion (Produktteilchen)}};
+	%	\node[expl1]
+	%	(MZexpl)
+	%	at (1,-1cm)
+	%	{Masse $Z^0$};
+	%	\node[expl1]
+	%	(gammaZexpl)
+	%	at (9.8,-1cm)
+	%	{\textcolor{black}{Gesamtzerfallsbreite $Z^0$}};
+	%	\draw[arrow1]
+	%	(gammafexpl.west) to[out=180,in=90] ([yshift=-8.2ex,xshift=1.5ex]{pic cs:gammaf});
+	%	\draw[arrow1]
+	%	(gammaeexpl.east) to[out=0,in=90] ([yshift=2ex,xshift=0.5ex]{pic cs:gammae});
+	%	\draw[arrow1]
+	%	(gammaZexpl.west) to[out=180,in=270] ([yshift=-10.5ex,xshift=0.5ex]{pic cs:gammaZ});
+	%	\draw[arrow1]
+	%	(MZexpl.east) to[out=0,in=270] ([yshift=-10.5ex,xshift=1ex]{pic cs:MZ1});
+	%\draw[arrow1]
+	%(MZexpl.east) to[out=0,in=270] ([yshift=-10.5ex,xshift=1ex]{pic cs:MZ2});
+	%\draw[arrow1]
+	%(MZexpl.east) to[out=0,in=270] ([yshift=-10.5ex,xshift=1ex]{pic cs:MZ3});
+	%	\end{tikzpicture}
+	\begin{figure}
+		\includegraphics[width=0.75\linewidth]{graphics/Breit-Wigner}
+	\end{figure}
+\end{frame}
+\begin{frame}
+	\frametitle{ $e^+e^- \rightarrow e^+e^-$ s- und t- Kanal}
+		\begin{minipage}{0.49\linewidth}
+			\ \\
+			\begin{figure}
+				\includegraphics[width=1.1\textwidth]{graphics/annihilationee.png}
+			\end{figure}
+		\begin{equation*}
+		\frac{d\sigma_s}{d\Omega} \propto (1+cos^2(\theta))
+		\end{equation*}
+	\end{minipage}
+	\begin{minipage}{0.49\linewidth}
+		\begin{figure}
+			\includegraphics[width=0.8\textwidth]{graphics/BhabbaStreuungpresentation.png}
+		\end{figure}
+	\begin{equation*}
+	\qquad\frac{d\sigma_t}{d\Omega} \propto (1-cos(\theta))^{-2}
+	\end{equation*}
+	\end{minipage}
 \end{frame}
 \begin{frame}
 	\frametitle{Strahlungskorrekturen}
@@ -153,112 +215,34 @@
 	\end{center}
 \end{frame}
 
-\subsection{Wirkungsquerschnitt und Zerfallsbreite}
-\begin{frame}
-	\frametitle{Wirkungsquerschnitt}
-	\hspace{1cm} Ereignisrate bei Luminosität $L$:
-	\begin{equation*}
-	\scalebox{1.5}{$\dot{N} = \sigma \cdot L$}
-	\end{equation*}
-	\hspace{1cm} Wirkungsquerschnitt messen:
-	\begin{equation*}
-	\scalebox{1.5}{$\sigma = \frac{N}{\int L~\text{d}t}$}
-	\end{equation*}
-\end{frame}
-\begin{frame}
-	\frametitle{Zerfallsbreite}
-	\hspace{1cm} Energieunschärfe:
-	\begin{equation*}
-	\hbar=T_Z\cdot\Gamma_Z
-	\end{equation*}
-	\hspace{1cm} Gesamtzerfallsbreite:
-	\begin{equation*}
-	\Gamma_Z = \Gamma_e+ \Gamma_{\mu} + \Gamma_{\tau}+\Gamma_q + 3 \cdot \Gamma_{\nu}
-	\end{equation*}
-\end{frame}
-
-\begin{frame}
-	\frametitle{Schwerpunktsenergie und Wirkungsquerschnitt}
-	\begin{equation*}
-	\sigma(s) = \frac{12\pi}{ \tikzmark{MZ1}M_Z^2}
-	\frac{s\tikzmark{gammae}\Gamma_e \tikzmark{gammaf}\Gamma_f}{(s-\tikzmark{MZ2}M_Z^2)^2 + s^2\cdot\tikzmark{gammaZ}\Gamma_Z^2 / \tikzmark{MZ3}M_Z^2}
-	\end{equation*}
-	\begin{tikzpicture}[
-	remember picture,
-	overlay,
-	expl1/.style={draw=orange,fill=orange!30,rounded corners},
-	expl2/.style={draw=gray!20,fill=gray!10,rounded corners},
-	arrow1/.style={red!80!black,ultra thick,->,>=latex},
-	arrow2/.style={gray!20,ultra thick,->,>=latex}
-	]
-	\node[expl1, text width=4cm]
-	(gammaeexpl)
-	at (2,2cm)
-	{\textcolor{black}{Zerfallsbreite Elektron (Eduktteilchen)}};
-	\node[expl1, text width=4cm]
-	(gammafexpl)
-	at (10,2cm)
-	{\textcolor{black}{Zerfallsbreite Fermion (Produktteilchen)}};
-	\node[expl1]
-	(MZexpl)
-	at (1,-1cm)
-	{Masse $Z^0$};
-	\node[expl1]
-	(gammaZexpl)
-	at (9.8,-1cm)
-	{\textcolor{black}{Gesamtzerfallsbreite $Z^0$}};
-	\draw[arrow1]
-	(gammafexpl.west) to[out=180,in=90] ([yshift=-8.2ex,xshift=1.5ex]{pic cs:gammaf});
-	\draw[arrow1]
-	(gammaeexpl.east) to[out=0,in=90] ([yshift=2ex,xshift=0.5ex]{pic cs:gammae});
-	\draw[arrow1]
-	(gammaZexpl.west) to[out=180,in=270] ([yshift=-10.5ex,xshift=0.5ex]{pic cs:gammaZ});
-	\draw[arrow1]
-	(MZexpl.east) to[out=0,in=270] ([yshift=-10.5ex,xshift=1ex]{pic cs:MZ1});
-	%\draw[arrow1]
-	%(MZexpl.east) to[out=0,in=270] ([yshift=-10.5ex,xshift=1ex]{pic cs:MZ2});
-	%\draw[arrow1]
-	%(MZexpl.east) to[out=0,in=270] ([yshift=-10.5ex,xshift=1ex]{pic cs:MZ3});
-	\end{tikzpicture}
-\end{frame}
 \subsection{Vorwärts Rückwärts Asymmetrie}
 \begin{frame}
 	\frametitle{Vorwärts Rückwärts Asymmetrie}
-	\begin{center}
-		Vordere Hemisphäre
+	\begin{figure}
+		\includegraphics[width=0.3\textwidth]{graphics/AsymmetrieWinkel}
+	\end{figure}
+
+		Vordere Hemisphäre:
 		\begin{equation*}
 		\sigma_f=\int_{0}^{1}\frac{\text{d}\sigma}{\text{d}cos(\theta)}~\text{d}cos(\theta)
 		\end{equation*}
-		Hintere Hemisphäre
+		Hintere Hemisphäre:
 		\begin{equation*}
 		\sigma_b=\int_{-1}^{0}\frac{\text{d}\sigma}{\text{d}cos(\theta)}~\text{d}cos(\theta)
 		\end{equation*}
-		\\
-		\begin{equation*}
-		\textcolor{lightgray}{A_{fb}=\frac{\sigma_f-\sigma_b}{\sigma_f+\sigma_b}}
-		\end{equation*}
-	\end{center}
-\end{frame}
-\begin{frame}
-	\frametitle{Vorwärts Rückwärts Asymmetrie}
-	\begin{center}
-		\begin{equation*}
-		\textcolor{lightgray}{\sigma_f=\int_{0}^{1}\frac{\text{d}\sigma}{\text{d}cos(\theta)}~\text{d}cos(\theta)}
-		\end{equation*}
-		\begin{equation*}
-		\textcolor{lightgray}{\sigma_b=\int_{-1}^{0}\frac{\text{d}\sigma}{\text{d}cos(\theta)}~\text{d}cos(\theta)}
-		\end{equation*}
+		Asymmetrie:
 		\begin{equation*}
 		A_{fb}=\frac{\sigma_f-\sigma_b}{\sigma_f+\sigma_b}
 		\end{equation*}
-	\end{center}
 \end{frame}
 \begin{frame}
 	\frametitle{Vorwärts Rückwärts Asymmetrie}
-	\begin{center}
-		Für Leptonen am Resonanzpeak:
+		Für Leptonen am Resonanzpeak gilt:
 		\begin{equation*}
 		A_{fb}^{\ell,peak}\approx 3 \left ( \frac{g^{\ell}_V}{g^{\ell}_A} \right )^2=3\cdot (1-4 sin^2(\theta_w))^2
 		\end{equation*}
-	\end{center}
+		liefert Bestimmungsgleichung für elektroschwachen Mischungswinkel:
+		\begin{equation*}
+		\theta_w\approx\arcsin(\sqrt{\frac{1-\sqrt{A_{fb}/3}}{4}})
+		\end{equation*}
 \end{frame}
