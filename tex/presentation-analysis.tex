@@ -260,27 +260,39 @@
 
 \begin{frame}
 	\frametitle{s-t-Kanal Trennung}
-	\begin{figure}
-		\centering
-		\includegraphics[width=0.85\linewidth]{../results/data_results/cosp_fits/stchannelexample46.png}
-	\end{figure}
-	\hspace{2cm} Fit Funktion (x=cos\_theta)
-	\begin{equation*}
-		N(x)=A_s\cdot(1-x^2)+A_t\cdot(1-x)^{-2}
-	\end{equation*}
+	\centering
+	\includegraphics[width=0.85\linewidth]{../results/data_results/cosp_fits/stchannelexample46.png}
+	\hspace{2cm} Fit Funktion $N(x)=A_s\cdot(1-x^2)+A_t\cdot(1-x)^{-2}$
 \end{frame}
 
 \begin{frame}
 	\frametitle{Berechnung des Korrekturfaktors}
-	\begin{equation*}
+	\begin{minipage}{0.7\linewidth}
+		\begin{equation*}
 		c_{st}=\frac{A_s\int_{-0.9}^{0.9}(1+x^2)dx}{A_s\int_{-0.9}^{0.9}(1+x^2)dx+A_t\int_{-0.9}^{0.9}(1-x)^{-2}dx}
-	\end{equation*}\\
-	\hfill\\
-	\hspace{2cm} Integrale sind konstant
-	\begin{align*}
+		\end{equation*}\\
+		\hfill\\
+		\hspace{2cm} Integrale sind konstant
+		\begin{align*}
 		\int_{-0.9}^{0.9}(1+x^2)dx&=2.286\\
 		\int_{-0.9}^{0.9}(1-x)^{-2}dx&=9.474
-	\end{align*}
+		\end{align*}
+	\end{minipage}
+	\begin{minipage}{0.28\linewidth}
+		\begin{tabular}{@{}lll@{}}
+			\toprule
+			&$\sqrt{s}$ [GeV]&$c_{st}$\\
+			\midrule
+			&$88.48$&0.12(2)\\
+			&$89.47$&0.37(2)\\
+			&$90.23$&0.52(2)\\
+			&$91.23$&0.688(8)\\
+			&$91.97$&0.66(2)\\
+			&$92.97$&0.44(3)\\
+			&$93.72$&0.47(3)\\
+			\bottomrule
+		\end{tabular}
+	\end{minipage}
 \end{frame}
 
 \subsection{Auswertung der aufgearbeiteten Daten}
