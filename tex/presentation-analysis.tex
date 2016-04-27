@@ -2,44 +2,115 @@
 \subsection{Detektor Bilder}
 \begin{frame}
 	\frametitle{Elektronen Events}
-	\begin{figure}
-		\centering
-		\includegraphics[width=0.63\linewidth]{graphics/electronopal}
-	\end{figure}
+	\begin{minipage}{0.54\linewidth}
+		\begin{figure}
+			\centering
+			\includegraphics[width=1.0\linewidth]{graphics/electronopal}
+		\end{figure}
+	\end{minipage}
+	\begin{minipage}{0.44\linewidth}
+		\begin{center}
+			\begin{itemize}
+				\item 2 geladene Spuren\\\hfill
+				\item Energie in EM-Kalorimeter\\\hfill
+			\end{itemize}
+		\end{center}
+	\end{minipage}
 \end{frame}
 
 \begin{frame}
 	\frametitle{Myonen Events}
-	\begin{figure}
-		\centering
-		\includegraphics[width=0.63\linewidth]{graphics/muonopal}
-	\end{figure}
-\end{frame}
-
-\begin{frame}
-	\frametitle{Hadronisches Tauonen Event}
-	\begin{figure}
-		\centering
-		\includegraphics[width=0.63\linewidth]{graphics/tauonopalhadronisch}
-	\end{figure}
+		\begin{minipage}{0.54\linewidth}
+			\begin{figure}
+				\centering
+				\includegraphics[width=1.0\linewidth]{graphics/muonopal}
+			\end{figure}
+		\end{minipage}
+		\begin{minipage}{0.44\linewidth}
+			\begin{center}
+				\begin{itemize}
+					\item 2 geladene Spuren\\\hfill
+					\item Wenig Energie in EM-Kalorimeter\\\hfill
+					\item Wenig Energie in Hadronenkalorimeter\\\hfill
+					\item Spuren in Myonenkammer
+				\end{itemize}
+			\end{center}
+		\end{minipage}
 \end{frame}
 
 \begin{frame}
 	\frametitle{Leptonisches Tauonen Event}
-	\begin{figure}
-		\centering
-		\includegraphics[width=0.63\linewidth]{graphics/tauonopalleptonisch}
-	\end{figure}
+		\begin{minipage}{0.54\linewidth}
+			\begin{figure}
+				\centering
+				\includegraphics[width=1.0\linewidth]{graphics/tauonopalleptonisch}
+			\end{figure}
+		\end{minipage}
+		\begin{minipage}{0.44\linewidth}
+			\begin{center}
+				\begin{itemize}
+					\item Etwa $\frac{1}{3}$ Wahrscheinlichkeit\\\hfill
+					\item 2 geladene Spuren\\\hfill
+					\item Ein Myon, ein Elektron\\\hfill
+				\end{itemize}
+			\end{center}
+		\end{minipage}
 \end{frame}
 
 \begin{frame}
-	\frametitle{Quark Events}
-	\begin{figure}
-		\centering
-		\includegraphics[width=0.63\linewidth]{graphics/quarkopal}
-	\end{figure}
+	\frametitle{Hadronisches Tauonen Event}
+		\begin{minipage}{0.54\linewidth}
+			\begin{figure}
+				\centering
+				\includegraphics[width=1.0\linewidth]{graphics/tauonopalhadronisch}
+			\end{figure}
+		\end{minipage}
+		\begin{minipage}{0.44\linewidth}
+			\begin{center}
+				\begin{itemize}
+					\item Etwa $\frac{2}{3}$ Wahrscheinlichkeit\\\hfill
+					\item Hier zwei mal drei Pionen\\\hfill
+					\item Energie in beiden Kalorimetern\\\hfill
+				\end{itemize}
+			\end{center}
+		\end{minipage}
 \end{frame}
+
+
+\begin{frame}
+	\frametitle{Quark Events}
+		\begin{minipage}{0.54\linewidth}
+			\begin{figure}
+				\centering
+				\includegraphics[width=1.0\linewidth]{graphics/quarkopal}
+			\end{figure}
+		\end{minipage}
+		\begin{minipage}{0.44\linewidth}
+			\begin{center}
+				\begin{itemize}
+					\item Ähnlichkeit mit Hadr. Tauonen\\\hfill
+					\item Sehr viele Spuren\\\hfill
+					\item Energie in beiden Kalorimetern\\\hfill
+					\item Beugung der Kurven wegen Magnetfeld
+				\end{itemize}
+			\end{center}
+		\end{minipage}
+\end{frame}
+
+
+
 \subsection{Cuts und Aufbereitung der Daten}
+\begin{frame}
+	\frametitle{MC-Simulationen}
+	\begin{center}
+		\begin{itemize}
+			\item Zu viele Events um einzeln zu unterscheiden\\\hfill
+			\item Events an Variablen (E\_Ecal, Ncharged...) unterscheiden\\\hfill
+			\item MC-Simulation von Events und Detektorsimulation\\\hfill
+			\item Daraus Weg finden, Events zu trennen
+		\end{itemize}
+	\end{center}	
+\end{frame}
 \begin{frame}
 	\frametitle{Energie im EM Kalorimeter}
 	\begin{figure}
@@ -246,6 +317,57 @@
 	\end{equation*}
 \end{frame}
 \begin{frame}
+	\frametitle{Zerfallsbreiten und Leptonenuniversalität}
+	\mbox{}\\
+	\begin{equation*}
+	\sigma(s) = \frac{12\pi}{ \tikzmark{MZ1}M_Z^2}\frac{s\cdot \tikzmark{gammaf}\Gamma_f^2}{(s-\tikzmark{MZ2}M_Z^2)^2+s^2\cdot\tikzmark{gammaZ}\Gamma_Z^2 / \tikzmark{MZ3}M_Z^2}
+	\end{equation*}
+	\begin{tikzpicture}[
+	remember picture,
+	overlay,
+	expl1/.style={draw=orange,fill=orange!30,rounded corners},
+	expl2/.style={draw=gray!20,fill=gray!10,rounded corners},
+	arrow1/.style={red!80!black,ultra thick,->,>=latex},
+	arrow2/.style={gray!20,ultra thick,->,>=latex}
+	]
+	\node[expl1]
+	(gammafexpl)
+	at (2,2cm)
+	{\textcolor{black}{Zerfallsbreite Fermion}};
+	\node[expl2]
+	(MZexpl)
+	at (1,-1cm)
+	{\textcolor{gray}{Masse $Z^0$}};
+	\node[expl1]
+	(gammaZexpl)
+	at (10.5,-1cm)
+	{\textcolor{black}{Zerfallsbreite $Z^0$}};
+	\draw[arrow1]
+	(gammafexpl.east) to[out=0,in=90] ([yshift=19ex,xshift=0.75ex]{pic cs:gammaf});
+	\draw[arrow2]
+	(MZexpl.east) to[out=0,in=270] ([yshift=17ex,xshift=0.7ex]{pic cs:MZ1});
+	\draw[arrow2]
+	(MZexpl.east) to[out=0,in=270] ([yshift=17ex,xshift=0.7ex]{pic cs:MZ2});
+	\draw[arrow2]
+	(MZexpl.east) to[out=0,in=270] ([yshift=17ex,xshift=0.7ex]{pic cs:MZ3});
+	\draw[arrow1]
+	(gammaZexpl.west) to[out=180,in=270] ([yshift=17ex,xshift=0.5ex]{pic cs:gammaZ});
+	\end{tikzpicture}
+	\mbox{}\\\mbox{}\\\mbox{}\\\mbox{}\\
+	\begin{table}[h]\centering
+		\begin{tabular}{@{}llllll@{}}
+			\toprule
+			&Event $i$&$\Gamma_{Z}$ [GeV]&$s_{\Gamma_{Z}}$ [GeV]&$\Gamma_i$ [MeV]&$s_{\Gamma_i}$ [MeV]\\
+			\midrule
+			&$e^+e^-$&2.28&0.11&94&4\\
+			&$\mu^+\mu^-$&2.52&0.06&82.9&1.7\\
+			&$\tau^+\tau^-$&2.48&0.07&76.9&1.9\\
+			&$q\overline{q}$&2.526&0.019&1777&41\\
+			\bottomrule
+		\end{tabular}
+	\end{table}
+\end{frame}
+\begin{frame}
 	\frametitle{Masse des $Z^0$ Bosons}
 	\begin{equation*}
 		M_{Z^0}=(91.188\pm0.008)\unit{GeV}
@@ -275,69 +397,19 @@
 	at (10.5,-1cm)
 	{\textcolor{gray}{Zerfallsbreite $Z^0$}};
 	\draw[arrow2]
-	(gammafexpl.east) to[out=0,in=90] ([yshift=-15ex,xshift=0.75ex]{pic cs:gammaf});
+	(gammafexpl.east) to[out=0,in=90] ([yshift=2ex,xshift=0.75ex]{pic cs:gammaf});
 	\draw[arrow2]
-	(gammaZexpl.west) to[out=180,in=270] ([yshift=-18ex,xshift=0.5ex]{pic cs:gammaZ});
+	(gammaZexpl.west) to[out=180,in=270] ([yshift=-1ex,xshift=0.5ex]{pic cs:gammaZ});
 	\draw[arrow1]
-	(MZexpl.east) to[out=0,in=270] ([yshift=-18ex,xshift=1ex]{pic cs:MZ1});
+	(MZexpl.east) to[out=0,in=270] ([yshift=-1ex,xshift=1ex]{pic cs:MZ1});
 	\draw[arrow1]
-	(MZexpl.east) to[out=0,in=270] ([yshift=-18ex,xshift=1ex]{pic cs:MZ2});
+	(MZexpl.east) to[out=0,in=270] ([yshift=-1ex,xshift=1ex]{pic cs:MZ2});
 	\draw[arrow1]
-	(MZexpl.east) to[out=0,in=270] ([yshift=-18ex,xshift=1ex]{pic cs:MZ3});
+	(MZexpl.east) to[out=0,in=270] ([yshift=-1ex,xshift=1ex]{pic cs:MZ3});
 	\end{tikzpicture}
 	\mbox{}\\\mbox{}\\\mbox{}\\
 \end{frame}
-\begin{frame}
-	\frametitle{Zerfallsbreiten und Leptonenuniversalität}
-	\mbox{}\\
-	\begin{equation*}
-		\sigma(s) = \frac{12\pi}{ \tikzmark{MZ1}M_Z^2}\frac{s\cdot \tikzmark{gammaf}\Gamma_f^2}{(s-\tikzmark{MZ2}M_Z^2)^2+s^2\cdot\tikzmark{gammaZ}\Gamma_Z^2 / \tikzmark{MZ3}M_Z^2}
-	\end{equation*}
-	\begin{tikzpicture}[
-	remember picture,
-	overlay,
-	expl1/.style={draw=orange,fill=orange!30,rounded corners},
-	expl2/.style={draw=gray!20,fill=gray!10,rounded corners},
-	arrow1/.style={red!80!black,ultra thick,->,>=latex},
-	arrow2/.style={gray!20,ultra thick,->,>=latex}
-	]
-	\node[expl1]
-	(gammafexpl)
-	at (2,2cm)
-	{\textcolor{black}{Zerfallsbreite Fermion}};
-	\node[expl2]
-	(MZexpl)
-	at (1,-1cm)
-	{\textcolor{gray}{Masse $Z^0$}};
-	\node[expl1]
-	(gammaZexpl)
-	at (10.5,-1cm)
-	{\textcolor{black}{Zerfallsbreite $Z^0$}};
-	\draw[arrow1]
-	(gammafexpl.east) to[out=0,in=90] ([yshift=2ex,xshift=0.75ex]{pic cs:gammaf});
-	\draw[arrow2]
-	(MZexpl.east) to[out=0,in=270] ([yshift=-1ex,xshift=0.5ex]{pic cs:MZ1});
-	\draw[arrow2]
-	(MZexpl.east) to[out=0,in=270] ([yshift=-1ex,xshift=0.5ex]{pic cs:MZ2});
-	\draw[arrow2]
-	(MZexpl.east) to[out=0,in=270] ([yshift=-1ex,xshift=0.5ex]{pic cs:MZ3});
-	\draw[arrow1]
-	(gammaZexpl.west) to[out=180,in=270] ([yshift=-1ex,xshift=0.5ex]{pic cs:gammaZ});
-	\end{tikzpicture}
-	\mbox{}\\\mbox{}\\\mbox{}\\\mbox{}\\
-	\begin{table}[h]\centering
-		\begin{tabular}{@{}llllll@{}}
-			\toprule
-			&Event $i$&$\Gamma_{Z}$ [GeV]&$s_{\Gamma_{Z}}$ [GeV]&$\Gamma_i$ [MeV]&$s_{\Gamma_i}$ [MeV]\\
-			\midrule
-			&$e^+e^-$&2.28&0.11&94&4\\
-			&$\mu^+\mu^-$&2.52&0.06&82.9&1.7\\
-			&$\tau^+\tau^-$&2.48&0.07&76.9&1.9\\
-			&$q\overline{q}$&2.526&0.019&1777&41\\
-			\bottomrule
-		\end{tabular}
-	\end{table}
-\end{frame}
+
 \begin{frame}
 	\frametitle{Neutrinogenerationen}
 	\hspace{2cm} Blinde Zerfallsbreite

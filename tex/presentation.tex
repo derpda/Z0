@@ -98,14 +98,6 @@
 \begin{frame}[noframenumbering, plain]
 \titlepage
 \end{frame}
-
-\begin{frame}[noframenumbering]
-\frametitle{Inhalt}
-\tableofcontents[hideallsubsections]
-\end{frame}
-
-
-\section{Einleitung}
 \begin{frame}
 	\frametitle{Einleitung und Überblick}
 	Was betrachten wir?
@@ -118,19 +110,26 @@
 	\begin{itemize}
 		\item Masse und Zerfallsbreite von $Z^0$
 		\item Partielle Zerfallsbreiten der Produkte\\
-			$\Rightarrow$ Leptonenuniversalität überprüfen
+		$\Rightarrow$ Leptonenuniversalität überprüfen
 		\item Anzahl leichter Neutrinogenerationen
 		\item Asymmetrie und Weinbergwinkel
 	\end{itemize}
 	
 \end{frame}
-\AtBeginSection[]
-{
-	\begin{frame}<beamer>[noframenumbering]
-		\frametitle{}
-		\tableofcontents[currentsection,hideothersubsections]
-	\end{frame}
-}
+\begin{frame}[noframenumbering]
+\frametitle{Inhalt}
+\tableofcontents[hideallsubsections]
+\end{frame}
+
+
+
+%\AtBeginSection[]
+%{
+%	\begin{frame}<beamer>[noframenumbering]
+%		\frametitle{}
+%		\tableofcontents[currentsection,hideothersubsections]
+%	\end{frame}
+%}
 \input{presentation-theory}
 
 \input{presentation-LEPOPAL}
