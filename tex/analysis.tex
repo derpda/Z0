@@ -1,12 +1,12 @@
 \section{Data analysis}
-As no data was surveyed by the authors, there will be no chapter on the experimental procedure. Instead, the focus will be on the analysis of the data, for most of which the framework ROOT was used. Data was provided from two sources:
+As no data was surveyed by the authors, there will be no chapter on the experimental procedure. Instead, the focus will be on the data analysis, for most of which the framework ROOT was used. Data was provided from two sources:
 \begin{enumerate}
 	\item Monte Carlo simulations, separated by decay reaction.
 	\item Actual data from the OPAL detector at the LEP collider.
 \end{enumerate}
 
 \subsection{Event signatures}
-The four main types of events leave distinct signatures, which can be inspected in the detector cross sections. Figures \ref{fig:electronopal} to \ref{fig:quarkopal} show said cross sections. 
+The four main types of events leave distinct signatures, which can be inspected in the detector cross sections. Examples are shown in figures \ref{fig:electronopal} to \ref{fig:quarkopal}. 
 
 \begin{figure}[H]
 \centering
@@ -22,7 +22,7 @@ The four main types of events leave distinct signatures, which can be inspected 
 \caption[OPAL cross section muon event]{OPAL cross section of a muon event. The red arrows in the muon chambers (outermost ring) make muon events easy to spot. \cite{cern}}
 \label{fig:muonopal}
 \end{figure}
-\paragraph{Muon event:} Muons only interact very weakly with matter, which explains the low depositions in both the electromagnetic and hadronic calorimeters (purple bars). The muon chambers detect the outgoing muons, which is depicted as red vectors pointing outward in figure \ref{fig:muonopal}.
+\paragraph{Muon event:} Muons only interact very weakly with matter, which explains the low depositions in both the electromagnetic and hadronic calorimeters (purple bars). The muon chambers detect the exiting muons, which is depicted as red vectors pointing outward in figure \ref{fig:muonopal}.
 \newpage
 \begin{figure}[H]
 \centering
@@ -39,12 +39,12 @@ The four main types of events leave distinct signatures, which can be inspected 
 \caption[OPAL cross section quark event]{Opal cross section of a quark event. The particle jet and the large depositions in the hadronic calorimeter are characteristic for a quark decay. \cite{cern}}
 \label{fig:quarkopal}
 \end{figure}
-\paragraph{Quark event:} These events are easily recognizable by the large number of charged particles, the so-called hadron jets. The energy is deposited in both electromagnetic and hadronic calorimeters.
+\paragraph{Quark event:} These events are easily recognizable by the large number of charged particles, the so-called hadron jets. The energy is deposited in both electromagnetic and hadronic calorimeters. The number of tracks can be as high as 35.
 \newpage
 
 
 \subsection{Selection of cuts}
-In a first step, the data from the Monte Carlo simulations is plotted over adequate range in the following parameters:
+In a first step, the data from the Monte Carlo simulations is plotted over adequate ranges in the following parameters:
 \begin{itemize}
 	\item{\makebox[3cm][l]{\textbf{NCHARGED:}}The number of tracks visible in the drift chamber}
 	\item{\makebox[3cm][l]{\textbf{PCHARGED:}}Energy of particles that left a track in the drift chamber}
@@ -86,7 +86,7 @@ Above figure suggests a good way to separate the data sets. In particular, all t
 \end{figure}
 
 \subsubsection{Cuts in Pcharged}
-The separation of the data sets is less obvious in the Pcharged channel. Most datasets overlap, preventing the very clean cuts as they were in the Ncharged channel. However, since we have conveniently already cut against quarks in the Ncharged channel, we can ignore said dataset and separate tauons and muons as follows:
+The separation of the data sets is less obvious in the Pcharged channel. Most datasets overlap, making the choice harder than it was in the Ncharged channel. However, since we have conveniently already cut against quarks in the Ncharged channel, we can ignore said dataset and separate tauons and muons as follows:
 \begin{itemize}
 	\item{\makebox[2.5cm][l]{\textbf{Muon cut:}} Pcharged $>71$ GeV}
 	\item{\makebox[2.5cm][l]{\textbf{Tauon cut}} Pcharged $\le60$ GeV}
@@ -159,8 +159,8 @@ The final cuts thus are
 		\midrule
 		&$e^+e^-$	&$<7$		&				&$\ge70$		&$\ge-0.9$ \& $\le0.9$	&\\
 		&$\mu^+\mu^-$		&$=2$			&$>71$		&$<50$			&						&\\
-		&$\tau^+\tau^-$		&$<7$		&$\le60$			&$<60$			&						&\\
-		&$q\overline{q}$		&$\ge8$		&				&				&						&$\ge-0.9$ \& $\le0.9$	\\
+		&$\tau^+\tau^-$		&$<7$		&$\le60$			&$<60$			&						&$\ge-0.9$ \& $\le0.9$\\
+		&$q\overline{q}$		&$\ge8$		&				&				&						&	\\
 		\bottomrule
 	\end{tabular}
 	\caption[Table of cuts]{Cuts applied to separate the datasets. An additional cut on Pcharged, which is not listed here, is discussed below.}
@@ -179,10 +179,11 @@ As no charged particles are created in the event type described by the Feynman g
 
 \subsection{Purity and the efficiency matrix}
 These cuts are now applied to the simulated data, where the kind of event is known. This way, one can determine the efficiency and purity of the cuts and judge how well they work. 
-The efficiency matrix is relatively easily calculated as
+The efficiency matrix is calculated as
 \begin{equation}
+E_{ij}=\frac{C_{ij}}{N_i},\qquad \vec{C}=\boldsymbol{E}\cdot\vec{N}
 \end{equation}
-where the indexes $i$ and $j$ represent the kind of event. $n_{ij}^{cut}$ is thus the amount of events of type $i$ left over after applying the cut for type $j$ and $N_i$ is the overall number of events $i$ in the simulation data.
+where the indexes $i$ and $j$ represent the kind of event. $C_{ij}$ is thus the amount of events of type $i$ left over after applying the cut for type $j$ and $N_i$ is the overall number of events $i$ in the simulation data.
 \begin{table}[H]\centering
 	\begin{tabular}{@{}llllll@{}}
 		\toprule
@@ -194,7 +195,7 @@ where the indexes $i$ and $j$ represent the kind of event. $n_{ij}^{cut}$ is thu
 		&$\tau^+\tau^-$&0.00039&0.00940&0.83413&0.00094\\
 		&$q\overline{q}$&0.00007&0.00001&0.00685&0.98437\\
 	\end{tabular}
-	\caption[Efficiency matrix]{Efficiency matrix of the applied cuts. The diagonal elements are the self efficiency.}
+	\caption[Efficiency matrix]{Efficiency matrix of the applied cuts. The diagonal elements are the self efficiencies.}
 	\label{tb:efficiency}
 \end{table}
 
@@ -220,7 +221,7 @@ where $N_i$ is the number of simulated events of the appropriate kind. This yiel
 	\label{tb:efficiencyerr}
 \end{table}
 
-To calculate the purity, it has to be taken into account that the different events do not occur with the same probability in nature but are roughly equally represented in the simulated data. This is expressed by the branching ratio
+To calculate the purity, it has to be taken into account that the different events do not occur with the same probability in nature, but are roughly equally represented in the simulated data. This is expressed by the branching ratio
 \begin{equation}
 BR_i=\frac{\Gamma_i}{\sum_{j}\Gamma_{j}}
 \end{equation}
@@ -258,7 +259,8 @@ In reality however, the kind of event is unknown and has to be determined by the
 \begin{equation}
 \vec{N}=\boldsymbol{E}^{-1}\cdot\vec{C}=:\boldsymbol{I}\cdot\vec{C}
 \label{eq:numberevents}
-\end{equation} 
+\end{equation}
+This means that, based on the efficiency calculations for events that are not supposed to be in the cut, a certain number of events are actually subtracted.
 The inverse matrix $\boldsymbol{I}$ is
 \begin{table}[H]\centering
 	\begin{tabular}{@{}llllll@{}}
@@ -272,15 +274,15 @@ The inverse matrix $\boldsymbol{I}$ is
 		&$q\overline{q}$&-0.00019&0.00008&-0.00835&1.01589\\
 		\bottomrule
 	\end{tabular}
-	\caption[Inverse efficiency matrix]{The inverse of the efficiency matrix displayed in table \ref{tb:efficiency}.}
+	\caption[Inverse efficiency matrix]{The inverse of the efficiency matrix displayed from table \ref{tb:efficiency}.}
 	\label{tb:invefficiency}
 \end{table}
 
-To calculate the error of the inverse matrix, a method called \emph{toy experiments} has to be used. A normal-distribution random variable $G=\mathcal{N}(0,1)$ is multiplied by the error of an element of the efficiency matrix and then added to said element.
+Since general matrix inversion cannot be expressed in an analytical formula but is done for example via the Gauss algorithm, the error calculation is not trivial. To calculate the error of the inverse matrix, a method called \emph{toy experiments} can be used. A normal-distributed random variable $G=\mathcal{N}(0,1)$ is multiplied by the error of an element of the efficiency matrix and then added to said element.
 \begin{equation}
 E^{k}_{ij}=E_{ij}+G^k\cdot s_{E_{ij}}
 \end{equation}
-This is done $N=10000$ times, resulting in 10000 randomly varied efficiency matrix, which are then inverted. The standard deviation of the thus calculated elements $I^k_{ij}$ of the inverse matrix is used as the error for the inverse matrix elements $I_{ij}$: 
+This is done $N=10000$ times, resulting in 10000 randomly varied efficiency matrices, which are then inverted one by one. The standard deviation of the thus calculated elements $I^k_{ij}$ of the inverse matrices is used as the error for the inverse matrix elements $I_{ij}$: 
 \begin{equation}
 s_{I_{ij}}=\sqrt{\frac{1}{N-1}\sum_{k=1}^{N}\left(I^k_{ij}-I_{ij}\right)^2}
 \end{equation}
@@ -302,26 +304,26 @@ The resulting matrix is displayed in table \ref{tb:invefficiencyerror}
 \end{table}
 
 \subsection{Separation of s- and t-channel}
-The electron data still includes the scattering events (t-channel), where no real $Z^0$ is created. The results from these measurements thus give no information about the properties of the $Z^0$ boson and need to be excluded from the results. In section \ref{sec:ee interaction}, it was explained that these two kinda of events show different angular distributions. A linear combination of said distributions, $\sigma_s$ and $\sigma_t$ (equation \ref{eq:principles:s-t-channel}),
+The electron data still includes the scattering events (t-channel), where no real $Z^0$ is created. The results from these measurements thus give no information about the properties of the $Z^0$ boson and need to be excluded from the results. In section \ref{sec:ee interaction}, it was explained that these two kind of events show different angular distributions. A linear combination of said distributions, $\sigma_s$ and $\sigma_t$ (equation \ref{eq:principles:s-t-channel}),
 \begin{equation}
 N(x)=A_s\cdot(1+x^2)+A_t\cdot(1-x)^{-2}
 \end{equation}
-where $A_s$ and $A_t$ are fit parameters and $x=$cos\_theta is the variable, was fitted to the cos\_theta-channel data of the events classified by the cuts as electron events. The result can be seen in figure \ref{fig:stchannelseparation}.
+where $A_s$ and $A_t$ are fit parameters and $x=$cos\_theta is the variable, was fitted to the cos\_theta-channel data of the events classified by the cuts as electron events. It is worth pointing out that this underground correction is done on the data itself, not on separate measurements or simulated data. The result can be seen in figure \ref{fig:stchannelseparation}.
 \begin{figure}
 \centering
 \includegraphics[width=1.0\linewidth]{../results/data_results/cosp_fits/stchannelexample46.png}
-\caption[s-t-channel separation $\sqrt{s}\approx\unit{92}{GeV}$ GeV]{S-t channel separation for $\sqrt{s}\approx\unit{92}{GeV}$. The electron cut limits cos\_theta to the range $-0.9\le$cos\_theta$\le0.9$.}
+\caption[s-t-channel separation $\sqrt{s}\approx\unit{92}{GeV}$ GeV]{s-t channel separation for $\sqrt{s}\approx\unit{92}{GeV}$. The electron cut limits cos\_theta to the range $-0.9\le$cos\_theta$\le0.9$.}
 \label{fig:stchannelseparation}
 \end{figure}
-The number of events in the s-channel $N_s$ and t-channel $N_t$ can then be calculated by integrating the summands respectively
+The number of events in the s-channel $N_s$ and t-channel $N_t$ can then be calculated by integrating the summands respectively, with the range naturally limited by the applied cut in cos\_theta
 \begin{equation}
-N_s=A_s\cdot\int_{-0.9}^{0.9}1+x^2dx=:s\cdot I_s,\qquad N_t=A_t\cdot\int_{-0.9}^{0.9}(1-x)^{-2}dx=:t\cdot I_t
+N_s=A_s\cdot\int_{-0.9}^{0.9}1+x^2dx=:A_s\cdot I_s,\qquad N_t=A_t\cdot\int_{-0.9}^{0.9}(1-x)^{-2}dx=:A_t\cdot I_t
 \end{equation}
-The integrals are mere constants,$I_s\approx2.3$ and $I_t\approx9.5$, thus making the error calculations simpler as they might seem on first glance. The following quotient can later be used to correct the number of $e^+e^-$-events after the cuts
+The integrals are mere constants, $I_s\approx2.3$ and $I_t\approx9.5$, thus making the error calculations simpler as they might seem on first glance. The following quotient can later be used to correct the number of $e^+e^-$-events after the cuts
 \begin{equation}
 c_{st}=\frac{N_s}{N_s+N_t},\qquad s_{c_{st}}=\sqrt{\left(\frac{I_s\cdot N_t}{(N_s+N_t)^2}\cdot s_{A_s}\right)^2+\left(\frac{I_t\cdot N_s}{(N_s+N_t)^2}\cdot s_{A_t}\right)^2}
 \end{equation}
-
+The main issue with these calculations is the limitation imposed by the cut in cos\_theta. The results varied significantly when fitting over smaller ranges. For better results, the detection capacities of the detector for shallow angles would have to be examined in detail. The needed data was not provided and such measurements would surely have come in conflict with the time constraints.
 \subsection{Cross sections and the mass of Z$^0$}
 With the data cleared of underground effects, the cross sections can be calculated. The number of events after the respective cuts $\vec{C}$ are Poisson-distributed, thus
 \begin{equation}
@@ -351,7 +353,7 @@ In order to calculate the cross sections, the radiation corrections and the lumi
 		  &93.72	&766.8	&4.0	&5.1	&6.5	&-0.08	&-1.6\\
 		\bottomrule
 	\end{tabular}
-	\caption[Table of luminosities]{The luminosities L and radiation corrections $c_{beam}$ for the different mean energies $\sqrt{s}$. The radiation corrections where found in \cite{anleitung}, where no error was given.}
+	\caption[Table of luminosities]{The luminosities L and radiation corrections $c_{beam}$ for the different center-of-mass energies $\sqrt{s}$. The radiation corrections where taken from \cite{anleitung}, where no error was given.}
 	\label{tb:luminosity}
 \end{table}
 
@@ -364,7 +366,7 @@ Figure \ref{fig:WQmm} shows the result of the calculations for the muon cut (for
 \begin{equation}
 \sigma_f(s) = \frac{12\pi}{M_Z^2} \frac{s\Gamma_f^2}{(s-M_Z^2)^2+s^2\Gamma_Z^2/M_Z^2}
 \end{equation}
-where, instead of $\Gamma_e\Gamma_f$, $\Gamma_f^2$ was used for all fits, reducing the number of fit parameters. For the leptons, this means assuming lepton universality. For the hadrons, this makes an additional calculation, which will be discussed in the next section. This function was used for all of the following fits.
+where, instead of $\Gamma_e\Gamma_f$, $\Gamma_f^2$ was used for all fits, reducing the number of fit parameters. For the leptons, this means assuming lepton universality, although a small calculation using the partial decay width of the electron can be used to calculate the $\Gamma_f$ without assuming universality. For the hadrons, this exact calculation is necessary and will be discussed in the next section. Above function was used for all of the following fits.
 
 \begin{figure}
 \centering
@@ -417,11 +419,11 @@ The partial decay width $\Gamma_q$ of the quark events was calculated from the f
 \Gamma_q=\frac{(\Gamma_{f}^q)^2}{\Gamma_e},\qquad
 s_{\Gamma_q}=\sqrt{\left(\frac{2\Gamma_f^q}{\Gamma_e}\cdot s_{\Gamma_f^q}\right)^2+\left(\frac{(\Gamma_f^q)^2}{\Gamma_e^2}\cdot s_{\Gamma_e}\right)^2}
 \end{equation}
-where the results from the muon fits were used for the partial decay width of the electron $\Gamma_e$. This can be done since we have already assumed lepton universality and is reasonable, because the electron results include the s-t-channel separation, which, as discussed, is a significant source of error. Furthermore, the purity (table \ref{tb:purity}), was the highest for muon cuts, while the efficiency was still the best for among the lepton cuts.\\
+where the results from the muon fits were used for the partial decay width of the electron $\Gamma_e$. This can be done since we have already assumed lepton universality and is reasonable, because the electron results include the s-t-channel separation, which, as discussed, is a significant source of error. Furthermore, the purity (table \ref{tb:purity}), was the highest for muon cuts, while the efficiency was still the best for among the lepton cuts. See table \ref{tb:appendix:decaywidthsnouniv} in the appendix for the results not assuming universality.\\
 The tauon events are a less reliable source due to their comparatively complex signature (see figure \ref{fig:tauonopal}). As a result, the simulated tauon data showed significant overlaps with the other data sets in all analysis channels, thus making it difficult to define efficient cuts with high purity. 
-Incidentally, the muon events are also the only lepton event that includes the literature and theoretical values in their $1\sigma$ interval. The results for the electron events is higher than expected and includes said values only in its $3\sigma$ interval. This is likely due to the s-t-channel separation. If not all Bhabha scattering events are excluded, the cross section increases and with it does the decay width resulting from the fits. More data could improve the fit that was done to the cos\_theta distribution of the electron cuts. \\
+Incidentally, the muon events are also the only lepton event that includes the literature and theoretical values in their $1\sigma$ interval. The result for the electron events is higher than expected and includes said values only in its $3\sigma$ interval. This is likely due to the s-t-channel separation. If not all Bhabha scattering events are excluded, the cross section increases, and with it the decay width resulting from the fits. More data could improve the fit that was done to the cos\_theta distribution of the electron cuts. \\
 
-To calculate the amount of neutrino generations $n_{\nu-gen}$, on first has to calculate the blind decay width
+To calculate the amount of neutrino generations $n_{\nu-gen}$, one first has to calculate the blind decay width
 \begin{equation}
 	\Gamma_{blind}=\Gamma_{Z}^{ave}-3\cdot\Gamma_l-\Gamma_{q\overline{q}}=\unit{(0.49\pm0.04)}{GeV}
 \end{equation}
@@ -434,7 +436,7 @@ Even the $3\sigma$ interval encloses no other integers than 3, meaning that it c
 
 
 \subsection{Forward-backward asymmetry}
-The forward ($0<$ cos\_theta $<1$) and backward ($-1<$ cos\_theta $<0$) events were counted for the second, forth and sixth center-of-mass energies, $\sqrt{s}\approx89.5\text{, }91.23$ and $\unit{93.0}{GeV}$. This represents the integrals in equation \ref{eq:principles:fbintegral}, as the cross sections are proportional to the number of events. The asymmetry can then be calculated as
+The forward ($0<$ cos\_theta $<1$) and backward ($-1<$ cos\_theta $<0$) events were counted for the second, forth and sixth center-of-mass energy, $\sqrt{s}\approx89.5\text{, }91.23$ and $\unit{93.0}{GeV}$. This represents the integrals in equation \ref{eq:principles:fbintegral}, as the cross sections are proportional to the number of events. The asymmetry can then be calculated as
 \begin{equation}
 A_{fb}=\frac{N_f-N_b}{N_f+N_b},\qquad s_{A_{fb}}=2\sqrt{\frac{N_f^2s_{N_b}^2+N_b^2s_{N_f}^2}{(N_f+N_b)^4}}=2\sqrt{\frac{N_fN_b}{(N_f+N_b)^3}}
 \end{equation}
@@ -443,15 +445,15 @@ Equation \ref{eq:principles:asymmetry weinberg angle} now allows the calculation
 \begin{equation}
 \theta_w=\arcsin(\sqrt{\frac{1-\sqrt{A_{fb}/3}}{4}}),\qquad s_{\theta_w}=\frac{1}{4}\sqrt{-\frac{s_{A_{fb}}^2}{A_{fb}(\sqrt{12A_{fb}}+A_{fb}-9)}}
 \end{equation}
-Table \ref{tb:weinbergangle} shows the results of this calculation. Inserting the value $\theta_w=28.7$ ° \cite{Grif} in equation \ref{eq:principles:asymmetry weinberg angle} yields an expected asymmetry of $A_{bf}^{lit}\approx0.018$.\\
+As this formula only holds for the center of the resonance peak, no angles could be calculated even though positive asymmetries were calculated for off-peak center-of-mass. Inserting the value $\theta_w=28.7$ ° \cite{Grif} in equation \ref{eq:principles:asymmetry weinberg angle} yields an expected asymmetry of $A_{bf}^{lit}\approx0.018$.\\
 \begin{table}[h]\centering
 	\begin{tabular}{@{}llllllll@{}}
 		\toprule
 		&$\sqrt{s}$ [GeV]&$N_f$&$N_b$&$A_{fb}$&$s_{A_{fb}}$&$\theta_w$ [°]&$s_{\theta_w}$ [°]\\
 		\midrule
-		&89.5&117&112&0.02&0.07&28.6&2.2\\
+		&89.5&117&112&0.02&0.07&-&-\\
 		&91.23&1845&1881&-0.010&0.016&&\\
-		&93.0&153&99&0.21&0.06&25.3&0.7\\
+		&93.0&153&99&0.21&0.06&-&-\\
 		\bottomrule
 	\end{tabular}
 	\caption[A\_{fb} and the Weinberg angle]{The Weinberg angle for calculated for three different center-of-mass energies. The Weinberg angle can be found in \cite{muenchen} as $\theta_w^{lit}=28.7426$°. Calculations for $\sqrt{s}\approx\unit{91.23}{GeV}$ yielded complex angles.}
@@ -465,5 +467,5 @@ According to \cite{muenchen}, the Weinberg angle itself can also be calculated a
 s_{\theta_w}&=\sqrt{\frac{\pi}{4\sqrt{2}}}\cdot\sqrt{\frac{s_{M_Z}^2\cdot\alpha(M_Z^2)}{M_Z^2\cdot(G_FM_Z-2\sqrt{2}\pi\alpha(M_Z^2))}}
 \end{aligned}
 \end{equation}
-Converted to degrees, the results it $\theta_w=(28.746\pm0.004)$°, which encloses the literature value $\theta_w^{lit}=28.7426$° \cite{muenchen} in its $1\sigma$ interval.
+Converted to degrees, the results it $\theta_w=(28.746\pm0.004)$°, which encloses the literature value $\theta_w^{lit}=28.7426$° \cite{muenchen} in its $1\sigma$ interval. This had to be expected given the precision and accuracy of the mass measurement. However, this calculation uses constants that are not easy to determine experimentally and thus only has little meaning for the results obtained in these measurements.
 
